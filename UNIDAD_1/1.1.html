@@ -664,27 +664,27 @@
                 <ol>
                     <li><strong>1.	Procesos (Abstracción de la CPU):</strong>
                         <ul>
-                            <li>o	El SO maneja la ejecución de programas como procesos, ocultando los detalles de la planificación y el multiplexado de la CPU.</li>
+                            <li>El SO maneja la ejecución de programas como procesos, ocultando los detalles de la planificación y el multiplexado de la CPU.</li>
                         </ul>
                     </li>
-                    <li><strong>Espacio de direcciones (Abstracción de la memoria):</strong>
+                    <li><strong>2.	Espacio de direcciones (Abstracción de la memoria):</strong>
                         <ul>
-                            <li>Proporciona la ilusión de memoria contigua y protegida mediante <strong>memoria virtual</strong>, independientemente de la distribución física de la RAM.</li>
+                            <li>Hace que parezca que toda la memoria está junta y protegida, aunque en realidad el sistema usa diferentes partes de la RAM y del disco para lograrlo.</li>
                         </ul>
                     </li>
-                    <li><strong>Archivos (Abstracción del almacenamiento):</strong>
+                    <li><strong>3.	Archivos (Abstracción del almacenamiento):</strong>
                         <ul>
                             <li>Organiza los datos en un sistema jerárquico de archivos, ocultando los detalles del manejo de sectores en discos.</li>
                         </ul>
                     </li>
-                    <li><strong>Dispositivos de E/S (Abstracción del hardware):</strong>
+                    <li><strong>4.	Dispositivos de E/S (Abstracción del hardware):</strong>
                         <ul>
                             <li>Ofrece interfaces genéricas (controladores) para interactuar con periféricos (teclados, impresoras, etc.) sin requerir conocimiento específico del hardware.</li>
                         </ul>
                     </li>
-                    <li><strong>Interfaz de usuario (Abstracción de la interacción):</strong>
+                    <li><strong>5.	Interfaz de usuario (Abstracción de la interacción):</strong>
                         <ul>
-                            <li>Proporciona entornos gráficos (GUI) o de comandos (CLI) para que el usuario no necesite operar directamente con instrucciones de bajo nivel.</li>
+                            <li>Proporciona entornos gráficos o de comandos para que el usuario no necesite operar directamente con instrucciones de bajo nivel.</li>
                         </ul>
                     </li>
                 </ol>
