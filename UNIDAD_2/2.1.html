@@ -673,8 +673,14 @@
                 <ul>
                     <li><strong>Código del programa (texto)</strong>: instrucciones a ejecutar.</li>
                     <li><strong>Datos</strong>: variables globales y estructuras utilizadas por el programa.</li>
+                    <li><strong>Pila (stack)</strong>: donde se almacenan las llamadas a funciones y variables locales.</li>
+                    <li><strong>Heap</strong>: área dinámica donde se crean objetos o estructuras de datos durante la ejecución.</li>
                     <li>Naranja</li>
                 </ul>        
+                <p>El sistema operativo mantiene información sobre cada proceso a través de una estructura denominada <strong>Bloque de Control de Proceso (PCB, Process Control Block)</strong>, que registra el estado del proceso, sus registros, identificador (PID), prioridad, y recursos asociados.</p>
+                <p>Según <strong>Tanenbaum y Bos (2015)</strong>, “<i>el modelo de procesos es la abstracción central de los sistemas operativos modernos; cada proceso actúa como si tuviera su propio procesador virtual, aunque en realidad comparte la CPU con otros procesos</i>” (p. 95). Esta abstracción simplifica la programación y permite al sistema operativo aplicar políticas de <strong>planificación</strong>, <strong>suspensión</strong>, <stronng>reanudación</strong> y <strong>finalización</strong> que optimizan el uso de los recursos.</p>
+                <p>En síntesis, el modelo de procesos proporciona el marco conceptual que hace posible la <strong>ejecución concurrente</strong>, <strong>la seguridad del sistema</strong> y <strong>la eficiencia en el manejo de recursos</strong>, sirviendo como núcleo del diseño operativo moderno.                    
+                <p></p>
             </div>
                 
         </div>
@@ -682,112 +688,27 @@
         <div class="section" id="seccion-2-1-1">
             <div class="section-header">
                 <div class="section-number">2.1.1</div>
-                <div class="section-title">Fundamentos: jerarquía, bloque de control de proceso (BCP)</div>
+                <div class="section-title">Fundamentos: jerarquía, BCP</div>
             </div>
             <div class="content">
-                <h3>Modelos de Procesos</h3>
-                <p>Derivado de lo anterior existen Modelos:</p>
+                <p>La gestión de procesos se basa en principios de organización que posibilitan la supervisión eficaz de la ejecución de diversos programas por parte del sistema operativo. La jerarquía de procesos y el bloque de control del proceso (BCP) son algunos de los principios que se destacan, ya que son fundamentales para la supervisión y coordinación del ciclo vital de cada proceso en el sistema.</p>
+                <h3>Orden jerárquico de procesos</h3>
+                <p>Los sistemas operativos actuales organizan los procesos en una jerarquía, en la que cada proceso tiene la capacidad de generar uno o más subprocesos o procesos hijos. Cuando un proceso padre emplea una llamada al sistema, como fork () en Unix/Linux, para crear un nuevo proceso, se establece esta relación de dependencia.
+El proceso hijo, aunque retiene su propia ejecución de manera independiente, recibe parte del ambiente del padre (por ejemplo, directorios, permisos o variables). Esta jerarquía posibilita que el trabajo esté organizado de manera ordenada, lo cual simplifica la gestión, la sincronización y la finalización controlada de los procesos.
 
-                <h4>1. Modelo Monolítico</h4>
+                </p>
+                <h3>Bloque de Control de Proceso (BCP)</h3>
+                <p>El BCP se utiliza como una organización de datos interna por el sistema y esto incluye lo siguiente:</p>
                 <ul>
-                    <li><strong>Descripción:</strong> La totalidad del sistema operativo se ejecuta bajo un solo proceso que funciona en el nivel de núcleo del sistema.</li>
-                    <li><strong>Importancia funcional:</strong> Alta velocidad de ejecución gracias a llamadas directas entre componentes del sistema.</li>
-                    <li><strong>Ventajas:</strong>
-                        <ul>
-                            <li>Rápido acceso entre servicios.</li>
-                            <li>Buen rendimiento.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Desventajas:</strong>
-                        <ul>
-                            <li>Difícil mantenimiento.</li>
-                            <li>Un error puede colapsar todo el sistema.</li>
-                        </ul>
-                    </li>
+                    <li><strong>Identificación del proceso</strong>: PID, PPID (padre), UID (usuario).</li>
+                    <li><strong>Estado del proceso</strong>: nuevo, listo, en ejecución, bloqueado o terminado.</li>
+                    <li><strong>Registros de CPU</strong>: valores almacenados cuando el proceso es interrumpido.</li>
+                    <li><strong>Información de memoria</strong>: punteros a tablas de páginas y espacio asignado.</li>
+                    <li><strong>Contabilidad</strong>: tiempo de CPU utilizado, prioridad y estadísticas.</li>
+                    <li><strong>Información de control</strong>: recursos abiertos (archivos, dispositivos, sockets).</li>
                 </ul>
-
-                <h4>2. Modelo Microkernel</h4>
-                <ul>
-                    <li><strong>Descripción:</strong> Solo funciones básicas en el kernel (como planificación y comunicación); el resto corre como procesos separados en modo usuario.</li>
-                    <li><strong>Importancia funcional:</strong> Mejora la <strong>seguridad</strong>, la <strong>estabilidad</strong> y la <strong>modularidad</strong> del sistema.</li>
-                    <li><strong>Ventajas:</strong>
-                        <ul>
-                            <li>Mayor aislamiento de fallos.</li>
-                            <li>Facilidad para actualizar o modificar componentes.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Desventajas:</strong>
-                        <ul>
-                            <li>Mayor sobrecarga por comunicación entre procesos.</li>
-                            <li>Posible pérdida de rendimiento.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <h4>3. Modelo Cliente-Servidor</h4>
-                <ul>
-                    <li><strong>Descripción:</strong> Sus funciones están separadas en distintos servicios que se comunican entre ellos, unos solicitando operaciones (clientes) y otros respondiendo (servidores).</li>
-                    <li><strong>Importancia funcional:</strong> Facilita la distribución de servicios y mejora el <strong>control sobre la ejecución y seguridad de procesos</strong>.</li>
-                    <li><strong>Ventajas:</strong>
-                        <ul>
-                            <li>Modular y escalable.</li>
-                            <li>Permite integración en redes distribuidas.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Desventajas:</strong>
-                        <ul>
-                            <li>Latencia por comunicaciones entre procesos.</li>
-                            <li>Complejidad en la sincronización.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <h4>4. Modelo de Máquinas Virtuales</h4>
-                <ul>
-                    <li><strong>Descripción:</strong> El hardware se abstrae para crear múltiples entornos virtuales que ejecutan sistemas operativos independientes.</li>
-                    <li><strong>Importancia funcional:</strong> Permite <strong>aislamiento total entre sistemas</strong> y mejor uso del hardware compartido.</li>
-                    <li><strong>Ventajas:</strong>
-                        <ul>
-                            <li>Seguridad por aislamiento.</li>
-                            <li>Ideal para pruebas y entornos paralelos.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Desventajas:</strong>
-                        <ul>
-                            <li>Consumo de recursos.</li>
-                            <li>Requiere que tenga calidad los hipervisores.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <h4>5. Modelo en Capas</h4>
-                <ul>
-                    <li><strong>Descripción:</strong> El sistema operativo se organiza jerárquicamente en capas, donde cada una depende de la anterior.</li>
-                    <li><strong>Importancia funcional:</strong> Favorece el <strong>orden lógico</strong>, el <strong>aislamiento de errores</strong> y la <strong>facilidad de mantenimiento</strong>.</li>
-                    <li><strong>Ventajas:</strong>
-                        <ul>
-                            <li>Diseño claro y organizado.</li>
-                            <li>Mantenimiento más simple.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Desventajas:</strong>
-                        <ul>
-                            <li>Posible pérdida de eficiencia en la comunicación entre capas.</li>
-                            <li>Difícil segmentar algunas funciones complejas.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <p>Cada modelo ofrece distintas <strong>formas de organización</strong> para lograr <strong>eficiencia, seguridad, estabilidad y modularidad</strong> en un sistema operativo.</p>
-
-                <h3>El Bloque de Control de Proceso (BCP)</h3>
-                <p>El Bloque de Control de Procesos (BCP) es una estructura de datos esencial para el funcionamiento de los sistemas operativos, ya que almacena toda la información relevante sobre cada proceso. Entre estos datos se encuentran el identificador del proceso, su estado, el valor del contador de programa, los registros del procesador y otros elementos necesarios para su administración.</p>
+                <p>El BCP permite al sistema <strong>interrumpir y reanudar procesos</strong> sin pérdida de información, garantizando una conmutación de contexto (<i>context switch</i>) correcta y eficiente.</p>
                 
-                <div class="quote-box">
-                    "El BCP es el corazón de la gestión de procesos, permitiendo al sistema operativo supervisar, controlar y administrar eficientemente todos los procesos en ejecución"
-                    <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
-                </div>
-
                 <h4>Funcionalidad del BCP</h4>
                 <p>El BCP es el corazón de la gestión de procesos. Su funcionalidad principal es permitir al sistema operativo:</p>
                 <ul>
@@ -808,8 +729,26 @@
                     <li><strong>Información de contabilidad:</strong> Registra estadísticas del uso del proceso, incluyendo tiempo de CPU consumido, restricciones temporales y su identificador numérico.</li>
                     <li><strong>Información de estado de I/O:</strong> Lista de dispositivos I/O asignados al proceso, lista de archivos abiertos.</li>
                 </ul>
-
-                <h4>Ventajas del BCP</h4>
+            </div>
+        </div>
+        <div class="section" id="seccion-2-1-2">
+            <div class="section-header">
+                <div class="section-number">2.1.2</div>
+                <div class="section-title">Operaciones: creación, ejecución y terminación</div>
+            </div>
+            <div class="content">
+            <p>Las operaciones de procesos son las acciones que lleva a cabo el sistema operativo para manejar el ciclo de vida de un proceso desde su creación hasta que termina. Estas operaciones aseguran que los recursos se distribuyan, empleen y liberen de forma organizada, lo cual mantiene la estabilidad y eficiencia del sistema.</p>             
+                <h3>Desarrollo de procesos</h3>
+                <p>Cuando un programa necesita llevar a cabo una nueva tarea, se produce la creación de un proceso. A través de una llamada al sistema en Windows o fork () en Unix/Linux), el proceso padre crea un proceso hijo. El sistema operativo, en este periodo, otorga un identificador único (PID), aparta memoria y activa el Bloque de Control de Proceso (BCP), además de fijar la relación jerárquica entre los dos procesos.</p>
+                <p>De acuerdo con <strong>Silberschatz, Galvin y Gagne (2022)</strong>, "<i>cada proceso se genera al duplicar total o parcialmente el contexto de un proceso ya existente, garantizando la coherencia en la herencia de privilegios y recursos</i>" (p. 194).</p>
+                <h3>Ejecución de Procesos</h3>
+                <p>Una vez creado, el proceso entra en la <strong>cola de listos</strong> y el planificador del sistema operativo (scheduler) selecciona cuál se ejecutará en la CPU. Durante su ejecución, el proceso puede cambiar de estado (listo, bloqueado o en ejecución) según las interrupciones, las llamadas al sistema o la disponibilidad de recursos. El <strong>cambio de contexto (context switch)</strong> permite suspender un proceso y reanudar otro sin pérdida de información, manteniendo la multitarea activa y ordenada.
+De acuerdo con <strong>Tanenbaum y Bos (2015)</strong>, “<i>el sistema operativo proporciona la ilusión de ejecución simultánea al alternar los procesos en la CPU, salvando y restaurando su estado de forma transparente</i>” (p. 103).</p>
+            <h3>Terminación de Procesos</h3>
+                <p>La finalización de un proceso ocurre cuando este completa su tarea o es interrumpido por el usuario o el sistema. Al finalizar, el sistema libera los recursos asignados (memoria, archivos y descriptores) y actualiza el BCP para registrar el estado de salida. Los procesos hijos también pueden ser terminados automáticamente al concluir el proceso padre, dependiendo del modelo de jerarquía.</p>
+                <p>Como señala <strong>Stallings (2018)</strong>, “<i>la terminación controlada de procesos es esencial para mantener la consistencia del sistema, evitando la pérdida de recursos y estados indeterminados</i>” (p. 208).</p>
+                <p>En conjunto, estas operaciones forman el ciclo de vida del proceso, asegurando una administración eficiente del tiempo de CPU, la memoria y los dispositivos, pilares fundamentales de la arquitectura de un sistema operativo moderno.</p>
+                
                 <ul>
                     <li><strong>Multitarea:</strong> Permite al sistema operativo cambiar eficientemente entre procesos (cambio de contexto) y dar la ilusión de ejecución simultánea.</li>
                     <li><strong>Gestión eficiente:</strong> Facilita la asignación y revocación de recursos.</li>
