@@ -628,8 +628,8 @@
         <div class="intro">
             <h3>Concepto:</h3>
             <div class="quote-box">
-                "Un sistema operativo (SO) es un software que actúa como intermediario entre el hardware de una computadora y los programas de usuario, gestionando los recursos del sistema (como la CPU, memoria, almacenamiento y periféricos) y proporcionando servicios comunes para facilitar la ejecución de aplicaciones"
-                <div class="citation">(Silberschatz, Galvin y Gagne, 2018, p. 3).</div>
+                "El sistema operativo es el centro que da vida a la computadora, conectando el hardware con el software y gestionando cada recurso memoria, almacenamiento y dispositivos para que el usuario pueda interactuar con la tecnología de manera fluida, eficiente y confiable.
+                <div class="citation">(Silberschatz, Galvin & Gagne, 2022).</div>
             </div>
         </div>
         
@@ -641,16 +641,19 @@
             <div class="content">
                 <h3>Aspectos básicos:</h3>
                 <ol>
-                    <li><strong>Gestión de procesos:</strong> Controla la ejecución de múltiples programas y asigna tiempo de CPU.</li>
-                    <li><strong>Gestión de memoria:</strong> Administra la memoria principal (RAM) y virtual.</li>
-                    <li><strong>Sistema de archivos:</strong> Organiza y almacena datos en dispositivos de almacenamiento.</li>
-                    <li><strong>Interfaz de usuario:</strong> Proporciona entornos gráficos (GUI) o de línea de comandos (CLI).</li>
-                    <li><strong>Seguridad y acceso:</strong> Controla permisos y protege los recursos del sistema.</li>
+                    <li><strong>1.	Control de programas:</strong> <justify>Se encarga de manejar varios programas al mismo tiempo, organizando el uso del procesador para que todo funcione sin interrupciones.</justify></li>
+                    <li><strong>2.	Uso de la memoria:</strong> <justify>Administra el espacio donde se guardan temporalmente los datos y programas mientras están en uso, para que el equipo trabaje de forma 
+                                    ordenada y rápida.</justify></li>
+                    <li><strong>3.	Archivos y datos:</strong> <justify>Guarda, organiza y permite acceder a la información almacenada en el disco o en otros medios, para que el usuario encuentre fácilmente 
+                                    lo que necesita.</justify></li>
+                    <li><strong>4.	Comunicación con el usuario:</strong><justify> Crea el entorno donde la persona puede dar instrucciones a la computadora, ya sea con ventanas, íconos o comandos escritos.</justify></li>
+                    <li><strong>5.	Seguridad y permisos:</strong><justify> Protege la computadora controlando quién puede usarla y qué recursos puede modificar, evitando errores o accesos no autorizados.</justify></li>
                 </ol>
 
                 <h3>Abstracción proporcionada por el sistema operativo</h3>
-                <h4>Concepto:</h4>
-                <p>El sistema operativo (SO) actúa como una capa de <strong>abstracción</strong> entre el hardware físico y las aplicaciones de usuario, simplificando la interacción con los recursos del sistema. Esta abstracción permite que los programas no necesiten gestionar directamente los detalles complejos del hardware, sino que interactúen con interfaces estandarizadas proporcionadas por el SO.</p>
+                <h4></h4>
+                <p>El sistema operativo crea una capa de abstracción entre hardware y las aplicaciones usuario, simplificando interacción con los recursos del sistema. Esta abstracción permite que los programas no necesiten
+                   gestionar directamente los detalles complejos del hardware, sino que interactúen con interfaces estandarizadas proporcionadas por el SO.</p>
                 
                 <div class="quote-box">
                     "El sistema operativo proporciona abstracciones de los recursos físicos, como procesadores, memoria, discos y dispositivos de E/S, para que los programas puedan operar de manera más simple y portátil"
@@ -659,29 +662,29 @@
 
                 <h4>Principales abstracciones del SO:</h4>
                 <ol>
-                    <li><strong>Procesos (Abstracción de la CPU):</strong>
+                    <li><strong>1.	Procesos (Abstracción de la CPU):</strong>
                         <ul>
-                            <li>El SO maneja la ejecución de programas como <strong>procesos</strong>, ocultando los detalles de la planificación y el multiplexado de la CPU.</li>
+                            <li>El SO maneja la ejecución de programas como procesos, ocultando los detalles de la planificación y el multiplexado de la CPU.</li>
                         </ul>
                     </li>
-                    <li><strong>Espacio de direcciones (Abstracción de la memoria):</strong>
+                    <li><strong>2.	Espacio de direcciones (Abstracción de la memoria):</strong>
                         <ul>
-                            <li>Proporciona la ilusión de memoria contigua y protegida mediante <strong>memoria virtual</strong>, independientemente de la distribución física de la RAM.</li>
+                            <li>Hace que parezca que toda la memoria está junta y protegida, aunque en realidad el sistema usa diferentes partes de la RAM y del disco para lograrlo.</li>
                         </ul>
                     </li>
-                    <li><strong>Archivos (Abstracción del almacenamiento):</strong>
+                    <li><strong>3.	Archivos (Abstracción del almacenamiento):</strong>
                         <ul>
                             <li>Organiza los datos en un sistema jerárquico de archivos, ocultando los detalles del manejo de sectores en discos.</li>
                         </ul>
                     </li>
-                    <li><strong>Dispositivos de E/S (Abstracción del hardware):</strong>
+                    <li><strong>4.	Dispositivos de E/S (Abstracción del hardware):</strong>
                         <ul>
                             <li>Ofrece interfaces genéricas (controladores) para interactuar con periféricos (teclados, impresoras, etc.) sin requerir conocimiento específico del hardware.</li>
                         </ul>
                     </li>
-                    <li><strong>Interfaz de usuario (Abstracción de la interacción):</strong>
+                    <li><strong>5.	Interfaz de usuario (Abstracción de la interacción):</strong>
                         <ul>
-                            <li>Proporciona entornos gráficos (GUI) o de comandos (CLI) para que el usuario no necesite operar directamente con instrucciones de bajo nivel.</li>
+                            <li>Proporciona entornos gráficos o de comandos para que el usuario no necesite operar directamente con instrucciones de bajo nivel.</li>
                         </ul>
                     </li>
                 </ol>
@@ -695,7 +698,7 @@
 
                 <h3>Administración de Recursos en Sistemas Operativos</h3>
                 <h4>Concepto:</h4>
-                <p>El sistema operativo (SO) es el responsable de <strong>gestionar los recursos del hardware</strong> de manera eficiente, asegurando su correcta asignación entre múltiples procesos y usuarios.</p>
+                <p></p>
                 
                 <div class="quote-box">
                     "La principal tarea de un sistema operativo es administrar los recursos de una computadora, incluyendo el procesador, la memoria, los dispositivos de almacenamiento y los periféricos, de manera que se maximice el rendimiento y se eviten conflictos"
