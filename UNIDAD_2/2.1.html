@@ -731,13 +731,29 @@ El proceso hijo, aunque retiene su propia ejecución de manera independiente, re
                 </ul>
             </div>
         </div>
-        <div class="section" id="seccion-2-1-2">
+        <div class="section" id="seccion-2-1-3">
             <div class="section-header">
-                <div class="section-number">2.1.2</div>
-                <div class="section-title">Operaciones: creación, ejecución y terminación</div>
+                <div class="section-number">2.1.3</div>
+                <div class="section-title">Estados del proceso</div>
             </div>
             <div class="content">
-            <p>Las operaciones de procesos son las acciones que lleva a cabo el sistema operativo para manejar el ciclo de vida de un proceso desde su creación hasta que termina. Estas operaciones aseguran que los recursos se distribuyan, empleen y liberen de forma organizada, lo cual mantiene la estabilidad y eficiencia del sistema.</p>             
+                <p>Un <strong>proceso</strong> pasa por diferentes <strong>estados</strong> durante su ciclo de vida, dependiendo de las acciones que realice y de los recursos que tenga disponibles. Estos estados permiten al sistema operativo <strong>controlar y coordinar la ejecución</strong> de múltiples tareas de manera eficiente, garantizando un uso equilibrado del procesador y la memoria.</p>
+                <p>Los estados principales del proceso son:</p>                
+                <h4>1. Nuevo (New)</h4>
+                    <p>El proceso está siendo creado. El sistema operativo asigna los recursos iniciales y genera su <strong>Bloque de Control de Proceso (BCP)</strong> con la información básica. Aún no se encuentra listo para ejecutarse.</p>
+                <h4>2. Listo (Ready)</h4>
+                    <p>El proceso ya fue cargado en memoria y está <strong>esperando su turno para utilizar la CPU</strong>. Permanece en la <strong>cola de listos</strong>, administrada por el planificador (scheduler), quien decide el orden de ejecución según la política de planificación.</p>
+                <h4>3. En Ejecución (Running</h4>
+                    <p>El proceso está utilizando la <strong>CPU activamente</strong> para ejecutar sus instrucciones. Solo un proceso puede encontrarse en este estado por procesador. Si ocurre una interrupción o un cambio de contexto, el proceso puede volver al estado de listo o pasar a bloqueado.</p>
+                <h4>Bloqueado o Esperando (Waiting/Blocked)</h4>
+                    <p>El proceso <strong>no puede continuar</strong> hasta que ocurra un evento externo, como la finalización de una operación de E/S o la liberación de un recurso. En este estado, libera la CPU para que otros procesos puedan ejecutarse.</p>
+                <h4>5. Terminado (Terminated)</h4>
+                    <p>El proceso ha completado su ejecución o ha sido finalizado por el sistema o el usuario. El sistema operativo libera los recursos asociados y elimina su BCP.</p>    
+                <p>Como explican <strong>Silberschatz, Galvin y Gagne (2022)</strong>, “<i>los estados del proceso permiten al sistema operativo mantener el control de cada programa en ejecución, asegurando una transición ordenada y eficiente entre las fases de creación, ejecución, espera y finalización</i>” (p. 199). Esta organización garantiza que el sistema operativo mantenga la estabilidad y el equilibrio entre los procesos activos, bloqueados y finalizados, permitiendo una <strong>multitarea eficiente y controlada</strong>.</p>                    
+            
+                
+                
+                <p>Las operaciones de procesos son las acciones que lleva a cabo el sistema operativo para manejar el ciclo de vida de un proceso desde su creación hasta que termina. Estas operaciones aseguran que los recursos se distribuyan, empleen y liberen de forma organizada, lo cual mantiene la estabilidad y eficiencia del sistema.</p>             
                 <h3>Desarrollo de procesos</h3>
                 <p>Cuando un programa necesita llevar a cabo una nueva tarea, se produce la creación de un proceso. A través de una llamada al sistema en Windows o fork () en Unix/Linux), el proceso padre crea un proceso hijo. El sistema operativo, en este periodo, otorga un identificador único (PID), aparta memoria y activa el Bloque de Control de Proceso (BCP), además de fijar la relación jerárquica entre los dos procesos.</p>
                 <p>De acuerdo con <strong>Silberschatz, Galvin y Gagne (2022)</strong>, "<i>cada proceso se genera al duplicar total o parcialmente el contexto de un proceso ya existente, garantizando la coherencia en la herencia de privilegios y recursos</i>" (p. 194).</p>
@@ -748,58 +764,14 @@ De acuerdo con <strong>Tanenbaum y Bos (2015)</strong>, “<i>el sistema operati
                 <p>La finalización de un proceso ocurre cuando este completa su tarea o es interrumpido por el usuario o el sistema. Al finalizar, el sistema libera los recursos asignados (memoria, archivos y descriptores) y actualiza el BCP para registrar el estado de salida. Los procesos hijos también pueden ser terminados automáticamente al concluir el proceso padre, dependiendo del modelo de jerarquía.</p>
                 <p>Como señala <strong>Stallings (2018)</strong>, “<i>la terminación controlada de procesos es esencial para mantener la consistencia del sistema, evitando la pérdida de recursos y estados indeterminados</i>” (p. 208).</p>
                 <p>En conjunto, estas operaciones forman el ciclo de vida del proceso, asegurando una administración eficiente del tiempo de CPU, la memoria y los dispositivos, pilares fundamentales de la arquitectura de un sistema operativo moderno.</p>
-                
-                <ul>
-                    <li><strong>Multitarea:</strong> Permite al sistema operativo cambiar eficientemente entre procesos (cambio de contexto) y dar la ilusión de ejecución simultánea.</li>
-                    <li><strong>Gestión eficiente:</strong> Facilita la asignación y revocación de recursos.</li>
-                    <li><strong>Robustez:</strong> Permite la recuperación de procesos en caso de interrupciones o fallas.</li>
-                    <li><strong>Control detallado:</strong> Ofrece un control granular sobre cada proceso.</li>
-                </ul>
-
-                <h4>Desventajas del BCP</h4>
-                <ul>
-                    <li><strong>Overhead de memoria:</strong> Cada BCP consume una cantidad de memoria, lo que puede ser significativo si hay muchos procesos.</li>
-                    <li><strong>Sobrecarga en el cambio de contexto:</strong> Durante la conmutación entre procesos, el sistema debe guardar y restaurar la información del Bloque de Control de Procesos (BCP), lo cual implica un consumo adicional del tiempo del procesador.</li>
-                    <li><strong>Dificultad en su implementación:</strong> La creación y puesta en marcha del BCP, así como de los algoritmos que lo utilizan, puede resultar complicada.</li>
-                </ul>
-
-                <h4>Ejemplificación:</h4>
-                <p>Cada vez que abres un programa o incluso cuando el sistema operativo inicia un proceso en segundo plano, se crea un <strong>BCP</strong> para ese proceso.</p>
-
-                <p><strong>Imagina que abres Chrome, Spotify y Word al mismo tiempo.</strong> El sistema operativo crea un <strong>BCP individual para cada uno de ellos</strong>.</p>
-
-                <h4>Estado del Proceso:</h4>
-                <ul>
-                    <li>Cuando abres Chrome, su BCP se marca como "Nuevo".</li>
-                    <li>Posteriormente, el planificador del sistema operativo lo coloca en el estado de <strong>"Listo"</strong> para su futura ejecución.</li>
-                    <li>Al asignársele tiempo de CPU, el BCP se actualiza al estado <strong>"En realización"</strong>.</li>
-                    <li>Si decides cambiar a usar Spotify, el proceso de Chrome podría cambiar a <strong>"Listo"</strong> o <strong>"Esperando"</strong>, dependiendo de si está a la espera de recursos como datos de red, por ejemplo.</li>
-                </ul>
-
-                <h4>Contador de Programa y Registros de CPU:</h4>
-                <ul>
-                    <li><strong>Ejecución activa de un proceso:</strong> Cuando una aplicación como Chrome está en estado de ejecución, su Bloque de Control de Procesos (BCP) contiene tanto la dirección de la próxima instrucción que la CPU debe procesar como el estado actual de los registros internos, que almacenan datos temporales esenciales para su funcionamiento.</li>
-                    <li><strong>Cambio de contexto entre procesos:</strong> Al momento de cambiar la ejecución hacia otra aplicación como Spotify, el sistema operativo guarda en el BCP de Chrome la información del contador de programa y los registros del procesador. Posteriormente, recupera estos datos desde el BCP de Spotify, lo que permite reanudar su ejecución exactamente donde se había detenido. Este mecanismo es conocido como cambio de contexto.</li>
-                </ul>
-
-                <h4>Información de Gestión de Memoria:</h4>
-                <p>El BCP de Chrome sabrá qué partes de la RAM están asignadas a sus pestañas, sus datos y su código. Si abres muchas pestañas, el BCP de Chrome se actualizará para reflejar el aumento en el uso de memoria.</p>
-
-                <h4>Información de I/O:</h4>
-                <ul>
-                    <li>Si Chrome está realizando una descarga, su BCP incluirá datos sobre el archivo en proceso y la sección del disco duro que está utilizando. En el caso de Spotify, si está reproduciendo música, su BCP reflejará qué dispositivo de audio está empleando.</li>
-                    <li><strong>ID del Proceso y Prioridad:</strong> Cada BCP tiene un número de identificación único (PID). Puedes verlo en el "Administrador de Tareas" en el sistema operativo de Windows (pestaña "Detalles") o con el comando ps aux en Linux.</li>
-                    <li>El BCP también almacena la prioridad del proceso. Por ejemplo, un proceso del sistema operativo puede tener una prioridad más alta que un juego para asegurar que el sistema siga funcionando sin dificultades.</li>
-                </ul>
-
-                <div class="quote-box">
-                    "En términos simples, el Bloque de Control de Procesos, actúa como una pieza de identificación y un historial operativo del proceso, facilitando que el sistema operativo distribuya de forma equitativa y eficiente tanto los recursos como el uso del procesador entre los distintos procesos en ejecución"
-                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-                </div>
+                <div class="figure-container">
+                    <img src="Figura3.png" alt="Ciclo de vida de un proceso" class="imagen-figura1">
+                    <div class="figure-caption">Figura 3. Ciclo de vida de un proceso: creación, ejecución y terminación (<i>Elaboración propia basada en Silberschatz et al., 2022; Tanenbaum y Bos, 2015</i>). </div>
+                </div>                
             </div>
         </div>
         
-        <div class="section" id="seccion-2-1-2">
+        <div class="section" id="seccion-2-1-3">
             <div class="section-header">
                 <div class="section-number">2.1.2</div>
                 <div class="section-title">Operaciones</div>
