@@ -562,7 +562,7 @@
 
     <nav class="sidebar-nav" id="sidebarNav">
         <div class="sidebar-header">
-            <div class="sidebar-title">2.2 Modelo multi-hilo</div>
+            <div class="sidebar-title">2.2 Modelo multihilo</div>
             <div class="sidebar-subtitle">Administración de procesos</div>
         </div>
         
@@ -580,13 +580,13 @@
             <div class="nav-section">
                 <div class="nav-section-title">Contenido</div>
                 <a href="#seccion-2-2-1" class="nav-item" data-section="2-2-1">
-                    <i class="fas fa-book"></i> 2.2.1 Bibliotecas
+                    <i class="fas fa-book"></i> 2.2.1 Bibliotecas POSIX y Win32
                 </a>
                 <a href="#seccion-2-2-2" class="nav-item" data-section="2-2-2">
-                    <i class="fas fa-cogs"></i> 2.2.2 Implementación
+                    <i class="fas fa-cogs"></i> 2.2.2 Implementación de hilos
                 </a>
                 <a href="#seccion-2-2-3" class="nav-item" data-section="2-2-3">
-                    <i class="fas fa-layer-group"></i> 2.2.3 Hilos en modo usuario y kernel
+                    <i class="fas fa-layer-group"></i> 2.2.3 Hilos en modo usuario vs kernel
                 </a>
             </div>
 
@@ -596,7 +596,7 @@
                     <i class="fas fa-tasks"></i> Actividad de aprendizaje
                 </a>
                 <a href="2.3.html" class="nav-item">
-                    <i class="fas fa-arrow-right"></i> Siguiente: Comunicación entre procesos
+                    <i class="fas fa-arrow-right"></i> Siguiente: Comunicación entre procesos (IPC)
                 </a>
             </div>
         </div>
@@ -613,42 +613,30 @@
                 <span>/</span>
                 <a href="index.html">Unidad 2</a>
                 <span>/</span>
-                <span>2.2 Modelo multi-hilo</span>
+                <span>2.2 Modelo multihilo</span>
             </div>
-            <h1>2.2 Modelo multi-hilo</h1>
+            <h1>2.2 Modelo multihilo</h1>
             <div class="subtitle">Administración de procesos</div>
         </header>
         
         <div class="intro">
-            <p>En los sistemas operativos actuales, el modelo multihilo constituye una mejora respecto al enfoque tradicional basado únicamente en procesos. A diferencia de un proceso, que posee su propio espacio de direcciones y recursos, un hilo es una unidad de ejecución más ligera que comparte el entorno del proceso al que pertenece, permitiendo la ejecución concurrente con otros hilos del mismo proceso. Esta arquitectura facilita la creación de aplicaciones más eficientes y capaces de ejecutar múltiples tareas de manera paralela, lo cual es fundamental en sistemas que demandan alto rendimiento, como servidores, navegadores web o programas de edición multimedia.</p>
-            <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
-
-            <h4>Aplicación a los procesos:</h4>
-            <ul>
-                <li>Cada <strong>hilo</strong> dentro de un proceso se considera una <strong>subunidad de ejecución</strong>.</li>
-                <li>Todos los hilos colaborar <strong>el espacio de memoria del proceso</strong>, pero mantienen registros, es por ello que el contador del programa administra todo lo relacionado al proceso.</li>
-                <li>Uso de múltiples hilos permite que un proceso realice varias tareas al mismo tiempo (como leer datos, procesarlos y escribirlos simultáneamente).</li>
-            </ul>
-
-            <br>
-            <h4>Ventajas del modelo multi-hilo:</h4>
-            <ul>
-                <li><strong>Mayor rendimiento:</strong> Permite aprovechar CPUs multinúcleo.</li>
-                <li><strong>Mejor respuesta:</strong> Ideal para aplicaciones con interfaces gráficas y servicios en segundo plano.</li>
-                <li><strong>Menor consumo de recursos:</strong> Crear hilos es más barato que crear procesos completos.</li>
-            </ul>
-
-            <br>
-            <h4>Desafíos:</h4>
-            <ul>
-                <li><strong>Sincronización:</strong> Como los hilos comparten memoria, pueden surgir condiciones de carrera si no se gestionan correctamente.</li>
-                <li><strong>Depuración compleja:</strong> Los errores en sistemas multi-hilo suelen ser difíciles de rastrear.</li>
-                <li><strong>Planificación justa:</strong> El sistema operativo debe asignar CPU de forma equitativa a los hilos activos.</li>
-            </ul>
-
+            <p>La comunicación entre procesos (IPC) es un conjunto de métodos que facilitan la sincronización y el intercambio de datos entre procesos que se llevan a cabo al mismo tiempo en un sistema operativo. La IPC es fundamental para evitar conflictos en el acceso a recursos, compartir datos y coordinar actividades, ya que los procesos están ubicados en espacios de memoria separados.</p>
+            <p>Los mecanismos de IPC incluyen tuberías (<i>pipes</i>), colas de mensajes, memoria compartida, señales y sockets. Cada uno proporciona diversos beneficios dependiendo de la clase de aplicación y del grado de aislamiento o rendimiento que se necesite.</p>
+            <dl> 
+                <dt>1. Tuberías (Pipes)</dt>
+                    <dd>Las tuberías facilitan la comunicación en una sola dirección entre procesos interconectados, enviando datos como un flujo constante. En sistemas Unix/Linux, se generan a través del comando <i>pipe ()</i> y son muy empleadas para enlazar procesos en una secuencia de ejecución.</dd>
+                <dt>2. Colas de mensajes </dt>
+                    <dd>Almacenan mensajes en una cola administrada por el kernel, lo que posibilita una comunicación estructurada y asincrónica. Los procesos tienen la posibilidad de enviar o recibir mensajes con control de prioridad, lo cual ayuda a que la sincronización se realice sin bloqueo directo.</dd>
+                <dt>3. Memoria compartida </dt>
+                    <dd>Es el mecanismo más rápido de IPC, ya que varios procesos pueden acceder directamente a una región común de memoria. Requiere, sin embargo, mecanismos adicionales de sincronización (como semáforos) para evitar accesos simultáneos que causen inconsistencias.</dd>
+                <dt>4. Señales</dt>
+                    <dd>Son notificaciones asíncronas enviadas por el sistema o por otros procesos para indicar eventos, como interrupciones o errores. Por ejemplo, la señal <i>SIGINT</i> detiene un proceso, mientras que <i>SIGKILL</i> lo finaliza inmediatamente.</dd>
+                <dt>5. Sockets</dt>
+                    <dd>Los sockets permiten la comunicación entre procesos en la misma máquina o en distintas redes, funcionando como un canal bidireccional basado en protocolos (<i>TCP/IP</i> o <i>UDP</i>). Son la base de la comunicación cliente-servidor en entornos distribuidos.</dd>               
+            </dl>
             <div class="quote-box">
-                "Los modelos multi-hilo son fundamentales en los sistemas operativos actuales, ya que permiten el desarrollo de aplicaciones más eficientes, rápidas y capaces de ejecutar múltiples tareas de forma concurrente. Comprender la estructura y el comportamiento de los hilos facilita el diseño de software más robusto y permite un uso más efectivo de los recursos del sistema, mejorando el rendimiento general de las aplicaciones"
-                <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
+                "La comunicación entre procesos proporciona los mecanismos necesarios para el intercambio de información y la sincronización de actividades, garantizando la coherencia y el orden en los sistemas concurrentes"
+                <div class="citation">(Silberschatz, Galvin y Gagne, 2022).</div>
             </div>
         </div>
         
