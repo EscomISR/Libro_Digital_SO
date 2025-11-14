@@ -731,7 +731,7 @@ El proceso hijo, aunque retiene su propia ejecución de manera independiente, re
                 </ul>
                 <div class="figure-container">
                     <img src="Figura3.png" alt="Ciclo de vida de un proceso" class="imagen-figura1">
-                    <div class="figure-caption">]figura 3. Ciclo de vida de un proceso: creación, ejecución y terminación (<i>Elaboración propia basada en Silberschatz et al., 2022; Tanenbaum y Bos, 2015</i>).</div>
+                    <div class="figure-caption">Figura 3. Ciclo de vida de un proceso: creación, ejecución y terminación (<i>Elaboración propia basada en Silberschatz et al., 2022; Tanenbaum y Bos, 2015</i>).</div>
                 </div>                
             </div>
         </div>
@@ -755,36 +755,25 @@ El proceso hijo, aunque retiene su propia ejecución de manera independiente, re
                 <h4>5. Terminado (Terminated)</h4>
                     <p>El proceso ha completado su ejecución o ha sido finalizado por el sistema o el usuario. El sistema operativo libera los recursos asociados y elimina su BCP.</p>    
                 <p>Como explican <strong>Silberschatz, Galvin y Gagne (2022)</strong>, “<i>los estados del proceso permiten al sistema operativo mantener el control de cada programa en ejecución, asegurando una transición ordenada y eficiente entre las fases de creación, ejecución, espera y finalización</i>” (p. 199). Esta organización garantiza que el sistema operativo mantenga la estabilidad y el equilibrio entre los procesos activos, bloqueados y finalizados, permitiendo una <strong>multitarea eficiente y controlada</strong>.</p>                    
-            
-                
-                
-                <p>Las operaciones de procesos son las acciones que lleva a cabo el sistema operativo para manejar el ciclo de vida de un proceso desde su creación hasta que termina. Estas operaciones aseguran que los recursos se distribuyan, empleen y liberen de forma organizada, lo cual mantiene la estabilidad y eficiencia del sistema.</p>             
-                <h3>Desarrollo de procesos</h3>
-                <p>Cuando un programa necesita llevar a cabo una nueva tarea, se produce la creación de un proceso. A través de una llamada al sistema en Windows o fork () en Unix/Linux), el proceso padre crea un proceso hijo. El sistema operativo, en este periodo, otorga un identificador único (PID), aparta memoria y activa el Bloque de Control de Proceso (BCP), además de fijar la relación jerárquica entre los dos procesos.</p>
-                <p>De acuerdo con <strong>Silberschatz, Galvin y Gagne (2022)</strong>, "<i>cada proceso se genera al duplicar total o parcialmente el contexto de un proceso ya existente, garantizando la coherencia en la herencia de privilegios y recursos</i>" (p. 194).</p>
-                <h3>Ejecución de Procesos</h3>
-                <p>Una vez creado, el proceso entra en la <strong>cola de listos</strong> y el planificador del sistema operativo (scheduler) selecciona cuál se ejecutará en la CPU. Durante su ejecución, el proceso puede cambiar de estado (listo, bloqueado o en ejecución) según las interrupciones, las llamadas al sistema o la disponibilidad de recursos. El <strong>cambio de contexto (context switch)</strong> permite suspender un proceso y reanudar otro sin pérdida de información, manteniendo la multitarea activa y ordenada.
-De acuerdo con <strong>Tanenbaum y Bos (2015)</strong>, “<i>el sistema operativo proporciona la ilusión de ejecución simultánea al alternar los procesos en la CPU, salvando y restaurando su estado de forma transparente</i>” (p. 103).</p>
-            <h3>Terminación de Procesos</h3>
-                <p>La finalización de un proceso ocurre cuando este completa su tarea o es interrumpido por el usuario o el sistema. Al finalizar, el sistema libera los recursos asignados (memoria, archivos y descriptores) y actualiza el BCP para registrar el estado de salida. Los procesos hijos también pueden ser terminados automáticamente al concluir el proceso padre, dependiendo del modelo de jerarquía.</p>
-                <p>Como señala <strong>Stallings (2018)</strong>, “<i>la terminación controlada de procesos es esencial para mantener la consistencia del sistema, evitando la pérdida de recursos y estados indeterminados</i>” (p. 208).</p>
-                <p>En conjunto, estas operaciones forman el ciclo de vida del proceso, asegurando una administración eficiente del tiempo de CPU, la memoria y los dispositivos, pilares fundamentales de la arquitectura de un sistema operativo moderno.</p>
                 <div class="figure-container">
-                    <img src="Figura3.png" alt="Ciclo de vida de un proceso" class="imagen-figura1">
-                    <div class="figure-caption">Figura 3. Ciclo de vida de un proceso: creación, ejecución y terminación (<i>Elaboración propia basada en Silberschatz et al., 2022; Tanenbaum y Bos, 2015</i>). </div>
-                </div>                
+                    <img src="Figura4.png" alt="Estados del proceso" class="imagen-figura1">
+                    <div class="figure-caption">]Figura 4. Estados del proceso (<i>Elaboración propia basada en Silberschatz, Galvin y Gagne, 2022</i>).</div>
+                </div>                                               
             </div>
         </div>
         
-        <div class="section" id="seccion-2-1-3">
+        <div class="section" id="seccion-2-1-4">
             <div class="section-header">
-                <div class="section-number">2.1.2</div>
-                <div class="section-title">Operaciones</div>
+                <div class="section-number">2.1.4</div>
+                <div class="section-title">Implementación en el kernel</div>
             </div>
             <div class="content">
-                <h3>Operaciones de un Sistema Operativo</h3>
-                <p>Las operaciones realizadas por un sistema operativo comprenden los mecanismos y procedimientos necesarios para asegurar su funcionamiento adecuado. Estas acciones permiten administrar, organizar y mejorar el uso eficiente de los recursos del sistema. Asimismo, aseguran que los procesos se ejecuten correctamente y facilitan la interacción efectiva entre el usuario y el hardware. Entre las funciones esenciales del sistema operativo se incluyen la administración de procesos, memoria, dispositivos de entrada y salida, así como el manejo de los sistemas de archivos.</p>
-
+                    <p>La <strong>implementación de la administración de procesos en el kernel</strong> constituye el núcleo funcional del sistema operativo, ya que gestiona la creación, ejecución, sincronización y terminación de los procesos que comparten los recursos del sistema. Para ello, el kernel utiliza estructuras de datos, algoritmos de planificación y mecanismos de protección que aseguran una operación segura y eficiente.</p>
+                <h3>Estructuras internas</h3>
+                    <p>El <strong>Bloque de Control de Proceso (BCP)</strong> o <i>Process Conrol Block</i> es la estructura central que almacena toda la información necesaria para administrar un proceso: su identificador, estado, prioridad, contadores, registros de CPU, permisos y recursos asignados. Esta estructura permite al kernel realizar cambios de contexto y mantener un control preciso del estado de cada proceso.</p>    
+                    <p>Según <strong>Stallings (2018)</strong>, “<i>el PCB representa la fuente primaria de información que el sistema operativo utiliza para gestionar la ejecución de procesos, garantizando continuidad y coherencia en los cambios de estado</i>” (p. 207).</p>
+                <h3>Creación y planificación</h3>
+                    <p>El kernel crea nuevos procesos mediante llamadas al sistema, como fork () en Unix o CreateProcess() en Windows, reservando memoria y heredando parámetros del proceso padre. Posteriormente, los procesos se insertan en la <strong>cola de listos</strong>, donde el planificador (<i>scheduler</i>) selecciona cuál recibirá la CPU según políticas de planificación (por ejemplo, <First-Come First-Served, Round Robin o Multilevel Queue). Estas políticas buscan optimizar el uso del procesador, el tiempo de respuesta y la equidad entre procesos.</p>
                 <div class="quote-box">
                     "Las operaciones del sistema operativo son fundamentales para garantizar el funcionamiento correcto, eficiente y seguro de todos los componentes del sistema"
                     <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
