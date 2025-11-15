@@ -620,90 +620,43 @@
         </header>
         
         <div class="intro">
-            <p>La comunicación entre procesos (IPC) es un conjunto de métodos que facilitan la sincronización y el intercambio de datos entre procesos que se llevan a cabo al mismo tiempo en un sistema operativo. La IPC es fundamental para evitar conflictos en el acceso a recursos, compartir datos y coordinar actividades, ya que los procesos están ubicados en espacios de memoria separados.</p>
-            <p>Los mecanismos de IPC incluyen tuberías (<i>pipes</i>), colas de mensajes, memoria compartida, señales y sockets. Cada uno proporciona diversos beneficios dependiendo de la clase de aplicación y del grado de aislamiento o rendimiento que se necesite.</p>
-            <dl> 
-                <dt>1. Tuberías (Pipes)</dt>
-                    <dd>Las tuberías facilitan la comunicación en una sola dirección entre procesos interconectados, enviando datos como un flujo constante. En sistemas Unix/Linux, se generan a través del comando <i>pipe ()</i> y son muy empleadas para enlazar procesos en una secuencia de ejecución.</dd>
-                <dt>2. Colas de mensajes </dt>
-                    <dd>Almacenan mensajes en una cola administrada por el kernel, lo que posibilita una comunicación estructurada y asincrónica. Los procesos tienen la posibilidad de enviar o recibir mensajes con control de prioridad, lo cual ayuda a que la sincronización se realice sin bloqueo directo.</dd>
-                <dt>3. Memoria compartida </dt>
-                    <dd>Es el mecanismo más rápido de IPC, ya que varios procesos pueden acceder directamente a una región común de memoria. Requiere, sin embargo, mecanismos adicionales de sincronización (como semáforos) para evitar accesos simultáneos que causen inconsistencias.</dd>
-                <dt>4. Señales</dt>
-                    <dd>Son notificaciones asíncronas enviadas por el sistema o por otros procesos para indicar eventos, como interrupciones o errores. Por ejemplo, la señal <i>SIGINT</i> detiene un proceso, mientras que <i>SIGKILL</i> lo finaliza inmediatamente.</dd>
-                <dt>5. Sockets</dt>
-                    <dd>Los sockets permiten la comunicación entre procesos en la misma máquina o en distintas redes, funcionando como un canal bidireccional basado en protocolos (<i>TCP/IP</i> o <i>UDP</i>). Son la base de la comunicación cliente-servidor en entornos distribuidos.</dd>               
-            </dl>
-            <div class="quote-box">
-                "La comunicación entre procesos proporciona los mecanismos necesarios para el intercambio de información y la sincronización de actividades, garantizando la coherencia y el orden en los sistemas concurrentes"
-                <div class="citation">(Silberschatz, Galvin y Gagne, 2022).</div>
-            </div>
+            <p>El <strong>modelo multihilo</strong> constituye una extensión del modelo tradicional de procesos, donde un mismo proceso puede contener <strong>múltiples hilos de ejecución</strong> que comparten los mismos recursos, pero operan de forma concurrente. Cada hilo  representa una secuencia independiente de instrucciones que puede ejecutarse en paralelo, lo que permite <strong>aprovechar mejor los recursos del sistema y mejorar el rendimiento </strong>en tareas que pueden dividirse en subtareas independientes.</p>
+            <p>A diferencia de los procesos, los hilos comparten el <strong>espacio de direcciones, los archivos abiertos y las variables globales </strong>de su proceso padre, lo que facilita la comunicación y reduce el consumo de memoria. Sin embargo, esta compartición también introduce riesgos de <strong>condiciones de carrera</strong> y conflictos en el acceso a recursos, por lo que es necesario aplicar <strong>mecanismos de sincronización</strong> como semáforos o mutex.</p>
+            <p>Según <strong>Silberschatz, Galvin y Gagne (2022)</strong>, “<i>un hilo es la unidad básica de utilización de la CPU; comparte el estado del proceso al que pertenece, pero mantiene su propio contador de programa, pila y registros</i>” (p. 254). Esto significa que varios hilos dentro del mismo proceso pueden ejecutarse simultáneamente en distintos núcleos del procesador, lo que optimiza el paralelismo y la capacidad de respuesta del sistema operativo.</p>
+            <p>Los tres enfoques principales para implementar el multihilo son:</p>
+            <p>
+            <ol>
+                <li><strong>Modelo de Muchos a Uno</strong>: múltiples hilos de usuario se asignan a un solo hilo del kernel. Es eficiente en memoria, pero no permite ejecutar varios hilos simultáneamente en múltiples procesadores.</li>
+                <li><strong>Modelo de Uno a Uno</strong>: cada hilo de usuario corresponde directamente a un hilo del kernel. Aumenta el paralelismo, pero requiere más recursos del sistema.</li>
+                <li><strong>3.	Modelo de Muchos a Muchos</strong>: varios hilos de usuario se asignan dinámicamente a varios hilos del kernel, combinando flexibilidad y rendimiento.</li>
+            </ol>     
+            </p>
+        </p>
         </div>
         
         <div class="section" id="seccion-2-2-1">
             <div class="section-header">
                 <div class="section-number">2.2.1</div>
-                <div class="section-title">Bibliotecas</div>
+                <div class="section-title">Bibliotecas POSIX y Win32</div>
             </div>
             <div class="content">
-                <p>Las <strong>bibliotecas</strong> desempeñan un papel fundamental en los modelos multi-hilo de los sistemas operativos, ya que proporcionan las herramientas, funciones y abstracciones necesarias para la creación, gestión y sincronización de hilos de ejecución. Esto facilita el desarrollo de aplicaciones concurrentes, permitiendo a los programadores implementar paralelismo de forma más segura y eficiente.</p>
-                
-                <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
-
-                <h3>Funcionalidades Clave</h3>
-                <p>Las <strong>bibliotecas multihilo</strong>, comúnmente implementadas como API (<em>Application Programming Interface</em>), proporcionan elementos estandarizados con funciones que permiten a los programadores gestionar hilos dentro de un proceso. Estas bibliotecas facilitan la programación concurrente al ofrecer mecanismos robustos para:</p>
-
-                <ul>
-                    <li><strong>Crear y terminar hilos</strong>, permitiendo iniciar nuevas ejecuciones dentro de un proceso existente y finalizar su ciclo de vida.</li>
-                    <li><strong>Sincronizar hilos</strong>, mediante mecanismos como:
-                        <ul>
-                            <li><strong>Mutex (Mutual Exclusion)</strong>: Valida que solo un hilo ingrese a una sección crítica del código a la vez.</li>
-                            <li><strong>Semáforos</strong>: Controlan el acceso a recursos limitados o permiten la señalización entre hilos.</li>
-                            <li><strong>Variables de condición</strong>: Los hilos esperar una condición específica antes de continuar, siendo notificados por otros hilos cuando dicha condición se cumple.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Gestión de datos específicos del hilo (Thread-Local Storage - TLS)</strong>, lo cual permite que cada hilo mantenga su propia copia de ciertos datos, evitando interferencias y reduciendo la necesidad de sincronización.</li>
-                    <li><strong>Planificación y prioridades</strong>, donde algunas bibliotecas ofrecen funciones para establecer prioridades o sugerencias de planificación, aunque la decisión final corresponde al planificador del sistema operativo.</li>
-                </ul>
-
-                <div class="quote-box">
-                    "El uso pertinente de cada una de las funciones es necesario para el desarrollo de aplicaciones concurrentes, robustas y eficientes"
-                    <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
-                </div>
-
-                <h3>Ejemplos de Bibliotecas de Hilos</h3>
-                <p>Dos de las bibliotecas de hilos más importantes y ampliamente utilizadas son:</p>
-
-                <ul>
-                    <li><strong>Pthreads (POSIX Threads)</strong>: Es un estándar IEEE (Portable Operating System Interface) para la creación y gestión de hilos. Es multiplataforma y se utiliza comúnmente en sistemas tipo Unix (Linux, macOS) y también está disponible en Windows. Pthreads define un conjunto de funciones C para la manipulación de hilos.</li>
-                    <li><strong>Threads de Windows (WinAPI)</strong>: La API nativa de Windows proporciona sus propias funciones para trabajar con hilos, como CreateThread, WaitForSingleObject y EnterCriticalSection.</li>
-                </ul>
-
-                <h3>Importancia en Modelos Multihilos</h3>
-                <p>La importancia de las <strong>bibliotecas multihilo</strong> radica en diversos factores clave que facilitan el desarrollo eficiente de aplicaciones concurrentes. Estas bibliotecas proporcionan:</p>
-
-                <ul>
-                    <li><strong>Abstracción de la concurrencia</strong>, al simplificar la programación concurrente mediante una capa sobre las primitivas del kernel. Esto evita que los desarrolladores deban interactuar directamente con el núcleo del sistema operativo.</li>
-                    <li><strong>Portabilidad</strong>, ya que bibliotecas como <strong>Pthreads</strong> siguen estándares que permiten que el código multihilo funcione en distintos sistemas operativos compatibles.</li>
-                    <li><strong>Rendimiento y eficiencia</strong>, al permitir la ejecución concurrente en procesadores multinúcleo, mejorando la funcionalidad con su capacidad de respuesta de las aplicaciones. Por ejemplo, en la edición de video en donde distintos hilos pueden encargarse del renderizado, establecer la interfaz de usuario y el guardarlo en archivos respectivamente.</li>
-                    <li><strong>Reutilización de código</strong>, ya que estas bibliotecas contienen funciones optimizadas y bien probadas, lo que reduce el tiempo de desarrollo y los errores.</li>
-                    <li><strong>Un modelo de programación estandarizado</strong>, que facilita la colaboración entre desarrolladores y el mantenimiento del código.</li>
-                </ul>
-
-                <div class="quote-box">
-                    "Sin estas bibliotecas, los programadores tendrían que interactuar directamente con las complejas interfaces del kernel para gestionar hilos, lo que aumentaría la dificultad, el riesgo de errores y la falta de portabilidad. Por ello, las bibliotecas multihilo son un componente esencial que actúa como puente entre el hardware o kernel y las aplicaciones concurrentes"
-                    <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
-                </div>
+                <p>Los estándares más comunes para la implementación y gestión de multihilo en los sistemas operativos actuales son las bibliotecas de hilos Win32 Threads y POSIX. Aunque son diferentes en su diseño, compatibilidad y campo de aplicación, ambas posibilitan la creación, sincronización y terminación de hilos.</p>
+                <p>Para el caso de POSIX, se trata de una interfaz estandarizada que fue establecida por la norma IEEE POSIX 1003.1c, la cual es muy común en sistemas Linux, Unix y macOS. Estas bibliotecas ofrecen funciones para crear hilos, sincronizarlos a través de mutex  y supervisar su terminación. Su diseño busca la eficiencia y la portabilidad, lo que posibilita la creación de aplicaciones concurrentes que pueden ejecutarse en diversas plataformas sin alterar de manera importante el código fuente.</p>
+                <p>Como señalan <strong>Silberschatz, Galvin y Gagne (2022)</strong>, “<i>las bibliotecas de hilos como POSIX y Win32 proporcionan las herramientas necesarias para la programación concurrente, facilitando la creación de aplicaciones más reactivas, eficientes y escalables</i>” (p. 261). Estas bibliotecas, en conjunto, permiten que los desarrolladores elijan el modelo más adecuado según los requerimientos del sistema, optimizando el uso de los procesadores y la respuesta ante múltiples tareas simultáneas.</p>
+                <div class="figure-container">
+                    <img src="Figura6.png" alt="Modelo multihilo " class="imagen-figura1">
+                    <div class="figure-caption">Figura 6. Modelo multihilo (<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                </div>                                
             </div>
         </div>
         
         <div class="section" id="seccion-2-2-2">
             <div class="section-header">
                 <div class="section-number">2.2.2</div>
-                <div class="section-title">Implementación</div>
+                <div class="section-title">Implementación de hilos</div>
             </div>
             <div class="content">
-                <p>La implementación de los <strong>modelos multihilo</strong> en los sistemas operativos comprende el diseño y desarrollo de mecanismos que permiten a los programas ejecutar múltiples secuencias de instrucciones concurrentemente dentro de un mismo proceso. Este enfoque puede analizarse desde dos perspectivas principales: la implementación se establece desde el punto de vista de usuario y de núcleo (<em>kernel</em>), así como una combinación de ambas, conocida como implementación híbrida. Estas variantes definen cómo se crean, gestionan y planifican los hilos en el sistema para maximizar eficiencia y concurrencia.</p>
+                <p>La <strong>implementación de hilos</strong> en los sistemas operativos modernos puede realizarse en tres niveles: <strong>usuario</strong>, <strong>kernel</strong> o <strong>mixta</strong>, dependiendo de cómo se gestionen los hilos y su relación con el sistema operativo.</p>
                 
                 <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
 
@@ -711,192 +664,42 @@
 
                 <h4>Proceso de Implementación</h4>
                 <p>La biblioteca de hilos del usuario maneja la creación, planificación y gestión de los hilos sin la intervención directa del kernel. El kernel solo es consciente de un único proceso y no de los hilos individuales dentro de él.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <ol>
-                    <li><strong>Biblioteca de Hilos</strong>: Es la que se encarga de los hilos en el espacio de usuario, por lo que está contiene el código para la creación, destrucción, planificación y sincronización de hilos. Ejemplos incluyen GNU Portable Threads (GPT) o una implementación básica de Pthreads sin soporte directo del kernel.</li>
-                    <li><strong>Creación de Hilos</strong>: Cuando una aplicación llama a una función para crear un nuevo hilo (ej., pthread_create() en Pthreads), la biblioteca de hilos asigna un bloque de control de hilo, conocida como (TCB - Thread Control Block), es por ello que se genera una pila para el nuevo hilo, y lo añade a una lista de hilos listos para ser llamados o ejecutados.</li>
-                    <li><strong>Planificación de Hilos</strong>: La biblioteca de hilos implementa su propio planificador (scheduler) para decidir qué hilo debe ejecutarse. Esto a menudo se basa en algoritmos de planificación simples como round-robin o prioridad. Cuando un hilo necesita ceder el control (ej., por una llamada a pthread_yield()), el planificador de la biblioteca elige el siguiente hilo que se encuentra en la lista de espera y le cambia el estado a listo para ser ejecutado.</li>
-                    <li><strong>Cambio de Contexto</strong>: Es cuando existe un cambio en el estado del hilo dentro del mismo proceso y es manejado completamente por la biblioteca de hilos. Esto implica guardar el contexto del hilo que sale (registros de CPU, contador de programa) en su TCB y cargar sus elementos del proceso. No se requiere una llamada al sistema ni un cambio de modo de usuario a kernel.</li>
-                    <li><strong>Sincronización</strong>: Los mecanismos de sincronización (mutex, semáforos) también son implementados por la biblioteca de hilos en el espacio de usuario.</li>
-                    <li><strong>Llamadas Bloqueantes</strong>: Un problema fundamental en los modelos de hilos a nivel de usuario es que, si uno de los hilos ejecuta una llamada al sistema que genera bloqueo (por ejemplo, una lectura de disco), el sistema operativo bloquea todo el proceso. Esto ocurre porque el núcleo no tiene visibilidad sobre los hilos individuales dentro del proceso.</li>
-                </ol>
-
-                <div class="citation">(Silberschatz, Galvin & Gagne, 2018).</div>
-
-                <h4>Ventajas</h4>
-                <ul>
-                    <li><strong>Eficiencia</strong>: La creación, gestión y cambio de contexto de los hilos son muy rápidos, ya que no implican cambios de modo de usuario a kernel.</li>
-                    <li><strong>Flexibilidad</strong>: Los programadores pueden implementar algoritmos de planificación personalizados sin modificar el kernel.</li>
-                    <li><strong>Portabilidad</strong>: Más fáciles de implementar en sistemas operativos que no soportan hilos a nivel de kernel.</li>
-                </ul>
-
-                <h4>Desventajas</h4>
-                <ul>
-                    <li><strong>Bloqueo de Proceso</strong>: Una llamada al sistema bloqueante por un hilo bloquea todo el proceso.</li>
-                    <li><strong>Sin Paralelismo Verdadero</strong>: No pueden aprovechar múltiples núcleos de CPU, ya que el kernel solo ve un proceso ejecutándose.</li>
-                </ul>
-
-                <h3>2. Hilos a Nivel de Núcleo (Kernel-Level Threads - KLTs)</h3>
-
-                <h4>Proceso de Implementación</h4>
-                <p>En este modelo, el kernel del sistema operativo es directamente consciente de todos los hilos y los gestiona. Cada hilo es una entidad de planificación separada para el kernel.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <ol>
-                    <li><strong>Soporte del Kernel</strong>: El kernel del sistema operativo tiene mecanismos internos para la creación, gestión y planificación de hilos. Por ejemplo, en Linux, los hilos se implementan como "tareas ligeras" o "procesos con hilos" que el planificador del kernel puede manejar directamente.</li>
-                    <li><strong>Creación de Hilos</strong>: Cuando una aplicación solicita la creación de un hilo, se realiza una <strong>llamada al sistema (syscall)</strong> al kernel. El kernel crea un nuevo hilo, asigna un TCB a nivel de kernel y lo añade a las colas de planificación del kernel.</li>
-                    <li><strong>Planificación de Hilos</strong>: El planificador del kernel es responsable de decidir qué hilo (independientemente del proceso al que pertenezca) se ejecutará en qué CPU. Esto permite un verdadero paralelismo en sistemas con múltiples núcleos.</li>
-                    <li><strong>Cambio de Contexto</strong>: Los cambios de contexto entre hilos son realizados por el kernel. Esto implica un cambio de modo de usuario a kernel, lo que es más costoso que un cambio de contexto de hilo a nivel de usuario.</li>
-                    <li><strong>Sincronización</strong>: Los mecanismos de sincronización son implementados a nivel de kernel, o las bibliotecas de usuario (como Pthreads) utilizan primitivas del kernel para su implementación (ej., mutex basados en llamadas al sistema).</li>
-                    <li><strong>Llamadas Bloqueantes</strong>: Si un hilo realiza una llamada al sistema y esté lo bloquea, entonces lo deja sin funcionar, pero los demás siguen en su proceso de ejecución</li>
-                </ol>
-
-                <h4>Ventajas</h4>
-                <ul>
-                    <li><strong>Paralelismo Verdadero</strong>: Los hilos se pueden ejecutarse en diferentes núcleos de CPU simultáneamente.</li>
-                    <li><strong>Robustez</strong>: Un hilo que realiza una llamada bloqueante no bloquea todo el proceso.</li>
-                    <li><strong>Mejor Uso de Recursos</strong>: El kernel puede asignar recursos de manera más eficiente a los hilos individuales.</li>
-                </ul>
-
-                <h4>Desventajas</h4>
-                <ul>
-                    <li><strong>Menor Eficiencia</strong>: Mayor sobrecarga debido a las llamadas al sistema y los cambios de contexto que involucran al kernel.</li>
-                    <li><strong>Menos Flexibilidad</strong>: La planificación de hilos es controlada por el kernel, lo que limita la capacidad del programador para personalizarla.</li>
-                </ul>
-
-                <h3>3. Implementación Híbrida (Many-to-Many Model)</h3>
-
-                <h4>Proceso de Implementación</h4>
-                <p>Este modelo híbrido integra las ventajas de los hilos a nivel de usuario y de núcleo, al permitir que varios hilos de usuario se asignen a uno o más hilos del kernel. La biblioteca de hilos de usuario se encarga de distribuir o multiplexar estos hilos sobre los hilos disponibles en el núcleo.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <p>Los pasos a establecerse en estos procesos son:</p>
-
-                <ol>
-                    <li><strong>Hilos de usuario y del kernel:</strong> En este modelo, la aplicación genera hilos a nivel de usuario, los cuales son gestionados por una biblioteca que se encarga de asignarlos a uno o más hilos del kernel para su ejecución.</li>
-                    <li><strong>Gestión Combinada</strong>: La biblioteca de hilos de usuario gestiona la planificación de los hilos de usuario sobre los hilos de kernel. Cuando un hilo de usuario realiza una llamada bloqueante, la biblioteca puede cambiar a otro hilo de usuario que esté mapeado al mismo hilo de kernel, manteniendo la capacidad de respuesta.</li>
-                    <li><strong>Flexibilidad y Paralelismo</strong>: Permite que las aplicaciones tengan un gran número de hilos de usuario (eficientes) mientras aprovechan el paralelismo verdadero de los hilos de kernel.</li>
-                </ol>
-
-                <h4>Ventajas</h4>
-                <ul>
-                    <li><strong>Equilibrio:</strong> Combina la rapidez de los hilos de usuario con la capacidad de ejecución paralela que ofrecen los hilos del kernel, logrando así un rendimiento eficiente y balanceado.</li>
-                    <li><strong>Superación de Bloqueos</strong>: Una llamada bloqueante de un hilo de usuario no necesariamente bloquea todo el proceso.</li>
-                </ul>
-
-                <h4>Desventajas</h4>
-                <ul>
-                    <li><strong>Mayor Complejidad</strong>: El diseño y la implementación son más complejos que los otros dos modelos.</li>
-                </ul>
-
-                <div class="quote-box">
-                    "La mayoría de los sistemas operativos modernos como Linux y Windows utilizan principalmente un modelo de hilos a nivel de kernel o un modelo híbrido con un fuerte enfoque en los hilos a nivel de kernel, donde las bibliotecas de hilos de usuario (como Pthreads o la WinAPI) actúan como una interfaz conveniente para interactuar con las primitivas de hilos que el kernel proporciona"
-                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-                </div>
+                <p>En el <strong>nivel de usuario</strong>, la biblioteca de hilos gestiona la creación y planificación sin involucrar directamente al kernel, lo que reduce la sobrecarga, pero limita el paralelismo, ya que un bloqueo en un hilo puede detener a todos los demás. En contraste, en el <strong>nivel de kernel</strong>, cada hilo es reconocido y planificado directamente por el sistema operativo, lo que permite un verdadero paralelismo en sistemas multiprocesador, aunque con mayor costo en memoria y tiempo de conmutación. Los sistemas <strong>mixtos</strong> o <strong>híbridos</strong> combinan ambas ventajas, permitiendo flexibilidad y eficiencia mediante el mapeo dinámico de hilos de usuario sobre hilos del kernel.</p>                                
             </div>
         </div>
 
         <div class="section" id="seccion-2-2-3">
             <div class="section-header">
                 <div class="section-number">2.2.3</div>
-                <div class="section-title">Hilos en modo usuario y kernel</div>
+                <div class="section-title">Hilos en modo usuario vs kernel</div>
             </div>
             <div class="content">
-                <p>Silberschatz, Galvin y Gagne (2018) explican que la diferencia clave entre hilos en modo usuario y modo kernel radica en quién gestiona los hilos: la biblioteca de usuario o el núcleo del sistema operativo.</p>
-
-                <h3>Hilos en Modo Usuario (User-Level Threads - ULTs)</h3>
+                <p>La distinción entre hilos de usuario y hilos del núcleo está en quién tiene el control sobre su ejecución y la manera en que se manejan los recursos. En los sistemas actuales, se emplean ambas perspectivas de acuerdo con lo que las aplicaciones requieren en términos de escalabilidad, flexibilidad y rendimiento.</p>
+                <h3>Hilos en Modo Usuario</h3>
                 <p>Los hilos en modo usuario son gestionados completamente por una biblioteca de hilos en el espacio de usuario, sin intervención directa del kernel.</p>
-                
+                <h3>Hilos en modo de usuario</h3>
+                <p>Una biblioteca del espacio de usuario se encarga de la gestión de los hilos de usuario, sin que el sistema operativo participe directamente. Esto implica que la creación, planificación y sincronización se llevan a cabo sin pasar al modo kernel, lo cual les permite ser más veloces y eficaces en operaciones sencillas. No obstante, tienen limitaciones: si un hilo se bloquea (por ejemplo, a la espera de una operación de entrada/salida), el proceso entero separa porque el kernel no puede diferenciar los hilos internos.</p>
+                <h3>Hilos en modo kernel</h3>
+                <p>Por otro lado, los hilos de kernel son generados y gestionados directamente por el sistema operativo; esto posibilita que cada hilo sea planificado de manera independiente. Así, el sistema tiene la capacidad de ejecutar varios hilos simultáneamente en diferentes núcleos de CPU, optimizando así el uso de los sistemas multiprocesador. Sin embargo, la transición al modo kernel supone un cambio de contexto que crea más sobrecarga que los hilos de usuario.</p>
                 <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <h4>Proceso:</h4>
-                <ol>
-                    <li><strong>Creación</strong>: Se realiza mediante funciones como pthread_create(), asignando un TCB y una pila para el nuevo hilo.</li>
-                    <li><strong>Planificación</strong>: La biblioteca del usuario decide qué hilo ejecutar mediante su propio planificador.</li>
-                    <li><strong>Cambio de contexto</strong>: Se hace sin intervención del kernel, lo que lo hace muy eficiente.</li>
-                    <li><strong>Sincronización</strong>: También gestionada por la biblioteca de usuario.</li>
-                    <li><strong>Llamadas bloqueantes</strong>: Si un hilo se bloquea, todo el proceso puede quedar detenido, ya que el kernel no puede diferenciar sus estados de los hilos.</li>
-                </ol>
-
-                <h4>Ventajas:</h4>
-                <ul>
-                    <li><strong>Eficiencia</strong>: La gestión de hilos es muy rápida y de bajo costo, ya que no hay transiciones al modo kernel.</li>
-                    <li><strong>Flexibilidad</strong>: La aplicación puede implementar sus propios algoritmos de planificación de hilos.</li>
-                    <li><strong>Portabilidad</strong>: Pueden implementarse en sistemas operativos que no ofrecen soporte nativo para hilos a nivel de kernel.</li>
-                </ul>
-
-                <h4>Desventajas:</h4>
-                <ul>
-                    <li><strong>Bloqueo de Proceso</strong>: Sí se produce una llamada al sistema bloqueante de un hilo, esto en automático detiene a todo el proceso.</li>
-                    <li><strong>Sin Paralelismo Verdadero</strong>: No pueden aprovechar múltiples núcleos de CPU, ya que el kernel solo ve un proceso y lo planifica en un solo núcleo.</li>
-                </ul>
-
-                <h3>Hilos en Modo Kernel (Kernel-Level Threads - KLTs)</h3>
-                <p>Según Silberschatz, Galvin y Gagne (2018), en el modelo de hilos en modo kernel, el sistema operativo se encarga directamente de su administración. Esto incluye la creación, planificación, cambio de contexto y sincronización de cada hilo de forma individual, lo que permite un paralelismo real al distribuirlos entre varios núcleos del procesador. Una de sus principales ventajas es que, si un hilo se bloquea, los demás pueden continuar ejecutándose. Sin embargo, esta gestión implica un mayor costo en rendimiento, debido a las transiciones entre el modo usuario y el modo kernel, y limita la capacidad de control de las aplicaciones sobre sus propios hilos.</p>
-
-                <h4>Proceso:</h4>
-                <ol>
-                    <li><strong>Soporte del Kernel</strong>: El kernel del sistema operativo incorpora las funcionalidades para crear, destruir, planificar y sincronizar hilos.</li>
-                    <li><strong>Creación</strong>: Cuando un programa crea un hilo (ej., usando la API de Pthreads o la API de Windows Threads), se realiza una <strong>llamada al sistema (syscall)</strong>. El kernel crea un nuevo hilo (con su propio TCB a nivel de kernel) y lo añade a las colas de planificación globales del sistema operativo.</li>
-                    <li><strong>Planificación:</strong> El kernel del sistema operativo se encarga de seleccionar qué hilo, sin importar a qué proceso pertenezca, será ejecutado en cada núcleo de la CPU. Gracias a esta planificación, hilos de un mismo proceso pueden correr simultáneamente en distintos núcleos, lo que permite un paralelismo real.</li>
-                    <li><strong>Cambio de contexto:</strong> La conmutación entre hilos, incluso si pertenecen al mismo proceso, es gestionada por el núcleo del sistema operativo. Este proceso requiere una transición entre el modo usuario y el modo kernel, lo que representa un costo adicional en términos de rendimiento.</li>
-                    <li><strong>Sincronización</strong>: Los mecanismos de sincronización son proporcionados o soportados por el kernel, garantizando una coordinación segura entre hilos que comparten recursos.</li>
-                    <li><strong>Llamadas al Sistema Bloqueantes</strong>: Si un hilo realiza una llamada al sistema que lo bloquea, <strong>solo ese hilo se bloquea</strong>. Los otros hilos del mismo proceso (gestionados por el kernel) pueden seguir ejecutándose.</li>
-                </ol>
-
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <h4>Ventajas:</h4>
-                <ul>
-                    <li><strong>Paralelismo Verdadero</strong>: Pueden ejecutarse en múltiples núcleos de CPU simultáneamente.</li>
-                    <li><strong>Robustez</strong>: Un hilo bloqueado no afecta la ejecución de otros hilos del mismo proceso.</li>
-                    <li><strong>Mejor Uso de Recursos</strong>: El kernel puede distribuir los hilos de manera más eficiente entre los recursos disponibles.</li>
-                </ul>
-
-                <h4>Desventajas:</h4>
-                <ul>
-                    <li><strong>Menor Eficiencia</strong>: El costo de las llamadas al sistema y los cambios de contexto al kernel es mayor.</li>
-                    <li><strong>Menos Flexibilidad</strong>: La planificación es controlada por el kernel, limitando la personalización por parte de la aplicación.</li>
-                </ul>
-
-                <h3>Modelo Híbrido (Many-to-Many)</h3>
-                <p>El modelo híbrido Many-to-Many en sistemas operativos permite asignar varios hilos de usuario a uno o más hilos del kernel, lo que combina la eficiencia de los hilos a nivel de usuario con la capacidad de ejecución paralela que ofrece el kernel. Este enfoque optimiza el rendimiento del sistema, mejora la capacidad de respuesta y facilita la programación concurrente.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <h4>Características del Modelo Híbrido:</h4>
-                <p>En este modelo, el sistema operativo se encarga directamente de su administración. Esto incluye la creación, planificación, cambio de contexto y sincronización de cada hilo de forma individual, lo que permite un paralelismo real al distribuirlos entre varios núcleos del procesador. Una de sus principales ventajas es que, si un hilo se bloquea, los demás pueden continuar ejecutándose. Sin embargo, esta gestión implica un mayor costo en rendimiento, debido a las transiciones entre el modo usuario y el modo kernel, y limita la capacidad de control de las aplicaciones sobre sus propios hilos.</p>
-
-                <h4>Ventajas:</h4>
-                <ul>
-                    <li>Permite tener muchos hilos de usuario sin sobrecargar al kernel.</li>
-                    <li>Soporta paralelismo verdadero en sistemas multinúcleo.</li>
-                    <li>La biblioteca de usuario puede reasignar hilos ante bloqueos.</li>
-                </ul>
-
-                <h4>Importancia del Manejo de Hilos</h4>
                 <div class="quote-box">
-                    "La diferencia clave entre los modelos radica en quién gestiona los hilos: si es la biblioteca en espacio de usuario o el kernel del sistema operativo. Esta decisión afecta directamente el rendimiento, la eficiencia y la capacidad de respuesta del sistema"
-                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
+                    "los hilos del kernel posibilitan un paralelismo real en sistemas multiprocesador, puesto que el sistema operativo reconoce y gestiona cada hilo de manera directa".
+                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2022).</div>
                 </div>
             </div>
         </div>
 
         <div class="activity-card">
             <div class="activity-title">Actividad de Aprendizaje: Modelo de Procesos</div>
-            <p>Evalúa tu comprensión sobre los fundamentos, operaciones, estados e implementación de procesos en sistemas operativos.</p>
-            <a href="actividad_2_1.html" class="activity-btn">
+            <p>Evalúa tu comprensión sobre el modelo multihilo.</p>
+            <a href="actividad_2_2.html" class="activity-btn">
                 <i class="fas fa-pencil-alt"></i> Realizar Actividad
             </a>
         </div>
         
         <div class="nav-buttons">
             <a href="2.1.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Anterior: 2.1 Modelo de procesos</a>
-            <a href="2.3.html" class="nav-btn">Continuar a 2.3: Comunicación entre procesos<i class="fas fa-arrow-right"></i></a>
+            <a href="2.3.html" class="nav-btn">Continuar a 2.3: Comunicación entre procesos (IPC)<i class="fas fa-arrow-right"></i></a>
         </div>
         
         <footer>

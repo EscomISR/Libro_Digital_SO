@@ -580,10 +580,10 @@
             <div class="nav-section">
                 <div class="nav-section-title">Contenido</div>
                 <a href="#seccion-2-5-1" class="nav-item" data-section="2-5-1">
-                    <i class="fas fa-ruler"></i> 2.5.1 Criterios
+                    <i class="fas fa-ruler"></i> 2.5.1 Criterios: rendimiento, espera, tiempo de respuesta
                 </a>
                 <a href="#seccion-2-5-2" class="nav-item" data-section="2-5-2">
-                    <i class="fas fa-code-branch"></i> 2.5.2 Algoritmos
+                    <i class="fas fa-code-branch"></i> 2.5.2 Algoritmos: FCFS, SJF, RR, Prioridades
                 </a>
                 <a href="#seccion-2-5-3" class="nav-item" data-section="2-5-3">
                     <i class="fas fa-stream"></i> 2.5.3 Planificación de hilos
@@ -620,277 +620,60 @@
         </header>
         
         <div class="intro">
-            <p>La <strong>planificación de procesos</strong> (o hilos) es una de las funciones más críticas de un sistema operativo. Se encarga de decidir qué proceso (o hilo) se ejecutará en la CPU y por cuánto tiempo, gestionando la asignación de este recurso vital entre las diversas tareas que compiten por él. Es, en esencia, el "director de orquesta" que coordina a todos los procesos para que funcionen de manera eficiente.</p>
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-            <br>
-            <h4>Introducción a la Planificación de Procesos</h4>
-            <p>En un sistema informático moderno, es común que haya muchos procesos o hilos listos para ejecutarse al mismo tiempo, incluso en máquinas con un solo procesador. Si abres un navegador web, un reproductor de música y un editor de texto, cada uno de ellos es un proceso (o un conjunto de hilos) que necesita tiempo de CPU. Sin una planificación adecuada, estos procesos chocarían entre sí, el sistema se volvería inestable o parecería lento y poco reactivo.</p>
-            
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-            <br>
-            <h4>Planificación en Sistemas Multiprocesador</h4>
-            <p>La planificación se vuelve aún más compleja y crucial en sistemas multiprocesador o multinúcleo, donde múltiples CPUs pueden ejecutar procesos simultáneamente. El planificador debe no solo decidir qué proceso se ejecuta, sino también en qué núcleo se ejecuta.</p>
-            
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-            <br>
-            <h4>El Rol del Planificador (Scheduler)</h4>
-            <p>La planificación se realiza mediante un componente del sistema operativo llamado planificador (<em>scheduler</em>). Este planificador selecciona, de la cola de procesos listos, cuál debe recibir el control de la CPU. Las decisiones de planificación se toman en varios momentos, como cuando un proceso termina, cuando un proceso pasa a un estado de espera (por E/S), cuando se crea un nuevo proceso o cuando ocurre una interrupción.</p>
-            
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-            <br>
-            <h4>Objetivo de la Planificación</h4>
-            <p>El objetivo principal de la planificación es maximizar la eficiencia y la equidad en el uso de la CPU y otros recursos, mientras se cumplen los requisitos de rendimiento y capacidad de respuesta del sistema. Aunque los objetivos específicos pueden variar según el tipo de sistema (por lotes, interactivo, en tiempo real), los principales son los siguientes:</p>
-            
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-            <br>
+            <p><strong>La planificación </strong>es uno de los componentes esenciales del sistema operativo encargado de <strong>asignar el procesador (CPU)</strong> a los procesos o hilos que compiten por su uso. Su objetivo principal es <strong>optimizar el rendimiento del sistema</strong>, garantizando eficiencia, equidad y respuesta adecuada según el tipo de carga de trabajo.</p>
+            <p>El <strong>planificador </strong>decide <strong>qué proceso se ejecuta, durante cuánto tiempo y en qué orden</strong>, basándose en políticas y algoritmos que buscan equilibrar el uso de los recursos y las necesidades de los usuarios. De esta manera, la planificación influye directamente en <strong>el tiempo de respuesta, el rendimiento global y la estabilidad</strong> del sistema operativo.</p>
+            <p>Existen tres niveles de planificación principales:</p>
             <ol>
-                <li><strong>Utilización de CPU:</strong> Mantener la CPU tan ocupada como sea posible. Una CPU inactiva es un recurso desperdiciado. Un buen planificador busca maximizar el tiempo que la CPU está trabajando en tareas útiles.</li>
-                <li><strong>Rendimiento (Throughput):</strong> Maximizar el número de procesos completados por unidad de tiempo. Esto significa ejecutar la mayor cantidad de tareas posibles en un período dado.</li>
-                <li><strong>Tiempo de Retorno (Turnaround Time):</strong> Minimizar el tiempo total desde que un proceso entra al sistema hasta que se completa su ejecución. Esto incluye el tiempo que espera en la cola de listos, el tiempo de ejecución y el tiempo de E/S.</li>
-                <li><strong>Tiempo de Espera (Waiting Time):</strong> Minimizar el tiempo que un proceso pasa en la cola de listos, esperando ser ejecutado. Un tiempo de espera excesivo puede hacer que el sistema parezca lento.</li>
-                <li><strong>Tiempo de Respuesta (Response Time):</strong> Minimizar el tiempo desde que se envía una solicitud hasta que se produce la primera respuesta. Esto es crucial en sistemas interactivos (como el escritorio de tu computadora), donde la percepción de la velocidad es clave. Un usuario espera una respuesta casi instantánea al hacer clic en un icono.</li>
-                <li><strong>Equidad (Fairness):</strong> Garantizar que cada proceso obtenga una parte justa del tiempo de CPU. Ningún proceso debe sufrir inanición (<em>starvation</em>), es decir, ser ignorado indefinidamente por el planificador.</li>
-                <li><strong>Balance de Carga:</strong> En sistemas multiprocesador, el objetivo es distribuir la carga de trabajo de manera equitativa entre los núcleos de la CPU para maximizar el paralelismo.</li>
+                <li><strong>Planificación a largo plazo</strong>: selecciona los procesos que ingresan al sistema desde el almacenamiento secundario, controlando el grado de multiprogramación.</li>
+                <li><strong>Planificación a medio plazo</strong>: gestiona la suspensión o reanudación de procesos, optimizando el uso de memoria mediante técnicas como la paginación o el intercambio (<i>swapping</i>).</li>
+                <li><strong>Planificación a corto plazo</strong>: también llamada <strong>planificación de CPU</strong> decide qué proceso listo se ejecutará a continuación, determinando el orden de uso de la CPU.</li>
             </ol>
-
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-            <div class="quote-box">
-                "Por lo tanto, la planificación es el motor que permite a los sistemas operativos manejar múltiples tareas de forma concurrente, asegurando que los usuarios obtengan una experiencia fluida y que los recursos del sistema se utilicen de manera óptima"
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-            </div>
-        </div>
-        
+            <p>Los <strong>criterios de desempeño</strong> más comunes incluyen la utilización del procesador, rendimiento, tiempo de espera promedio, tiempo de retorno y tiempo de respuesta.</p>
+            <p>La planificación constituye el núcleo de la administración de procesos, ya que asegura una ejecución ordenada, justa y eficiente, adaptándose tanto a sistemas por lotes como a entornos interactivos y de tiempo real <strong>(Silberschatz, Galvin y Gagne, 2022)</strong>.</p>
+            
+        </div>        
         <div class="section" id="seccion-2-5-1">
             <div class="section-header">
                 <div class="section-number">2.5.1</div>
-                <div class="section-title">Criterios</div>
+                <div class="section-title">Criterios: rendimiento, espera, tiempo de respuesta</div>
             </div>
             <div class="content">
-                <p>La planificación de procesos en los sistemas operativos se basa en una serie de criterios que el planificador evalúa para tomar decisiones sobre qué proceso debe ejecutarse y cómo se deben asignar los recursos de la CPU. Estos criterios a menudo entran en conflicto, por lo que el planificador busca un equilibrio para optimizar el rendimiento general del sistema según su propósito.</p>
+                <p>En la planificación del CPU, <strong>los criterios de rendimiento, tiempo de espera y tiempo de respuesta</strong> permiten valorar la eficiencia con que el sistema operativo administra los recursos de procesamiento. Estos parámetros no solo determinan la productividad del sistema, sino también la experiencia del usuario y la equidad en la atención de los procesos <strong>(Silberschatz, Galvin & Gagne, 2022)</strong>.</p>
+                <p><strong>El rendimiento </strong>se relaciona con la capacidad del sistema para completar el mayor número posible de procesos en un periodo determinado. Un rendimiento alto refleja una gestión adecuada del procesador, con una mínima cantidad de tiempo ocioso y un aprovechamiento óptimo de los recursos disponibles. Este criterio es fundamental en entornos donde se requiere máxima productividad y continuidad operativa </p>
+                <p>El <strong>tiempo de espera</strong> representa el periodo que un proceso permanece en la cola de listos antes de ser asignado al CPU. Su reducción contribuye a una mejor equidad entre los procesos y evita la saturación del sistema. Una planificación eficiente busca minimizar el tiempo promedio de espera, garantizando que los procesos no queden relegados y que todos tengan oportunidad de ser ejecutados en un plazo razonable <strong>(Silberschatz et al., 2022)</strong>.</p>
+                <p>Por su parte, el <strong>tiempo de respuesta</strong> se refiere al intervalo que transcurre desde que el usuario realiza una solicitud hasta que obtiene la primera respuesta del sistema. Este criterio resulta esencial en los sistemas interactivos, donde la rapidez con la que el sistema reacciona influye directamente en la percepción de desempeño y en la calidad del servicio ofrecido <strong>(Silberschatz et al., 2022)</strong>.</p>
+                <p>En conjunto, estos tres criterios conforman la base para diseñar <strong>estrategias de planificación equilibradas</strong>, que buscan optimizar la eficiencia del CPU, mantener un flujo constante de procesos y ofrecer respuestas oportunas a las demandas del usuario, logrando así un sistema operativo más justo, estable y eficaz <strong>(Silberschatz et al., 2022)</strong>.</p>
                 
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h3>Criterios Clave en la Planificación de Procesos</h3>
-
-                <h4>1. Utilización de la CPU (CPU Utilization)</h4>
-                <ul>
-                    <li><strong>Definición:</strong> Es el porcentaje de tiempo que la CPU está realmente ocupada realizando trabajo útil (ejecutando código de usuario o del sistema operativo) y no en estado de inactividad (idle).</li>
-                    <li><strong>Objetivo:</strong> Maximizarla. Se busca mantener la CPU tan ocupada como sea posible para aprovechar al máximo este recurso tan costoso. Una CPU inactiva es un recurso desperdiciado.</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>2. Rendimiento (Throughput)</h4>
-                <ul>
-                    <li><strong>Definición:</strong> El número de procesos (o tareas) que se completan por unidad de tiempo.</li>
-                    <li><strong>Objetivo:</strong> Maximizarlo. Un mayor rendimiento significa que el sistema está procesando más trabajo en un período dado. Es especialmente relevante en sistemas de procesamiento por lotes.</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>3. Tiempo de Retorno (Turnaround Time)</h4>
-                <ul>
-                    <li><strong>Definición:</strong> El tiempo total que transcurre desde que un proceso llega al sistema (entra en la cola de listos) hasta que completa su ejecución. Incluye el tiempo en la cola de listos, el tiempo de ejecución en la CPU y el tiempo de espera por operaciones de E/S.</li>
-                    <li><strong>Objetivo:</strong> Minimizarlo. Un tiempo de retorno bajo significa que los trabajos se completan rápidamente.</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>4. Tiempo de Espera (Waiting Time)</h4>
-                <ul>
-                    <li><strong>Definición:</strong> El tiempo total que un proceso pasa en la cola de procesos "listos", esperando ser asignado a la CPU. No incluye el tiempo de ejecución ni el tiempo de E/S.</li>
-                    <li><strong>Objetivo:</strong> Minimizarlo. Un tiempo de espera excesivo puede hacer que el usuario perciba el sistema como lento y no responsivo.</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>5. Tiempo de Respuesta (Response Time)</h4>
-                <ul>
-                    <li><strong>Definición:</strong> El tiempo que transcurre desde que se envía una solicitud (ej., al hacer clic en un icono o presionar una tecla) hasta que se produce la primera respuesta del sistema. No es el tiempo total de finalización, sino el tiempo hasta el inicio de la respuesta interactiva.</li>
-                    <li><strong>Objetivo:</strong> Minimizarlo. Este es un criterio crucial en sistemas interactivos (escritorios, aplicaciones web), donde la inmediatez de la respuesta es vital para la experiencia del usuario.</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>6. Equidad (Fairness)</h4>
-                <ul>
-                    <li><strong>Definición:</strong> Asegurar que cada proceso obtenga una "parte justa" del tiempo de CPU y que ningún proceso sufra inanición (starvation), es decir, que no se le niegue indefinidamente el acceso a la CPU.</li>
-                    <li><strong>Objetivo:</strong> Garantizar que todos los procesos tengan una oportunidad razonable de progresar. Un sistema equitativo es más predecible y evita que procesos menos prioritarios sean ignorados.</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>7. Prioridad</h4>
-                <ul>
-                    <li><strong>Definición:</strong> Una medida de la importancia relativa de un proceso. Los procesos con mayor prioridad generalmente tienen preferencia en el acceso a la CPU.</li>
-                    <li><strong>Objetivo:</strong> Permitir que el sistema dé un mejor servicio a tareas más críticas o urgentes. Las prioridades pueden ser estáticas (fijas) o dinámicas (cambian durante la ejecución del proceso para, por ejemplo, evitar la inanición).</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>8. Balance de Carga (Load Balancing) — en sistemas multiprocesador</h4>
-                <ul>
-                    <li><strong>Definición:</strong> Distribuir la carga de trabajo de manera equitativa entre los múltiples núcleos de la CPU disponibles.</li>
-                    <li><strong>Objetivo:</strong> Maximizar el paralelismo y la utilización general de todos los recursos de procesamiento, evitando que algunos núcleos estén sobrecargados mientras otros están inactivos.</li>
-                </ul>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <div class="quote-box">
-                    "La elección del algoritmo de planificación (como Round Robin, Shortest Job First [SJF], First-Come, First-Served [FCFS], etc.) impacta directamente en cómo se ponderan y se logran estos criterios. Un algoritmo puede optimizar un criterio (por ejemplo, SJF para minimizar el tiempo de retorno promedio) a expensas de otro (como la posible inanición de procesos de larga duración)"
-                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-                </div>
             </div>
         </div>
         
         <div class="section" id="seccion-2-5-2">
             <div class="section-header">
                 <div class="section-number">2.5.2</div>
-                <div class="section-title">Algoritmos</div>
+                <div class="section-title">Algoritmos: FCFS, SJF, RR, Prioridades</div>
             </div>
             <div class="content">
-                <p>Los algoritmos de planificación de procesos son las estrategias que usa el sistema operativo para decidir qué proceso ejecutar en la CPU y por cuánto tiempo. No hay un algoritmo "perfecto", ya que cada uno optimiza ciertos criterios a expensas de otros.</p>
+                <p>Los algoritmos de planificación determinan el orden en que los procesos acceden al CPU, con el propósito de optimizar el rendimiento y garantizar la equidad en el uso de los recursos del sistema. Entre los más utilizados se encuentran <strong>FCFS, SJF, RR y Prioridades</strong>, cada uno con características y objetivos específicos <strong>(Silberschatz, Galvin & Gagne, 2022)</strong>.</p>
+                <p>El algoritmo <strong>FCFS (First Come, First Served)</strong> asigna el CPU a los procesos según su orden de llegada a la cola de listos. Aunque su diseño es simple y equitativo, puede provocar largos tiempos de espera cuando procesos extensos retrasan la ejecución de otros más cortos.</p>
+                <div class="figure-container">
+                    <img src="Figura8.png" alt="Algoritmo de planificación" class="imagen-figura1">
+                    <div class="figure-caption">Figura 8. Algoritmo de planificaicón FCFS(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                </div>                                
+                <p>El algoritmo <strong>SJF (El trabajo más corto primero)</strong> selecciona el proceso con el menor tiempo de ejecución estimado. Su objetivo es minimizar el tiempo promedio de espera y maximizar el rendimiento. No obstante, requiere conocer la duración de los procesos, lo que en la práctica puede resultar difícil de estimar con precisión.</p>
+                <p>El algoritmo <strong>RR (Round Robin)</strong> se emplea principalmente en sistemas de tiempo compartido. Asigna a cada proceso un quantum o intervalo fijo de tiempo para ejecutar, tras el cual pasa al final de la cola si no ha terminado. Este método ofrece una respuesta más rápida y equitativa, especialmente en entornos interactivos.</p>
+                <p>En la figura 9 se ilustra el funcionamiento del algoritmo <strong>Round Robin (RR)</strong>, en el cual los procesos se ejecutan de manera cíclica durante intervalos de tiempo fijos denominados <i>quantum</i>. Cada proceso recibe una fracción igual del tiempo del CPU antes de ceder el turno al siguiente, lo que garantiza equidad y una respuesta más rápida en sistemas interactivos. Este método es ampliamente utilizado en sistemas de tiempo compartido por su capacidad para mantener una ejecución balanceada y continua entre múltiples procesos.</p> 
                 
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h3>Tipos de Algoritmos de Planificación</h3>
-                <p>Los algoritmos se clasifican principalmente en dos categorías:</p>
-
-                <ol>
-                    <li><strong>No Apropiativos (Non-Preemptive):</strong> Una vez que un proceso obtiene la CPU, la retiene hasta que termina su ejecución o voluntariamente cede el control. No puede ser interrumpido por otro proceso.</li>
-                    <li><strong>Apropiativos (Preemptive):</strong> Un proceso puede ser interrumpido y la CPU puede ser asignada a otro proceso, generalmente de mayor prioridad o tras un tiempo límite.</li>
-                </ol>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h3>Algoritmos Principales</h3>
-
-                <h4>1. First-Come, First-Served (FCFS)</h4>
-                <p>Se basa en el orden de llegada.</p>
-                <p><strong>Ventajas:</strong> Simplicidad.</p>
-                <p><strong>Desventajas:</strong> Tiempo de espera largo para procesos cortos (efecto convoy).</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>Ventajas detalladas:</h4>
-                <ul>
-                    <li>Sencillo de implementar y comprender.</li>
-                    <li>No hay sobrecarga por cambios de contexto innecesarios.</li>
-                </ul>
-
-                <h4>Desventajas detalladas:</h4>
-                <ul>
-                    <li>Puede provocar el efecto convoy, donde procesos cortos deben esperar a que terminen los largos.</li>
-                    <li>No es adecuado para sistemas interactivos.</li>
-                </ul>
-
-                <h4>2. Shortest Job First (SJF)</h4>
-                <p>Prioriza los procesos con ráfagas más cortas. Puede ser apropiativo o no.</p>
-                <p><strong>Ventajas:</strong> Tiempo de espera promedio mínimo.</p>
-                <p><strong>Desventajas:</strong> Inanición y dificultad para estimar el tiempo de ráfaga.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>Ventajas detalladas:</h4>
-                <ul>
-                    <li>Minimiza el tiempo de espera promedio y el tiempo de retorno.</li>
-                    <li>Óptimo para sistemas por lotes donde las ráfagas son predecibles.</li>
-                </ul>
-
-                <h4>Desventajas detalladas:</h4>
-                <ul>
-                    <li>Puede causar inanición si continuamente llegan procesos más cortos.</li>
-                    <li>Difícil de implementar en la práctica por la necesidad de estimar la duración de los procesos.</li>
-                </ul>
-
-                <h4>3. Priority Scheduling</h4>
-                <p>Planifica según la prioridad asignada a cada proceso.</p>
-                <p><strong>Ventajas:</strong> Ideal para sistemas con procesos críticos.</p>
-                <p><strong>Desventajas:</strong> Posibilidad de inanición; se puede corregir con envejecimiento (aging).</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>Ventajas detalladas:</h4>
-                <ul>
-                    <li>Permite priorizar procesos críticos o urgentes.</li>
-                    <li>Útil en sistemas donde ciertas tareas requieren atención inmediata.</li>
-                </ul>
-
-                <h4>Desventajas detalladas:</h4>
-                <ul>
-                    <li>Riesgo de inanición para procesos de baja prioridad.</li>
-                    <li>Se necesita aplicar técnicas como el envejecimiento para corregirlo.</li>
-                </ul>
-
-                <h4>4. Round Robin (RR)</h4>
-                <p>Utiliza un quantum de tiempo fijo para cada proceso.</p>
-                <p><strong>Ventajas:</strong> Buen tiempo de respuesta en sistemas interactivos.</p>
-                <p><strong>Desventajas:</strong> Cambio de contexto frecuente si el quantum es muy corto.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>Ventajas detalladas:</h4>
-                <ul>
-                    <li>Ofrece equidad, todos los procesos reciben atención.</li>
-                    <li>Bueno para sistemas interactivos por su bajo tiempo de respuesta.</li>
-                    <li>Evita la inanición.</li>
-                </ul>
-
-                <h4>Desventajas detalladas:</h4>
-                <ul>
-                    <li>Aumenta la sobrecarga si el quantum es muy pequeño.</li>
-                    <li>Si el quantum es demasiado grande, se comporta como FCFS y pierde ventajas.</li>
-                </ul>
-
-                <h4>5. Multilevel Queue Scheduling</h4>
-                <p>Divide la cola de listos en varias colas por tipo de proceso.</p>
-                <p><strong>Ventajas:</strong> Flexibilidad y priorización natural.</p>
-                <p><strong>Desventajas:</strong> Posibilidad de inanición y dificultad para clasificar procesos.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>Ventajas detalladas:</h4>
-                <ul>
-                    <li>Permite aplicar diferentes algoritmos según el tipo de proceso.</li>
-                    <li>Mejora la organización y la eficiencia si las colas están bien definidas.</li>
-                </ul>
-
-                <h4>Desventajas detalladas:</h4>
-                <ul>
-                    <li>Puede provocar inanición en colas de menor prioridad si la planificación es estática.</li>
-                    <li>Mayor complejidad en su implementación y gestión.</li>
-                </ul>
-
-                <h4>6. Multilevel Feedback Queue Scheduling</h4>
-                <p>Permite que los procesos cambien entre colas según su comportamiento.</p>
-                <p><strong>Ventajas:</strong> Adaptabilidad y prevención de inanición.</p>
-                <p><strong>Desventajas:</strong> Alta complejidad y necesidad de ajustes precisos.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
-
-                <h4>Ventajas detalladas:</h4>
-                <ul>
-                    <li>Se adapta dinámicamente al comportamiento del proceso.</li>
-                    <li>Reduce el riesgo de inanición mediante técnicas como el envejecimiento.</li>
-                    <li>Combina flexibilidad, equidad y eficiencia.</li>
-                </ul>
-
-                <h4>Desventajas detalladas:</h4>
-                <ul>
-                    <li>Muy complejo de configurar y mantener.</li>
-                    <li>Requiere ajustes finos en parámetros como número de colas, prioridades, y tiempos.</li>
-                </ul>
-
-                <div class="quote-box">
-                    "La elección de un algoritmo de planificación depende en gran medida del tipo de sistema operativo y de los objetivos de rendimiento que se desean alcanzar"
-                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2019).</div>
+                <div class="figure-container">
+                    <img src="Figura9.png" alt="Algoritmo de planificación" class="imagen-figura1">
+                    <div class="figure-caption">Figura 9. Algoritmo de planificaicón RR(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                </div>                                
+                <p><strong>Planificación por Prioridades</strong> asigna un nivel de preferencia a los proceso, de modo que los de más alta necesidad se ejecutan primero. Así <strong>estáticos</strong> o <strong>dinámicos</strong>, aunque si no se controla adecuadamente, puede causar <strong>espera infinita </strong>a los mismos.</p>
+                <p>La figura 10 ilustra el algoritmo de planificación por prioridades, donde cada proceso tiene un nivel que define su orden de ejecución. Los de mayor prioridad se atienden primero, optimizando la asignación de recursos hacia tareas críticas. No obstante, una mala gestión puede causar inanición, dejando a los procesos de baja prioridad en espera indefinida.</p>
+                <div class="figure-container">
+                    <img src="Figura10.png" alt="Planificación por pirioridades" class="imagen-figura1">
+                    <div class="figure-caption">Figura 10. Planificaicón por prioridades(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>                    
                 </div>
+                <p>Estos algoritmos son fundamentales en las estrategias actuales de planificación. Su selección varía según las características del sistema y los objetivos buscados, como minimizar el tiempo de espera o mejorar la rapidez de respuesta <strong>(Silberschatz et al., 2022)</strong>.</p>                
             </div>
         </div>
 
@@ -900,14 +683,25 @@
                 <div class="section-title">Planificación de hilos</div>
             </div>
             <div class="content">
-                
+                <p>La planificación de hilos permite al sistema operativo decidir qué hilo utilizará el CPU en cada momento. Como los hilos comparten los recursos del proceso al que pertenecen (memoria, archivos, etc.), este tipo de planificación busca optimizar el uso del procesador y mejorar el rendimiento global del sistema <strong>(Silberschatz, Galvin y Gagne, 2022)</strong>.</p>
+                <p>Existen dos enfoques principales:</p>
+                <ul>
+                    <li><strong>Planificación a nivel de usuario</strong>: se gestiona mediante bibliotecas ubicadas en el espacio de usuario. El kernel no interviene ni reconoce los hilos, lo que permite una conmutación rápida entre ellos. No obstante, si un hilo se bloquea, todos los hilos del proceso se detienen.</li>
+                    <li><strong>Planificación a nivel de kernel</strong>: el sistema operativo gestiona directamente los hilos, asignando el CPU según sus políticas internas. Aunque genera mayor sobrecarga, ofrece un control más preciso y un mejor aprovechamiento en sistemas multiprocesador.</li>                    
+                </ul>
+                <p>Además, algunos sistemas implementan <strong>modelos híbridos</strong>, combinando ambos enfoques para equilibrar rendimiento y flexibilidad. La correcta planificación de hilos permite aprovechar el paralelismo, mejorar la concurrencia y reducir el tiempo de respuesta en aplicaciones que realizan múltiples tareas simultáneamente.</p>
+                <p>La figura 11 representa el proceso de <strong>planificación de hilos</strong>, mostrando cómo el CPU administra múltiples hilos de ejecución pertenecientes a uno o varios procesos. Cada hilo puede ejecutarse de manera independiente, permitiendo una mejor distribución de las tareas y un aprovechamiento más eficiente del procesador. El esquema ilustra la relación entre el CPU y los hilos, destacando la forma en que el sistema operativo asigna el tiempo de procesamiento a cada uno, ya sea mediante planificación a nivel de usuario, de kernel o mediante un modelo híbrido.</p>
+                <div class="figure-container">
+                    <img src="Figura11.png" alt="Algoritmo de planificación" class="imagen-figura1">
+                    <div class="figure-caption">Figura 11. Planificaicón de hilos(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                </div>                                
             </div>
         </div>
         
         <div class="activity-card">
-            <div class="activity-title">Actividad de Aprendizaje: Modelo de Procesos</div>
-            <p>Evalúa tu comprensión sobre los fundamentos, operaciones, estados e implementación de procesos en sistemas operativos.</p>
-            <a href="actividad_2_1.html" class="activity-btn">
+            <div class="activity-title">Actividad de Aprendizaje: Planificación</div>
+            <p>Evalúa tu comprensión sobre planificación en sistemas operativos.</p>
+            <a href="actividad_2_5.html" class="activity-btn">
                 <i class="fas fa-pencil-alt"></i> Realizar Actividad
             </a>
         </div>
