@@ -713,83 +713,13 @@
                 <div class="section-title">Seguridad en los Sistemas Operativos</div>
             </div>
             <div class="content">
-                <h3>INTRODUCCIÓN</h3>
-                <p>La seguridad en un sistema dentro de una de sus facetas incluye la protección de los datos, desde los posibles daños físicos (fuegos, terremotos, o cualquier situación externa) hasta el acceso indebido a los mismos (corrupción de los datos, intrusos, fallos en la confidencialidad, etc.). </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <p>Frente a un ataque contra la integridad o la disponibilidad de los datos en un sistema operativo debe haber un plan de contingencia para la prevención o la evasión del ataque. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <p>En el caso de un sistema informático hay varios elementos susceptibles de sufrir dichos ataques, siendo suficiente proteger sólo algunos de ellos o proteger en su totalidad a todos los elementos parcialmente. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <p>La protección por su parte consiste en evitar que se haga un uso indebido de los recursos que se encuentran dentro del ámbito del sistema operativo. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                
-                <p>Por esto mismo deben existir mecanismos y políticas que aseguren que cada usuario accede únicamente a sus propios recursos (archivos, zonas de memoria, etc.). </p>
-                
-                <p>Además de asegurar que los recursos sólo se usan por aquellos usuarios que tienen derechos de acceso a los mismos. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <p>Las políticas de protección y seguridad de hardware, software y datos deben incluirse dentro del sistema operativo. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                
-                <h3>PROBLEMAS DE SEGURIDAD</h3>
-                <p>Todos los sistemas operativos comerciales desarrollados hasta el momento han tenido algún problema de seguridad. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
+                <p>Toda las formas de funcionamiento que puede presentar los dispositivos de entrada y salida en función a los procesos que
+                se lleven a cabo es responsabilidad del sistema es por ello que implementa controles y administración estructurada para
+                garantizar el uso adecuado de los recursos y cuando este no opera correctamente genera barreras de protección para evitar
+                que los procesos de los usuarios afecten dicho funcionamiento y pongan en riesgo su funcionalidad.</p>
 
-                <p>Muchos fallos no se deben al sistema de protección sino a la simpleza del usuario al poner como palabra de acceso al sistema el nombre de algún conocido cercano o algún número como fechas o matrículas. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <p>A continuación, se describen los problemas más frecuentes en un sistema informático:</p>
-
-                <h4>USO INDEBIDO O MALICIOSO DE PROGRAMAS</h4>
-                <p>Algunos problemas de seguridad están relacionados con el uso indebido, o malicioso de programas de usuario. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                <p>Dos formas frecuentes de generar fallos de seguridad usando estas técnicas son el <span class="highlight">caballo de Troya</span> y la <span class="highlight">puerta de atrás</span>. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>El caballo de Troya se basa en la idea de crear un programa para que haga cosas no autorizadas en el sistema cuando actúa en el entorno adecuado. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>La puerta de atrás consiste en crear un agujero de seguridad al sistema a través de un programa privilegiado que lo permite. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Básicamente se basan en la creación de programas que faciliten el acceso de algún intruso mediante la persuasión al usuario de filtrar credenciales o que den permisos de acceso a programas "no dañinos". </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <h4>USUARIOS NO AUTORIZADOS</h4>
-                <p>En algunos sistemas operativos, como UNIX o Windows, se mantienen cuentas para los usuarios no autorizados. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>El acceso a dichas cuentas se protege mediante contraseñas, o palabras clave, que sólo debe conocer el dueño de estas. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Uno de estos usuarios es comúnmente denominado como administrador o súper-usuario, ya que puede acceder a todo el sistema saltándose las protecciones del resto de los usuarios. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Para que se pueda llevar a cabo la modificación o la ejecución de un programa en la computadora es necesario acceder a una cuenta de usuario y en caso de ser necesario, aprobar la prueba de autenticación de un administrador. </p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h4>VIRUS</h4>
-                <p>Se denomina con este nombre a todos los programas que se autorreplican con fines destructivos o de violación de seguridad. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>Se llaman así por analogía con los virus que actúan sobre los seres vivos, ya que de igual forma necesitan un programa que transporte el virus y de un agente que los transmita para infectar a otros programas. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>En todos los casos se trata de un programa o trozo de un código que se añade a otro y que se activa cuando se ejecuta el programa portador. </p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h4>GUSANOS</h4>
-                <p>Se trata de un programa que explota los fallos de seguridad para acceder a sistemas remotos y, además, que se replique a sí mismo para acceder a más sistemas. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>A diferencia de los virus, los gusanos no necesitan un programa anfitrión para propagarse, sino que pueden autorreplicarse a través de la red. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <h4>ROMPEDORES DE SISTEMAS DE PROTECCIÓN</h4>
-                <p>Estos programas llevan a cabo distintas pruebas sobre sistemas, generalmente remotos, para tratar de romper la seguridad de estos y poder ejecutar accesos ilegales. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Una de las pruebas que ejecutan típicamente consiste en la de tratar de adivinar las palabras clave que tienen los usuarios para acceder al sistema. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <h4>BOMBARDEO</h4>
-                <p>Un ataque de seguridad con mucho éxito en Internet es el que consiste en llevar a cabo bombardeos masivos con peticiones de servicio o de establecimiento de conexión a un servidor determinado. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>Estos ataques masivos provocan que el servidor deniegue sus servicios a los clientes legales y pueden llegar a bloquear al servidor. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
+                <p>La seguridad del SO abarca desde la <strong>autenticación del usuario </strong> hasta el <strong>aislamiento de procesos</strong>
+                    , el <strong>control de accesos </strong>y la <strong>protección de la memoria y los archivos.</strong></p>
             </div>
         </div>
         
