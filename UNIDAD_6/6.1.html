@@ -882,6 +882,87 @@
                     por un sistema operativo, en donde existen reglas y políticas de uso para garantizar el buen uso de los recursos del
                     sistema en forma segura y controlada.
                 </p>
+                <ol>
+                    <li><strong>Objetivos de los modelos formales</strong></li>
+                    <ul>
+                        <li>Establecer criterios verificables de seguridad.</li>
+                        <li>Prevenir la filtración o corrupción de información entre niveles de seguridad.</li>
+                        <li>Facilitar la auditoría y certificación de sistemas informáticos.</li>
+                        <li>Proveer fundamentos para el diseño de políticas de control de acceso.</li>
+                        <li>Permitir la comparación objetiva entre diferentes arquitecturas de seguridad.</li>
+                    </ul>
+                    <li><strong>Principales modelos formales de seguridad</strong></li>
+                    <ol type="a">
+                        <li><strong>Modelo Bell-LaPadula (Confidencialidad de la información)</strong></li>
+                        <ul>
+                            <li>Fue desarrollado en los años 70 para proteger sistemas militares y gubernamentales.</li>
+                            <li>Se centra en preservar la confidencialidad de los datos.</li>
+                            <li>Define dos reglas principales:</li>
+                            <ol>
+                                <li>No leer hacia arriba: un usuario no puede leer información de un nivel de seguridad superior al suyo.</li>
+                                <li>No escribir hacia abajo: un usuario no puede escribir información en un nivel inferior, para evitar fugas.</li>
+                            </ol>
+                            <li>Ejemplo: un usuario clasificado como “Confidencial” no puede leer documentos “Secretos”, ni escribir en documentos “Públicos”.</li>
+                            <li><strong>Propósito:</strong> evitar la divulgación no autorizada de información.</li>
+                        </ul>
+                        <li><strong>Modelo Biba (Integridad de la información)</strong></li>
+                        <ul>
+                            <li>Complementa al modelo Bell-LaPadula, pero enfocado en la integridad.</li>
+                            <li>Define las reglas opuestas:</li>
+                            <ol>
+                                <li>No escribir hacia arriba: un usuario de bajo nivel no puede modificar datos de un nivel superior.</li>
+                                <li>No leer hacia abajo: un usuario no puede leer información de niveles inferiores que podrían estar comprometidos.</li>
+                            </ol>
+                            <li>Se utiliza en sistemas donde la precisión y consistencia de los datos son esenciales (por ejemplo, bancos o sistemas médicos).</li>
+                            <li><strong>Propósito:</strong> evitar la modificación no autorizada de información.</li>
+                        </ul>
+                        <li><strong>Modelo Clark-Wilson (Integridad comercial)</strong></li>
+                        <ul>
+                            <li>Basado en la consistencia de transacciones y separación de deberes.</li>
+                            <li>Propone el uso de transacciones bien formadas y verificación de integridad por parte de procedimientos controlados.</li>
+                            <li>Establece que los usuarios no acceden directamente a los datos, sino a través de programas certificados.</li>
+                            <li>Ideal para entornos empresariales y financieros.</li>
+                            <li><strong>Propósito:</strong> asegurar la corrección y validez de las operaciones.</li>
+                        </ul>
+                        <li><strong>Modelo de flujo de información (Denning)</strong></li>
+                        <ul>
+                            <li>Introducido por Dorothy Denning en 1976.</li>
+                            <li>Se centra en el flujo seguro de información entre diferentes niveles de seguridad.</li>
+                            <li>Garantiza que la información no se transfiera de un nivel más alto a uno más bajo de forma no controlada.</li>
+                            <li>Aplica principios de no interferencia entre procesos.</li>
+                            <li><strong>Propósito:</strong> evitar la filtración indirecta de información confidencial.</li>
+                        </ul>
+                        <li><strong>Modelo de Graham-Denning</strong></li>
+                        <ul>
+                            <li>Define cómo se crean, modifican y eliminan derechos de acceso dentro de un sistema.</li>
+                            <li>Introduce operaciones como “crear objeto”, “borrar sujeto”, “conceder acceso” y “revocar permisos”.</li>
+                            <li>Permite representar dinámicamente la evolución de los privilegios en el tiempo.</li>
+                            <li><strong>Propósito:</strong> modelar la administración segura de derechos en sistemas multiusuario.</li>
+                        </ul>
+                    </ol>
+                    <li><strong>Comparación general de los modelos</strong></li>
+                    <div class="figure-container">
+                        <div class="figura">
+                            <img src="TABLA9.png" alt="" class="imagen-tabla9"/>
+                        </div>
+                        <div class="figure-caption">Tabla 9. Comparación general de los modelos. Adaptado de Conceptos de sistemas
+                            operativos (10. ° ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022, Wiley.</div>
+                    </div>
+                    <li><strong>Importancia de los modelos formales</strong></li>
+                    <ul>
+                        <li>Permiten analizar matemáticamente la seguridad del sistema operativo.</li>
+                        <li>Son la base para el diseño de mecanismos modernos de control de acceso y auditoría.</li>
+                        <li>Favorecen la certificación de sistemas críticos bajo estándares internacionales (por ejemplo, ISO/IEC 15408).</li>
+                        <li>Contribuyen al desarrollo de políticas de seguridad consistentes y verificables.</li>
+                    </ul>
+                </ol>
+                <p>
+                    Los modelos formales de seguridad constituyen la base teórica de la protección en los sistemas operativos. 
+                </p>
+                <p>
+                    A través de representaciones matemáticas y reglas lógicas, estos modelos permiten garantizar la confidencialidad, integridad y 
+                    control del acceso a la información, sirviendo como fundamento para las políticas de seguridad implementadas en sistemas modernos.
+                </p>
             </div>
         </div>
         
