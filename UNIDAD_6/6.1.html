@@ -721,35 +721,18 @@
                 <p>La seguridad del SO abarca desde la <strong>autenticación del usuario </strong> hasta el <strong>aislamiento de procesos</strong>
                     , el <strong>control de accesos </strong>y la <strong>protección de la memoria y los archivos.</strong></p>
                 <ol>
-                    <li>
-                        <strong>Objetivos de la seguridad en sistemas operativos</strong>
-                    </li>
+                    <li><strong>Objetivos de la seguridad en sistemas operativos</strong></li>
                 <ol>
-                    <li>
-                        <strong>Confidencialidad:</strong> los datos solo deben ser accesibles para usuarios o procesos autorizados.
-                    </li>
-                    <li>
-                        <strong>Integridad:</strong> los recursos deben mantenerse libres de modificaciones o daños no autorizados.
-                    </li>
-                    <li>
-                        <strong>Disponibilidad:</strong> los servicios y datos deben estar accesibles cuando se requieran.
-                    </li>
-                    <li>
-                        <strong>Autenticación:</strong> verificación de la identidad de los usuarios antes de permitir el acceso.
-                    </li>
-                    <li>
-                        <strong>Autorización:</strong> determinación de los permisos y privilegios otorgados a cada entidad.
-                    </li>
-                    <li>
-                        <strong>Auditoría:</strong> registro de las acciones realizadas para detectar irregularidades o ataques.
-                    </li>
+                    <li><strong>Confidencialidad:</strong> los datos solo deben ser accesibles para usuarios o procesos autorizados.</li>
+                    <li><strong>Integridad:</strong> los recursos deben mantenerse libres de modificaciones o daños no autorizados.</li>
+                    <li><strong>Disponibilidad:</strong> los servicios y datos deben estar accesibles cuando se requieran.</li>
+                    <li><strong>Autenticación:</strong> verificación de la identidad de los usuarios antes de permitir el acceso.</li>
+                    <li><strong>Autorización:</strong> determinación de los permisos y privilegios otorgados a cada entidad.</li>
+                    <li><strong>Auditoría:</strong> registro de las acciones realizadas para detectar irregularidades o ataques.</li>
                 </ol>
-                    <li>
-                        <strong>Áreas de seguridad en un sistema operativo</strong>
-                    </li> 
+                    <li><strong>Áreas de seguridad en un sistema operativo</strong></li>
                 <ol>
-                    <li>
-                        <strong>Seguridad del acceso al sistema:</strong>
+                    <li> <strong>Seguridad del acceso al sistema:</strong>
                         <ul>
                             <li>Se implementan mecanismos de autenticación (contraseñas, tokens, biometría).</li>
                             <li>Se controla el inicio de sesión, sesiones remotas y permisos de usuario.</li>
@@ -758,29 +741,29 @@
                     <li>
                         <strong>Seguridad del sistema de archivos:</strong>
                         <ul>
-                            <li>Se utilizan <strong>permisos de lectura, escritura y ejecución.</strong></li>
-                            <li>Se aplican técnicas de <strong>cifrado de archivos y carpetas.</strong></li>
+                            <li>Se utilizan permisos de lectura, escritura y ejecución.</li>
+                            <li>Se aplican técnicas de cifrado de archivos y carpetas.</li>
                             <li>El SO verifica la integridad de los datos almacenados.</li>
                         </ul>
                     </li>
                     <li>
                         <strong>Seguridad de la memoria:</strong>
                         <ul>
-                            <li>Cada proceso tiene un <strong>espacio de memoria protegido</strong> para evitar accesos indebidos.</li>
-                            <li>Se utilizan mecanismos como la <strong>memoria virtual y la paginación</strong> con privilegios de acceso.</li>
+                            <li>Cada proceso tiene un espacio de memoria protegido para evitar accesos indebidos.</li>
+                            <li>Se utilizan mecanismos como la memoria virtual y la paginación con privilegios de acceso.</li>
                         </ul>
                     </li>
                     <li>
                         <strong>Seguridad en la ejecución de procesos:</strong>
                         <ul>
-                            <li>Los procesos se ejecutan de manera <strong>aislada</strong> para prevenir interferencias.</li>
-                            <li>Se emplean <strong>niveles de privilegio </strong>(modo usuario y modo kernel).</li>
+                            <li>Los procesos se ejecutan de manera aislada para prevenir interferencias.</li>
+                            <li>Se emplean niveles de privilegio (modo usuario y modo kernel).</li>
                         </ul>
-                    </li> 
-                     <li>
+                    </li>
+                    <li>
                         <strong>Seguridad en redes y comunicación:</strong>
                         <ul>
-                            <li>El SO implementa <strong>firewalls, filtros de paquetes, protocolos seguros (SSL/TLS) </strong>y monitoreo de tráfico.</li>
+                            <li>El SO implementa firewalls, filtros de paquetes, protocolos seguros (SSL/TLS) y monitoreo de tráfico.</li>
                         </ul>
                     </li>
                     <li>
@@ -791,77 +774,55 @@
                         </ul>
                     </li>
                 </ol>
-                <ol>
-                    <li>
-                        <strong>Mecanismos de seguridad</strong>
-                    </li>
+                    <li><strong>Mecanismos de seguridad</strong></li>
                     <ul>
-                        <li>
-                            <strong>Listas de control de acceso (ACL):</strong> definen quién puede acceder a qué recursos y con qué permisos.
-                        </li>
+                        <li><strong>Listas de control de acceso (ACL):</strong> definen quién puede acceder a qué recursos y con qué permisos.</li>
                         <li>
                             <strong>Modelos de seguridad:</strong>
                             <ul>
-                                <li>
-                                    <em>Discrecional (DAC):</em> el propietario del recurso define los permisos.
-                                </li>
-                                <li>
-                                    <em>Basado en roles (RBAC):</em> los permisos se asignan según el rol del usuario.
-                                </li>
-                                <li>
-                                    <em>Obligatorio (MAC):</em> el sistema impone las reglas de acceso basadas en políticas de seguridad.
-                                </li>
+                                <li><strong>Discrecional (DAC):</strong> el propietario del recurso define los permisos.</li>
+                                <li><strong>Basado en roles (RBAC):</strong> los permisos se asignan según el rol del usuario.</li>
+                                <li><strong>Obligatorio (MAC):</strong> el sistema imparte reglas de acceso basadas en políticas de seguridad.</li>
                             </ul>
                         </li>
-                        <li>
-                            <strong>Auditoría y monitoreo:</strong> registros de eventos para detectar anomalías o accesos indebidos.
-                        </li>
-                        <li>
-                            <strong>Cifrado:</strong> protección de datos en tránsito y en reposo.
-                        </li>
+                        <li><strong>Auditoría y monitoreo:</strong> registros de eventos para detectar anomalías o accesos indebidos.</li>
+                        <li><strong>Cifrado:</strong> protección de datos en tránsito y en reposo.</li>
                     </ul>
-                    </li>
-                </ol>
-                <ol>
-                    <li>
-                        <strong>Ejemplo práctico</strong>
-                    </li>
-                    <span>En un sistema Linux:</span>
+                    <li><strong>Ejemplo práctico</strong></li>
+                    <p><strong>En un sistema Linux:</strong></p>
                     <ul>
                         <li>La autenticación se realiza mediante usuario y contraseña cifrada.</li>
-                        <li>Los permisos se gestionan con el modelo <em>rwx</em> (lectura, escritura, ejecución).</li>
+                        <li>Los permisos se gestionan con el modelo rwx (lectura, escritura, ejecución).</li>
                         <li>Los usuarios normales no pueden acceder a archivos del kernel.</li>
-                        <li>Se aplican herramientas de seguridad como <strong>SELinux</strong>, que impone controles de acceso obligatorios.</li>
+                        <li>Se aplican herramientas de seguridad como SELinux, que impone controles de acceso obligatorios.</li>
                     </ul>
-                    <span>En Windows:</span>
+                    <p><strong>En Windows:</strong></p>
                     <ul>
-                        <li>El control de acceso se gestiona mediante <strong>Active Directory</strong> y <strong>UAC (User Account Control)</strong>.</li>
+                        <li>El control de acceso se gestiona mediante Active Directory y UAC (User Account Control).</li>
                         <li>Los archivos del sistema se protegen mediante permisos NTFS y auditorías automáticas.</li>
                     </ul>
-                </li>
-                <ol>
-                    <li>
-                        <strong>Amenazas comunes</strong>
-                    </li>
+                    <li><strong>Amenazas comunes</strong></li>
                     <ul>
-                        <li>
-                            <strong>Malware y virus:</strong> alteran la integridad de los archivos o consumen recursos del sistema.
-                        </li>
-                        <li>
-                            <strong>Ataques de escalada de privilegios:</strong> buscan obtener acceso de administrador.
-                        </li>
-                        <li>
-                            <strong>Robo de credenciales:</strong> compromete la autenticación del sistema.
-                        </li>
-                        <li>
-                            <strong>Ataques de denegación de servicio (DoS):</strong> saturan el sistema, afectando la disponibilidad.
-                        </li>
-                        <li>
-                            <strong>Errores de configuración:</strong> generan vulnerabilidades explotables.
-                        </li>
+                        <li><strong>Malware y virus:</strong> alteran la integridad de los archivos o consumen recursos del sistema.</li>
+                        <li><strong>Ataques de escalada de privilegios:</strong> buscan obtener acceso de administrador.</li>
+                        <li><strong>Robo de credenciales:</strong> compromete la autenticación del sistema.</li>
+                        <li><strong>Ataques de denegación de servicio (DoS):</strong> saturan el sistema, afectando la disponibilidad.</li>
+                        <li><strong>Errores de configuración:</strong> generan vulnerabilidades explotables.</li>
                     </ul>
-                </li>
+                    <li><strong>Estrategias de protección</strong></li>
+                    <ul>
+                        <li>Mantener actualizaciones de seguridad constantes.</li>
+                        <li>Implementar autenticación multifactor (MFA).</li>
+                        <li>Usar cifrado de disco completo y comunicaciones seguras.</li>
+                        <li>Aplicar principios de mínimo privilegio y aislamiento de procesos.</li>
+                        <li>Configurar auditorías y registros para el análisis forense.</li>
+                    </ul>
                 </ol>
+                <p>
+                    La seguridad en los sistemas operativos es un componente esencial que garantiza la confiabilidad, estabilidad y privacidad del entorno informático.
+                    A través de mecanismos como la autenticación, control de acceso, cifrado, aislamiento y auditoría, los sistemas modernos logran proteger sus recursos 
+                    contra amenazas internas y externas, permitiendo un funcionamiento seguro y continuo en entornos locales o distribuidos.
+                </p>
             </div>
         </div>
         
