@@ -9,13 +9,6 @@
     <style>
         /*
         Aquí comienza un bloque de estilos CSS para definir la apariencia de la página.
-        Incluye:
-        - Variables de color (--primary, --secondary, etc.) para un diseño consistente.
-        - Estilos base para todos los elementos (*).
-        - Estilos para el cuerpo de la página (body), incluyendo un fondo degradado.
-        - Diseño de componentes específicos como botones flotantes, menú lateral, contenedor principal,
-          encabezados, secciones, tablas, bloques de código, tarjetas de actividad, pie de página, etc.
-        - Media Queries (@media) para adaptar el diseño a pantallas más pequeñas (diseño responsivo).
         */
         :root {
             --primary: #2c3e50;
@@ -362,74 +355,6 @@
             padding-left: 10px;
         }
         
-        .table-container {
-            max-width: 800px;
-            margin: 30px auto;
-            overflow-x: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .table-caption {
-            text-align: center;
-            padding: 10px;
-            font-style: italic;
-            color: var(--gray);
-            background: rgba(0, 0, 0, 0.3);
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-        
-        .code-block {
-            background: #1e1e1e;
-            color: #dcdcdc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            position: relative;
-            border-left: 4px solid var(--warning);
-        }
-        
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .code-caption {
-            font-style: italic;
-            margin-top: 10px;
-            color: var(--gray);
-            text-align: center;
-        }
-        
         .figure-container {
             text-align: center;
             margin: 30px 0;
@@ -440,7 +365,7 @@
         
         .figure-placeholder {
             width: 100%;
-            height: 300px;
+            min-height: 300px;
             background: linear-gradient(135deg, #2c3e50, #34495e);
             display: flex;
             align-items: center;
@@ -450,25 +375,21 @@
             color: var(--gray);
             font-style: italic;
             flex-direction: column;
-
         }
-        
-        .figure-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--secondary);
+
+        /* Clase para imágenes reales si se incorporan */
+        .figure-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         
         .figure-caption {
             font-style: italic;
             color: var(--gray);
             margin-top: 10px;
-        }
-
-        .imagen-figura1 {
-            max-width: 600px;
-            width: 100%;
-            height: auto;
+            font-size: 0.9rem;
         }
         
         .activity-card {
@@ -631,8 +552,8 @@
 
     <nav class="sidebar-nav" id="sidebarNav">
         <div class="sidebar-header">
-            <div class="sidebar-title">3.1 Abstracción de Memoria</div>
-            <div class="sidebar-subtitle">Fundamentos y Gestión</div>
+            <div class="sidebar-title">CAPÍTULO III</div>
+            <div class="sidebar-subtitle">Administración de memoria</div>
         </div>
         
         <div class="nav-sections">
@@ -650,6 +571,10 @@
 
             <div class="nav-section">
                 <div class="nav-section-title">Contenido</div>
+                <a href="#seccion-3-1" class="nav-item" data-section="3-1">
+                    <i class="fas fa-layer-group"></i>
+                    3.1 Abstracción
+                </a>
                 <a href="#seccion-3-1-1" class="nav-item" data-section="3-1-1">
                     <i class="fas fa-sitemap"></i>
                     3.1.1 Organización
@@ -697,125 +622,154 @@
                 <span>/</span>
                 <a href="index.html">Unidad 3</a>
                 <span>/</span>
-                <span>3.1 Abstracción de Memoria</span>
+                <span>Administración de Memoria</span>
             </div>
             <h1>3.1 Abstracción de Memoria</h1>
-            <div class="subtitle">Ocultando la complejidad del hardware</div>
+            <div class="subtitle">Gestión eficiente del espacio en memoria</div>
         </header>
         
         <div class="intro">
             <h3>INTRODUCCIÓN</h3>
-            <p>La abstracción de memoria es una de las bases más importantes en el diseño de los sistemas operativos modernos. Su principal objetivo es ofrecer a los programas y a los usuarios una visión simplificada y segura de la memoria, ocultando la complejidad del hardware físico.</p>
-            <p>Cada proceso se comporta como si dispusiera de su propia memoria, continua e independiente, cuando en realidad la está compartiendo con otros. Esta ilusión simplifica enormemente el desarrollo de software y garantiza la integridad de los datos.</p>        
-            <p>Este concepto nació de la necesidad de separar lo complicado del hardware de la experiencia del programador. Programar directamente en las direcciones físicas sería un problema: tendrías que lidiar con una memoria desordenada y con un alto riesgo de que los programas choquen entre sí. En cambio, con la abstracción, el sistema operativo crea la ilusión de un espacio de memoria limpio y exclusivo, lo que facilita mucho el desarrollo de software y protege la integridad de los datos </p>
-            <p class="citation">(Tanenbaum, 2009)</p>
+            <p>Es la tarea que presenta el sistema operativo para administrar y gestionar el espacio en la memoria principal recordemos que es la RAM, además de utilizar la memoria virtual, estableciendo una asignación y soltando la memoria de procesos ya que recordemos que esta se requiere ejecutar.</p>
+            <p>El objetivo es que se utilice la memoria en una manera eficiente, asegurando que todos los procesos que se ejecuten no se interfieran entre sí y se visualice como si tuviéramos una memoria muy grande para llevar a cabo todos estos, aplicando técnicas que nos ayuden como es la memoria virtual.</p>
+            <p>Por lo que el sistema operativo tiene un control especifico de cómo están utilizadas los elementos de la memoria y quien las está utilizando para saber cuánto se tiene disponible y se puede utilizar.</p>
+            <p>Existen tres técnicas que son:</p>
+            <ul>
+                <li><strong>Asignación continua:</strong> Es cuando la memoria retiene espacios contiguos para cada ejecución que realiza, esto permite el acceso a los mismos con riesgo de que se genere división externa en los procesos.</li>
+                <li><strong>Segmentación:</strong> Es cuando dividimos la memoria en pequeños espacios lógicos debido a que necesitamos una distribución mas ordenada, flexible y estructurada a cada una de las aplicaciones que se requieran.</li>
+                <li><strong>Paginación:</strong> En esta parte se divide la memoria física en bloques con el mismo tamaño para evitar la desintegración de estos, con ello lograremos hacer eficiente el espacio asignado a cada bloque.</li>
+            </ul>
+            
+            <div class="figure-container">
+                <img src="FIGURA6.png" alt="Gestión de memoria en sistemas" class="imagen-figura1">
+                <p class="figure-caption">Figura 06. Gestión de memoria en sistemas, Imagen elaborada con IA</p>
+            </div>
+
+            <h4>Objetivo general:</h4>
+            <p>El estudiante comprenderá y explicará los principios teóricos y prácticos de la administración de memoria como elemento prioritario para el sistema operativo, así como qué papel juegan los dos tipos de memoria principal y secundaria en los procesos, gestiones de recursos, así como las técnicas de paginación, segmentación y swapping, de la misma manera tendrá todos los elementos para intercambiar conocimientos con sus compañeros para determinar el impacto en el rendimiento, estabilidad y seguridad del sistema.</p>
         </div>
         
+        <div class="section" id="seccion-3-1">
+            <div class="section-header">
+                <div class="section-number">3.1</div>
+                <div class="section-title">Abstracción de la memoria</div>
+            </div>
+            <div class="content">
+                <p>De acuerdo con Tanenbaum y Bos, 2015, p. 198. Es un principio en el cual se dan a los procesos una visión lógica y un espacio de memoria, todo ello es independiente de la estructura física del equipo de cómputo.</p>
+                <p>Por lo que la capa de abstracción permite que todos los programas se ejecuten sin requerir de ubicar los datos o la secuencia de instrucciones, derivado de ello facilita la portabilidad, seguridad y eficiencia del sistema operativo.</p>
+                <p>La abstracción se crea mediante el uso de direcciones lógicas o virtuales, en donde estas se generarán dinámicamente en direcciones físicas a través de la paginación, segmentación o dicha memoria virtual de modo que cada proceso tendrá un espacio de memoria continua y exclusivo, además de permitir que se comparta memoria física entre cada proceso.</p>
+                <ul>
+                    <li><strong>Aislamiento y protección:</strong> evita que un proceso acceda a la memoria de otro.</li>
+                    <li><strong>Flexibilidad:</strong> facilita la reubicación y ejecución de procesos en distintas áreas de memoria.</li>
+                    <li><strong>Eficiencia:</strong> aprovecha mejor la memoria física mediante técnicas de asignación dinámica y memoria virtual.</li>
+                </ul>
+                <p>Por lo anterior se puede establecer que la abstracción de memoria permite tener un espacio físico limitado para su función lógica y flexible además de garantizar la estabilidad, seguridad y realizar multitareas en forma eficiente en los sistemas operativos.</p>
+                
+                <div class="figure-container">
+                    <img src="FIGURA11.png" alt="Abstracción de la memoria en un sistema operativo" class="imagen-figura1">
+                    <p class="figure-caption">Figura 11 . Abstracción de la memoria en un sistema operativo. Representa cómo el sistema operativo gestiona los recursos de memoria proporcionando al programador una visión abstracta del espacio de direcciones, ocultando los detalles físicos y facilitando un entorno lógico continuo y seguro. Adaptado de Tanenbaum y Bos (2015).</p>
+                </div>
+            </div>
+        </div>
+
         <div class="section" id="seccion-3-1-1">
             <div class="section-header">
                 <div class="section-number">3.1.1</div>
-                <div class="section-title">Organización de la Memoria</div>
+                <div class="section-title">Organización de la memoria</div>
             </div>
             <div class="content">
-                <h3>ESTRUCTURA Y ASIGNACIÓN</h3>
-                <p>La memoria es uno de los recursos más importantes en cualquier computadora. Su organización es clave para que el procesador pueda acceder a datos e instrucciones de forma rápida, y para que los procesos no choquen o interfieran entre sí. Organizar la memoria implica entender cómo se divide y asigna el espacio entre los diferentes programas que lo necesitan.</p>
-                <p>Al principio, en los primeros sistemas, la memoria se organizaba de forma contigua, es decir, cada programa se cargaba en un solo bloque continuo. Aunque era sencillo, este método generaba mucho desperdicio de espacio.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-                
-                <h4>PARTICIONAMIENTO FIJO Y DINÁMICO</h4>
-                <p>Con la llegada de los sistemas multiprogramados, se hizo necesario dividir la memoria en particiones. En el <span class="highlight">particionamiento fijo</span>, la memoria se divide en bloques de tamaño predeterminado, lo que genera fragmentación interna. En cambio, el <span class="highlight">particionamiento dinámico</span> divide la memoria en bloques del tamaño exacto que pide cada programa, pero causa fragmentación externa.</p>
-                <p class="citation">(Carretero et al., 2001)</p>
-
-                <h4>LA JERARQUÍA DE MEMORIA</h4>
-                <p>La organización de la memoria no termina en la RAM. Hay una jerarquía completa de niveles que equilibra costo, velocidad y capacidad:</p>
+                <p>Según Tanenbaum (2015), es cuando se establece la forma en que el sistema operativo y el hardware organizan la forma de gestionar en espacio de la memoria principal y secundaria en donde se busca garantizar un acceso seguro, estructurado y eficiente para ejecutar los procesos.</p>
+                <p>Esta organización se realiza en forma jerárquica buscando equilibrar la velocidad, capacidad y su costo en donde se relacionan los registros, la cache y la memoria principal RAM, así como todos los dispositivos de almacenamiento, esto permite que entonces cada nivel realice tareas en específico en donde los registros y cache permite el acceso inmediato, aunque tengan espacio limitado, pero esto no afecta a que la memoria principal y secundaria permitían mayor almacenamiento en tiempos muy largos estos procesos que se ejecutan.</p>
                 <ul>
-                    <li><b>Registros del procesador:</b> los más rápidos y caros.</li>
-                    <li><b>Memoria caché:</b> pequeña, de alta velocidad, para datos de uso frecuente.</li>
-                    <li><b>Memoria principal (RAM):</b> más grande que la caché, pero más lenta.</li>
-                    <li><b>Almacenamiento secundario (disco duro, SSD):</b> enorme capacidad, pero acceso más lento.</li>
-                    <li><b>Almacenamiento terciario (cintas, nube):</b> para copias de seguridad.</li>
+                    <li><strong>Mono programación:</strong> un solo proceso reside en memoria; sencillo pero ineficiente en el uso de recursos.</li>
+                    <li><strong>Multiprogramación:</strong> varios procesos comparten la memoria principal de manera controlada, incrementando la utilización de la CPU.</li>
+                    <li><strong>Memoria virtual:</strong> combina memoria principal y secundaria, ofreciendo a cada proceso un espacio lógico mayor al físico disponible.</li>
                 </ul>
-                <p class="citation">(Tanenbaum, 2009)</p>
+                <p>Por lo que la organización es indispensable para minimizar la fragmentación, acceso a los datos y asegurara la protección de los procesos, teniendo estabilidad en el sistema, como se muestra en la siguiente figura 12. Organización de la memoria.</p>
+
+                <div class="figure-container">
+                    <img src="FIGURA12.png" alt="Organización de la memoria" class="imagen-figura1">
+                    <p class="figure-caption">Figura 12 Organización de la memoria. Adaptado de Conceptos de sistemas operativos (9.ª ed.) por A. S. Tanenbaum, 2017.</p>
+                </div>
             </div>
         </div>
         
         <div class="section" id="seccion-3-1-2">
             <div class="section-header">
                 <div class="section-number">3.1.2</div>
-                <div class="section-title">Administración del Almacenamiento</div>
+                <div class="section-title">Administración del almacenamiento</div>
             </div>
             <div class="content">
-                <h3>ESTRATEGIAS Y ALGORITMOS</h3>
-                <p>La administración del almacenamiento es una de las tareas principales del sistema operativo, ya que decide cómo asignar, controlar y liberar la memoria principal para los procesos. El sistema operativo actúa como un administrador que debe encontrar el espacio adecuado para cada proceso, liberarlo cuando se cierra y llevar un registro de todo lo que está libre y ocupado.</p>
-                <p class="citation">(Tanenbaum y Woodhull, 2001)</p>
-                
-                <h4>ESTRATEGIAS DE ASIGNACIÓN</h4>
-                <p>Existen distintos algoritmos para asignar memoria a los procesos:</p>
+                <p>Según Tanenbaum y Bos (2015), la administración del almacenamiento (gestión de memoria).</p>
+                <p>Es un elemento muy importante para el sistema operativo ya que se encarga de administrar y gestionar el uso eficiente, seguro y estructurado de la memoria principal y secundaria para la ejecución de cualquier proceso.</p>
+                <p>En donde el sistema operativo gestiona el almacenamiento a través de varios niveles de control:</p>
                 <ul>
-                    <li><b>First-fit (primer ajuste):</b> asigna el primer espacio libre que sea lo suficientemente grande. Es rápido, aunque puede dejar fragmentación.</li>
-                    <li><b>Best-fit (mejor ajuste):</b> busca el bloque libre más pequeño donde quepa el proceso. Minimiza el espacio sobrante, pero la búsqueda es más lenta.</li>
-                    <li><b>Next-fit (siguiente ajuste):</b> similar al primer ajuste, pero comienza a buscar desde donde terminó la última asignación.</li>
+                    <li><strong>Asignación de espacio:</strong> determina cómo se distribuyen los bloques de almacenamiento entre los diferentes archivos y procesos.</li>
+                    <li>Entre los métodos más comunes se encuentran la asignación contigua, enlazada e indexada.</li>
+                    <li><strong>Gestión de archivos:</strong> administra la creación, modificación, lectura y eliminación de archivos, así como la estructura de directorios que los organiza jerárquicamente.</li>
+                    <li><strong>Control de dispositivos:</strong> coordina las operaciones de entrada/salida mediante controladores y búferes, asegurando la comunicación entre el hardware y el software.</li>
+                    <li><strong>Seguridad y protección:</strong> establece mecanismos de control de acceso, permisos y recuperación ante fallos o pérdidas de información.</li>
                 </ul>
-                <p class="citation">(Carretero et al., 2001)</p>
+                <p>Con ello se incorporan técnicas como caché de disco, RAID (Matriz redundante de discos independientes) y sistemas de archivos distribuidos, que mejoran la fiabilidad, el rendimiento y la tolerancia a fallos.</p>
+                <p>Esta función logra que los sistemas operativos transformen los dispositivos físicos de almacenamiento en entornos lógicos organizados y seguros, facilitando la gestión de grandes volúmenes de datos y la integridad de la información, como se muestra en la siguiente figura 13, donde despliega los cuatro elementos esenciales de la administración del almacenamiento en un sistema operativo.</p>
 
-                <h4>FRAGMENTACIÓN Y COMPACTACIÓN</h4>
-                <p>La administración siempre se encarga de la fragmentación. Para combatir la <span class="highlight">fragmentación externa</span>, algunos sistemas usan la <span class="highlight">compactación</span>, que es mover los procesos en la memoria para juntar los huecos y crear un solo bloque grande de espacio libre. Sin embargo, este proceso requiere tiempo de CPU y puede afectar el rendimiento.</p>
-                <p class="citation">(Wolf et al., 2015)</p>
+                <div class="figure-container">
+                    <img src="FIGURA13.png" alt="Administración del almacenamiento" class="imagen-figura1">
+                    <p class="figure-caption">Figura 13. Administración del almacenamiento. Adaptado de Sistemas operativos modernos (4.ª ed.), por A. S. Tanenbaum y H. Bos, 2015, Pearson Educación.</p>
+                </div>
             </div>
         </div>
         
         <div class="section" id="seccion-3-1-3">
             <div class="section-header">
                 <div class="section-number">3.1.3</div>
-                <div class="section-title">Memoria de Intercambio (Swapping)</div>
+                <div class="section-title">Memoria de intercambio (swapping)</div>
             </div>
             <div class="content">
-                <h3>AMPLIANDO LA RAM</h3>
-                <p>La memoria principal es un recurso limitado. Por eso, en los sistemas con muchos procesos activos, el sistema operativo utiliza una técnica llamada memoria de intercambio o <span class="highlight">swapping</span>. Esta técnica consiste en “mover” temporalmente procesos completos o partes de ellos de la memoria principal (RAM) a un área especial del disco duro, conocida como espacio de swap, y viceversa.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-                
-                <h4>PROS Y CONTRAS DEL SWAP</h4>
-                <p>El intercambio permite que más procesos estén activos a la vez y ofrece flexibilidad para programas muy grandes. Sin embargo, su principal desventaja es la disminución del desempeño, ya que acceder al disco es mucho más lento que a la RAM.</p>
-                
-                <h4>ESTRATEGIAS DE INTERCAMBIO</h4>
-                <p>Hay varias políticas que deciden qué proceso sacar de la RAM:</p>
-                <ul>
-                    <li>Suspender el proceso inactivo.</li>
-                    <li>Intercambiar procesos grandes para liberar espacio rápido.</li>
-                    <li>Rotación por prioridad: los procesos menos importantes son los primeros en ser enviados al swap.</li>
-                </ul>
-                <p class="citation">(Tanenbaum & Woodhull, 2001)</p>
+                <p>Según Tanenbaum y Bos (2015), Es un procedimiento que se utiliza por el sistema operativo para administrar y gestionar el funcionamiento de la memoria principal, en el cual se basa en desplazar temporalmente los procesos en su totalidad a un espacio de almacenamiento secundario y tenerlos a la vista para cuando se requieran traerlos y utilizarlos, esto permite la optimización del uso de la memoria física que se encuentre disponible y permite con ello la ejecución simultanea y estructurada de múltiples procesos.</p>
+                <p>Por lo que el swapping conforma ser un elemento elemental dentro del procedimiento de la memoria virtual, al aportar una forma de flexibilidad que permita ejecutar a los programas con mayor requerimientos de la memoria física que se encuentre disponible, con ello gestionara un equilibrio de cargas para el sistema operativo mejorando la disponibilidad de recursos, como se muestra en la siguiente figura 14. Memoria de intercambio ( swapping ).</p>
+
+                <div class="figure-container">
+                    <img src="FIGURA14.png" alt="Memoria de intercambio (swapping)" class="imagen-figura1">
+                    <p class="figure-caption">Figura 14. Memoria de intercambio (swapping). Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                </div>
             </div>
         </div>
 
         <div class="section" id="seccion-3-1-4">
             <div class="section-header">
                 <div class="section-number">3.1.4</div>
-                <div class="section-title">Manejo de Memoria con Mapa de Bits</div>
+                <div class="section-title">Manejo con mapa de bits</div>
             </div>
             <div class="content">
-                <h3>UN ENFOQUE SENCILLO</h3>
-                <p>Una de las formas más sencillas de controlar la memoria disponible es mediante un <span class="highlight">mapa de bits</span>. Se usa una estructura de datos donde cada bit representa un bloque de memoria. Un 0 indica que el bloque está libre y un 1 que está ocupado.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
+                <p>Según Andrew S. Tanenbaum y Herbert Bos (2015), es un método que se utiliza por los sistemas operativos para tener una administración y control del espacio libre y asignado en memoria principal, así como el almacenamiento secundario, es indispensable considerar que se utiliza una matriz de bits, en donde cada bit describe una unidad de asignación con un valor 0 el cual siempre indicará que el espacio se encuentra libre y cuando ese valor sea 1 será porque se encuentra ocupado.</p>
+                <p>Por lo que es importante establecer que esta técnica representa la simplicidad, eficiencia y bajo consumo de espacio, estableciendo búsquedas más rápidas de los bloques que se encuentren disponibles para que la gestión en la administración sea ordenada de acuerdo con los recursos existentes.</p>
+                <p>Es por ello que, en discos o memorias de gran tamaño, el recorrido completo del mapa puede volverse costoso en tiempo, especialmente si se necesitan encontrar múltiples bloques contiguos.</p>
+                <p>Para mejorar su rendimiento, se utilizan estrategias de búsqueda secuencial o tablas auxiliares que reducen el tiempo de localización.</p>
                 
-                <h4>VENTAJAS Y DESVENTAJAS</h4>
-                <p>El mapa de bits es simple de implementar y muy eficiente en espacio. Sin embargo, sus desventajas son claras: la búsqueda de un bloque libre puede ser muy lenta en sistemas con mucha memoria, y no evita que la memoria libre quede dispersa en pequeños huecos (fragmentación externa).</p>
-                <p class="citation">(Carretero et al., 2001)</p>
+                <div class="figure-container">
+                    <img src="FIGURA15.png" alt="Manejo con mapa de bits" class="imagen-figura1">
+                    <p class="figure-caption">Figura 15. Manejo con mapa de bits. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                </div>
             </div>
         </div>
         
         <div class="section" id="seccion-3-1-5">
             <div class="section-header">
                 <div class="section-number">3.1.5</div>
-                <div class="section-title">Manejo de Memoria con Listas Ligadas</div>
+                <div class="section-title">Manejo con listas ligadas</div>
             </div>
             <div class="content">
-                <h3>UNA ALTERNATIVA FLEXIBLE</h3>
-                <p>Las <span class="highlight">listas ligadas</span> surgieron como una alternativa al mapa de bits. Representan la memoria como una colección de nodos, donde cada nodo contiene información detallada sobre un bloque: su dirección de inicio, tamaño y estado (libre u ocupado). Este método ofrece mayor flexibilidad y es más eficaz al reducir la fragmentación externa, ya que puede fusionar nodos adyacentes libres en uno solo.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
+                <p>Según Tanenbaum y Bos, (2015) Establece que es un método utilizado por los sistemas operativos para gestionar y distribuir de forma dinámica aquellos bloques de memoria o almacenamiento.</p>
+                <p>Por lo que marca la diferencia entre estructuras fijas como son los mapas de bits, a ellas ya que este permite asignar los bloques libres en una lista enlazada donde cada nodo tiene determinada su dirección del siguiente bloque disponible y así consecutivamente.</p>
+                <p>Es importante visualizar que esta técnica mantiene un puntero que ayuda a identificar el primer bloque libre para que cuando un proceso requiera espacio lo utilice ya que se libera dicho proceso se actualiza la lista y elimina todas las referencias utilizadas para mantener el espacio disponible y pueda ser reutilizado por algún otro proceso.</p>
+                <p>Ahora bien, esto puede tener desventajas dependiendo del volumen que presente el proceso ya que al ser una técnica que asigna los espacios secuencialmente se pueden incrementar los tiempos de acceso cuando se requiere ubicar algún bloque contiguo que se pueda estar almacenado es espacios de gran tamaño.</p>
+                <p>Por lo que ayuda mucho a este proceso la gestión de memoria secundaria y los sistemas de archivos, donde la eficiencia y optimización del espacio libre son factores que determinan el buen rendimiento del sistema.</p>
                 
-                <h4>VENTAJAS Y DESVENTAJAS</h4>
-                <p>Las listas ligadas permiten asignaciones de tamaños variables y reducen la fragmentación externa. Sin embargo, también presentan desventajas: cada nodo necesita información extra (sobrecarga de memoria), y recorrer la lista para encontrar un espacio libre puede ser ineficiente si hay muchos nodos.</p>
+                <div class="figure-container">
+                    <img src="FIGURA16.png" alt="Manejo con listas ligadas en la asignación de bloques en memoria del sistema operativo" class="imagen-figura1">
+                    <p class="figure-caption">Figura 16. Manejo con listas ligadas en la asignación de bloques en memoria del sistema operativo. Adaptado de Sistemas operativos modernos (4.ª ed.) de A. S. Tanenbaum y H. Bos, 2015, Pearson Educación.</p>
+                </div>
             </div>
         </div>
 
@@ -834,7 +788,7 @@
         
         <footer>
             <p>Sistemas Operativos - Unidad 3: Administración de Memoria</p>
-            <p>Desarrollado para fines educativos - © 2025 | Referencias: Carretero et al. (2001), Tanenbaum (2009), Tanenbaum & Woodhull (2001), Wolf et al. (2015).</p>
+            <p>Desarrollado para fines educativos - © 2025 | Referencias: Tanenbaum y Bos (2015), Tanenbaum (2017).</p>
         </footer>
     </div>
 

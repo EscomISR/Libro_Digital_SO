@@ -8,14 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /*
-        Aquí comienza un bloque de estilos CSS para definir la apariencia de la página.
-        Incluye:
-        - Variables de color (--primary, --secondary, etc.) para un diseño consistente.
-        - Estilos base para todos los elementos (*).
-        - Estilos para el cuerpo de la página (body), incluyendo un fondo degradado.
-        - Diseño de componentes específicos como botones flotantes, menú lateral, contenedor principal,
-          encabezados, secciones, tablas, bloques de código, tarjetas de actividad, pie de página, etc.
-        - Media Queries (@media) para adaptar el diseño a pantallas más pequeñas (diseño responsivo).
+        Estilos CSS definidos para mantener la consistencia visual.
         */
         :root {
             --primary: #2c3e50;
@@ -218,7 +211,7 @@
             visibility: visible;
         }
         
-        /* Contenedor principal con espaciado para botones flotantes */
+        /* Contenedor principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -354,82 +347,6 @@
             font-weight: 500;
         }
         
-        .citation {
-            font-style: italic;
-            color: var(--gray);
-            margin: 5px 0 15px 20px;
-            border-left: 2px solid var(--secondary);
-            padding-left: 10px;
-        }
-        
-        .table-container {
-            max-width: 800px;
-            margin: 30px auto;
-            overflow-x: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .table-caption {
-            text-align: center;
-            padding: 10px;
-            font-style: italic;
-            color: var(--gray);
-            background: rgba(0, 0, 0, 0.3);
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-        
-        .code-block {
-            background: #1e1e1e;
-            color: #dcdcdc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            position: relative;
-            border-left: 4px solid var(--warning);
-        }
-        
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .code-caption {
-            font-style: italic;
-            margin-top: 10px;
-            color: var(--gray);
-            text-align: center;
-        }
-        
         .figure-container {
             text-align: center;
             margin: 30px 0;
@@ -440,7 +357,7 @@
         
         .figure-placeholder {
             width: 100%;
-            height: 300px;
+            min-height: 300px;
             background: linear-gradient(135deg, #2c3e50, #34495e);
             display: flex;
             align-items: center;
@@ -450,25 +367,13 @@
             color: var(--gray);
             font-style: italic;
             flex-direction: column;
-
-        }
-        
-        .figure-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--secondary);
         }
         
         .figure-caption {
             font-style: italic;
             color: var(--gray);
             margin-top: 10px;
-        }
-
-        .imagen-figura1 {
-            max-width: 600px;
-            width: 100%;
-            height: auto;
+            font-size: 0.9rem;
         }
         
         .activity-card {
@@ -691,26 +596,21 @@
                 <span>/</span>
                 <span>3.2 Memoria Virtual</span>
             </div>
-            <h1>3.2 Memoria Virtual</h1>
+            <h1>3.2 Memoria virtual</h1>
             <div class="subtitle">Ampliando los límites de la memoria física</div>
         </header>
         
         <div class="intro">
             <h3>INTRODUCCIÓN</h3>
-            <p>La memoria virtual es una de las aportaciones más importantes en los sistemas operativos modernos. Su principal función es hacer que cada programa crea que tiene acceso a un espacio de memoria continuo e ilimitado, cuando en realidad la memoria disponible es limitada y está apoyada en el disco duro.</p>
-            <p class="citation">(Tanenbaum, 2009)</p>
+            <p>Según Tanenbaum y Bos (2015), Estable que es un método de administración el cual concede al sistema operativo ejecutar aplicaciones sin la necesidad de colocarlos todos en la memoria principal.</p>
+            <p>Este proceso permite la juntar a la memoria RAM con la memoria secundaria la cual permite visualizar que existe un espacio continuo más grande al que se supone que existe físicamente.</p>
+            <p>El comienzo de operatividad establece que se debe de dividir a los programas en bloques como si fuese una memoria tangible del mismo tamaño, para que posteriormente se utilice solo fragmentos determinados que se carguen en la memoria principal y los demás esperan su turno en el disco, así que cuando los requiera podrán acceder al bloque del sistema operativo para que este los llame de la memoria secundaria.</p>
+            <p>Es por lo que la memoria virtual es una innovación que utilizan los sistemas operativos al tener un acceso eficiente, inmune y flexible para el buen funcionamiento entre los equipos de cómputo y los programas.</p>
             
-            <p>Para lograrlo, el sistema operativo y la unidad de gestión de memoria (MMU) trabajan juntos para traducir las direcciones virtuales de los programas en direcciones físicas reales. La memoria virtual es una abstracción que expande la memoria principal al utilizar parte del disco duro, permitiendo que un programa vea un espacio de direcciones que puede ser más grande que la RAM disponible.</p>
-            <p class="citation">(Carretero et al., 2001)</p>
-            
-            <h4>OBJETIVOS PRINCIPALES</h4>
-            <ul>
-                <li><b>Aislamiento:</b> Protege a los procesos para que no se interfieran entre sí.</li>
-                <li><b>Flexibilidad:</b> Permite que programas muy grandes se ejecuten sin limitaciones de RAM.</li>
-                <li><b>Multiprogramación eficiente:</b> Facilita que más procesos corran al mismo tiempo.</li>
-                <li><b>Facilidad de programación:</b> Los desarrolladores no necesitan preocuparse por los detalles de la memoria física.</li>
-            </ul>
-            <p>Wolf et al. (2015) enfatizan que este modelo es un estándar en los sistemas operativos modernos porque equilibra el uso de recursos con la seguridad y la estabilidad.</p>
+            <div class="figure-container">
+                <img src="FIGURA17.png" alt="Memoria virtual" class="imagen-figura1">
+                <p class="figure-caption">Figura 17. Memoria virtual. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+            </div>
         </div>
         
         <div class="section" id="seccion-3-2-1">
@@ -719,119 +619,92 @@
                 <div class="section-title">Paginación</div>
             </div>
             <div class="content">
-                <h3>FUNDAMENTOS DE LA PAGINACIÓN</h3>
-                <p>La paginación es un mecanismo clave de la memoria virtual y uno de los más usados en los sistemas operativos. Surgió en los años 60 para resolver un problema: ¿cómo ejecutar programas más grandes que la memoria física sin que el programador tenga que preocuparse por dónde se guardan los datos?</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-                
-                <p>El concepto es simple pero potente: dividir la memoria en bloques de tamaño fijo para eliminar la necesidad de trabajar con espacios contiguos. De esta forma, un programa ve su memoria como un espacio continuo, aunque sus partes (páginas) estén distribuidas en diferentes bloques de la memoria física (marcos de página).</p>
-                
-                <p>El sistema operativo y la unidad de gestión de memoria (MMU) se encargan de traducir las direcciones virtuales a físicas usando una tabla de páginas. Cada entrada en la tabla le dice al sistema en qué marco de la RAM se encuentra una página. Si la página no está cargada, ocurre un <span class="highlight">fallo de página</span>, y el sistema debe ir a buscarla al disco para cargarla.</p>
-                <p class="citation">(Carretero et al., 2001)</p>
+                <p>Según Tanenbaum y Bos (2015), es una técnica que dispone de la gestión y administración de la memoria en donde el sistema operativo juega un papel importante ya que distribuye y estructura tanto la memoria física como lógica en bloques de tamaño uniformes llamados marcos de página, su función principal es evitar que se asignen espacios contiguos eliminando la fragmentación externa y con ello garantizar que el espacio libre se asigne lo mejor posible.</p>
+                <p>Para describir mejor este proceso cuando se lleva a cabo es importante determinar que cuando sus partes sean cargados en estos marcos libres de la memoria principal se podrán ubicar sus posiciones físicas no consecutivas, es por ello que la unidad de gestión de memoria conocida como MMU, realiza la conversión de las direcciones lógicas que se generaran por el programa a direcciones físicas mediante la tabla de paginación en donde se va a estar registrando la relación que existe entre cada página y su marco correspondiente.</p>
+                <p>Entre las ventajas que se pueden establecer destaca el uso eficiente de la memoria y la eliminación de la fragmentación externa, así como la facilidad de implementar la memoria virtual, derivado a que los fragmentos de los procesos se pueden organizar y distribuir libremente en la RAM, lo único que si hay que considerar que tendremos una disminución en el rendimiento derivo a que los accesos frecuentes a la tabla de paginación, pero podremos utilizar una alternativa que se llama Buffer de búsqueda de traducción conocida como TLB, que se encargara de guardar las traducciones más utilizadas y con ello se lograra acelerar el acceso de los datos.</p>
 
-                <h3>CÓMO FUNCIONA LA PAGINACIÓN</h3>
-                <p>Imaginemos un proceso con un espacio de direcciones de 32 KB y páginas de 4 KB. Esto significa que el programa tiene 8 páginas en total (32/4 = 8). Para encontrar la dirección de un dato, se divide la dirección virtual entre el tamaño de la página. Por ejemplo, si el programa accede a la dirección virtual 10,500:</p>
-                <ul>
-                    <li><b>Número de página:</b> 10,500 dividido por 4,096 (el tamaño de una página) da como resultado la página 2.</li>
-                    <li><b>Desplazamiento:</b> El resto de la división es 2,308.</li>
-                </ul>
-                <p>La tabla de páginas le indica al sistema que la página 2 del programa está en el marco de página 6 de la RAM. Así, la dirección física real será la suma de la dirección de inicio del marco 6 más el desplazamiento de 2,308. Este procedimiento ocurre miles de veces por segundo en un sistema real, de manera rápida y transparente gracias a la MMU.</p>
-
-                <h3>VENTAJAS FRENTE A LA ASIGNACIÓN CONTIGUA</h3>
-                <p>En los primeros sistemas, la memoria se asignaba de forma contigua, lo que obligaba a que los programas se cargaran en un solo bloque completo de RAM. Esto generaba <span class="highlight">fragmentación externa</span> (huecos desperdiciados) y dificultaba que varios programas corrieran a la vez. La paginación eliminó este problema porque cualquier página de un programa puede ubicarse en cualquier marco de página libre, sin importar si los marcos están juntos o separados.</p>
-                <p class="citation">(Tanenbaum & Woodhull, 2001)</p>
-                <p>Sin embargo, aparece un nuevo problema: la <span class="highlight">fragmentación interna</span>. Esto ocurre cuando la última página de un programa no se llena por completo. Por ejemplo, si un programa necesita 10 KB y las páginas son de 4 KB, se le asignarán 3 páginas (12 KB), desperdiciando 2 KB en la última página.</p>
+                <div class="figure-container">
+                    <img src="FIGURA18.png" alt="Paginación" class="imagen-figura1">
+                    <p class="figure-caption">Figura 18. Paginación. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                </div>
             </div>
         </div>
         
         <div class="section" id="seccion-3-2-2">
             <div class="section-header">
                 <div class="section-number">3.2.2</div>
-                <div class="section-title">Tablas de Página</div>
+                <div class="section-title">Tablas de páginas</div>
             </div>
             <div class="content">
-                <h3>ESTRUCTURA Y FUNCIÓN</h3>
-                <p>La paginación depende de un mecanismo central para funcionar: la tabla de páginas. Esta estructura es crucial porque mantiene la relación entre las páginas virtuales de un proceso y los marcos físicos de la RAM. Cada entrada en la tabla (PTE) contiene la información que la unidad de gestión de memoria (MMU) necesita para traducir las direcciones en tiempo real.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-                
-                <p>En su forma más simple, una tabla de páginas es como un arreglo. En él, cada entrada se corresponde con una página virtual y contiene información clave para la traducción de direcciones, como se muestra en la Tabla 1:</p>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>CAMPO DE LA ENTRADA (PTE)</th>
-                                <th>DESCRIPCIÓN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Número de marco</td>
-                                <td>Indica en qué marco de la RAM se encuentra la página.</td>
-                            </tr>
-                            <tr>
-                                <td>Bit de validez</td>
-                                <td>Muestra si la página está cargada en memoria.</td>
-                            </tr>
-                            <tr>
-                                <td>Bits de protección</td>
-                                <td>Controlan los permisos de lectura, escritura o ejecución.</td>
-                            </tr>
-                            <tr>
-                                <td>Bit de modificación (dirty bit)</td>
-                                <td>Indica si la página fue alterada y necesita guardarse en disco.</td>
-                            </tr>
-                            <tr>
-                                <td>Bit de referencia</td>
-                                <td>Muestra si la página fue usada recientemente.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 1. Estructura de una Entrada de Tabla de Páginas (PTE).</div>
-                </div>
-
-                <h3>EL PROBLEMA DEL TAMAÑO Y SOLUCIONES</h3>
-                <p>En las arquitecturas modernas de 32 o 64 bits, el tamaño de las tablas se convirtió en un desafío. Por ejemplo, un proceso con un espacio virtual de 4 GB y páginas de 4 KB tendría un millón de páginas. Si cada entrada de la tabla ocupa 4 bytes, la tabla completa del proceso consumiría 4 MB de RAM.</p>
-                <p class="citation">(Tanenbaum & Woodhull, 2001)</p>
-                
-                <p>Para resolver este problema, los sistemas operativos usan varias estrategias:</p>
+                <p>Cada proceso posee su propia tabla de páginas, en la cual cada entrada contiene la dirección base del marco de memoria física donde se encuentra cargada la página correspondiente.</p>
+                <p>Además, cada entrada incluye bits de control que ayudan al sistema operativo a gestionar la protección y el estado de las páginas, tales como:</p>
                 <ul>
-                    <li><span class="highlight">Tablas de páginas multinivel:</span> Organiza la tabla en una jerarquía, cargando solo las partes de la tabla que se están usando activamente.</li>
-                    <li><span class="highlight">Tablas invertidas:</span> Utiliza una única tabla global indexada por el número de marco de página físico.</li>
-                    <li><span class="highlight">Translation Lookaside Buffer (TLB):</span> Una memoria caché especial que guarda las traducciones de páginas usadas recientemente para acelerar el proceso.</li>
+                    <li><strong>Bit de presente/ausente:</strong> indica si la página se encuentra actualmente en memoria principal o en el disco.</li>
+                    <li><strong>Bit de modificación:</strong> señala si la página ha sido alterada desde su carga.</li>
+                    <li><strong>Bit de acceso:</strong> registra si la página ha sido utilizada recientemente; útil en algoritmos de reemplazo.</li>
                 </ul>
-                <p class="citation">(Wolf et al., 2015)</p>
+                <p>En sistemas con grandes espacios de direcciones, las tablas de páginas pueden alcanzar tamaños considerables, por lo que se emplean estructuras jerárquicas como tablas multinivel, tablas invertidas o tablas hash, que reducen el consumo de memoria y aceleran el proceso de búsqueda.</p>
+                <p>Durante la ejecución, el hardware de la Unidad de Gestión de Memoria (MMU) consulta la tabla de páginas cada vez que un proceso realiza una referencia de memoria.</p>
+                <p>Si la página requerida no está en memoria principal, se produce un fallo de página y el sistema operativo la recupera desde el almacenamiento secundario.</p>
+                <p>En síntesis, las tablas de páginas son un componente clave del sistema de traducción de direcciones en los sistemas operativos modernos, ya que admiten la protección de procesos, la flexibilidad de asignación y el establecimiento eficiente de la memoria virtual.</p>
+
+                <div class="figure-container">
+                    <img src="FIGURA19.png" alt="Tablas de páginas" class="imagen-figura1">
+                    <p class="figure-caption">Figura 19. Tablas de páginas. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                </div>
             </div>
         </div>
 
         <div class="section" id="seccion-3-2-3">
             <div class="section-header">
                 <div class="section-number">3.2.3</div>
-                <div class="section-title">Algoritmos de Reemplazo de Páginas</div>
+                <div class="section-title">Algoritmos de reemplazo</div>
             </div>
             <div class="content">
                 <h3>INTRODUCCIÓN</h3>
-                <p>Cuando un proceso pide una página que no está en la memoria, ocurre un fallo de página. Si la memoria está llena, el sistema debe elegir qué página sacar para hacerle espacio a la nueva. Una mala elección puede llevar al <span class="highlight">thrashing</span>, un fenómeno en el que el sistema se la pasa moviendo páginas en lugar de ejecutar programas.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-                <p>Para resolver este dilema, se crearon los algoritmos de reemplazo de páginas, que establecen las reglas para decidir qué página expulsar.</p>
-
-                <h4>ALGORITMO FIFO (FIRST IN, FIRST OUT)</h4>
-                <p>Es el más simple: saca la página que lleva más tiempo en la memoria, sin importar si se ha usado recientemente o no. Su principal ventaja es que es muy fácil de implementar, pero su desventaja es que puede sacar páginas útiles, empeorando el rendimiento.</p>
-                <p class="citation">(Carretero et al., 2001)</p>
+                <p>Su finalidad es reducir la frecuencia de estos fallos y mantener un equilibrio adecuado entre rendimiento y eficiencia (Tanenbaum y Bos, 2015).</p>
                 
-                <h4>ALGORITMO LRU (LEAST RECENTLY USED)</h4>
-                <p>El algoritmo LRU saca de la memoria la página que ha estado inactiva por más tiempo, basándose en que si una página se usó hace poco, es probable que se vuelva a necesitar pronto. Se acerca mucho al algoritmo "óptimo", pero requiere un control detallado de los accesos a memoria.</p>
-                <p class="citation">(Tanenbaum & Woodhull, 2001)</p>
-                
-                <h4>ALGORITMO ÓPTIMO</h4>
-                <p>Este es el algoritmo "ideal" que sirve como punto de referencia. Su regla es simple: reemplaza la página que no se usará en el futuro más cercano. Aunque no puede implementarse en la realidad (porque no podemos predecir el futuro), es muy útil para comparar el rendimiento de otros algoritmos.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-
-                <h4>OTROS ALGORITMOS RELEVANTES</h4>
+                <h4>Algoritmo FIFO (Primero en entrar, primero en salir)</h4>
+                <p>Entre los métodos más utilizados se encuentra el algoritmo FIFO, que reemplaza la página que ha permanecido más tiempo en memoria.</p>
                 <ul>
-                    <li><b>NRU (Not Recently Used):</b> Clasifica las páginas según sus bits de referencia y modificación, dando prioridad a expulsar las que no han sido usadas ni modificadas.</li>
-                    <li><b>Second Chance (o Reloj):</b> Es una mejora de FIFO. Antes de expulsar una página, revisa su bit de referencia. Si es 1, le da una "segunda oportunidad" reiniciando el bit a 0 y avanzando a la siguiente.</li>
+                    <li><strong>Ventaja:</strong> su principal fortaleza radica en la sencillez de implementación.</li>
+                    <li><strong>Desventaja:</strong> puede provocar la anomalía de Belady, en la cual el aumento del número de marcos de página puede generar, de forma inesperada, un mayor número de fallos.</li>
                 </ul>
-                <p class="citation">(Wolf et al., 2015)</p>
+                <p>La siguiente figura 20 muestra el funcionamiento básico del algoritmo FIFO: el sistema operativo gestiona las páginas siguiendo el orden de llegada, de modo que la página más antigua se reemplaza al presentarse un fallo, lo que simplifica el control de la memoria, aunque no siempre garantiza la máxima eficiencia.</p>
+
+                <div class="figure-container">
+                    <img src="FIGURA20.png" alt="Algoritmo de reemplazo FIFO (Primero en entrar, primero en salir)" class="imagen-figura1">
+                    <p class="figure-caption">Figura 20. Algoritmo de reemplazo FIFO (Primero en entrar, primero en salir). Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015, Pearson.</p>
+                </div>
+
+                <h4>Algoritmo de reemplazo LRU (Least Recently Used)</h4>
+                <p>De acuerdo con Tanenbaum y Bos (2015), el algoritmo de reemplazo LRU se encarga de sustituir la página que lleva más tiempo sin ser utilizada, bajo la suposición de que las páginas empleadas recientemente tienen una mayor probabilidad de volver a usarse pronto.</p>
+                <p>Este método se apoya en el principio de localidad temporal, y para su funcionamiento requiere estructuras adicionales —como pilas o contadores de tiempo— que registren el historial de acceso de cada página.</p>
+                <ul>
+                    <li><strong>Ventaja:</strong> su rendimiento es muy cercano al del algoritmo óptimo, ya que aprovecha la recurrencia en el uso de las páginas.</li>
+                    <li><strong>Desventaja:</strong> necesita recursos adicionales de hardware o software para mantener actualizado el registro del uso reciente.</li>
+                </ul>
+                <p>En la siguiente figura se representa el funcionamiento del algoritmo LRU, el cual selecciona para reemplazo la página menos utilizada recientemente. El sistema operativo conserva un registro del orden de acceso mediante una estructura dinámica, actualizando su posición cada vez que una página es referenciada, lo que permite mantener en memoria las páginas con mayor probabilidad de reutilización.</p>
+                
+                <div class="figure-container">
+                    <img src="FIGURA22.png" alt="Algoritmo de reemplazo LRU (Usado menos recientemente)" class="imagen-figura1">
+                    <p class="figure-caption">Figura 22. Algoritmo de reemplazo LRU (Usado menos recientemente). Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015, Pearson.</p>
+                </div>
+
+                <h4>Óptimo (Reemplazo de página óptimo)</h4>
+                <p>Según Silberschatz, Galvin y Gagne (2022), el algoritmo óptimo reemplaza la página que no se usará durante el mayor tiempo futuro. Aunque no es aplicable en la práctica sirve como modelo teórico para comparar la eficiencia de otros algoritmos.</p>
+                <ul>
+                    <li><strong>Ventaja:</strong> proporciona el menor número posible de fallos de página.</li>
+                    <li><strong>Desventaja:</strong> requiere conocimiento futuro de las referencias de memoria, por lo que se usa solo con fines de análisis.</li>
+                </ul>
+                <p>Los algoritmos de reemplazo determinan la estrategia mediante la cual el sistema operativo mantiene un conjunto activo de páginas en memoria buscando un equilibrio entre eficiencia, rapidez y bajo número de fallos de página. La elección del algoritmo depende del tipo de sistema y del comportamiento esperado de las aplicaciones.</p>
+                <p>La siguiente figura representa el funcionamiento del algoritmo de reemplazo óptimo, una estrategia teórica utilizada en los sistemas operativos para reducir el número de fallos de página. El algoritmo identifica la página que no será utilizada durante el mayor tiempo futuro dentro de la secuencia de referencias y la reemplaza al ocurrir un fallo de página.</p>
+                <p>Este enfoque proporciona el mejor rendimiento posible, ya que asegura el menor número de sustituciones, sirviendo como un modelo ideal de comparación frente a otros algoritmos prácticos como FIFO o LRU. Sin embargo, no puede establecerse en sistemas reales, ya que requiere conocer de antemano el patrón de acceso a memoria, por lo que se utiliza principalmente con fines analíticos o educativos.</p>
+
+                <div class="figure-container">
+                    <img src="FIGURA23.png" alt="Algoritmo de reemplazo óptimo (reemplazo de página óptimo)" class="imagen-figura1">
+                    <p class="figure-caption">Figura 23 Algoritmo de reemplazo óptimo (reemplazo de página óptimo). Adaptado de Conceptos de sistemas operativos (10.ª ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022; Wiley, 2022.</p>
+                </div>
             </div>
         </div>
         
@@ -850,7 +723,7 @@
         
         <footer>
             <p>Sistemas Operativos - Unidad 3: Administración de Memoria</p>
-            <p>Desarrollado para fines educativos - © 2025 | Referencias: Carretero et al. (2001), Tanenbaum (2009), Tanenbaum & Woodhull (2001), Wolf et al. (2015).</p>
+            <p>Desarrollado para fines educativos - © 2025 | Referencias: Tanenbaum y Bos (2015), Silberschatz et al. (2022).</p>
         </footer>
     </div>
 
