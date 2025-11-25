@@ -413,6 +413,10 @@
                 <div class="hardware-icon">📂</div>
                 <div class="hardware-icon">🗄️</div>
                 <div class="hardware-icon">💾</div>
+                <div class="video-oval" onclick="openVideoModal()">
+                    <i class="fas fa-play"></i>
+                    VIDEO
+                </div>
                 <div class="hardware-icon">🔗</div>
                 <div class="hardware-icon">📈</div>
                 <div class="hardware-icon">⚙️</div>
@@ -543,6 +547,25 @@
                 <div class="card-footer"><a href="referencias.html" class="btn">Ver referencias</a></div>
             </div>
         </div>
+
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Video - Sistema de Archivos</h2>
+                    <button class="close-btn" onclick="closeVideoModal()">&times;</button>
+                </div>
+                <div class="video-container">
+                    <iframe id="videoFrame" 
+                            src="" 
+                            title="Video Educativo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
         
         <footer>
             <p>Sistemas Operativos - Unidad 4: Sistema de Archivos</p>
@@ -604,6 +627,49 @@
                 cards.forEach(card => {
                     card.classList.remove('active');
                 });
+            }
+        });
+
+        // Funciones para el modal del video
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // URL del video (Cámbialo por el video correspondiente a la Unidad 4)
+            videoFrame.src = 'https://www.youtube.com/embed/Aamcv3v43D8'; // Ejemplo: Video de la unidad 4
+            
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Evita scroll trasero
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // Detener el video removiendo la fuente
+            videoFrame.src = '';
+            
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Cerrar modal con la tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
             }
         });
     </script>
