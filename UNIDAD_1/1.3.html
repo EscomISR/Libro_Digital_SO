@@ -386,7 +386,7 @@
         }
         
         .table-container {
-            max-width: 900px;
+            max-width: 100%;
             margin: 30px auto;
             overflow-x: auto;
             border-radius: 10px;
@@ -427,6 +427,26 @@
             border-bottom-right-radius: 10px;
             font-size: 1.1rem;
             font-weight: 600;
+        }
+
+        .figure-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .imagen-figura1 {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .figure-caption {
+            font-style: italic;
+            color: var(--gray);
+            margin-top: 10px;
         }
         
         .nav-buttons {
@@ -605,89 +625,40 @@
                 <span>/</span>
                 <a href="1.0.html">Unidad 1</a>
                 <span>/</span>
-                <span>1.3 Modos de operación del SO</span>
+                <span>1.3 Modos de operación del sistema operativo</span>
             </div>
-            <h1>1.3 Modos de Operación de un Sistema Operativo</h1>
-            <div class="subtitle">Interrupciones, Usuario, Kernel y Contadores</div>
+            <h1>1.3 Modos de operación de un sistema operativo</h1>
+            <div class="subtitle">Usuario y Kernel</div>
         </header>
 
         <div class="intro">
-            <h4>Definición</h4>
-            <p>Los sistemas operativos utilizan modos de operación para proteger el núcleo del sistema (kernel) y los recursos críticos del hardware, restringiendo el acceso directo a ciertas instrucciones privilegiadas. Esta separación previene que aplicaciones de usuario causen fallos generales en el sistema.</p>
+            <p>Esta forma de trabajar para el sistema operativo se establece dos tipos que son el modo usuario y modo kernel, es por ello que todas las aplicaciones que se llevan a cabo por el usuario requieren ciertos recursos que el modo kernel tendrá que ofrecerle sin embargo estos pueden ser asignados o limitados dependiendo de la prioridad que lo requiera.</p>
             
-            <div class="quote-box">
-                "La distinción entre modo kernel y modo usuario es fundamental para la estabilidad y seguridad de los sistemas operativos modernos"
-                <div class="citation">(Silberschatz, Galvin y Gagne, 2018, p. 62).</div>
-            </div>
-
             <div class="mode-card">
                 <div class="mode-title">1. Modo Kernel (Modo Supervisor)</div>
-                <ul>
-                    <li>Nivel de privilegio: Máximo (anillo 0 en arquitecturas x86)</li>
-                    <li>Capacidades:
-                        <ul>
-                            <li>Acceso completo al hardware</li>
-                            <li>Ejecución de instrucciones privilegiadas</li>
-                            <li>Manipulación directa de memoria y dispositivos</li>
-                        </ul>
-                    </li>
-                    <li>Ejemplos: Gestión de memoria, controladores de dispositivos, llamadas al sistema</li>
-                </ul>
+                <p>Es un forma en la cual se tiene privilegios para poder ejecutar el código del sistema el cual tiene una función de administrar todos y cada uno de los elementos que componen la CPU, así como la memoria y dispositivos de entrada y salida, así mismo debe de administrar lo mejor posible los recursos que se asignan a la ejecución de los programas, ya que debe de garantizar seguridad y estabilidad del sistema atendiendo claramente todo aquello que tenga situaciones críticas en su funcionamiento.</p>
             </div>
 
             <div class="mode-card">
                 <div class="mode-title">2. Modo Usuario</div>
-                <ul>
-                    <li>Nivel de privilegio: Limitado (anillo 3 en x86)</li>
-                    <li>Restricciones:
-                        <ul>
-                            <li>No puede ejecutar instrucciones privilegiadas</li>
-                            <li>Acceso a memoria restringido</li>
-                            <li>Interacción con hardware solo mediante llamadas al sistema</li>
-                        </ul>
-                    </li>
-                    <li><strong>Propósito: Ejecutar aplicaciones de usuario de forma segura</strong></li>
-                </ul>
+                <p>Es un estado en el cual el usuario puede ejecutar sus aplicaciones en donde se generan procesos en una forma restringido en donde se requiere autorización.</p>
+                <p>Para tener acceso la forma en que lo hace el usuario es haciendo llamadas al sistema y el modo kernel las revisa y prioriza el acceso si es aceptado de lo contrario cancela dicha llamada.</p>
             </div>
 
-            <h4>Transición entre Modos</h4>
-            <ul>
-                <li>Mecanismo: Interrupciones o llamadas al sistema (syscalls)</li>
-                <li>Ejemplo: Cuando una aplicación necesita acceder a un recurso protegido:
-                    <ol>
-                        <li>Solicita servicio mediante syscall</li>
-                        <li>El procesador cambia a modo kernel</li>
-                        <li>El SO verifica y ejecuta la operación</li>
-                        <li>Retorno a modo usuario con resultados</li>
-                    </ol>
-                </li>
-            </ul>
-
-            <h4>Importancia de la Separación</h4>
-            <ul>
-                <li>Seguridad: Previene que aplicaciones maliciosas dañen el sistema</li>
-                <li>Estabilidad: Aísla fallos en aplicaciones de usuario</li>
-                <li>Control: El SO mantiene gestión centralizada de recursos</li>
-            </ul>
+            <h3>Transición entre Modos</h3>
+            <p>La transición es muy importante para que la ejecución de procesos se lleve adecuadamente en donde se debe de dar todos los elementos requeridos para ofertar seguridad y garantizar el buen funcionamiento del sistema.</p>
+            <p>Como se visualizó los mods anteriores cada uno de ellos juega un papel fundamental para que la ejecución de alguna llamada al sistema se lleve a cabo y si en su caso existen interrupciones o errores sean atendidos de la mejor manera, siempre cuidando el buen funcionamiento del sistema.</p>
 
             <div class="quote-box">
-                "Las transiciones entre modos tienen un costo de rendimiento, pero son esenciales para mantener la integridad del sistema"
-                <div class="citation">(Tanenbaum & Bos, 2015, p. 81).</div>
+                "Tanenbaum y Bos (2015) señalan que, aunque los cambios entre el modo usuario y el modo kernel implican un costo en el rendimiento, resultan indispensables para preservar la integridad del sistema."
             </div>
 
-            <h4>Ejemplos Prácticos</h4>
-            <ul>
-                <li>Windows: Dos modos (kernel y usuario) con subsistemas protegidos</li>
-                <li>Linux: Estricta separación entre espacio kernel y espacio usuario</li>
-                <li>Arquitecturas modernas: Múltiples niveles de privilegio (anillos 0-3 en x86)</li>
-            </ul>
-
-            <p><strong>Nota:</strong> Algunos sistemas modernos implementan mecanismos adicionales como:</p>
-            <ul>
-                <li>SMAP/SMEP (protección contra exploits)</li>
-                <li>Virtualización (anillo -1 para hypervisors)</li>
-                <li>TrustZone (en sistemas ARM)</li>
-            </ul>
+            <div class="figure-container">
+                <div class="figura">
+                        <img src="FIGURA4.png" alt="Transición entre modos de operación del sistema operativo" class="imagen-figura1"/>
+                </div>
+                <div class="figure-caption">Figura 4. Transición entre modos de operación del sistema operativo (Elaboración propia basada en Tanenbaum y Bos, 2015).</div>
+            </div>
         </div>
         
         <div class="section" id="seccion-1-3-1">
@@ -696,417 +667,85 @@
                 <div class="section-title">Interrupciones</div>
             </div>
             <div class="content">
-                <p>Las <strong>interrupciones</strong> son fundamentales en los sistemas operativos porque permiten al hardware y software comunicarse de manera asíncrona con la CPU, garantizando una gestión eficiente de recursos y una respuesta oportuna a eventos.</p>
+                <p>Es una instrucción que pausa la ejecución de cualquier proceso que realice una acción no viable para la CPU realice una tarea en donde se le asigne para revisar el porque hubo esta interrupción o que lo genero esto pudo haber sido por dispositivos de entrada o salida o una ejecución que las aplicaciones o hasta el sistema operativo no realizo correctamente, por lo que es atendido dependiendo de su prioridad y el sistema operativo en forma automática lo vuelve a ejecutar para conocer si ya fue resuelta este proceso.</p>
 
-                <h2>Importancia de las Interrupciones en Sistemas Operativos</h2>
-                
-                <h3>Definición y Función Clave</h3>
-                <p>Las interrupciones son señales hardware/software que alertan al procesador para que suspenda temporalmente su ejecución actual y atienda un evento prioritario.</p>
-
-                <h3>Características Clave de las Interrupciones en Sistemas Operativos</h3>
-                
-                <h4>1. Multitarea y Concurrencia</h4>
-                <p><strong>Función:</strong></p>
-                <p>Permiten al SO alternar entre procesos rápidamente mediante interrupciones del temporizador (timer interrupts), implementando el time-sharing.</p>
-                
-                <p><strong>Mecanismo:</strong></p>
+                <h4>Tiene características principales que son:</h4>
                 <ul>
-                    <li>El reloj del sistema genera interrupciones periódicas.</li>
-                    <li>El scheduler del SO redistribuye la CPU entre procesos.</li>
-                </ul>
-
-                <div class="quote-box">
-                    "Sin interrupciones de reloj, los sistemas no podrían implementar multitarea preventiva"
-                    <div class="citation">(Silberschatz, Galvin y Gagne, 2018, p. 125).</div>
-                </div>
-
-                <p>Ejemplo:</p>
-                <p>En Linux, el tick rate (HZ) define la frecuencia de interrupciones del scheduler (ejemplo: 1000 Hz en x86).</p>
-
-                <h4>2. Gestión de E/S Eficiente</h4>
-                <p><strong>Función:</strong></p>
-                <p>Reemplazan el <em>polling</em> (consulta activa) por un modelo basado en eventos, liberando la CPU durante operaciones lentas de E/S.</p>
-
-                <p>Flujo:</p>
-                <ol>
-                    <li>Dispositivo (ejemplo: disco) genera interrupción al completar una operación.</li>
-                    <li>CPU suspende el proceso actual y ejecuta el <em>handler</em> de E/S.</li>
-                </ol>
-
-                <div class="quote-box">
-                    "Las interrupciones reducen el overhead de la CPU al evitar esperas activas"
-                    <div class="citation">(Stallings, 2018, p. 231).</div>
-                </div>
-
-                <p><strong>Estadística:</strong></p>
-                <p>Un servidor web puede manejar 10,000+ interrupciones/segundo por tráfico de red.</p>
-
-                <h4>3. Respuesta a Eventos Asíncronos</h4>
-                <p><strong>Función:</strong></p>
-                <p>Permiten atender eventos externos impredecibles (ejemplo: teclado, red) en tiempo real.</p>
-
-                <p><strong>Tipos:</strong></p>
-                <ul>
-                    <li>IRQs (Interrupt Requests): Señales de periféricos.</li>
-                    <li>NMIs (Non-Maskable Interrupts): Urgentes (ejemplo: fallo de hardware).</li>
-                </ul>
-
-                <div class="quote-box">
-                    "Las interrupciones asíncronas son la base de los sistemas reactivos, como los embebidos"
-                    <div class="citation">(Laplante, 2020, p. 64).</div>
-                </div>
-
-                <p>Ejemplo:</p>
-                <p>Al presionar una tecla, el controlador del teclado envía una IRQ a la CPU.</p>
-
-                <h4>4. Manejo de Errores y Excepciones</h4>
-                <p><strong>Función:</strong></p>
-                <p>Detectan y gestionan condiciones excepcionales (ejemplo: división por cero, acceso a memoria inválida).</p>
-
-                <p>Clasificación:</p>
-                <ul>
-                    <li>Faults: Corregibles (ejemplo: page fault).</li>
-                    <li>Traps: Debugging (ejemplo: breakpoint).</li>
-                    <li>Aborts: Fatales (ejemplo: kernel panic).</li>
-                </ul>
-
-                <div class="quote-box">
-                    "Las excepciones permiten al SO recuperarse de errores sin colapsar"
-                    <div class="citation">(Tanenbaum, 2016, p. 190).</div>
-                </div>
-
-                <p>Ejemplo:</p>
-                <p>Un <em>page fault</em> dispara una interrupción para cargar la página faltante desde disco.</p>
-
-                <h4>5. Temporización</h4>
-                <p><strong>Función:</strong></p>
-                <p>Sincronizan operaciones del sistema mediante interrupciones de reloj.</p>
-
-                <p>Aplicaciones:</p>
-                <ul>
-                    <li>Planificación de procesos: Time slices.</li>
-                    <li>Timeouts: Conexiones de red.</li>
-                    <li>Timestamping: Registro de eventos.</li>
-                </ul>
-
-                <div class="quote-box">
-                    "El temporizador programable de intervalos (PIT) es el corazón de la gestión del tiempo en los SO"
-                    <div class="citation">(Patterson & Hennessy, 2017, p. 463).</div>
-                </div>
-
-                <p>Ejemplo:</p>
-                <p>Cronómetros y sistemas de tiempo real usan interrupciones de alta precisión (HPET).</p>
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Característica</strong></th>
-                                <th><strong>Mecanismo</strong></th>
-                                <th><strong>Impacto</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Multitarea</td>
-                                <td>Timer interrupts</td>
-                                <td>Alternancia de procesos</td>
-                            </tr>
-                            <tr>
-                                <td>E/S Eficiente</td>
-                                <td>IRQs de dispositivos</td>
-                                <td>Elimina polling</td>
-                            </tr>
-                            <tr>
-                                <td>Eventos Asíncronos</td>
-                                <td>IRQs/NMIs</td>
-                                <td>Reactividad</td>
-                            </tr>
-                            <tr>
-                                <td>Manejo de Errores</td>
-                                <td>Excepciones (faults/traps)</td>
-                                <td>Tolerancia a fallos</td>
-                            </tr>
-                            <tr>
-                                <td>Temporización</td>
-                                <td>Interrupciones de reloj</td>
-                                <td>Sincronización precisa</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption"><strong>Tabla 4.</strong><br><em><strong>Resumen.</strong></em></div>
-                </div>
-
-                <h2>Clasificación de las Interrupciones en Sistemas Operativos</h2>
-
-                <h3>1. Por su Origen</h3>
-
-                <h4>a) Hardware (Externas)</h4>
-                <ul>
-                    <li>Generadas por dispositivos físicos</li>
-                    <li>Ejemplos: teclado, reloj del sistema, controladores DMA</li>
-                    <li>Característica: Asíncronas (pueden ocurrir en cualquier momento)</li>
-                </ul>
-
-                <div class="quote-box">
-                    "Las interrupciones de hardware permiten la comunicación eficiente entre dispositivos periféricos y el procesador"
-                    <div class="citation">(Patterson & Hennessy, 2017, p. 459).</div>
-                </div>
-
-                <h4>b) Software (Trampas).</h4>
-                <ul>
-                    <li>Generadas intencionalmente por programas</li>
-                    <li>Ejemplos: llamadas al sistema (syscalls), breakpoints de depuración</li>
-                    <li>Característica: Síncronas (ocurren durante la ejecución de instrucciones específicas)</li>
-                </ul>
-
-                <h4>c) Excepciones</h4>
-                <ul>
-                    <li>Generadas por la CPU ante condiciones inesperadas</li>
-                    <li>Ejemplos: división por cero, fallo de página, instrucción ilegal</li>
-                    <li>Característica: Síncronas y no solicitadas</li>
-                </ul>
-
-                <h3>2. Por su Manejo</h3>
-
-                <h4>a) Enmascarables</h4>
-                <ul>
-                    <li>Pueden ser ignoradas temporalmente mediante máscaras</li>
-                    <li>Ejemplos: interrupciones de E/S estándar</li>
-                    <li>Uso: Para secciones críticas de código</li>
-                </ul>
-
-                <h4>b) No enmascarables (NMI)</h4>
-                <ul>
-                    <li>Deben atenderse inmediatamente</li>
-                    <li>Ejemplos: fallos de hardware críticos, reinicio del sistema</li>
-                    <li>Prioridad: Máxima</li>
-                </ul>
-
-                <div class="quote-box">
-                    "Las interrupciones no enmascarables son esenciales para manejar condiciones de error críticas"
-                    <div class="citation">(Stallings, 2018, p. 235).</div>
-                </div>
-
-                <h3>3. Por su Comportamiento</h3>
-
-                <h4>a) Asíncronas</h4>
-                <ul>
-                    <li>Ocurren independientemente del flujo del programa</li>
-                    <li>Ejemplos: interrupciones de hardware</li>
-                    <li>Característica: Impredictibles en tiempo</li>
-                </ul>
-
-                <h4>b) Síncronas</h4>
-                <ul>
-                    <li>Ocurren como resultado directo de la ejecución de instrucciones</li>
-                    <li>Ejemplos: excepciones, trampas</li>
-                    <li>Característica: Reproducibles</li>
-                </ul>
-
-                <h4>c) Eventos de reinicio</h4>
-                <ul>
-                    <li>Causan reinicio del sistema o del procesador</li>
-                    <li>Ejemplo: señal de reset, fallo de alimentación</li>
-                    <li>Nivel más alto de prioridad</li>
+                    <li>Procedimientos de visualización en donde el hardware y software envían llamadas al sistema notificando que requiere una atención inmediata.</li>
+                    <li>Proceso detenido, esto es porque el sistema detiene temporalmente la ejecución para ser atendido y después ello se reanuda su ejecución siempre garantizando la funcionalidad.</li>
+                    <li>La CPU tiene la necesidad de tener la revisión del manejador de interrupciones para procesar e identificar el proceso que lo requiera en forma ordenada y dependiendo de su prioridad.</li>
                 </ul>
 
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th><strong>Criterio</strong></th>
-                                <th><strong>Tipo</strong></th>
-                                <th><strong>Ejemplo</strong></th>
-                                <th><strong>Sincronía</strong></th>
-                                <th><strong>Prioridad</strong></th>
+                                <th>Aspecto</th>
+                                <th>Función principal</th>
+                                <th>Mecanismo / Aplicación</th>
+                                <th>Ejemplo</th>
+                                <th>Referencia</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td rowspan="3"><strong>Origen</strong></td>
-                                <td><strong>Hardware</strong></td>
-                                <td><strong>Interrupción de teclado</strong></td>
-                                <td><strong>Asíncrona</strong></td>
-                                <td><strong>Media</strong></td>
+                                <td><strong>Multitarea y concurrencia</strong></td>
+                                <td>Permite alternar entre procesos para compartir la CPU equitativamente.</td>
+                                <td>Interrupciones del temporizador activan el <em>scheduler</em> para redistribuir el tiempo de CPU.</td>
+                                <td>Linux utiliza el parámetro HZ (1000 Hz en x86) para definir la frecuencia del <em>scheduler</em>.</td>
+                                <td>Silberschatz, Galvin y Gagne (2022)</td>
                             </tr>
                             <tr>
-                                <td><strong>Software</strong></td>
-                                <td><strong>Llamada al sistema</strong></td>
-                                <td><strong>Síncrona</strong></td>
-                                <td><strong>Baja</strong></td>
+                                <td><strong>Gestión eficiente de E/S</strong></td>
+                                <td>Reemplaza el <em>polling</em> por un modelo basado en eventos, optimizando el uso de CPU.</td>
+                                <td>Los dispositivos generan interrupciones al finalizar operaciones; el CPU atiende al <em>handler</em> correspondiente.</td>
+                                <td>Un servidor puede manejar más de 10,000 interrupciones por segundo por tráfico de red.</td>
+                                <td>Stallings (2018)</td>
                             </tr>
                             <tr>
-                                <td><strong>Excepción</strong></td>
-                                <td><strong>Page fault</strong></td>
-                                <td><strong>Síncrona</strong></td>
-                                <td><strong>Alta</strong></td>
+                                <td><strong>Respuesta a eventos asíncronos</strong></td>
+                                <td>Permite reaccionar ante estímulos externos imprevisibles en tiempo real.</td>
+                                <td>Uso de señales IRQs (periféricos) y NMIs (fallos críticos).</td>
+                                <td>Un teclado envía una IRQ al presionar una tecla.</td>
+                                <td>Laplante (2020)</td>
                             </tr>
                             <tr>
-                                <td rowspan="2"><strong>Manejo</strong></td>
-                                <td><strong>Enmascarable</strong></td>
-                                <td><strong>Interrupción de red</strong></td>
-                                <td><strong>-</strong></td>
-                                <td><strong>Variable</strong></td>
+                                <td><strong>Manejo de errores y excepciones</strong></td>
+                                <td>Detecta y gestiona condiciones anómalas sin comprometer la estabilidad del sistema.</td>
+                                <td>Clasificación: <em>faults, traps y aborts</em> según la gravedad del error.</td>
+                                <td>Un <em>page fault</em> dispara una interrupción para cargar la página faltante.</td>
+                                <td>Tanenbaum (2016)</td>
                             </tr>
                             <tr>
-                                <td><strong>No enmascarable</strong></td>
-                                <td><strong>Fallo de alimentación</strong></td>
-                                <td><strong>-</strong></td>
-                                <td><strong>Máxima</strong></td>
-                            </tr>
-                            <tr>
-                                <td rowspan="2"><strong>Comportamiento</strong></td>
-                                <td><strong>Asíncrona</strong></td>
-                                <td><strong>Interrupción de disco</strong></td>
-                                <td><strong>Asíncrona</strong></td>
-                                <td><strong>-</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Síncrona</strong></td>
-                                <td><strong>Instrucción ilegal</strong></td>
-                                <td><strong>Síncrona</strong></td>
-                                <td><strong>-</strong></td>
+                                <td><strong>Temporización</strong></td>
+                                <td>Sincroniza operaciones internas del sistema y tareas planificadas.</td>
+                                <td>Uso del PIT y HPET para gestionar tiempos de proceso y <em>timeouts</em>.</td>
+                                <td>Cronómetros y sistemas de tiempo real utilizan interrupciones de alta precisión.</td>
+                                <td>Patterson y Hennessy (2017)</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="table-caption"><strong>Tabla 5.</strong><br><em><strong>Comparativa.</strong></em></div>
+                    <div class="table-caption"><strong>Tabla 3.</strong><br><em>Resumen de las características clave de las interrupciones en sistemas operativos (Silberschatz, Galvin y Gagne, 2022; Stallings, 2018; Laplante, 2020; Tanenbaum, 2016; Patterson y Hennessy, 2017).</em></div>
                 </div>
-
-                <p><strong>Nota: Algunas arquitecturas modernas implementan categorías adicionales:</strong></p>
-                <ul>
-                    <li>Interrupciones virtualizadas (para entornos de virtualización)</li>
-                    <li>Interrupciones dirigidas por mensajes (MSI/MSI-X en PCI Express)</li>
-                    <li>Interrupciones de gestión (SMI en x86)</li>
-                </ul>
             </div>
         </div>
 
         <div class="section" id="seccion-1-3-2">
             <div class="section-header">
                 <div class="section-number">1.3.2</div>
-                <div class="section-title">Usuario y Kernel</div>
+                <div class="section-title">Modos Usuario y Kernel</div>
             </div>
             <div class="content">
-                <h3>Definición de Sistema Operativo</h3>
-                <p>Un sistema operativo (SO) es un software que actúa como intermediario entre el hardware y las aplicaciones de usuario, gestionando recursos (CPU, memoria, E/S) y proporcionando servicios esenciales (Silberschatz, Galvin y Gagne, 2018).</p>
+                <p>Es una forma donde los accesos son restringidos llámese por dispositivos de entrada o salida o por algún hardware que tiene el sistema aunado ello si los recursos están disponibles para su ejecución.</p>
+                <p>El modo usuario tiene una forma de lista en donde los accesos tiene un privilegio dependiendo de sus derechos ante en sistema operativo y esta lista de accesos siempre son inferiores al modo kernel.</p>
+                <p>El modo kernel es aquel que tiene acceso total de la CPU en donde contiene todos los privilegios en recursos del sistema operativo por lo que la administración, control y supervisión de hardware y software dependen de este.</p>
+                <p>Por lo que no existe ninguna posibilidad de espacios de direcciones virtuales todo es controlado por el modo kernel, esto es que la CPU puede dar acceso o detener la ejecución de programas, así como la lectura y escritura en la memoria que utiliza el kernel o el usuario.</p>
 
-                <div class="quote-box">
-                    "El SO es el programa más importante en una computadora: sin él, el hardware no podría ser utilizado eficientemente"
-                    <div class="citation">(Tanenbaum & Bos, 2015, p. 3).</div>
-                </div>
-
-                <h2>Modos de Operación en SO Modernos</h2>
-                <p>Los sistemas operativos modernos operan en múltiples modos de ejecución para equilibrar funcionalidad, seguridad y rendimiento:</p>
-
-                <div class="mode-card">
-                    <div class="mode-title">1. Modo Kernel (Modo Supervisor)</div>
-                    <p>Nivel de privilegio: Máximo (Anillo 0 en x86, EL1/EL2 en ARM).</p>
-                    <p><strong>Características:</strong></p>
-                    <ul>
-                        <li>Acceso completo al hardware.</li>
-                        <li>Ejecución de instrucciones privilegiadas (e.g., manipulación de MMU).</li>
-                        <li>Gestión directa de recursos (memoria, dispositivos).</li>
-                        <li>Ejemplo:</li>
-                    </ul>
-                    <div class="quote-box">
-                        "El modo kernel es donde reside el núcleo del SO, responsable de las operaciones críticas del sistema"
-                        <div class="citation">(Stallings, 2018, p. 68).</div>
+                <div class="figure-container">
+                    <div class="figura">
+                        <img src="FIGURA5.png" alt="Transición entre modos de operación" class="imagen-figura1"/>
                     </div>
-                </div>
-
-                <div class="mode-card">
-                    <div class="mode-title">2. Modo Usuario</div>
-                    <p>Nivel de privilegio: Limitado (Anillo 3 en x86, EL0 en ARM).</p>
-                    <p><strong>Características:</strong></p>
-                    <ul>
-                        <li>Restricción a instrucciones no privilegiadas.</li>
-                        <li>Acceso a hardware solo mediante llamadas al sistema (syscalls).</li>
-                        <li>Aislamiento entre procesos.</li>
-                        <li>Importancia:</li>
-                    </ul>
-                    <div class="quote-box">
-                        "El modo usuario protege al sistema de errores o ataques desde aplicaciones"
-                        <div class="citation">(Anderson, 2020, p. 92).</div>
-                    </div>
-                </div>
-
-                <div class="mode-card">
-                    <div class="mode-title">3. Modo Hipervisor (Para Virtualización)</div>
-                    <p>Nivel de privilegio: Anillo -1 (VT-x en Intel, EL2 en ARM).</p>
-                    <p><strong>Función:</strong></p>
-                    <ul>
-                        <li>Gestiona máquinas virtuales (VMs).</li>
-                        <li>Controla acceso a recursos físicos.</li>
-                        <li>Ejemplo:</li>
-                    </ul>
-                    <div class="quote-box">
-                        "Los hypervisors como VMware ESXi operan en este modo para aislar SO invitados"
-                        <div class="citation">(Smith & Nair, 2019, p. 115).</div>
-                    </div>
-                </div>
-
-                <div class="mode-card">
-                    <div class="mode-title">4. Modo Seguro (TrustZone en ARM)</div>
-                    <p>Nivel de privilegio: Separado (Secure World vs. Normal World).</p>
-                    <p><strong>Uso:</strong></p>
-                    <ul>
-                        <li>Procesamiento de datos sensibles (e.g., huellas dactilares).</li>
-                        <li>Ejecución de firmware crítico.</li>
-                        <li>Ventaja:</li>
-                    </ul>
-                    <div class="quote-box">
-                        "TrustZone proporciona un entorno aislado para operaciones de seguridad"
-                        <div class="citation">(ARM Limited, 2021, p. 12).</div>
-                    </div>
-                </div>
-
-                <div class="mode-card">
-                    <div class="mode-title">5. Modo Real vs. Protegido (Legacy en x86)</div>
-                    <ul>
-                        <li>Modo Real: Sin protección (usado en DOS, direccionamiento de 16 bits).</li>
-                        <li>Modo Protegido: Con memoria virtual y multitarea (32/64 bits).</li>
-                    </ul>
-                </div>
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Modo</strong></th>
-                                <th><strong>Privilegio</strong></th>
-                                <th><strong>Acceso Hardware</strong></th>
-                                <th><strong>Ejemplo de Uso</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Kernel</td>
-                                <td>Máximo</td>
-                                <td>Completo</td>
-                                <td>Gestión de memoria</td>
-                            </tr>
-                            <tr>
-                                <td>Usuario</td>
-                                <td>Mínimo</td>
-                                <td>Restringido</td>
-                                <td>Aplicaciones comunes</td>
-                            </tr>
-                            <tr>
-                                <td>Hipervisor</td>
-                                <td>Anillo -1</td>
-                                <td>Virtualizado</td>
-                                <td>Máquinas virtuales</td>
-                            </tr>
-                            <tr>
-                                <td>Seguro</td>
-                                <td>Aislado</td>
-                                <td>Selectivo</td>
-                                <td>Autenticación biométrica</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption"><strong>Tabla 6.</strong><br><em><strong>Comparativa.</strong></em></div>
+                                        <div class="figure-caption">Figura 5. Transición entre modos de operación (usuario ↔ kernel) (Elaboración propia basada en Stallings, 2018, y Anderson, 2020).</div>
                 </div>
             </div>
         </div>
@@ -1114,157 +753,109 @@
         <div class="section" id="seccion-1-3-3">
             <div class="section-header">
                 <div class="section-number">1.3.3</div>
-                <div class="section-title">Contadores</div>
+                <div class="section-title">Contadores de programa y relojes del sistema</div>
             </div>
             <div class="content">
-                <h2>Contadores en Sistemas Operativos: Definición, Importancia y Clasificación</h2>
+                <p>Es un registro que se encuentra en la CPU en la cual se almacenan todas las direcciones de una instrucción inicial o en curso con el fin de ejecutar alguna aplicación o programas en tanto el reloj del sistema es un elemento fundamental del sistema ya que se encarga de dar pulsos de tiempos para tener sincronizado las operaciones de los equipos de cómputo, su principal función el contador es majenar la secuencia de las instrucciones de todas las aplicaciones o programas y el reloj coordina y administra la sincronización general de todo el hardware</p>
 
-                <h3>1. Definición</h3>
-                <p>Los contadores en sistemas operativos son estructuras de datos que registran eventos del sistema, como:</p>
+                <h3>2. Importancia de los Contadores</h3>
+                <p>Es fundamental el entender que la administración, seguridad, planificación son muy importantes para su funcionamiento en los sistemas distribuidos.</p>
                 <ul>
-                    <li>Uso de CPU</li>
-                    <li>Operaciones de E/S</li>
-                    <li>Fallos de página</li>
-                    <li>Llamadas al sistema</li>
+                    <li>En <strong>rendimiento</strong>, permiten identificar cuellos de botella como un uso excesivo del CPU o retrasos en operaciones de E/S, facilitando la optimización del sistema.</li>
+                    <li>En <strong>seguridad</strong>, registran eventos anómalos, como intentos fallidos de autenticación o accesos inusuales a archivos.</li>
+                    <li>En <strong>planificación</strong>, ayudan a los algoritmos de <em>scheduling</em> a ajustar la prioridad de los procesos según su consumo de recursos.</li>
+                    <li>En <strong>facturación</strong>, se aplican en servicios en la nube para contabilizar el uso de CPU, memoria o almacenamiento.</li>
                 </ul>
-
-                <div class="quote-box">
-                    "Los contadores proporcionan métricas cuantitativas para monitorizar el comportamiento del sistema y tomar decisiones de gestión"
-                    <div class="citation">(Silberschatz, Galvin y Gagne, 2018, p. 312).</div>
-                </div>
-
-                <h3>2. Importancia</h3>
-                <ul>
-                    <li>Rendimiento: Identifican cuellos de botella (ejemplo: alto uso de CPU).</li>
-                    <li>Seguridad: Detectan anomalías (ejemplo: intentos de acceso fallidos).</li>
-                    <li>Planificación: Optimizan algoritmos de scheduling.</li>
-                    <li>Facturación: En sistemas multiusuario (ejemplo: uso de recursos en la nube).</li>
-                </ul>
-
-                <div class="quote-box">
-                    "Sin contadores precisos, la administración de sistemas sería ciega a problemas críticos"
-                    <div class="citation">(Tanenbaum, 2016, p. 287).</div>
-                </div>
-
-                <h3>3. Clasificación</h3>
 
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th><strong>Tipo</strong></th>
-                                <th><strong>Ejemplo</strong></th>
-                                <th><strong>Uso</strong></th>
+                                <th>Tipo</th>
+                                <th>Ejemplo</th>
+                                <th>Uso</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Absolutos</td>
+                                <td><strong>Absolutos</strong></td>
                                 <td>Número total de fallos de página</td>
-                                <td>Análisis históricos</td>
+                                <td>Análisis históricos y tendencias</td>
                             </tr>
                             <tr>
-                                <td>Incrementales</td>
+                                <td><strong>Incrementales</strong></td>
                                 <td>Llamadas al sistema por segundo</td>
                                 <td>Monitorización en tiempo real</td>
                             </tr>
                             <tr>
-                                <td>Promedios</td>
-                                <td>Uso promedio de CPU (1/5/15 min)</td>
-                                <td>Balanceo de carga</td>
+                                <td><strong>Promedios</strong></td>
+                                <td>Uso promedio de CPU (1, 5 y 15 min)</td>
+                                <td>Balanceo de carga y rendimiento</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="table-caption"><strong>Tabla 7.</strong><br><em><strong>Por Medida.</strong></em></div>
-                </div>
-
-                <div class="quote-box">
-                    "Los contadores incrementales son esenciales para detectar picos de actividad"
-                    <div class="citation">(Stallings, 2018, p. 204).</div>
+                    <div class="table-caption"><strong>Tabla 4.</strong><br><em>Clasificación de contadores por medida. Stallings (2018).</em></div>
                 </div>
 
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th><strong>Nivel</strong></th>
-                                <th><strong>Ejemplo</strong></th>
-                                <th><strong>Acceso</strong></th>
+                                <th>Nivel</th>
+                                <th>Ejemplo</th>
+                                <th>Acceso</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Hardware</td>
+                                <td><strong>Hardware</strong></td>
                                 <td>Contadores de rendimiento (PMCs)</td>
                                 <td>Instrucciones RDPMC (x86)</td>
                             </tr>
                             <tr>
-                                <td>Kernel</td>
+                                <td><strong>Kernel</strong></td>
                                 <td>Estadísticas de memoria (vmstat)</td>
                                 <td>Llamadas al sistema</td>
                             </tr>
                             <tr>
-                                <td>Usuario</td>
+                                <td><strong>Usuario</strong></td>
                                 <td>Tiempo de CPU por proceso (top)</td>
                                 <td>Interfaces como /proc</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="table-caption"><strong>Tabla 8.</strong><br><em><strong>Por Nivel de Abstracción</strong></em></div>
-                </div>
-
-                <div class="quote-box">
-                    "Los Performance Monitoring Counters (PMCs) exponen métricas a nivel microarquitectural"
-                    <div class="citation">(Intel, 2020, p. 15).</div>
+                    <div class="table-caption"><strong>Tabla 5.</strong><br><em>Monitoreo del rendimiento por nivel de abstracción. Silberschatz, Galvin y Gagne (2022).</em></div>
                 </div>
 
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th><strong>Tipo</strong></th>
-                                <th><strong>Ejemplo</strong></th>
-                                <th><strong>Ventaja</strong></th>
+                                <th>Tipo</th>
+                                <th>Ejemplo</th>
+                                <th>Ventaja</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Volátiles</td>
+                                <td><strong>Volátiles</strong></td>
                                 <td>Contadores de CPU en RAM</td>
-                                <td>Bajo overhead</td>
+                                <td>Bajo <em>overhead</em> y respuesta inmediata</td>
                             </tr>
                             <tr>
-                                <td>Persistentes</td>
+                                <td><strong>Persistentes</strong></td>
                                 <td>Registros en /var/log</td>
                                 <td>Auditoría y análisis forense</td>
                             </tr>
                             <tr>
-                                <td>Híbridos</td>
+                                <td><strong>Híbridos</strong></td>
                                 <td>Buffer de estadísticas de red</td>
-                                <td>Equilibrio rendimiento/registro</td>
+                                <td>Equilibrio entre rendimiento y registro</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="table-caption"><strong>Tabla 9.</strong><br><em><strong>Por Persistencia.</strong></em></div>
+                    <div class="table-caption"><strong>Tabla 6.</strong><br><em>Clasificación del monitoreo del sistema por persistencia. Silberschatz, Galvin y Gagne (2022); Intel (2020).</em></div>
                 </div>
-
-                <div class="quote-box">
-                    "Los contadores persistentes en sistemas de archivos como /proc permiten análisis post-mortem"
-                    <div class="citation">(Love, 2013, p. 178).</div>
-                </div>
-
-                <h4>Ejemplos Prácticos</h4>
-                <ul>
-                    <li>Linux:
-                        <br>bash
-                        <br>cat /proc/stat <em># Contadores globales del sistema</em>
-                        <br>perf stat -d <em># PMCs con la herramienta perf</em>
-                    </li>
-                    <li>Windows:
-                        <br>powershell
-                        <br>Get-Counter '\Procesador(*)\% de tiempo de procesador' <em># Contadores de CPU</em>
-                    </li>
-                </ul>
             </div>
         </div>
         
