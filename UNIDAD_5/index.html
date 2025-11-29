@@ -808,6 +808,47 @@
     </div>
     
     <script>
+
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+
+            // Video Unidad 5: Dispositivos de E/S
+            videoFrame.src = 'https://www.youtube.com/embed/CprZd_69QGM?autoplay=1';
+
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            videoFrame.src = '';
+            
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners para cerrar el modal (si no están ya en el archivo)
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
         // Función para alternar el estado activo de las tarjetas (expandir/colapsar subtemas)
         function toggleCard(cardIdSuffix) {
             const card = document.getElementById(`card-${cardIdSuffix}`); // Obtiene el elemento de la tarjeta específica por su ID
