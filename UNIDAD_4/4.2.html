@@ -89,6 +89,41 @@
         .scroll-to-top.visible { opacity: 1; visibility: visible; }
         .scroll-to-top:hover { background: #c0392b; transform: translateY(-3px); }
 
+        /* Estilos para la Activity Card */
+        .activity-card { 
+            background: rgba(52, 152, 219, 0.1); 
+            border-left: 4px solid var(--success); 
+            padding: 25px; 
+            margin: 30px 0; 
+            border-radius: 8px; 
+        }
+        .activity-title { 
+            font-size: 1.4rem; 
+            color: var(--success); 
+            font-weight: 600; 
+            margin-bottom: 10px; 
+        }
+        .activity-btn { 
+            display: inline-flex; 
+            align-items: center; 
+            background: var(--success); 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 25px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            margin-top: 15px; 
+            transition: all 0.3s ease; 
+        }
+        .activity-btn:hover { 
+            background: #27ae60; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); 
+        }
+        .activity-btn i { 
+            margin-right: 8px; 
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav { width: 100%; }
             h1 { font-size: 2rem; }
@@ -233,6 +268,14 @@
                 <p>Además, los sistemas operativos utilizan mecanismos de permisos y protección de acceso, de modo que solo los usuarios autorizados puedan visualizar o modificar los archivos compartidos.</p>
                 <p>Tanenbaum señala que el manejo adecuado de los archivos compartidos no solo depende del software, sino también del soporte del sistema de archivos y del hardware de almacenamiento.</p>                
             </div>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-title">Actividad de Aprendizaje 4.2: Implementación</div>
+            <p>Evalúa tu comprensión sobre los Bloques de Control de Proceso, inodos y la gestión de archivos y directorios.</p>
+            <a href="Actividad_4_2.html" class="activity-btn">
+                <i class="fas fa-pencil-alt"></i> Realizar Actividad
+            </a>
         </div>
         
         <div class="nav-buttons">
