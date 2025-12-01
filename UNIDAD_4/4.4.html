@@ -89,6 +89,41 @@
         .scroll-to-top.visible { opacity: 1; visibility: visible; }
         .scroll-to-top:hover { background: #c0392b; transform: translateY(-3px); }
 
+        /* Estilos para la Activity Card */
+        .activity-card {
+            background: rgba(46, 204, 113, 0.1); /* Fondo verde translúcido */
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 4px solid var(--success); /* Borde izquierdo verde */
+            text-align: center;
+        }
+        
+        .activity-title {
+            font-size: 1.8rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        .activity-btn {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .activity-btn:hover {
+            background: #27ae60; /* Verde más oscuro al pasar el mouse */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav { width: 100%; }
             h1 { font-size: 2rem; }
@@ -202,6 +237,14 @@
                     <div class="figure-caption">Figura 38. Funcionamiento de los sistemas de archivos por diario. Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-title">Actividad de Aprendizaje 4.4: Sistemas Estructurados</div>
+            <p>Repasa los conceptos clave sobre los sistemas de archivos con bitácora (journaling) y estructurados por diario.</p>
+            <a href="Actividad_4_4.html" class="activity-btn">
+                <i class="fas fa-pencil-alt"></i> Realizar Actividad
+            </a>
         </div>
         
         <div class="nav-buttons">

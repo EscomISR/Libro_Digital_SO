@@ -782,6 +782,26 @@
 
         </div>
         
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Video Introducción - Seguridad y Virtualización</h2>
+                    <button class="close-btn" onclick="closeVideoModal()">&times;</button>
+                </div>
+                <div class="video-container">
+                    <iframe id="videoFrame" 
+                            src="" 
+                            title="Video Educativo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+
         <footer>
             <p>Sistemas Operativos - Unidad 6: Seguridad y Virtualización</p>
             <p>Desarrollado para fines educativos - © 2025</p>
@@ -789,6 +809,54 @@
     </div>
     
     <script>
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) {
+                console.error('No se encontraron los elementos del modal');
+                return;
+            }
+            
+            // Video Unidad 6: Seguridad y Virtualización
+            videoFrame.src = 'https://www.youtube.com/embed/By5rFRRQsf4?autoplay=1&rel=0&modestbranding=1';
+            
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Evita que se haga scroll en la página de fondo
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // Limpiar la fuente para detener el video
+            videoFrame.src = '';
+            
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura el scroll
+        }
+
+        // Cerrar al hacer clic fuera del contenido del modal
+        const videoModal = document.getElementById('videoModal');
+        if (videoModal) {
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeVideoModal();
+                }
+            });
+        }
+
+        // Cerrar con la tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
         // Función para alternar el estado activo de las tarjetas (expandir/colapsar subtemas)
         function toggleCard(cardIdSuffix) {
             const card = document.getElementById(`card-${cardIdSuffix}`); // Obtiene el elemento de la tarjeta específica por su ID

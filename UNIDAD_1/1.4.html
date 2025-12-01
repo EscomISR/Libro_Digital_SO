@@ -452,6 +452,41 @@
             transform: translateY(-3px);
         }
         
+        /* Estilos para la tarjeta de actividad */
+        .activity-card {
+            background: rgba(46, 204, 113, 0.1); /* Fondo verde translúcido */
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 4px solid var(--success); /* Borde izquierdo verde */
+            text-align: center;
+        }
+        
+        .activity-title {
+            font-size: 1.8rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        .activity-btn {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .activity-btn:hover {
+            background: #27ae60; /* Verde más oscuro al pasar el mouse */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav {
                 width: 100%;
@@ -695,6 +730,14 @@
 
                 <p>Estas llamadas desempeñan un papel complementario en la administración del sistema, proporcionando herramientas que permiten <strong>monitorizar, ajustar y sincronizar</strong> el funcionamiento del sistema operativo con las aplicaciones.</p>
             </div>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-title">Actividad de Aprendizaje 4: Llamadas a Sistema</div>
+            <p>Pon a prueba lo aprendido sobre la interfaz entre las aplicaciones y el sistema operativo (System Calls).</p>
+            <a href="actividad_1_4.html" class="activity-btn">
+                <i class="fas fa-pencil-alt"></i> Realizar Actividad
+            </a>
         </div>
         
         <div class="nav-buttons">
