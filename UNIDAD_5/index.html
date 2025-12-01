@@ -614,7 +614,6 @@
             </div>
         </header>
 
-        
         <div class="card-container"> <div class="card" id="card-5-1">
                 <div class="card-header" onclick="toggleCard('5-1')"> <div class="card-header-content">
                         <div class="card-number">5.1</div>
@@ -802,26 +801,24 @@
                 </div>
             </div>
 
+        
+        
         </div>
         
-        <div id="videoModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Video Introducción - Dispositivos de Entrada y Salida</h2>
-                    <button class="close-btn" onclick="closeVideoModal()">&times;</button>
-                </div>
-                <div class="video-container">
-                    <iframe id="videoFrame" 
-                            src="" 
-                            title="Video Educativo"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen>
-                    </iframe>
-                </div>
+        
+        <div id="videoModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Video Introducción - Sistema de Archivos</h2>
+                            <button class="close-btn" onclick="closeVideoModal()">×</button>
+                        </div>
+                        <div class="video-container">
+                            <iframe id="videoFrame" src="" title="Video Educativo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+                            </iframe>
+                        </div>
             </div>
         </div>
+
 
         <footer> <p>Sistemas Operativos - Unidad 5: Dispositivos de Entrada y Salida</p>
             <p>Desarrollado para fines educativos - © 2025</p>
@@ -907,9 +904,56 @@
                 });
             }
         });
+
+
+        // Funciones para el modal del video
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // Video Unidad 4: Sistema de Archivos
+            videoFrame.src = 'https://www.youtube.com/embed/CprZd_69QGM?autoplay=1'; 
+            
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // Detener el video removiendo la fuente
+            videoFrame.src = '';
+            
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Cerrar modal con la tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
     </script>
-    <a href="../Unidades.html" class="back-to-menu-btn" title="Volver al Inicio">
+    <a href="../MENU/MENU.html" class="back-to-menu-btn" title="Volver al Menú Principal">
         <i class="fas fa-home"></i>
     </a>
 </body>
 </html>
+
+
+
