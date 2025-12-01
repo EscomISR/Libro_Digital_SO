@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad 6.1: Fortaleza de la Seguridad</title>
+    <title>Actividad 6.1: Batalla de Seguridad</title>
     <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -16,7 +16,7 @@
             --light: #ecf0f1;
             --dark: #1a2a3a;
             --gray: #95a5a6;
-            --monster-color: #9b59b6; /* Color temático para el virus (púrpura) */
+            --monster-color: #8e44ad; /* Morado para Unidad 6 */
         }
 
         * {
@@ -42,7 +42,7 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 20%, rgba(142, 68, 173, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 60%, rgba(231, 76, 60, 0.05) 0%, transparent 50%);
             z-index: -1;
@@ -64,6 +64,7 @@
             50% { filter: brightness(0.95) contrast(1.05); }
         }
 
+        /* Botón flotante de inicio */
         .floating-home-btn {
             position: fixed;
             top: 20px;
@@ -81,8 +82,6 @@
             transition: all 0.3s ease;
             z-index: 1000;
             font-size: 1.5rem;
-            opacity: 1;
-            visibility: visible;
         }
 
         .floating-home-btn:hover {
@@ -90,12 +89,8 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
         }
-        
-        .floating-home-btn.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
 
+        /* Menú de navegación lateral */
         .sidebar-nav {
             position: fixed;
             left: 0;
@@ -117,13 +112,13 @@
 
         .sidebar-header {
             padding: 20px;
-            background: rgba(155, 89, 182, 0.1);
-            border-bottom: 1px solid rgba(155, 89, 182, 0.3);
+            background: rgba(52, 152, 219, 0.1);
+            border-bottom: 1px solid rgba(52, 152, 219, 0.3);
         }
 
         .sidebar-title {
             font-size: 1.2rem;
-            color: var(--monster-color);
+            color: var(--secondary);
             font-weight: 600;
             margin-bottom: 5px;
         }
@@ -171,6 +166,7 @@
             text-align: center;
         }
 
+        /* Botón toggle del menú */
         .menu-toggle {
             position: fixed;
             top: 20px;
@@ -200,6 +196,7 @@
             background: var(--accent);
         }
 
+        /* Indicador de progreso de lectura */
         .reading-progress {
             position: fixed;
             top: 0;
@@ -217,6 +214,7 @@
             transition: width 0.1s ease;
         }
 
+        /* Overlay para cerrar el menú */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -235,6 +233,7 @@
             visibility: visible;
         }
 
+        /* Contenedor principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -286,16 +285,16 @@
         }
 
         .instructions {
-            background: rgba(52, 152, 219, 0.15);
-            border: 1px solid rgba(52, 152, 219, 0.3);
+            background: rgba(142, 68, 173, 0.15); /* Morado Unit 6 */
+            border: 1px solid rgba(142, 68, 173, 0.3);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 30px;
-            border-left: 4px solid var(--secondary);
+            border-left: 4px solid var(--monster-color);
         }
 
         .instructions h3 {
-            color: var(--secondary);
+            color: var(--monster-color);
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
@@ -309,13 +308,14 @@
             margin-bottom: 8px;
         }
 
+        /* Battle Arena */
         .battle-arena {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(155, 89, 182, 0.2);
+            border: 1px solid rgba(142, 68, 173, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -328,7 +328,7 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.05) 0%, transparent 70%);
+                radial-gradient(circle at 50% 50%, rgba(142, 68, 173, 0.05) 0%, transparent 70%);
             z-index: -1;
             animation: arenaGlow 4s ease-in-out infinite;
         }
@@ -342,9 +342,9 @@
             text-align: center;
             margin-bottom: 30px;
             padding: 25px;
-            background: rgba(155, 89, 182, 0.15);
+            background: rgba(142, 68, 173, 0.15);
             border-radius: 15px;
-            border: 2px solid rgba(155, 89, 182, 0.4);
+            border: 2px solid rgba(142, 68, 173, 0.4);
             position: relative;
             overflow: hidden;
         }
@@ -356,7 +356,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(155, 89, 182, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(142, 68, 173, 0.1) 0%, transparent 70%);
             animation: monsterAura 3s linear infinite;
             z-index: -1;
         }
@@ -391,12 +391,12 @@
             border-radius: 10px;
             margin: 0 auto 15px;
             overflow: hidden;
-            border: 2px solid rgba(155, 89, 182, 0.5);
+            border: 2px solid rgba(142, 68, 173, 0.5);
         }
 
         .health-bar {
             height: 100%;
-            background: linear-gradient(90deg, #e74c3c, var(--monster-color));
+            background: linear-gradient(90deg, var(--accent), var(--monster-color));
             transition: width 0.5s ease;
             border-radius: 8px;
         }
@@ -454,6 +454,7 @@
             box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
         }
 
+        /* Questions */
         .questions-section {
             margin-top: 30px;
         }
@@ -569,6 +570,7 @@
             font-size: 1rem;
         }
 
+        /* Controls */
         .battle-controls {
             display: flex;
             flex-wrap: wrap;
@@ -596,17 +598,17 @@
         }
 
         .btn-attack {
-            background: var(--monster-color);
+            background: var(--accent);
             color: white;
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
             font-size: 1.2rem;
             padding: 18px 35px;
         }
 
         .btn-attack:hover {
-            background: #8e44ad;
+            background: #c0392b;
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
         }
 
         .btn-attack:disabled {
@@ -638,6 +640,7 @@
             transform: translateY(-3px);
         }
 
+        /* Game Status */
         .game-status {
             text-align: center;
             padding: 20px;
@@ -666,30 +669,7 @@
             color: var(--warning);
         }
 
-        /* Nueva sección de soluciones desplegable */
-        .solutions-section {
-            background: rgba(46, 204, 113, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid var(--success);
-            display: none; /* Oculta por defecto */
-        }
-
-        .solutions-section h4 {
-            color: var(--success);
-            margin-bottom: 15px;
-            text-align: center;
-            font-size: 1.2rem;
-        }
-
-        .solution-item {
-            margin-bottom: 10px;
-            padding: 8px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 5px;
-        }
-        
+        /* Navigation */
         .navigation {
             display: flex;
             justify-content: space-between;
@@ -704,6 +684,7 @@
             flex: 1;
         }
 
+        /* Progress bar for questions */
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -720,6 +701,7 @@
             width: 0%;
         }
 
+        /* Botón de ir arriba */
         .scroll-to-top {
             position: fixed;
             bottom: 20px;
@@ -820,7 +802,7 @@
         <i class="fas fa-bars"></i>
     </button>
 
-    <a href="index.html" class="floating-home-btn" title="Ir al inicio">
+    <a href="index.html" class="floating-home-btn" title="Ir al índice de Unidad 6">
         <i class="fas fa-home"></i>
     </a>
 
@@ -828,8 +810,8 @@
 
     <nav class="sidebar-nav" id="sidebarNav">
         <div class="sidebar-header">
-            <div class="sidebar-title">Fortaleza de Seguridad</div>
-            <div class="sidebar-subtitle">Fundamentos de Seguridad</div>
+            <div class="sidebar-title">Seguridad</div>
+            <div class="sidebar-subtitle">Unidad 6: Seguridad y Virtualización</div>
         </div>
         
         <div class="nav-sections">
@@ -837,7 +819,7 @@
                 <div class="nav-section-title">Navegación</div>
                 <a href="index.html" class="nav-item">
                     <i class="fas fa-home"></i>
-                    Menú principal
+                    Menú Unidad 6
                 </a>
                 <a href="6.1.html" class="nav-item">
                     <i class="fas fa-book-open"></i>
@@ -846,10 +828,10 @@
             </div>
 
             <div class="nav-section">
-                <div class="nav-section-title">Otras Actividades</div>
-                <a href="actividad_6_2.html" class="nav-item">
-                    <i class="fas fa-tasks"></i>
-                    Actividad 6.2
+                <div class="nav-section-title">Otras Secciones</div>
+                <a href="6.2.html" class="nav-item">
+                    <i class="fas fa-arrow-right"></i>
+                    6.2 Virtualización
                 </a>
             </div>
         </div>
@@ -862,35 +844,35 @@
     <div class="container">
         <div class="header">
             <div class="breadcrumb">
-                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="index.html"><i class="fas fa-home"></i> Unidad 6</a>
                 <span>/</span>
-                <a href="6.1.html">6.1 El Ambiente de Seguridad</a>
+                <a href="6.1.html">6.1 Ambiente de Seguridad</a>
                 <span>/</span>
-                <span>Fortaleza de la Seguridad</span>
+                <span>Batalla de Seguridad</span>
             </div>
-            <h1>🛡️ Fortaleza de la Seguridad</h1>
-            <div class="subtitle">¡Defiende el sistema del temible Virus Corruptor!</div>
+            <h1>⚡ Batalla del Ambiente de Seguridad</h1>
+            <div class="subtitle">¡Protege el sistema y derrota al Guardián del Acceso!</div>
         </div>
 
         <div class="instructions">
             <h3><i class="fas fa-gamepad"></i> Instrucciones de Batalla</h3>
             <ul>
-                <li><strong>Misión:</strong> Derrota al Virus Corruptor respondiendo correctamente las preguntas sobre seguridad.</li>
-                <li><strong>Mecánica:</strong> Cada respuesta correcta inflige 1 punto de daño al virus. Cada respuesta incorrecta cuenta como un error.</li>
-                <li><strong>Victoria:</strong> Reduce la vida del virus a 0 HP respondiendo las 10 preguntas correctamente.</li>
-                <li><strong>Derrota:</strong> Cometes más de 3 errores antes de eliminar al virus.</li>
-                <li><strong>Estrategia:</strong> ¡Analiza cada vulnerabilidad y ataca con precisión!</li>
+                <li><strong>Misión:</strong> Derrota al Guardián respondiendo correctamente sobre objetivos de seguridad, autenticación, modelos (Bell-LaPadula, Biba) y control de acceso.</li>
+                <li><strong>Mecánica:</strong> Responde para atacar. Los errores reducen tu salud.</li>
+                <li><strong>Victoria:</strong> Reduce la vida del Guardián a 0 HP respondiendo 8 preguntas.</li>
+                <li><strong>Derrota:</strong> Cometes más de 3 errores antes de ganar.</li>
+                <li><strong>Estrategia:</strong> Diferencia bien entre Confidencialidad e Integridad.</li>
             </ul>
         </div>
 
         <div class="battle-arena">
             <div class="monster-section">
-                <div class="monster-avatar" id="monsterAvatar">🦠</div>
-                <div class="monster-name">Virus Corruptor</div>
+                <div class="monster-avatar" id="monsterAvatar">🛡️</div>
+                <div class="monster-name">Guardián del Acceso</div>
                 <div class="health-bar-container">
                     <div class="health-bar" id="healthBar" style="width: 100%;"></div>
                 </div>
-                <div class="health-text" id="healthText">10 / 10 HP</div>
+                <div class="health-text" id="healthText">8 / 8 HP</div>
             </div>
 
             <div class="player-stats">
@@ -900,11 +882,11 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="attemptsValue">0</div>
-                    <div class="stat-label"><i class="fas fa-firewall"></i> Contraataques</div>
+                    <div class="stat-label"><i class="fas fa-sword"></i> Ataques</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="errorsValue">0 / 3</div>
-                    <div class="stat-label"><i class="fas fa-bug"></i> Brechas</div>
+                    <div class="stat-label"><i class="fas fa-skull"></i> Errores</div>
                     <div class="error-indicators" id="errorIndicators">
                         <div class="error-dot"></div>
                         <div class="error-dot"></div>
@@ -914,7 +896,7 @@
             </div>
 
             <div class="questions-section">
-                <h3><i class="fas fa-scroll"></i> Desafíos de Seguridad</h3>
+                <h3><i class="fas fa-scroll"></i> Desafíos de Protección</h3>
                 <div id="questionsContainer"></div>
             </div>
 
@@ -924,23 +906,17 @@
 
             <div class="battle-controls">
                 <button class="btn btn-attack" onclick="attack()" id="attackBtn">
-                    <i class="fas fa-bolt"></i> ¡ERRADICAR!
+                    <i class="fas fa-bolt"></i> ¡ATACAR!
                 </button>
                 <button class="btn btn-secondary" onclick="resetBattle()">
-                    <i class="fas fa-redo"></i> Nueva Simulación
+                    <i class="fas fa-redo"></i> Nueva Batalla
                 </button>
-                <button class="btn btn-secondary" onclick="toggleSolutions()" id="toggleSolutionsBtn">
-                    <i class="fas fa-lightbulb"></i> Ver Firmas
+                <button class="btn btn-secondary" onclick="showSolutions()">
+                    <i class="fas fa-lightbulb"></i> Ver Respuestas
                 </button>
             </div>
 
             <div class="game-status" id="gameStatus"></div>
-            
-            <div class="solutions-section" id="solutionsSection">
-                <h4><i class="fas fa-key"></i> Firmas de Virus Correctas</h4>
-                <div id="solutionsList"></div>
-            </div>
-
         </div>
 
         <div class="navigation">
@@ -949,7 +925,7 @@
             </a>
             <div class="nav-center">
                 <a href="index.html" class="btn btn-secondary">
-                    <i class="fas fa-home"></i> Menú Principal
+                    <i class="fas fa-home"></i> Menú Unidad 6
                 </a>
             </div>
             <a href="6.2.html" class="btn btn-success">
@@ -959,273 +935,321 @@
     </div>
 
     <script>
-        let time = 0;
-        let attempts = 0;
-        let errors = 0;
-        let monsterHP = 10;
-        let maxHP = 10;
-        let maxErrors = 3;
-        let gameOver = false;
-        let timerInterval;
-        let sidebarOpen = false;
-        let selectedAnswers = {};
-        let completed = 0;
-        let solutionsVisible = false;
+  // ========================
+  // VARIABLES DEL JUEGO
+  // ========================
+  let time = 0;
+  let attempts = 0;
+  let errors = 0;
+  let monsterHP = 8;
+  const maxHP = 8;
+  const maxErrors = 3;
+  let gameOver = false;
+  let timerInterval;
+  let sidebarOpen = false;
+  let selectedAnswers = {};
+  let completed = 0;
+  let questions = []; 
 
-        const questions = [
-            { question: "¿Cuál es la principal diferencia entre seguridad y protección en sistemas operativos?", options: ["Seguridad se refiere a hardware, protección a software", "No hay diferencia, son sinónimos", "Seguridad es para usuarios, protección para administradores", "Seguridad incluye políticas administrativas y legales, protección son mecanismos específicos del SO"], correct: 3 },
-            { question: "En el modelo Bell-LaPadula, la propiedad *-estrella (star property) establece que:", options: ["Se puede leer información de niveles superiores", "Se puede escribir en cualquier nivel", "No se puede leer información de niveles inferiores", "No se puede escribir información en niveles inferiores"], correct: 3 },
-            { question: "Las matrices de acceso se utilizan principalmente para:", options: ["Acelerar el procesamiento", "Gestionar la memoria virtual", "Controlar dispositivos de entrada/salida", "Prevenir interbloqueos y gestionar recursos"], correct: 3 },
-            { question: "El modelo Biba se enfoca principalmente en:", options: ["Confidencialidad de datos", "Disponibilidad del sistema", "Autenticación de usuarios", "Integridad de datos"], correct: 3 },
-            { question: "Un caballo de Troya se caracteriza por:", options: ["Autorreplicarse sin programa anfitrión", "Atacar servidores masivamente", "Adivinar contraseñas de usuarios", "Hacer cosas no autorizadas cuando actúa en el entorno adecuado"], correct: 3 },
-            { question: "¿Qué característica distingue principalmente a un gusano de un virus informático?", options: ["Solo afecta a sistemas UNIX.", "Siempre requiere la intervención del usuario para activarse.", "Su único propósito es borrar archivos del disco duro.", "No necesita un programa anfitrión para propagarse y puede autorreplicarse a través de la red."], correct: 3 },
-            { question: "El control de acceso en un sistema operativo aborda principalmente dos problemas. ¿Cuáles son?", options: ["La velocidad de la red y el espacio en disco.", "La compatibilidad del software y la gestión de energía.", "El cifrado de datos y la compresión de archivos.", "La autenticación de usuarios y la protección frente a accesos indebidos."], correct: 3 },
-            { question: "En el modelo de seguridad Biba, ¿qué establece la \"propiedad de integridad simple\"?", options: ["Un proceso puede leer datos de cualquier nivel de integridad.", "Un proceso no puede leer datos de un nivel inferior al suyo.", "Un proceso puede escribir datos en cualquier nivel de integridad.", "Un proceso no puede escribir datos en un nivel de integridad superior al suyo."], correct: 3 },
-            { question: "¿Cuál es el objetivo de un ataque de \"bombardeo\" o denegación de servicio (DoS)?", options: ["Robar las contraseñas de los usuarios del servidor.", "Instalar un caballo de Troya en el sistema.", "Modificar los datos almacenados en el servidor.", "Provocar que el servidor deniegue sus servicios a clientes legítimos y eventualmente se bloquee."], correct: 3 },
-            { question: "¿Cuál es el principio fundamental del modelo de Control de Acceso Discrecional (DAC)?", options: ["El acceso es controlado por etiquetas de seguridad definidas por el sistema.", "Todos los usuarios tienen los mismos permisos por defecto.", "Solo el administrador del sistema puede asignar permisos.", "El propietario de un recurso es quien decide y gestiona los permisos de acceso sobre él."], correct: 3 }
-        ];
-        
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebarNav = document.getElementById('sidebarNav');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
+  // ========================
+  // FUNCIÓN PARA INICIAR EL JUEGO
+  // ========================
+  async function initGame() {
+    const container = document.getElementById('questionsContainer');
 
-        function toggleSidebar() {
-            sidebarOpen = !sidebarOpen;
-            sidebarNav.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            menuToggle.innerHTML = sidebarOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            document.body.style.overflow = sidebarOpen ? 'hidden' : 'auto';
-            updateContainerSpacing();
-        }
-
-        menuToggle.addEventListener('click', toggleSidebar);
-        sidebarOverlay.addEventListener('click', toggleSidebar);
-
-        function updateContainerSpacing() {
-            const container = document.querySelector('.container');
-            if (window.innerWidth <= 768) {
-                container.style.marginLeft = '20px';
-                container.style.marginRight = '20px';
-                container.style.padding = '10px';
-            } else if (sidebarOpen) {
-                container.style.marginLeft = '370px';
-                container.style.marginRight = '90px';
-            } else {
-                container.style.marginLeft = 'auto';
-                container.style.marginRight = 'auto';
+    try {
+      // Intenta cargar el JSON externo
+      const response = await fetch('preguntas_6_1.json');
+      
+      if (response.ok) {
+          const allQuestionsRaw = await response.json();
+          processQuestions(allQuestionsRaw, container);
+      } else {
+         // Fallback por si no existe el archivo JSON aún
+         console.warn("No se encontró preguntas_6_1.json, usando preguntas de respaldo.");
+         const fallbackQuestions = [
+            {
+                "question": "¿Cuál es el objetivo de seguridad que garantiza que los datos solo sean accesibles por usuarios autorizados?",
+                "options": ["Integridad", "Disponibilidad", "Confidencialidad", "Autenticación"],
+                "answer": "Confidencialidad"
+            },
+            {
+                "question": "¿Qué modelo de seguridad se centra en preservar la confidencialidad mediante reglas como 'No leer hacia arriba'?",
+                "options": ["Modelo Biba", "Modelo Bell-LaPadula", "Modelo Clark-Wilson", "Modelo Graham-Denning"],
+                "answer": "Modelo Bell-LaPadula"
+            },
+            {
+                "question": "¿Qué mecanismo se utiliza para verificar la identidad de un usuario antes de permitir el acceso?",
+                "options": ["Autorización", "Encriptación", "Autenticación", "Auditoría"],
+                "answer": "Autenticación"
+            },
+            {
+                "question": "¿Qué modelo formal se enfoca en la integridad de la información, impidiendo que usuarios de bajo nivel modifiquen datos de alto nivel?",
+                "options": ["Modelo Bell-LaPadula", "Modelo Biba", "Modelo de Flujo", "Modelo DAC"],
+                "answer": "Modelo Biba"
+            },
+            {
+                "question": "¿Qué herramienta define quién puede acceder a qué recursos y con qué permisos?",
+                "options": ["Lista de Control de Acceso (ACL)", "Firewall", "Antivirus", "Kernel"],
+                "answer": "Lista de Control de Acceso (ACL)"
+            },
+            {
+                "question": "¿Qué objetivo de seguridad asegura que los recursos no sean modificados de forma no autorizada?",
+                "options": ["Disponibilidad", "Confidencialidad", "Integridad", "No repudio"],
+                "answer": "Integridad"
+            },
+            {
+                "question": "¿Qué estructura de datos bidireccional relaciona sujetos (usuarios) con objetos (recursos) y sus permisos?",
+                "options": ["Matriz de Acceso", "Tabla de Páginas", "Vector de Interrupciones", "Árbol de Directorios"],
+                "answer": "Matriz de Acceso"
+            },
+            {
+                "question": "¿Qué modelo de control de acceso asigna permisos basándose en la función o puesto del usuario en la organización?",
+                "options": ["DAC (Discrecional)", "MAC (Obligatorio)", "RBAC (Basado en Roles)", "ABAC (Basado en Atributos)"],
+                "answer": "RBAC (Basado en Roles)"
             }
+         ];
+         processQuestions(fallbackQuestions, container);
+      }
+
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = `
+        <div class="question">
+          ⚠️ <strong>Error al iniciar:</strong><br>${err.message}
+        </div>`;
+    }
+  }
+
+  function processQuestions(allQuestionsRaw, container) {
+      if (!Array.isArray(allQuestionsRaw) || allQuestionsRaw.length === 0) {
+        throw new Error('El JSON no contiene un arreglo de preguntas.');
+      }
+
+      // Mezclar y seleccionar 8 preguntas aleatorias
+      shuffleArray(allQuestionsRaw);
+      questions = allQuestionsRaw.slice(0, 8).map((q, idx) => {
+        const questionText = q.question;
+        const optionsOrig = q.options;
+        const answerOrig  = q.answer;
+
+        const optionsShuffled = shuffleArray([...optionsOrig]);
+        let correctIndex = optionsShuffled.indexOf(answerOrig);
+
+        if (correctIndex === -1) {
+          const norm = s => String(s).trim();
+          const normAnswer = norm(answerOrig);
+          correctIndex = optionsShuffled.findIndex(o => norm(o) === normAnswer);
         }
 
-        function initGame() {
-            const container = document.getElementById('questionsContainer');
-            container.innerHTML = ''; // Limpiar preguntas anteriores
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <div class="question-number">Desafío ${index + 1}</div>
-                    <div class="question-text">${q.question}</div>
-                    <div class="options">
-                        ${q.options.map((option, optIndex) => `
-                            <div class="option" onclick="selectOption(${index}, ${optIndex})" id="q${index}opt${optIndex}">
-                                <div class="option-letter">${String.fromCharCode(97 + optIndex)})</div>
-                                <div class="option-text">${option}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
-            loadSolutions();
-            startTimer();
-        }
-        
-        function loadSolutions() {
-            const solutionsList = document.getElementById('solutionsList');
-            solutionsList.innerHTML = ''; // Limpiar
-            const solutionsHTML = questions.map((q, i) => {
-                const correctLetter = String.fromCharCode(97 + q.correct);
-                return `<div class="solution-item"><strong>Desafío ${i + 1}:</strong> ${correctLetter}) ${q.options[q.correct]}</div>`;
-            }).join('');
-            solutionsList.innerHTML = solutionsHTML;
-        }
+        return {
+          question: questionText,
+          options: optionsShuffled,
+          correct: correctIndex
+        };
+      });
 
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                time++;
-                document.getElementById('timerValue').textContent = `${time}s`;
-            }, 1000);
-        }
+      // Renderizar
+      container.innerHTML = '';
+      questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+        questionDiv.innerHTML = `
+          <div class="question-number">Reto ${index + 1}</div>
+          <div class="question-text">${q.question}</div>
+          <div class="options">
+            ${q.options.map((option, optIndex) => `
+              <div class="option" onclick="selectOption(${index}, ${optIndex})" id="q${index}opt${optIndex}">
+                <div class="option-letter">${String.fromCharCode(97 + optIndex)})</div>
+                <div class="option-text">${option}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        container.appendChild(questionDiv);
+      });
 
-        function stopTimer() {
-            clearInterval(timerInterval);
-        }
-        
-        function selectOption(questionIndex, optionIndex) {
-            if (gameOver) return;
-            for (let i = 0; i < questions[questionIndex].options.length; i++) {
-                document.getElementById(`q${questionIndex}opt${i}`).classList.remove('selected');
-            }
-            document.getElementById(`q${questionIndex}opt${optionIndex}`).classList.add('selected');
-            selectedAnswers[questionIndex] = optionIndex;
-            updateProgress();
-        }
+      resetBattleState();
+  }
 
-        function updateProgress() {
-            completed = Object.keys(selectedAnswers).length;
-            const percentage = (completed / questions.length) * 100;
-            document.getElementById('progressFill').style.width = `${percentage}%`;
-        }
-        
-        function updateUI() {
-            const healthPercentage = (monsterHP / maxHP) * 100;
-            document.getElementById('healthBar').style.width = `${healthPercentage}%`;
-            document.getElementById('healthText').textContent = `${monsterHP} / ${maxHP} HP`;
-            
-            const errorDots = document.querySelectorAll('.error-dot');
-            errorDots.forEach((dot, index) => {
-                dot.classList.toggle('filled', index < errors);
-            });
-            
-            document.getElementById('attemptsValue').textContent = attempts;
-            document.getElementById('errorsValue').textContent = `${errors} / ${maxErrors}`;
-            updateMonsterAvatar();
-        }
-        
-        function updateMonsterAvatar() {
-            const avatar = document.getElementById('monsterAvatar');
-            const healthPercentage = (monsterHP / maxHP) * 100;
-            if (healthPercentage > 70) avatar.textContent = '🦠';
-            else if (healthPercentage > 40) avatar.textContent = '🧬';
-            else if (healthPercentage > 0) avatar.textContent = '👾';
-            else avatar.textContent = '💥';
-        }
+  // ========================
+  // UTILIDADES Y LÓGICA DE JUEGO
+  // ========================
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
 
-        function attack() {
-            if (gameOver) return;
-            if (completed < questions.length) {
-                showGameStatus("⚠️ ¡Responde todas las preguntas antes de erradicar al virus!", "continue");
-                return;
-            }
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      time++;
+      document.getElementById('timerValue').textContent = `${time}s`;
+    }, 1000);
+  }
 
-            attempts++;
-            let correctCount = 0;
-            questions.forEach((q, qIndex) => {
-                const userAnswerIndex = selectedAnswers[qIndex];
-                const isCorrect = userAnswerIndex === q.correct;
-                if (isCorrect) {
-                    correctCount++;
-                }
-                document.getElementById(`q${qIndex}opt${userAnswerIndex}`).classList.add(isCorrect ? 'correct' : 'incorrect');
-                if (!isCorrect) {
-                    document.getElementById(`q${qIndex}opt${q.correct}`).classList.add('correct');
-                }
-            });
-            
-            const damage = correctCount;
-            const currentErrorsInAttack = questions.length - correctCount; 
-            monsterHP = Math.max(0, monsterHP - damage);
-            errors = Math.min(maxErrors, currentErrorsInAttack);
-            updateUI();
-            checkGameEnd();
-        }
+  function updateProgress() {
+    completed = Object.keys(selectedAnswers).length;
+    const percentage = (completed / questions.length) * 100;
+    document.getElementById('progressFill').style.width = `${percentage}%`;
+  }
 
-        function checkGameEnd() {
-            const attackBtn = document.getElementById('attackBtn');
-            if (monsterHP <= 0) {
-                stopTimer();
-                gameOver = true;
-                showGameStatus(`<i class="fas fa-shield-alt"></i> ¡VICTORIA! Has erradicado al Virus.<br><small>Tiempo: ${time}s | Ataques: ${attempts} | Brechas: ${errors}/${maxErrors}</small>`, 'victory');
-                attackBtn.disabled = true;
-                document.body.style.animation = 'victoryGlow 2s ease-in-out infinite';
-            } else if (errors >= maxErrors) {
-                stopTimer();
-                gameOver = true;
-                showGameStatus(`<i class="fas fa-skull-crossbones"></i> ¡SISTEMA COMPROMETIDO!<br><small>Demasiadas brechas de seguridad.</small>`, 'defeat');
-                attackBtn.disabled = true;
-                document.body.style.animation = 'defeatPulse 1s ease-in-out infinite';
-            }
-        }
+  function updateMonsterAvatar() {
+    const avatar = document.getElementById('monsterAvatar');
+    const healthPercentage = (monsterHP / maxHP) * 100;
+    if (healthPercentage > 70) avatar.textContent = '🛡️';
+    else if (healthPercentage > 40) avatar.textContent = '🔒';
+    else if (healthPercentage > 0) avatar.textContent = '🔓';
+    else avatar.textContent = '🏳️';
+  }
 
-        function showGameStatus(message, type) {
-            const statusDiv = document.getElementById('gameStatus');
-            statusDiv.innerHTML = message;
-            statusDiv.className = `game-status ${type}`;
-            statusDiv.style.display = 'block';
-            if (type === 'continue') {
-                setTimeout(() => { statusDiv.style.display = 'none'; }, 4000);
-            }
-        }
-        
-        function toggleSolutions() {
-            const solutionsSection = document.getElementById('solutionsSection');
-            const toggleBtn = document.getElementById('toggleSolutionsBtn');
-            solutionsVisible = !solutionsVisible;
+  function updateUI() {
+    document.getElementById('healthBar').style.width = `${(monsterHP / maxHP) * 100}%`;
+    document.getElementById('healthText').textContent = `${monsterHP} / ${maxHP} HP`;
+    const dots = document.querySelectorAll('.error-dot');
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('filled', i < errors);
+    });
+    document.getElementById('attemptsValue').textContent = attempts;
+    document.getElementById('errorsValue').textContent = `${errors} / ${maxErrors}`;
+    updateMonsterAvatar();
+  }
 
-            if (solutionsVisible) {
-                solutionsSection.style.display = 'block';
-                toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Ocultar Firmas';
-                solutionsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                solutionsSection.style.display = 'none';
-                toggleBtn.innerHTML = '<i class="fas fa-lightbulb"></i> Ver Firmas';
-            }
-        }
+  function selectOption(qIndex, oIndex) {
+    if(gameOver) return; 
+    for (let i = 0; i < questions[qIndex].options.length; i++) {
+      document.getElementById(`q${qIndex}opt${i}`).classList.remove('selected');
+    }
+    document.getElementById(`q${qIndex}opt${oIndex}`).classList.add('selected');
+    selectedAnswers[qIndex] = oIndex;
+    updateProgress();
+  }
 
-        function resetBattle() {
-            time = 0;
-            attempts = 0;
-            errors = 0;
-            monsterHP = maxHP;
-            gameOver = false;
-            selectedAnswers = {};
-            completed = 0;
-            
-            document.getElementById('timerValue').textContent = '0s';
-            document.getElementById('gameStatus').style.display = 'none';
-            document.getElementById('attackBtn').disabled = false;
-            document.getElementById('progressFill').style.width = '0%';
-            document.body.style.animation = 'none';
-            
-            // Ocultar sección de soluciones y resetear botón
-            solutionsVisible = false;
-            document.getElementById('solutionsSection').style.display = 'none';
-            document.getElementById('toggleSolutionsBtn').innerHTML = '<i class="fas fa-lightbulb"></i> Ver Firmas';
+  function attack() {
+    if (gameOver) return;
+    if (completed < questions.length) {
+      return showGameStatus("⚠️ ¡Responde todas las preguntas antes de atacar!", "continue");
+    }
+    attempts++;
+    let correct = 0;
 
-            // Limpiar estilos de las opciones
-            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
-            
-            updateUI();
-            stopTimer();
-            startTimer();
-        }
+    questions.forEach((q, i) => {
+      const userAns = selectedAnswers[i];
+      const correctAns = q.correct;
 
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        function toggleFloatingButtons() {
-            const scrollPosition = window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            
-            scrollToTopBtn.classList.toggle('visible', scrollPosition > 300);
-            document.querySelector('.floating-home-btn').classList.toggle('hidden', scrollPosition + windowHeight >= documentHeight - 100);
-        }
+      for (let j = 0; j < q.options.length; j++) {
+        const optEl = document.getElementById(`q${i}opt${j}`);
+        optEl.classList.remove('selected', 'correct', 'incorrect');
+        if (j === correctAns) optEl.classList.add('correct');
+        else if (j === userAns) optEl.classList.add('incorrect');
+      }
+      if (userAns === correctAns) correct++;
+    });
 
-        scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        window.addEventListener('scroll', () => {
-            updateReadingProgress();
-            toggleFloatingButtons();
-        });
-        window.addEventListener('resize', updateContainerSpacing);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && sidebarOpen) toggleSidebar();
-            if ((e.key === 'm' || e.key === 'M') && !e.ctrlKey && !e.altKey) toggleSidebar();
-            if (e.key === 'Enter' && !gameOver) attack();
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            initGame();
-            updateContainerSpacing();
-        });
-    </script>
+    monsterHP = Math.max(0, monsterHP - correct);
+    errors = Math.min(maxErrors, questions.length - correct);
+    updateUI();
+    checkGameEnd();
+  }
+
+  function checkGameEnd() {
+    const btn = document.getElementById('attackBtn');
+    if (monsterHP <= 0) {
+      gameOver = true;
+      clearInterval(timerInterval);
+      showGameStatus(`<i class='fas fa-trophy'></i> ¡VICTORIA! Tiempo: ${time}s`, 'victory');
+      btn.disabled = true;
+      document.body.style.animation = 'victoryGlow 2s infinite';
+    } else if (errors >= maxErrors) {
+      gameOver = true;
+      clearInterval(timerInterval);
+      showGameStatus(`<i class='fas fa-skull'></i> ¡DERROTA! Demasiados errores`, 'defeat');
+      btn.disabled = true;
+      document.body.style.animation = 'defeatPulse 1s infinite';
+    }
+  }
+
+  function resetBattleState() {
+    time = attempts = errors = completed = 0;
+    monsterHP = maxHP;
+    gameOver = false;
+    selectedAnswers = {};
+    document.getElementById('timerValue').textContent = '0s';
+    document.getElementById('attemptsValue').textContent = '0';
+    document.getElementById('errorsValue').textContent = '0 / 3';
+    document.getElementById('gameStatus').style.display = 'none';
+    const attackBtn = document.getElementById('attackBtn');
+    if(attackBtn) attackBtn.disabled = false;
+    document.getElementById('progressFill').style.width = '0%';
+    document.body.style.animation = 'none';
+    updateUI();
+    clearInterval(timerInterval);
+    startTimer();
+  }
+
+  function resetBattle() {
+    resetBattleState();
+    questions.forEach((q, i) => {
+      q.options.forEach((_, j) => {
+        const el = document.getElementById(`q${i}opt${j}`);
+        if (el) el.classList.remove('selected', 'correct', 'incorrect');
+      });
+    });
+  }
+
+  function showGameStatus(msg, type) {
+    const div = document.getElementById('gameStatus');
+    div.innerHTML = msg;
+    div.className = `game-status ${type}`;
+    div.style.display = 'block';
+    if (type === 'continue') setTimeout(() => div.style.display = 'none', 4000);
+  }
+
+  function showSolutions() {
+    const answers = questions.map((q, i) => `${i + 1}. ${q.options[q.correct]}`).join('\n');
+    alert(`💡 Respuestas Correctas:\n\n${answers}`);
+  }
+
+  // UI lateral y scroll
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebarNav = document.getElementById('sidebarNav');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+  
+  menuToggle.addEventListener('click', () => {
+      sidebarNav.classList.add('active');
+      sidebarOverlay.classList.add('active');
+      menuToggle.classList.add('active');
+      menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+      document.body.style.overflow = 'hidden';
+  });
+
+  sidebarOverlay.addEventListener('click', () => {
+      sidebarNav.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+      menuToggle.classList.remove('active');
+      menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.style.overflow = 'auto';
+  });
+
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+  window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) scrollToTopBtn.classList.add('visible');
+      else scrollToTopBtn.classList.remove('visible');
+      
+      const scroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const percent = Math.min((scroll / height) * 100, 100);
+      document.getElementById('readingProgressBar').style.width = `${percent}%`;
+  });
+  
+  scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.addEventListener('DOMContentLoaded', initGame);
+</script>
+
 </body>
 </html>
