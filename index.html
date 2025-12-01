@@ -55,15 +55,35 @@
             flex-wrap: wrap;
         }
 
+        /* Estilos base para las imágenes del hero */
         .hero-content img {
-            height: 6rem;
             margin: 1rem;
+            transition: all 0.3s ease; /* Añade una transición suave si cambian de tamaño */
+        }
+
+        /* Logo IPN (Primera imagen) - MÁS GRANDE */
+        .hero-content img:first-of-type {
+            height: 8rem; /* Aumentado de 6rem a 8rem en móvil */
+        }
+
+        /* Logo ESCOM (Última imagen) - MÁS PEQUEÑO */
+        .hero-content img:last-of-type {
+            height: 5rem; /* Reducido de 6rem a 5rem en móvil para notar la diferencia */
         }
         
         @media (min-width: 768px) {
             .hero-content img {
-                height: 8rem;
                 margin: 0 2rem;
+            }
+
+            /* Logo IPN en escritorio */
+            .hero-content img:first-of-type {
+                height: 12rem; /* Aumentado considerablemente (antes 8rem) */
+            }
+
+            /* Logo ESCOM en escritorio */
+            .hero-content img:last-of-type {
+                height: 7rem; /* Ligeramente menor (antes 8rem) */
             }
         }
 
