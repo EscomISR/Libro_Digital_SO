@@ -1,0 +1,82 @@
+[
+    {
+        "concepto": "Planificación",
+        "definicion": "Componente del SO encargado de asignar el procesador a los procesos o hilos."
+    },
+    {
+        "concepto": "Planificador (Scheduler)",
+        "definicion": "Decide qué proceso se ejecuta, durante cuánto tiempo y en qué orden."
+    },
+    {
+        "concepto": "Planificación a largo plazo",
+        "definicion": "Selecciona procesos del almacenamiento secundario y controla el grado de multiprogramación."
+    },
+    {
+        "concepto": "Planificación a medio plazo",
+        "definicion": "Gestiona la suspensión y reanudación de procesos (swapping) para optimizar memoria."
+    },
+    {
+        "concepto": "Planificación a corto plazo",
+        "definicion": "Decide qué proceso listo en memoria se ejecutará a continuación en el CPU."
+    },
+    {
+        "concepto": "Rendimiento (Throughput)",
+        "definicion": "Cantidad de procesos que el sistema completa en un periodo de tiempo determinado."
+    },
+    {
+        "concepto": "Tiempo de espera",
+        "definicion": "Periodo que un proceso permanece en la cola de listos antes de obtener el CPU."
+    },
+    {
+        "concepto": "Tiempo de respuesta",
+        "definicion": "Intervalo desde que se hace una solicitud hasta que se recibe la primera respuesta."
+    },
+    {
+        "concepto": "Algoritmo FCFS",
+        "definicion": "Asigna el CPU a los procesos simplemente según su orden de llegada."
+    },
+    {
+        "concepto": "Algoritmo SJF",
+        "definicion": "Selecciona para ejecución el proceso con el menor tiempo estimado restante."
+    },
+    {
+        "concepto": "Algoritmo Round Robin (RR)",
+        "definicion": "Asigna un tiempo fijo cíclico a cada proceso; ideal para sistemas de tiempo compartido."
+    },
+    {
+        "concepto": "Quantum",
+        "definicion": "Intervalo de tiempo fijo asignado a cada proceso en el algoritmo Round Robin."
+    },
+    {
+        "concepto": "Planificación por Prioridades",
+        "definicion": "Asigna el CPU basándose en un nivel de preferencia, estático o dinámico."
+    },
+    {
+        "concepto": "Inanición",
+        "definicion": "Riesgo en sistemas de prioridades donde procesos de baja importancia nunca se ejecutan."
+    },
+    {
+        "concepto": "Planificación de hilos (Usuario)",
+        "definicion": "Gestionada por bibliotecas en espacio de usuario; el kernel no ve los hilos individuales."
+    },
+    {
+        "concepto": "Planificación de hilos (Kernel)",
+        "definicion": "El sistema operativo gestiona directamente los hilos, permitiendo mejor uso en multiprocesador."
+    },
+    {
+        "concepto": "Modelo híbrido",
+        "definicion": "Combina planificación de usuario y kernel para equilibrar flexibilidad y rendimiento."
+    },
+    {
+        "concepto": "Equidad",
+        "definicion": "Criterio de planificación que busca que ningún proceso sea postergado indefinidamente."
+    },
+    {
+        "concepto": "Sistemas interactivos",
+        "definicion": "Entornos donde el tiempo de respuesta es el criterio de desempeño más crítico."
+    },
+    {
+        "concepto": "Utilización del procesador",
+        "definicion": "Medida de qué tan ocupado se mantiene el CPU ejecutando procesos."
+    }
+]

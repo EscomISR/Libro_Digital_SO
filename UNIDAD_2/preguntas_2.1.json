@@ -1,0 +1,82 @@
+[
+    {
+        "concepto": "Modelo de procesos",
+        "definicion": "Abstracción que describe cómo el SO organiza y gestiona los programas en ejecución."
+    },
+    {
+        "concepto": "Proceso",
+        "definicion": "Un programa en ejecución que incluye contador, registros y variables."
+    },
+    {
+        "concepto": "Sección de Texto",
+        "definicion": "Parte del proceso que contiene el código o instrucciones del programa."
+    },
+    {
+        "concepto": "Stack (Pila)",
+        "definicion": "Almacena las variables locales y las llamadas a funciones durante la ejecución."
+    },
+    {
+        "concepto": "Heap",
+        "definicion": "Área de memoria dinámica donde se crean objetos durante la ejecución."
+    },
+    {
+        "concepto": "BCP (PCB)",
+        "definicion": "Estructura de datos que registra el estado, registros y recursos de un proceso."
+    },
+    {
+        "concepto": "PID",
+        "definicion": "Identificador numérico único asignado a cada proceso por el sistema."
+    },
+    {
+        "concepto": "Jerarquía de procesos",
+        "definicion": "Organización donde procesos padres crean y gestionan procesos hijos."
+    },
+    {
+        "concepto": "Estado Nuevo",
+        "definicion": "Etapa donde el proceso se está creando y el SO asigna recursos iniciales."
+    },
+    {
+        "concepto": "Estado Listo",
+        "definicion": "El proceso está en memoria esperando a que el planificador le asigne la CPU."
+    },
+    {
+        "concepto": "Estado En Ejecución",
+        "definicion": "El proceso está utilizando activamente la CPU para realizar instrucciones."
+    },
+    {
+        "concepto": "Estado Bloqueado",
+        "definicion": "El proceso se detiene esperando un evento externo, como una operación de E/S."
+    },
+    {
+        "concepto": "Estado Terminado",
+        "definicion": "El proceso finalizó su tarea y el sistema libera sus recursos y BCP."
+    },
+    {
+        "concepto": "Conmutación de contexto",
+        "definicion": "Mecanismo para guardar el estado de un proceso y restaurar el de otro en la CPU."
+    },
+    {
+        "concepto": "Planificador (Scheduler)",
+        "definicion": "Componente del kernel que decide qué proceso de la cola de listos pasa a ejecución."
+    },
+    {
+        "concepto": "Fork()",
+        "definicion": "Llamada al sistema en Unix/Linux utilizada para crear un nuevo proceso."
+    },
+    {
+        "concepto": "Contador de programa",
+        "definicion": "Registro que indica la dirección de la siguiente instrucción a ejecutar."
+    },
+    {
+        "concepto": "Sección de Datos",
+        "definicion": "Parte de la estructura de un proceso que almacena las variables globales."
+    },
+    {
+        "concepto": "IPC",
+        "definicion": "Mecanismos de comunicación (tuberías, mensajes) que permiten cooperar a los procesos."
+    },
+    {
+        "concepto": "Sincronización",
+        "definicion": "Uso de semáforos o mutexes para evitar conflictos en recursos compartidos."
+    }
+]
