@@ -3,50 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad 3.2: Batalla de la Memoria </title>
-    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
+    <title>Actividad 3.2: Batalla de Memoria Virtual</title>
+    <link rel="icon" type="image/png" href="logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #95a5a6;
             --success: #2ecc71;
+            --accent: #e74c3c;
             --warning: #f39c12;
-            --monster-color: #8e44ad;
+            --light: #ecf0f1;
+            --dark: #1a2a3a;
+            --gray: #95a5a6;
+            --monster-color: #9b59b6; /* Un tono morado/espectral para Memoria Virtual */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
+            background: linear-gradient(135deg, #0a0f3d, #1a2a3a, #2c3e50);
             color: var(--light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
             min-height: 100vh;
-            line-height: 1.7;
+            position: relative;
         }
 
         body::before {
             content: "";
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(231, 76, 60, 0.05) 0%, transparent 50%);
             z-index: -1;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(142, 68, 173, .1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(231, 76, 60, .1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(52, 152, 219, .05) 0%, transparent 50%);
-            animation: backgroundShift 10s ease-in-out infinite;
+            animation: backgroundShift 12s ease-in-out infinite;
         }
 
         @keyframes backgroundShift {
-            0%, 100% { opacity: .7; }
+            0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
         }
 
@@ -57,10 +61,10 @@
 
         @keyframes defeatPulse {
             0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(.95) contrast(1.05); }
+            50% { filter: brightness(0.95) contrast(1.05); }
         }
 
-        /* Estilos de botones y contenedores */
+        /* Botón flotante de inicio */
         .floating-home-btn {
             position: fixed;
             top: 20px;
@@ -84,11 +88,6 @@
             background: #2980b9;
             transform: translateY(-3px);
             box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
-        }
-
-        .floating-home-btn.hidden {
-            opacity: 0;
-            visibility: hidden;
         }
 
         /* Menú de navegación lateral */
@@ -161,18 +160,13 @@
             padding-left: 25px;
         }
 
-        .nav-item.active {
-            background: rgba(52, 152, 219, 0.2);
-            border-left-color: var(--secondary);
-            color: var(--secondary);
-        }
-
         .nav-item i {
             margin-right: 10px;
             width: 20px;
             text-align: center;
         }
 
+        /* Botón toggle del menú */
         .menu-toggle {
             position: fixed;
             top: 20px;
@@ -202,7 +196,7 @@
             background: var(--accent);
         }
 
-        /* Barra de progreso de lectura */
+        /* Indicador de progreso de lectura */
         .reading-progress {
             position: fixed;
             top: 0;
@@ -291,16 +285,16 @@
         }
 
         .instructions {
-            background: rgba(52, 152, 219, 0.15);
-            border: 1px solid rgba(52, 152, 219, 0.3);
+            background: rgba(155, 89, 182, 0.15); /* Morado para el tema de memoria virtual */
+            border: 1px solid rgba(155, 89, 182, 0.3);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 30px;
-            border-left: 4px solid var(--secondary);
+            border-left: 4px solid var(--monster-color);
         }
 
         .instructions h3 {
-            color: var(--secondary);
+            color: var(--monster-color);
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
@@ -321,7 +315,7 @@
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(142, 68, 173, 0.2);
+            border: 1px solid rgba(155, 89, 182, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -334,7 +328,7 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 50% 50%, rgba(142, 68, 173, 0.05) 0%, transparent 70%);
+                radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.05) 0%, transparent 70%);
             z-index: -1;
             animation: arenaGlow 4s ease-in-out infinite;
         }
@@ -348,9 +342,9 @@
             text-align: center;
             margin-bottom: 30px;
             padding: 25px;
-            background: rgba(142, 68, 173, 0.15);
+            background: rgba(155, 89, 182, 0.15);
             border-radius: 15px;
-            border: 2px solid rgba(142, 68, 173, 0.4);
+            border: 2px solid rgba(155, 89, 182, 0.4);
             position: relative;
             overflow: hidden;
         }
@@ -362,7 +356,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(142, 68, 173, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(155, 89, 182, 0.1) 0%, transparent 70%);
             animation: monsterAura 3s linear infinite;
             z-index: -1;
         }
@@ -397,12 +391,12 @@
             border-radius: 10px;
             margin: 0 auto 15px;
             overflow: hidden;
-            border: 2px solid rgba(142, 68, 173, 0.5);
+            border: 2px solid rgba(155, 89, 182, 0.5);
         }
 
         .health-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--warning));
+            background: linear-gradient(90deg, var(--accent), var(--monster-color));
             transition: width 0.5s ease;
             border-radius: 8px;
         }
@@ -460,6 +454,7 @@
             box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
         }
 
+        /* Questions */
         .questions-section {
             margin-top: 30px;
         }
@@ -473,83 +468,106 @@
             padding-bottom: 10px;
         }
 
-        .question-item {
+        .question {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
             border-left: 4px solid var(--warning);
             transition: all 0.3s ease;
         }
 
-        .question-item:hover {
+        .question:hover {
             background: rgba(255, 255, 255, 0.12);
             transform: translateX(5px);
         }
 
         .question-number {
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--warning);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 15px;
         }
 
         .question-text {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             line-height: 1.5;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
         }
 
-        .question-select {
-            margin-left: 15px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            background: #ffffff;
-            color: #2c3e50;
-            border: 2px solid var(--secondary);
-            font-size: 0.9rem;
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
-            min-width: 140px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
         }
 
-        .question-select:focus {
-            outline: none;
-            border-color: var(--warning);
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        .option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--secondary);
+            transform: translateX(3px);
         }
 
-        .question-select.correct {
+        .option.selected {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .option.correct {
+            background: rgba(46, 204, 113, 0.2);
             border-color: var(--success);
-            background: rgba(46, 204, 113, 0.1);
-            color: var(--success);
             box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
             animation: correctPulse 0.6s ease;
         }
 
-        .question-select.incorrect {
+        .option.incorrect {
+            background: rgba(231, 76, 60, 0.2);
             border-color: var(--accent);
-            background: rgba(231, 76, 60, 0.1);
-            color: var(--accent);
             box-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
             animation: incorrectShake 0.6s ease;
         }
 
         @keyframes correctPulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
             100% { transform: scale(1); }
         }
 
         @keyframes incorrectShake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        .option-letter {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            min-width: 25px;
+        }
+
+        .option.correct .option-letter {
+            color: var(--success);
+        }
+
+        .option.incorrect .option-letter {
+            color: var(--accent);
+        }
+
+        .option-text {
+            flex: 1;
+            font-size: 1rem;
         }
 
         /* Controls */
@@ -651,6 +669,7 @@
             color: var(--warning);
         }
 
+        /* Navigation */
         .navigation {
             display: flex;
             justify-content: space-between;
@@ -665,34 +684,21 @@
             flex: 1;
         }
 
-        /* Solutions section */
-        .solutions-section {
-            background: rgba(46, 204, 113, 0.1);
-            border-radius: 10px;
-            padding: 20px;
+        /* Progress bar for questions */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
             margin: 20px 0;
-            border-left: 4px solid var(--success);
-            display: none;
+            overflow: hidden;
         }
 
-        .solutions-section h4 {
-            color: var(--success);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .solution-item {
-            margin-bottom: 12px;
-            padding: 10px;
-            background: rgba(46, 204, 113, 0.05);
-            border-radius: 5px;
-            border-left: 3px solid var(--success);
-        }
-
-        .solution-number {
-            font-weight: bold;
-            color: var(--success);
-            margin-right: 8px;
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--success));
+            transition: width 0.3s ease;
+            width: 0%;
         }
 
         /* Botón de ir arriba */
@@ -726,80 +732,108 @@
             background: #c0392b;
             transform: translateY(-3px);
         }
-        
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 30px;
-            color: var(--gray);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
+
+        @media (max-width: 768px) {
+            .sidebar-nav {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .battle-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .player-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-center {
+                order: 2;
+            }
+
+            .navigation .btn {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .question {
+                padding: 20px;
+            }
+
+            .floating-home-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .container {
+                margin-left: 20px;
+                margin-right: 20px;
+                padding: 10px;
+            }
+
+            .health-bar-container {
+                width: 250px;
+            }
+
+            .monster-avatar {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Indicador de progreso de lectura -->
     <div class="reading-progress">
         <div class="reading-progress-bar" id="readingProgressBar"></div>
     </div>
 
-    <!-- Botón toggle del menú -->
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Botón flotante de inicio -->
-    <a href="index.html" class="floating-home-btn" title="Ir al inicio">
+    <a href="index.html" class="floating-home-btn" title="Ir al inicio de Unidades">
         <i class="fas fa-home"></i>
     </a>
 
-    <!-- Overlay para cerrar el menú -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Menú de navegación lateral -->
     <nav class="sidebar-nav" id="sidebarNav">
         <div class="sidebar-header">
-            <div class="sidebar-title">Actividad 3.2</div>
-            <div class="sidebar-subtitle">Batalla de la Memoria</div>
+            <div class="sidebar-title">Batalla Memoria</div>
+            <div class="sidebar-subtitle">Memoria Virtual</div>
         </div>
         
         <div class="nav-sections">
             <div class="nav-section">
                 <div class="nav-section-title">Navegación</div>
-                <a href="#inicio" class="nav-item">
-                    <i class="fas fa-home"></i>
-                    Inicio de la actividad
-                </a>
                 <a href="index.html" class="nav-item">
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="fas fa-home"></i>
                     Menú principal
                 </a>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-section-title">Contenido</div>
                 <a href="3.2.html" class="nav-item">
-                    <i class="fas fa-book"></i>
-                    Volver al material (3.2)
-                </a>
-                <a href="#battle-arena" class="nav-item">
-                    <i class="fas fa-gamepad"></i>
-                    Jugar batalla
+                    <i class="fas fa-book-open"></i>
+                    Volver al material
                 </a>
             </div>
 
             <div class="nav-section">
                 <div class="nav-section-title">Otras Actividades</div>
-                <a href="actividad_3_1.html" class="nav-item">
+                <a href="Actividad_3_1.html" class="nav-item">
                     <i class="fas fa-tasks"></i>
                     Actividad 3.1
                 </a>
-                <a href="actividad_3_2.html" class="nav-item">
-                    <i class="fas fa-tasks"></i>
-                    Actividad 3.2
-                </a>
-                <a href="actividad_3_3.html" class="nav-item">
+                <a href="Actividad_3_3.html" class="nav-item">
                     <i class="fas fa-tasks"></i>
                     Actividad 3.3
                 </a>
@@ -807,48 +841,40 @@
         </div>
     </nav>
 
-    <!-- Botón de ir arriba -->
     <button class="scroll-to-top" id="scrollToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
 
     <div class="container">
-        <header id="inicio">
+        <div class="header">
             <div class="breadcrumb">
                 <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
                 <span>/</span>
-                <a href="index.html">Unidad 3</a>
-                <span>/</span>
                 <a href="3.2.html">3.2 Memoria Virtual</a>
                 <span>/</span>
-                <span>Actividad 3.2</span>
+                <span>Batalla de Memoria Virtual</span>
             </div>
-            <h1>Actividad 3.2: Batalla de la Memoria</h1>
-            <div class="subtitle">¡Derrota al Monstruo de la Fragmentación con tus conocimientos de memoria virtual y paginación!</div>
-        </header>
-        
+            <h1>⚡ Batalla de Memoria Virtual</h1>
+            <div class="subtitle">¡Gestiona las páginas y derrota al Espectro de Paginación!</div>
+        </div>
+
         <div class="instructions">
-            <h3><i class="fas fa-gamepad"></i> Instrucciones del Juego</h3>
+            <h3><i class="fas fa-gamepad"></i> Instrucciones de Batalla</h3>
             <ul>
-                <li><strong>Objetivo:</strong> Derrota al Monstruo completando correctamente las oraciones sobre <em>memoria virtual, paginación, tablas de página y reemplazo de páginas</em>.</li>
-                <li><strong>Mecánica:</strong> Cada respuesta correcta reduce 1 HP del monstruo. Cada respuesta incorrecta suma un error.</li>
-                <li><strong>Victoria:</strong> Lleva la vida del monstruo a 0 HP antes de cometer 5 errores.</li>
-                <li><strong>Derrota:</strong> Al llegar a 5 errores antes de vencer al monstruo.</li>
-                <li><strong>Estrategia:</strong> Lee el material de la Unidad 3 (3.2–3.2.3) y selecciona la palabra que complete mejor cada oración.</li>
+                <li><strong>Misión:</strong> Derrota al Espectro de Paginación respondiendo correctamente sobre paginación, tablas de páginas y algoritmos de reemplazo.</li>
+                <li><strong>Mecánica:</strong> Cada respuesta correcta inflige 1 punto de daño. Cada respuesta incorrecta cuenta como un error.</li>
+                <li><strong>Victoria:</strong> Reduce la vida del espectro a 0 HP respondiendo las 8 preguntas correctamente.</li>
+                <li><strong>Derrota:</strong> Cometes más de 3 errores antes de derrotar al espectro.</li>
+                <li><strong>Estrategia:</strong> ¡Analiza si conviene FIFO, LRU o el Óptimo antes de responder!</li>
             </ul>
         </div>
-        
-        <!-- Barra de progreso de la actividad -->
-        <div class="activity-progress">
-            <div class="activity-progress-bar" id="activityProgressBar" style="width: 0%"></div>
-        </div>
-        
-        <div class="battle-arena" id="battle-arena">
+
+        <div class="battle-arena">
             <div class="monster-section">
-                <div class="monster-avatar" id="monsterAvatar">👾</div>
-                <div class="monster-name">Monstruo de la Fragmentación</div>
+                <div class="monster-avatar" id="monsterAvatar">👻</div>
+                <div class="monster-name">Espectro de Paginación</div>
                 <div class="health-bar-container">
-                    <div class="health-bar" id="healthBar" style="width:100%"></div>
+                    <div class="health-bar" id="healthBar" style="width: 100%;"></div>
                 </div>
                 <div class="health-text" id="healthText">8 / 8 HP</div>
             </div>
@@ -863,34 +889,40 @@
                     <div class="stat-label"><i class="fas fa-sword"></i> Ataques</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" id="errorsValue">0 / 5</div>
+                    <div class="stat-value" id="errorsValue">0 / 3</div>
                     <div class="stat-label"><i class="fas fa-skull"></i> Errores</div>
                     <div class="error-indicators" id="errorIndicators">
-                        <div class="error-dot"></div><div class="error-dot"></div>
-                        <div class="error-dot"></div><div class="error-dot"></div><div class="error-dot"></div>
+                        <div class="error-dot"></div>
+                        <div class="error-dot"></div>
+                        <div class="error-dot"></div>
                     </div>
                 </div>
             </div>
 
             <div class="questions-section">
-                <h3><i class="fas fa-scroll"></i> Completa las Oraciones</h3>
+                <h3><i class="fas fa-scroll"></i> Desafíos de Memoria Virtual</h3>
                 <div id="questionsContainer"></div>
             </div>
 
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
             <div class="battle-controls">
-                <button class="btn btn-attack" onclick="attack()" id="attackBtn"><i class="fas fa-sword"></i> ¡ATACAR!</button>
-                <button class="btn btn-secondary" onclick="resetBattle()"><i class="fas fa-redo"></i> Nueva Batalla</button>
-                <button class="btn btn-secondary" id="solutionsBtn"><i class="fas fa-lightbulb"></i> Ver Pistas</button>
+                <button class="btn btn-attack" onclick="attack()" id="attackBtn">
+                    <i class="fas fa-bolt"></i> ¡ATACAR!
+                </button>
+                <button class="btn btn-secondary" onclick="resetBattle()">
+                    <i class="fas fa-redo"></i> Nueva Batalla
+                </button>
+                <button class="btn btn-secondary" onclick="showSolutions()">
+                    <i class="fas fa-lightbulb"></i> Ver Respuestas
+                </button>
             </div>
 
             <div class="game-status" id="gameStatus"></div>
-
-            <div class="solutions-section" id="solutions" style="display:none">
-                <h4><i class="fas fa-unlock"></i> Pistas de las Respuestas Correctas</h4>
-                <div id="solutionsList"></div>
-            </div>
         </div>
-        
+
         <div class="navigation">
             <a href="3.2.html" class="btn btn-success">
                 <i class="fas fa-arrow-left"></i> Volver al Material
@@ -904,387 +936,314 @@
                 Siguiente Tema <i class="fas fa-arrow-right"></i>
             </a>
         </div>
-        
-        <footer>
-            <p>Sistemas Operativos - Unidad 3: Gestión de Memoria</p>
-            <p>Desarrollado para fines educativos - © 2025</p>
-        </footer>
     </div>
 
     <script>
-        // --- Variables del juego ---
-        let time = 0, attempts = 0, errors = 0;
-        let monsterHP = 8, maxHP = 8, maxErrors = 5;
-        let gameOver = false, timerInterval, sidebarOpen = false;
-        let usedOptions = new Set();
+      // ========================
+      // VARIABLES DEL JUEGO
+      // ========================
+      let time = 0;
+      let attempts = 0;
+      let errors = 0;
+      let monsterHP = 8;
+      let maxHP = 8;
+      let maxErrors = 3;
+      let gameOver = false;
+      let timerInterval;
+      let sidebarOpen = false;
+      let selectedAnswers = {};
+      let completed = 0;
+      let questions = []; 
 
-        // Datos
-        let questions = [];     // se cargan del JSON
-        let wordBank = [];      // solo respuestas de las 8 preguntas elegidas
+      // ========================
+      // FUNCIÓN PARA INICIAR EL JUEGO
+      // ========================
+      async function initGame() {
+        const container = document.getElementById('questionsContainer');
 
-        // Carga preguntas (asegúrate del nombre correcto del archivo)
-        fetch("preguntas_3.2.json")
-            .then(r => r.json())
-            .then(data => {
-                // Tomar 8 preguntas aleatorias
-                questions = shuffle(data).slice(0, 8);
-                // Banco de palabras SOLO con las respuestas de esas 8
-                wordBank = shuffle([...new Set(questions.map(q => q.answer))]);
-                initGame();
-            })
-            .catch(error => {
-                console.error("Error cargando preguntas:", error);
-                // Preguntas de respaldo en caso de error
-                questions = [
-                    { text: "La ________ permite ejecutar programas más grandes que la memoria física disponible.", answer: "memoria virtual" },
-                    { text: "El proceso de dividir la memoria en porciones de tamaño fijo se llama ________.", answer: "paginación" },
-                    { text: "La ________ es la estructura de datos que mapea direcciones virtuales a físicas.", answer: "tabla de páginas" },
-                    { text: "Cuando se referencia una página que no está en memoria, ocurre un ________.", answer: "fallo de página" },
-                    { text: "El algoritmo ________ reemplza la página que no se ha usado por más tiempo.", answer: "LRU" },
-                    { text: "El ________ es el tiempo dedicado a intercambiar páginas entre memoria y disco.", answer: "sobrecarga" },
-                    { text: "La ________ ocurre cuando el sistema pasa más tiempo intercambiando páginas que ejecutando procesos.", answer: "paginación excesiva" },
-                    { text: "El ________ permite acceder directamente a las tablas de páginas sin consultar memoria.", answer: "TLB" }
-                ];
-                wordBank = shuffle([...new Set(questions.map(q => q.answer))]);
-                initGame();
+        try {
+            // Cargar preguntas desde archivo JSON de 3.2
+            const response = await fetch('preguntas_3.2.json'); 
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+            }
+            const allQuestions = await response.json();
+
+            // Mezclar y seleccionar 8 preguntas aleatorias
+            shuffleArray(allQuestions);
+            questions = allQuestions.slice(0, 8).map(q => {
+                const optionsShuffled = shuffleArray([...q.options]);
+                return {
+                    question: q.question,
+                    options: optionsShuffled,
+                    correct: optionsShuffled.indexOf(q.answer)
+                };
             });
 
-        function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
-
-        // Toggle sidebar
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebarNav = document.getElementById('sidebarNav');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-        function toggleSidebar() {
-            sidebarOpen = !sidebarOpen;
-            
-            if (sidebarOpen) {
-                sidebarNav.classList.add('active');
-                sidebarOverlay.classList.add('active');
-                menuToggle.classList.add('active');
-                menuToggle.innerHTML = '<i class="fas fa-times"></i>';
-                document.body.style.overflow = 'hidden';
-            } else {
-                sidebarNav.classList.remove('active');
-                sidebarOverlay.classList.remove('active');
-                menuToggle.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                document.body.style.overflow = 'auto';
-            }
-            
-            updateContainerSpacing();
-        }
-
-        menuToggle.addEventListener('click', toggleSidebar);
-        sidebarOverlay.addEventListener('click', toggleSidebar);
-
-        function updateContainerSpacing() {
-            const container = document.querySelector('.container');
-            
-            if (window.innerWidth <= 768) {
-                container.style.marginLeft = '20px';
-                container.style.marginRight = '20px';
-                container.style.padding = '10px';
-            } else if (sidebarOpen && window.innerWidth > 768) {
-                container.style.marginLeft = '370px';
-                container.style.marginRight = '90px';
-                container.style.padding = '20px';
-            } else if (window.innerWidth > 1024) {
-                container.style.marginLeft = '90px';
-                container.style.marginRight = '90px';
-                container.style.padding = '20px';
-            } else {
-                container.style.marginLeft = '70px';
-                container.style.marginRight = '70px';
-                container.style.padding = '20px';
-            }
-        }
-
-        function updateReadingProgress() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('readingProgressBar').style.width = scrolled + '%';
-        }
-
-        // Actualizar barra de progreso de la actividad
-        function updateActivityProgress() {
-            const answered = document.querySelectorAll('.question-select').length - 
-                            document.querySelectorAll('.question-select[value=""]').length;
-            const total = document.querySelectorAll('.question-select').length;
-            const progress = (answered / total) * 100;
-            
-            document.getElementById('activityProgressBar').style.width = `${progress}%`;
-            document.getElementById('progressText').textContent = `Progreso: ${Math.round(progress)}%`;
-        }
-
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        const floatingHomeBtn = document.querySelector('.floating-home-btn');
-
-        function toggleFloatingButtons() {
-            const pos = window.pageYOffset;
-            const winH = window.innerHeight;
-            const docH = document.documentElement.scrollHeight;
-            
-            if (pos > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-            
-            const nearBottom = pos + winH >= docH - 100;
-            if (nearBottom) {
-                floatingHomeBtn.classList.add('hidden');
-            } else {
-                floatingHomeBtn.classList.remove('hidden');
-            }
-        }
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // ---- Juego ----
-        function initGame() {
-            const container = document.getElementById('questionsContainer');
+            // Limpiar el contenedor y renderizar preguntas
             container.innerHTML = '';
-            document.getElementById('solutionsList').innerHTML = '';
-
-            questions.forEach((q, i) => {
-                const div = document.createElement('div');
-                div.className = 'question-item';
-                const parts = q.text.split('_____');
-                div.innerHTML = `
-                    <div class="question-number">Pregunta ${i + 1}</div>
-                    <div class="question-text">
-                        ${parts[0]}
-                        <select class="question-select" id="q${i + 1}" onchange="handleSelectionChange(${i + 1})">
-                            <option value="">-- Selecciona --</option>
-                        </select>
-                        ${parts[1] || ""}
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <div class="question-number">Desafío ${index + 1}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((option, optIndex) => `
+                            <div class="option" onclick="selectOption(${index}, ${optIndex})" id="q${index}opt${optIndex}">
+                                <div class="option-letter">${String.fromCharCode(97 + optIndex)})</div>
+                                <div class="option-text">${option}</div>
+                            </div>
+                        `).join('')}
                     </div>
                 `;
-                container.appendChild(div);
+                container.appendChild(questionDiv);
             });
 
-            loadSolutions();
-            updateSelectOptions();
             startTimer();
-            updateUI();
-            updateActivityProgress();
+        } catch (error) {
+            console.error('Error al cargar las preguntas:', error);
+            container.innerHTML = '<p style="text-align:center; color: var(--accent);">Error al cargar las preguntas. Por favor verifica que el archivo preguntas_3.2.json existe.</p>';
         }
+      }
 
-        function handleSelectionChange() { 
-            updateSelectOptions(); 
-            updateActivityProgress();
+      // ========================
+      // FUNCIÓN PARA MEZCLAR ARRAY (Fisher-Yates)
+      // ========================
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
         }
+        return array;
+      }
 
-        function updateSelectOptions() {
-            usedOptions.clear();
-            for (let i = 1; i <= questions.length; i++) {
-                const val = document.getElementById(`q${i}`).value;
-                if (val !== "") usedOptions.add(val);
-            }
-            
-            for (let i = 1; i <= questions.length; i++) {
-                const sel = document.getElementById(`q${i}`);
-                const current = sel.value;
-                sel.innerHTML = '<option value="">-- Selecciona --</option>';
-                
-                wordBank.forEach(word => {
-                    if (!usedOptions.has(word) || word === current) {
-                        const opt = document.createElement('option');
-                        opt.value = word;
-                        opt.textContent = word.charAt(0).toUpperCase() + word.slice(1);
-                        sel.appendChild(opt);
-                    }
-                });
-                
-                sel.value = current;
-            }
-        }
+      // ========================
+      // FUNCIONES DE JUEGO
+      // ========================
 
-        function startTimer() { 
-            clearInterval(timerInterval); 
-            timerInterval = setInterval(() => {
-                time++;
-                document.getElementById('timerValue').textContent = `${time}s`;
-            }, 1000);
+      function startTimer() {
+        clearInterval(timerInterval); // Asegurar que no haya múltiples timers
+        time = 0;
+        document.getElementById('timerValue').textContent = '0s';
+        timerInterval = setInterval(() => {
+          time++;
+          document.getElementById('timerValue').textContent = `${time}s`;
+        }, 1000);
+      }
+
+      function updateProgress() {
+        completed = Object.keys(selectedAnswers).length;
+        const percentage = (completed / questions.length) * 100;
+        document.getElementById('progressFill').style.width = `${percentage}%`;
+      }
+
+      function updateMonsterAvatar() {
+        const avatar = document.getElementById('monsterAvatar');
+        const healthPercentage = (monsterHP / maxHP) * 100;
+        if (healthPercentage > 70) avatar.textContent = '👻';
+        else if (healthPercentage > 40) avatar.textContent = '😨';
+        else if (healthPercentage > 0) avatar.textContent = '😫';
+        else avatar.textContent = '💥';
+      }
+
+      function updateUI() {
+        document.getElementById('healthBar').style.width = `${(monsterHP / maxHP) * 100}%`;
+        document.getElementById('healthText').textContent = `${monsterHP} / ${maxHP} HP`;
+        const dots = document.querySelectorAll('.error-dot');
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('filled', i < errors);
+        });
+        document.getElementById('attemptsValue').textContent = attempts;
+        document.getElementById('errorsValue').textContent = `${errors} / ${maxErrors}`;
+        updateMonsterAvatar();
+      }
+
+      function selectOption(qIndex, oIndex) {
+        if (gameOver) return;
+        // Quitar selección previa en la misma pregunta
+        for (let i = 0; i < questions[qIndex].options.length; i++) {
+          const opt = document.getElementById(`q${qIndex}opt${i}`);
+          if (opt) opt.classList.remove('selected');
         }
+        // Seleccionar nueva
+        const selectedOpt = document.getElementById(`q${qIndex}opt${oIndex}`);
+        if (selectedOpt) selectedOpt.classList.add('selected');
         
-        function stopTimer() { 
-            clearInterval(timerInterval); 
-        }
+        selectedAnswers[qIndex] = oIndex;
+        updateProgress();
+      }
 
-        function updateMonsterAvatar() {
-            const avatar = document.getElementById('monsterAvatar');
-            const percent = (monsterHP / maxHP) * 100;
-            
-            if (percent > 70) avatar.textContent = '👾';
-            else if (percent > 40) avatar.textContent = '🤖';
-            else if (percent > 0) avatar.textContent = '💀';
-            else avatar.textContent = '💥';
-        }
-
-        function updateUI() {
-            const percent = (monsterHP / maxHP) * 100;
-            document.getElementById('healthBar').style.width = `${percent}%`;
-            document.getElementById('healthText').textContent = `${monsterHP} / ${maxHP} HP`;
-            
-            document.querySelectorAll('.error-dot').forEach((dot, i) => {
-                if (i < errors) dot.classList.add('filled');
-                else dot.classList.remove('filled');
-            });
-            
-            document.getElementById('attemptsValue').textContent = attempts;
-            document.getElementById('errorsValue').textContent = `${errors} / ${maxErrors}`;
-            updateMonsterAvatar();
-        }
-
-        function attack() {
-            if (gameOver) return;
-            
-            let unanswered = 0;
-            for (let i = 1; i <= questions.length; i++) {
-                if (document.getElementById(`q${i}`).value === "") unanswered++;
+      function attack() {
+        if (gameOver) return;
+        if (completed < questions.length) return showGameStatus("⚠️ ¡Responde todas las preguntas antes de atacar!", "continue");
+        
+        attempts++;
+        let correctCount = 0;
+        
+        // Evaluar respuestas
+        questions.forEach((q, i) => {
+          const userAns = selectedAnswers[i];
+          const correctAns = q.correct;
+          
+          // Marcar visualmente
+          for (let j = 0; j < q.options.length; j++) {
+            const optEl = document.getElementById(`q${i}opt${j}`);
+            if (optEl) {
+                optEl.classList.remove('selected', 'correct', 'incorrect');
+                if (j === correctAns) optEl.classList.add('correct');
+                else if (j === userAns) optEl.classList.add('incorrect');
             }
-            
-            if (unanswered > 0) {
-                showGameStatus(`<i class="fas fa-exclamation-triangle"></i> ¡Completa todas las preguntas antes de atacar! Faltan ${unanswered}.`, 'continue');
-                return;
-            }
+          }
+          
+          if (userAns === correctAns) correctCount++;
+        });
 
-            attempts++;
-            let correct = 0;
-            let currentErrors = 0;
+        // Calcular daño y errores (cada error cuenta, cada acierto daña)
+        // Lógica: Daño = Aciertos. Errores se acumulan.
+        // Ojo: Si ya se respondió antes, esto podría duplicar daño en un sistema real, 
+        // pero aquí el juego termina o se reinicia.
+        
+        // En este estilo de juego "Batalla única", se evalúa todo al final.
+        // HP del monstruo baja por cada acierto.
+        // Errores suben por cada fallo.
+        
+        let currentErrors = questions.length - correctCount;
+        errors += currentErrors; // Acumular errores si se permitiera reintentar, pero aquí suele ser one-shot.
+        // Para simplificar, reseteamos errores visuales al conteo actual de esta ronda si es one-shot.
+        errors = currentErrors; 
 
-            questions.forEach((q, idx) => {
-                const sel = document.getElementById(`q${idx + 1}`);
-                const val = sel.value.toLowerCase();
-                const ans = q.answer.toLowerCase();
-                
-                sel.classList.remove('correct', 'incorrect');
-                
-                if (val === ans && val !== '') {
-                    correct++;
-                    sel.classList.add('correct');
-                } else if (val !== '') {
-                    currentErrors++;
-                    sel.classList.add('incorrect');
-                }
-            });
+        monsterHP = Math.max(0, maxHP - correctCount);
+        
+        updateUI();
+        checkGameEnd();
+      }
 
-            monsterHP = Math.max(0, monsterHP - correct);
-            errors = Math.min(maxErrors, currentErrors);
-
-            updateUI();
-            checkGameEnd();
+      function checkGameEnd() {
+        const btn = document.getElementById('attackBtn');
+        if (monsterHP <= 0) {
+          gameOver = true;
+          clearInterval(timerInterval);
+          showGameStatus(`<i class='fas fa-trophy'></i> ¡VICTORIA! Tiempo: ${time}s`, 'victory');
+          btn.disabled = true;
+          document.body.style.animation = 'victoryGlow 2s infinite';
+        } else if (errors >= maxErrors) {
+          gameOver = true;
+          clearInterval(timerInterval);
+          showGameStatus(`<i class='fas fa-skull'></i> ¡DERROTA! Demasiados errores (${errors})`, 'defeat');
+          btn.disabled = true;
+          document.body.style.animation = 'defeatPulse 1s infinite';
         }
+      }
 
-        function showGameStatus(msg, type) {
-            const el = document.getElementById('gameStatus');
-            el.innerHTML = msg;
-            el.className = `game-status ${type}`;
-            el.style.display = 'block';
-            
-            if (type === 'continue') {
-                setTimeout(() => {
-                    el.style.display = 'none';
-                }, 4000);
-            }
-        }
+      function resetBattle() {
+        time = 0;
+        attempts = 0;
+        errors = 0;
+        monsterHP = maxHP;
+        gameOver = false;
+        selectedAnswers = {};
+        completed = 0;
+        
+        document.getElementById('timerValue').textContent = '0s';
+        document.getElementById('attemptsValue').textContent = '0';
+        document.getElementById('errorsValue').textContent = '0 / 3';
+        document.getElementById('gameStatus').style.display = 'none';
+        document.getElementById('attackBtn').disabled = false;
+        document.getElementById('progressFill').style.width = '0%';
+        document.body.style.animation = 'none';
+        
+        // Reiniciar estilos de opciones
+        questions.forEach((q, i) => {
+          q.options.forEach((_, j) => {
+            const el = document.getElementById(`q${i}opt${j}`);
+            if (el) el.classList.remove('selected', 'correct', 'incorrect');
+          });
+        });
+        
+        updateUI();
+        clearInterval(timerInterval);
+        startTimer();
+      }
 
-        function checkGameEnd() {
-            const btn = document.getElementById('attackBtn');
-            
-            if (monsterHP <= 0) {
-                stopTimer();
-                gameOver = true;
-                showGameStatus(`<i class="fas fa-trophy"></i> ¡VICTORIA!<br><small>Tiempo: ${time}s | Ataques: ${attempts} | Errores: ${errors}/${maxErrors}</small>`, 'victory');
-                btn.disabled = true;
-                document.body.style.animation = 'victoryGlow 2s ease-in-out infinite';
-                document.getElementById('monsterAvatar').textContent = '💥';
-            } else if (errors >= maxErrors) {
-                stopTimer();
-                gameOver = true;
-                showGameStatus(`<i class="fas fa-skull-crossbones"></i> ¡DERROTA!<br><small>Cometiste ${maxErrors} errores. ¡Inténtalo de nuevo!</small>`, 'defeat');
-                btn.disabled = true;
-                document.body.style.animation = 'defeatPulse 1s ease-in-out infinite';
-                document.getElementById('monsterAvatar').textContent = '👾';
-            } else {
-                const msg = (attempts === 1)
-                    ? (monsterHP < maxHP 
-                        ? `<i class="fas fa-sword"></i> ¡Buen ataque! HP restantes: ${monsterHP}` 
-                        : `<i class="fas fa-shield-alt"></i> El monstruo bloqueó tu ataque. ¡Corrige tus respuestas!`)
-                    : `<i class="fas fa-crosshairs"></i> ¡Sigue atacando! HP restantes: ${monsterHP}`;
-                
-                showGameStatus(msg, 'continue');
-            }
-        }
+      function showGameStatus(msg, type) {
+        const div = document.getElementById('gameStatus');
+        div.innerHTML = msg;
+        div.className = `game-status ${type}`;
+        div.style.display = 'block';
+        if (type === 'continue') setTimeout(() => div.style.display = 'none', 4000);
+      }
 
-        function loadSolutions() {
-            const list = document.getElementById('solutionsList');
-            questions.forEach((q, i) => {
-                const div = document.createElement('div');
-                div.className = 'solution-item';
-                div.innerHTML = `<span class="solution-number">${i + 1}.</span>
-                    <strong>${q.text.replace('_____', `<span style="color: var(--success)">${q.answer}</span>`)}</strong>`;
-                list.appendChild(div);
-            });
-        }
+      function showSolutions() {
+        // Mostrar respuestas en un alert o modal simple
+        const answersList = questions.map((q, i) => `${i + 1}. ${q.options[q.correct]}`).join('\n');
+        alert(`💡 Respuestas Correctas:\n\n${answersList}`);
+      }
 
-        function toggleSolutions() {
-            const solutions = document.getElementById('solutions');
-            const btn = document.getElementById('solutionsBtn');
-            const hidden = solutions.style.display === 'none' || !solutions.style.display;
-            
-            if (hidden) {
-                solutions.style.display = 'block';
-                btn.innerHTML = '<i class="fas fa-eye-slash"></i> Ocultar Pistas';
-                setTimeout(() => {
-                    solutions.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-            } else {
-                solutions.style.display = 'none';
-                btn.innerHTML = '<i class="fas fa-lightbulb"></i> Ver Pistas';
-            }
+      function updateContainerSpacing() {
+        const container = document.querySelector('.container');
+        if (window.innerWidth <= 768) {
+          container.style.margin = '0 20px';
+        } else {
+          container.style.margin = sidebarOpen ? '0 90px 0 370px' : '0 90px';
         }
+      }
 
-        function resetBattle() {
-            time = 0;
-            attempts = 0;
-            errors = 0;
-            monsterHP = maxHP;
-            gameOver = false;
-            usedOptions.clear();
-            
-            document.getElementById('timerValue').textContent = '0s';
-            document.getElementById('attemptsValue').textContent = '0';
-            document.getElementById('errorsValue').textContent = '0 / 5';
-            document.getElementById('gameStatus').style.display = 'none';
-            document.getElementById('attackBtn').disabled = false;
-            document.getElementById('solutions').style.display = 'none';
-            document.body.style.animation = 'none';
-            
-            const solutionsBtn = document.getElementById('solutionsBtn');
-            if (solutionsBtn) solutionsBtn.innerHTML = '<i class="fas fa-lightbulb"></i> Ver Pistas';
-            
-            questions.forEach((_, i) => {
-                const sel = document.getElementById(`q${i + 1}`);
-                sel.value = '';
-                sel.classList.remove('correct', 'incorrect');
-            });
-            
-            updateSelectOptions();
-            updateUI();
-            updateActivityProgress();
-            stopTimer();
-            startTimer();
+      function updateReadingProgress() {
+        const scroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const percent = Math.min((scroll / height) * 100, 100);
+        document.getElementById('readingProgressBar').style.width = `${percent}%`;
+      }
+
+      // Menú lateral
+      const menuToggle = document.getElementById('menuToggle');
+      const sidebarNav = document.getElementById('sidebarNav');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+      function toggleSidebar() {
+        sidebarOpen = !sidebarOpen;
+        if (sidebarOpen) {
+            sidebarNav.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            menuToggle.classList.add('active');
+            menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+            document.body.style.overflow = 'hidden';
+        } else {
+            sidebarNav.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            document.body.style.overflow = 'auto';
         }
+        updateContainerSpacing();
+      }
+
+      menuToggle.addEventListener('click', toggleSidebar);
+      sidebarOverlay.addEventListener('click', toggleSidebar);
+
+      // Scroll to top
+      const scrollToTopBtn = document.getElementById('scrollToTop');
+      window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 300) {
+              scrollToTopBtn.classList.add('visible');
+          } else {
+              scrollToTopBtn.classList.remove('visible');
+          }
+          updateReadingProgress();
+      });
+
+      scrollToTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('resize', () => {
+          if (window.innerWidth > 768 && sidebarOpen) {
+              toggleSidebar();
+          }
+          updateContainerSpacing();
+      });
+
     </script>
 </body>
-</html
+</html>
