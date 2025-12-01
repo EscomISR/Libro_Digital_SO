@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad 3.2: Batalla de Memoria Virtual</title>
+    <title>Unidad 3 - Tema 3.2: Memoria Virtual</title>
     <link rel="icon" type="image/png" href="logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* =========================================
+           ESTILOS BASADOS EN ACTIVIDAD 3.1
+           ========================================= */
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -16,7 +19,7 @@
             --light: #ecf0f1;
             --dark: #1a2a3a;
             --gray: #95a5a6;
-            --monster-color: #9b59b6; /* Un tono morado/espectral para Memoria Virtual */
+            --monster-color: #8e44ad; /* Color morado para el monstruo de la 3.2 */
         }
 
         * {
@@ -42,7 +45,7 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 20%, rgba(142, 68, 173, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 60%, rgba(231, 76, 60, 0.05) 0%, transparent 50%);
             z-index: -1;
@@ -82,6 +85,8 @@
             transition: all 0.3s ease;
             z-index: 1000;
             font-size: 1.5rem;
+            opacity: 1;
+            visibility: visible;
         }
 
         .floating-home-btn:hover {
@@ -160,13 +165,6 @@
             padding-left: 25px;
         }
 
-        .nav-item i {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-        }
-
-        /* Botón toggle del menú */
         .menu-toggle {
             position: fixed;
             top: 20px;
@@ -192,29 +190,6 @@
             transform: translateY(-2px);
         }
 
-        .menu-toggle.active {
-            background: var(--accent);
-        }
-
-        /* Indicador de progreso de lectura */
-        .reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 998;
-        }
-
-        .reading-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary), var(--success));
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-
-        /* Overlay para cerrar el menú */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -233,7 +208,6 @@
             visibility: visible;
         }
 
-        /* Contenedor principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -285,18 +259,17 @@
         }
 
         .instructions {
-            background: rgba(155, 89, 182, 0.15); /* Morado para el tema de memoria virtual */
-            border: 1px solid rgba(155, 89, 182, 0.3);
+            background: rgba(52, 152, 219, 0.15);
+            border: 1px solid rgba(52, 152, 219, 0.3);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 30px;
-            border-left: 4px solid var(--monster-color);
+            border-left: 4px solid var(--secondary);
         }
 
         .instructions h3 {
-            color: var(--monster-color);
+            color: var(--secondary);
             margin-bottom: 15px;
-            font-size: 1.3rem;
         }
 
         .instructions ul {
@@ -304,66 +277,27 @@
             color: var(--light);
         }
 
-        .instructions li {
-            margin-bottom: 8px;
-        }
-
-        /* Battle Arena */
+        /* Battle Arena - Estilo 3.1 */
         .battle-arena {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(155, 89, 182, 0.2);
+            border: 1px solid rgba(142, 68, 173, 0.2); /* Color ajustado a tema morado */
             position: relative;
             overflow: hidden;
-        }
-
-        .battle-arena::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.05) 0%, transparent 70%);
-            z-index: -1;
-            animation: arenaGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes arenaGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
         }
 
         .monster-section {
             text-align: center;
             margin-bottom: 30px;
             padding: 25px;
-            background: rgba(155, 89, 182, 0.15);
+            background: rgba(142, 68, 173, 0.15);
             border-radius: 15px;
-            border: 2px solid rgba(155, 89, 182, 0.4);
+            border: 2px solid rgba(142, 68, 173, 0.4);
             position: relative;
             overflow: hidden;
-        }
-
-        .monster-section::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(155, 89, 182, 0.1) 0%, transparent 70%);
-            animation: monsterAura 3s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes monsterAura {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .monster-avatar {
@@ -391,20 +325,14 @@
             border-radius: 10px;
             margin: 0 auto 15px;
             overflow: hidden;
-            border: 2px solid rgba(155, 89, 182, 0.5);
+            border: 2px solid rgba(142, 68, 173, 0.5);
         }
 
         .health-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--monster-color));
+            background: linear-gradient(90deg, var(--accent), var(--warning));
             transition: width 0.5s ease;
             border-radius: 8px;
-        }
-
-        .health-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--light);
         }
 
         .player-stats {
@@ -454,7 +382,7 @@
             box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
         }
 
-        /* Questions */
+        /* Questions Section - Estilo 3.1 */
         .questions-section {
             margin-top: 30px;
         }
@@ -528,26 +456,12 @@
             background: rgba(46, 204, 113, 0.2);
             border-color: var(--success);
             box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
-            animation: correctPulse 0.6s ease;
         }
 
         .option.incorrect {
             background: rgba(231, 76, 60, 0.2);
             border-color: var(--accent);
             box-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
-            animation: incorrectShake 0.6s ease;
-        }
-
-        @keyframes correctPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes incorrectShake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
         }
 
         .option-letter {
@@ -555,19 +469,6 @@
             font-size: 1.1rem;
             color: var(--secondary);
             min-width: 25px;
-        }
-
-        .option.correct .option-letter {
-            color: var(--success);
-        }
-
-        .option.incorrect .option-letter {
-            color: var(--accent);
-        }
-
-        .option-text {
-            flex: 1;
-            font-size: 1rem;
         }
 
         /* Controls */
@@ -608,7 +509,6 @@
         .btn-attack:hover {
             background: #c0392b;
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
         }
 
         .btn-attack:disabled {
@@ -629,18 +529,6 @@
             transform: translateY(-3px);
         }
 
-        .btn-success {
-            background: var(--success);
-            color: white;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
-        }
-
-        .btn-success:hover {
-            background: #27ae60;
-            transform: translateY(-3px);
-        }
-
-        /* Game Status */
         .game-status {
             text-align: center;
             padding: 20px;
@@ -662,29 +550,13 @@
             border: 2px solid var(--accent);
             color: var(--accent);
         }
-
+        
         .game-status.continue {
             background: rgba(243, 156, 18, 0.2);
             border: 2px solid var(--warning);
             color: var(--warning);
         }
 
-        /* Navigation */
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            gap: 15px;
-        }
-
-        .nav-center {
-            display: flex;
-            justify-content: center;
-            flex: 1;
-        }
-
-        /* Progress bar for questions */
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -701,7 +573,21 @@
             width: 0%;
         }
 
-        /* Botón de ir arriba */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        /* Scroll to top */
         .scroll-to-top {
             position: fixed;
             bottom: 20px;
@@ -728,81 +614,20 @@
             visibility: visible;
         }
 
-        .scroll-to-top:hover {
-            background: #c0392b;
-            transform: translateY(-3px);
-        }
-
         @media (max-width: 768px) {
-            .sidebar-nav {
-                width: 100%;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .battle-controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .player-stats {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-center {
-                order: 2;
-            }
-
-            .navigation .btn {
-                width: 100%;
-                text-align: center;
-                justify-content: center;
-            }
-
-            .question {
-                padding: 20px;
-            }
-
-            .floating-home-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-
-            .container {
-                margin-left: 20px;
-                margin-right: 20px;
-                padding: 10px;
-            }
-
-            .health-bar-container {
-                width: 250px;
-            }
-
-            .monster-avatar {
-                font-size: 4rem;
-            }
+            .sidebar-nav { width: 100%; }
+            .battle-controls { flex-direction: column; }
+            .navigation { flex-direction: column; }
+            .container { margin: 0 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="reading-progress">
-        <div class="reading-progress-bar" id="readingProgressBar"></div>
-    </div>
-
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </button>
 
-    <a href="index.html" class="floating-home-btn" title="Ir al inicio de Unidades">
+    <a href="index.html" class="floating-home-btn" title="Ir al inicio">
         <i class="fas fa-home"></i>
     </a>
 
@@ -810,32 +635,28 @@
 
     <nav class="sidebar-nav" id="sidebarNav">
         <div class="sidebar-header">
-            <div class="sidebar-title">Batalla Memoria</div>
-            <div class="sidebar-subtitle">Memoria Virtual</div>
+            <div class="sidebar-title">Batalla Virtual</div>
+            <div class="sidebar-subtitle">Memoria Virtual (3.2)</div>
         </div>
         
         <div class="nav-sections">
             <div class="nav-section">
                 <div class="nav-section-title">Navegación</div>
                 <a href="index.html" class="nav-item">
-                    <i class="fas fa-home"></i>
-                    Menú principal
+                    <i class="fas fa-home"></i> Menú principal
                 </a>
                 <a href="3.2.html" class="nav-item">
-                    <i class="fas fa-book-open"></i>
-                    Volver al material
+                    <i class="fas fa-book-open"></i> Volver al material
                 </a>
             </div>
 
             <div class="nav-section">
                 <div class="nav-section-title">Otras Actividades</div>
-                <a href="Actividad_3_1.html" class="nav-item">
-                    <i class="fas fa-tasks"></i>
-                    Actividad 3.1
+                <a href="actividad_3_1.html" class="nav-item">
+                    <i class="fas fa-tasks"></i> Actividad 3.1
                 </a>
-                <a href="Actividad_3_3.html" class="nav-item">
-                    <i class="fas fa-tasks"></i>
-                    Actividad 3.3
+                <a href="actividad_3_3.html" class="nav-item">
+                    <i class="fas fa-tasks"></i> Actividad 3.3
                 </a>
             </div>
         </div>
@@ -852,27 +673,26 @@
                 <span>/</span>
                 <a href="3.2.html">3.2 Memoria Virtual</a>
                 <span>/</span>
-                <span>Batalla de Memoria Virtual</span>
+                <span>Batalla de la Memoria</span>
             </div>
-            <h1>⚡ Batalla de Memoria Virtual</h1>
-            <div class="subtitle">¡Gestiona las páginas y derrota al Espectro de Paginación!</div>
+            <h1>⚡Tema 3.2: Memoria Virtual</h1>
+            <div class="subtitle">¡Derrota al Monstruo de la Fragmentación!</div>
         </div>
 
         <div class="instructions">
             <h3><i class="fas fa-gamepad"></i> Instrucciones de Batalla</h3>
             <ul>
-                <li><strong>Misión:</strong> Derrota al Espectro de Paginación respondiendo correctamente sobre paginación, tablas de páginas y algoritmos de reemplazo.</li>
-                <li><strong>Mecánica:</strong> Cada respuesta correcta inflige 1 punto de daño. Cada respuesta incorrecta cuenta como un error.</li>
-                <li><strong>Victoria:</strong> Reduce la vida del espectro a 0 HP respondiendo las 8 preguntas correctamente.</li>
-                <li><strong>Derrota:</strong> Cometes más de 3 errores antes de derrotar al espectro.</li>
-                <li><strong>Estrategia:</strong> ¡Analiza si conviene FIFO, LRU o el Óptimo antes de responder!</li>
+                <li><strong>Misión:</strong> Derrota al Monstruo respondiendo correctamente sobre Paginación, TLB y Reemplazo de Páginas.</li>
+                <li><strong>Mecánica:</strong> Cada respuesta correcta inflige 1 punto de daño. Selecciona la mejor opción.</li>
+                <li><strong>Victoria:</strong> Reduce la vida del monstruo a 0 HP respondiendo las 8 preguntas.</li>
+                <li><strong>Derrota:</strong> Cometes más de 3 errores antes de derrotar al monstruo.</li>
             </ul>
         </div>
 
         <div class="battle-arena">
             <div class="monster-section">
-                <div class="monster-avatar" id="monsterAvatar">👻</div>
-                <div class="monster-name">Espectro de Paginación</div>
+                <div class="monster-avatar" id="monsterAvatar">👾</div>
+                <div class="monster-name">Monstruo de Fragmentación</div>
                 <div class="health-bar-container">
                     <div class="health-bar" id="healthBar" style="width: 100%;"></div>
                 </div>
@@ -924,16 +744,13 @@
         </div>
 
         <div class="navigation">
-            <a href="3.2.html" class="btn btn-success">
-                <i class="fas fa-arrow-left"></i> Volver al Material
-            </a>
             <div class="nav-center">
                 <a href="index.html" class="btn btn-secondary">
                     <i class="fas fa-home"></i> Menú Principal
                 </a>
             </div>
-            <a href="3.3.html" class="btn btn-success">
-                Siguiente Tema <i class="fas fa-arrow-right"></i>
+            <a href="actividad_3_3.html" class="btn btn-success">
+                Siguiente Actividad <i class="fas fa-arrow-right"></i>
             </a>
         </div>
     </div>
@@ -953,63 +770,111 @@
       let sidebarOpen = false;
       let selectedAnswers = {};
       let completed = 0;
-      let questions = []; 
+      let questions = [];
 
       // ========================
-      // FUNCIÓN PARA INICIAR EL JUEGO
+      // DATOS DE RESPALDO (Por si falla el JSON)
+      // ========================
+      const fallbackQuestions = [
+          {
+              question: "La ________ permite ejecutar programas más grandes que la memoria física disponible.",
+              options: ["memoria virtual", "memoria caché", "memoria ROM", "segmentación"],
+              answer: "memoria virtual"
+          },
+          {
+              question: "El proceso de dividir la memoria en porciones de tamaño fijo se llama:",
+              options: ["paginación", "particionamiento", "fragmentación", "intercambio"],
+              answer: "paginación"
+          },
+          {
+              question: "La estructura de datos que mapea direcciones virtuales a físicas es:",
+              options: ["tabla de páginas", "TLB", "contador de programa", "MMU"],
+              answer: "tabla de páginas"
+          },
+          {
+              question: "Cuando se referencia una página que no está en memoria, ocurre un:",
+              options: ["fallo de página", "fallo de segmento", "error de bus", "interrupción de E/S"],
+              answer: "fallo de página"
+          },
+          {
+              question: "El algoritmo ________ reemplaza la página que no se ha usado por más tiempo.",
+              options: ["LRU", "FIFO", "Óptimo", "Reloj"],
+              answer: "LRU"
+          },
+          {
+              question: "El tiempo dedicado a intercambiar páginas entre memoria y disco se conoce como:",
+              options: ["sobrecarga (overhead)", "latencia", "throughput", "buffer"],
+              answer: "sobrecarga (overhead)"
+          },
+          {
+              question: "La ________ ocurre cuando el sistema pasa más tiempo intercambiando páginas que ejecutando procesos.",
+              options: ["paginación excesiva (thrashing)", "fragmentación externa", "deadlock", "inanición"],
+              answer: "paginación excesiva (thrashing)"
+          },
+          {
+              question: "El ________ permite acceder directamente a las traducciones de páginas sin consultar la tabla en memoria.",
+              options: ["TLB (Translation Lookaside Buffer)", "Cache L1", "Registro base", "PTBR"],
+              answer: "TLB (Translation Lookaside Buffer)"
+          }
+      ];
+
+      // ========================
+      // INICIO DEL JUEGO
       // ========================
       async function initGame() {
         const container = document.getElementById('questionsContainer');
+        let allQuestions = [];
 
         try {
-            // Cargar preguntas desde archivo JSON de 3.2
-            const response = await fetch('preguntas_3.2.json'); 
-            if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`);
+            // Intentamos cargar el JSON si existe
+            const response = await fetch('preguntas_3.2.json');
+            if (response.ok) {
+                allQuestions = await response.json();
+            } else {
+                throw new Error("JSON no encontrado");
             }
-            const allQuestions = await response.json();
-
-            // Mezclar y seleccionar 8 preguntas aleatorias
-            shuffleArray(allQuestions);
-            questions = allQuestions.slice(0, 8).map(q => {
-                const optionsShuffled = shuffleArray([...q.options]);
-                return {
-                    question: q.question,
-                    options: optionsShuffled,
-                    correct: optionsShuffled.indexOf(q.answer)
-                };
-            });
-
-            // Limpiar el contenedor y renderizar preguntas
-            container.innerHTML = '';
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <div class="question-number">Desafío ${index + 1}</div>
-                    <div class="question-text">${q.question}</div>
-                    <div class="options">
-                        ${q.options.map((option, optIndex) => `
-                            <div class="option" onclick="selectOption(${index}, ${optIndex})" id="q${index}opt${optIndex}">
-                                <div class="option-letter">${String.fromCharCode(97 + optIndex)})</div>
-                                <div class="option-text">${option}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
-
-            startTimer();
         } catch (error) {
-            console.error('Error al cargar las preguntas:', error);
-            container.innerHTML = '<p style="text-align:center; color: var(--accent);">Error al cargar las preguntas. Por favor verifica que el archivo preguntas_3.2.json existe.</p>';
+            console.log("Usando preguntas de respaldo (Fallback).");
+            allQuestions = fallbackQuestions;
         }
+
+        // Mezclar preguntas
+        shuffleArray(allQuestions);
+        // Tomar las primeras 8
+        questions = allQuestions.slice(0, 8).map(q => {
+            // Si el objeto ya tiene 'correct' como índice, lo usamos.
+            // Si tiene 'answer' (texto), buscamos el índice en options.
+            const optionsShuffled = shuffleArray([...q.options]);
+            return {
+                question: q.question || q.text, // Compatibilidad con ambos formatos
+                options: optionsShuffled,
+                correct: optionsShuffled.indexOf(q.answer)
+            };
+        });
+
+        // Renderizar preguntas
+        container.innerHTML = '';
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <div class="question-number">Desafío ${index + 1}</div>
+                <div class="question-text">${q.question}</div>
+                <div class="options">
+                    ${q.options.map((option, optIndex) => `
+                        <div class="option" onclick="selectOption(${index}, ${optIndex})" id="q${index}opt${optIndex}">
+                            <div class="option-letter">${String.fromCharCode(97 + optIndex)})</div>
+                            <div class="option-text">${option}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(questionDiv);
+        });
+
+        startTimer();
       }
 
-      // ========================
-      // FUNCIÓN PARA MEZCLAR ARRAY (Fisher-Yates)
-      // ========================
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -1019,13 +884,10 @@
       }
 
       // ========================
-      // FUNCIONES DE JUEGO
+      // LÓGICA DE JUEGO
       // ========================
 
       function startTimer() {
-        clearInterval(timerInterval); // Asegurar que no haya múltiples timers
-        time = 0;
-        document.getElementById('timerValue').textContent = '0s';
         timerInterval = setInterval(() => {
           time++;
           document.getElementById('timerValue').textContent = `${time}s`;
@@ -1041,9 +903,10 @@
       function updateMonsterAvatar() {
         const avatar = document.getElementById('monsterAvatar');
         const healthPercentage = (monsterHP / maxHP) * 100;
-        if (healthPercentage > 70) avatar.textContent = '👻';
-        else if (healthPercentage > 40) avatar.textContent = '😨';
-        else if (healthPercentage > 0) avatar.textContent = '😫';
+        // Emojis de 3.2
+        if (healthPercentage > 70) avatar.textContent = '👾';
+        else if (healthPercentage > 40) avatar.textContent = '🤖';
+        else if (healthPercentage > 0) avatar.textContent = '💀';
         else avatar.textContent = '💥';
       }
 
@@ -1061,15 +924,13 @@
 
       function selectOption(qIndex, oIndex) {
         if (gameOver) return;
-        // Quitar selección previa en la misma pregunta
+        // Quitar selección previa en esta pregunta
         for (let i = 0; i < questions[qIndex].options.length; i++) {
-          const opt = document.getElementById(`q${qIndex}opt${i}`);
-          if (opt) opt.classList.remove('selected');
+          const el = document.getElementById(`q${qIndex}opt${i}`);
+          if (el) el.classList.remove('selected');
         }
-        // Seleccionar nueva
-        const selectedOpt = document.getElementById(`q${qIndex}opt${oIndex}`);
-        if (selectedOpt) selectedOpt.classList.add('selected');
-        
+        // Marcar nueva
+        document.getElementById(`q${qIndex}opt${oIndex}`).classList.add('selected');
         selectedAnswers[qIndex] = oIndex;
         updateProgress();
       }
@@ -1079,41 +940,25 @@
         if (completed < questions.length) return showGameStatus("⚠️ ¡Responde todas las preguntas antes de atacar!", "continue");
         
         attempts++;
-        let correctCount = 0;
+        let correct = 0;
         
         // Evaluar respuestas
         questions.forEach((q, i) => {
           const userAns = selectedAnswers[i];
           const correctAns = q.correct;
           
-          // Marcar visualmente
           for (let j = 0; j < q.options.length; j++) {
             const optEl = document.getElementById(`q${i}opt${j}`);
-            if (optEl) {
-                optEl.classList.remove('selected', 'correct', 'incorrect');
-                if (j === correctAns) optEl.classList.add('correct');
-                else if (j === userAns) optEl.classList.add('incorrect');
-            }
+            optEl.classList.remove('selected', 'correct', 'incorrect');
+            
+            if (j === correctAns) optEl.classList.add('correct');
+            else if (j === userAns) optEl.classList.add('incorrect');
           }
-          
-          if (userAns === correctAns) correctCount++;
+          if (userAns === correctAns) correct++;
         });
 
-        // Calcular daño y errores (cada error cuenta, cada acierto daña)
-        // Lógica: Daño = Aciertos. Errores se acumulan.
-        // Ojo: Si ya se respondió antes, esto podría duplicar daño en un sistema real, 
-        // pero aquí el juego termina o se reinicia.
-        
-        // En este estilo de juego "Batalla única", se evalúa todo al final.
-        // HP del monstruo baja por cada acierto.
-        // Errores suben por cada fallo.
-        
-        let currentErrors = questions.length - correctCount;
-        errors += currentErrors; // Acumular errores si se permitiera reintentar, pero aquí suele ser one-shot.
-        // Para simplificar, reseteamos errores visuales al conteo actual de esta ronda si es one-shot.
-        errors = currentErrors; 
-
-        monsterHP = Math.max(0, maxHP - correctCount);
+        monsterHP = Math.max(0, monsterHP - correct);
+        errors = Math.min(maxErrors, questions.length - correct);
         
         updateUI();
         checkGameEnd();
@@ -1130,20 +975,17 @@
         } else if (errors >= maxErrors) {
           gameOver = true;
           clearInterval(timerInterval);
-          showGameStatus(`<i class='fas fa-skull'></i> ¡DERROTA! Demasiados errores (${errors})`, 'defeat');
+          showGameStatus(`<i class='fas fa-skull'></i> ¡DERROTA! Demasiados errores`, 'defeat');
           btn.disabled = true;
           document.body.style.animation = 'defeatPulse 1s infinite';
         }
       }
 
       function resetBattle() {
-        time = 0;
-        attempts = 0;
-        errors = 0;
+        time = attempts = errors = completed = 0;
         monsterHP = maxHP;
         gameOver = false;
         selectedAnswers = {};
-        completed = 0;
         
         document.getElementById('timerValue').textContent = '0s';
         document.getElementById('attemptsValue').textContent = '0';
@@ -1153,7 +995,7 @@
         document.getElementById('progressFill').style.width = '0%';
         document.body.style.animation = 'none';
         
-        // Reiniciar estilos de opciones
+        // Limpiar clases
         questions.forEach((q, i) => {
           q.options.forEach((_, j) => {
             const el = document.getElementById(`q${i}opt${j}`);
@@ -1175,10 +1017,31 @@
       }
 
       function showSolutions() {
-        // Mostrar respuestas en un alert o modal simple
-        const answersList = questions.map((q, i) => `${i + 1}. ${q.options[q.correct]}`).join('\n');
-        alert(`💡 Respuestas Correctas:\n\n${answersList}`);
+        const answers = questions.map((q, i) => `${i + 1}. ${q.options[q.correct]}`).join('\n');
+        alert(`💡 Respuestas Correctas:\n\n${answers}`);
       }
+
+      // Sidebar logic
+      const menuToggle = document.getElementById('menuToggle');
+      const sidebarNav = document.getElementById('sidebarNav');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+      function toggleSidebar() {
+        sidebarOpen = !sidebarOpen;
+        if (sidebarOpen) {
+          sidebarNav.classList.add('active');
+          sidebarOverlay.classList.add('active');
+          menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+          sidebarNav.classList.remove('active');
+          sidebarOverlay.classList.remove('active');
+          menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+        updateContainerSpacing();
+      }
+
+      menuToggle.addEventListener('click', toggleSidebar);
+      sidebarOverlay.addEventListener('click', toggleSidebar);
 
       function updateContainerSpacing() {
         const container = document.querySelector('.container');
@@ -1189,39 +1052,6 @@
         }
       }
 
-      function updateReadingProgress() {
-        const scroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const percent = Math.min((scroll / height) * 100, 100);
-        document.getElementById('readingProgressBar').style.width = `${percent}%`;
-      }
-
-      // Menú lateral
-      const menuToggle = document.getElementById('menuToggle');
-      const sidebarNav = document.getElementById('sidebarNav');
-      const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-      function toggleSidebar() {
-        sidebarOpen = !sidebarOpen;
-        if (sidebarOpen) {
-            sidebarNav.classList.add('active');
-            sidebarOverlay.classList.add('active');
-            menuToggle.classList.add('active');
-            menuToggle.innerHTML = '<i class="fas fa-times"></i>';
-            document.body.style.overflow = 'hidden';
-        } else {
-            sidebarNav.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-            menuToggle.classList.remove('active');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            document.body.style.overflow = 'auto';
-        }
-        updateContainerSpacing();
-      }
-
-      menuToggle.addEventListener('click', toggleSidebar);
-      sidebarOverlay.addEventListener('click', toggleSidebar);
-
       // Scroll to top
       const scrollToTopBtn = document.getElementById('scrollToTop');
       window.addEventListener('scroll', () => {
@@ -1230,19 +1060,13 @@
           } else {
               scrollToTopBtn.classList.remove('visible');
           }
-          updateReadingProgress();
       });
-
       scrollToTopBtn.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      window.addEventListener('resize', () => {
-          if (window.innerWidth > 768 && sidebarOpen) {
-              toggleSidebar();
-          }
-          updateContainerSpacing();
-      });
+      // Init
+      document.addEventListener('DOMContentLoaded', initGame);
 
     </script>
 </body>
