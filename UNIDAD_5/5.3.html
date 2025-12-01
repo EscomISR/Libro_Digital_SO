@@ -346,6 +346,17 @@
         .content li {
             margin-bottom: 12px;
         }
+        .intro ul,
+        .intro ol {
+            padding-left: 35px;  /* sangría visible */
+            margin: 10px 0;
+        }
+
+        .intro ul ul,
+        .intro ol ol {
+            padding-left: 25px; /* sublistas con más sangría */
+}
+
         
         .highlight {
             background: rgba(231, 76, 60, 0.15);
@@ -800,17 +811,48 @@
         </header>
         
         <div class="intro" id="introduccion">
-            <p>Las capas de software de entrada y salida son niveles que organizan cómo se comunican los programas con los dispositivos físicos, como el teclado, mouse o impresora. Estas capas permiten que las aplicaciones usen los dispositivos sin tener que saber cómo funcionan internamente, haciendo que todo sea más ordenado y fácil de manejar.</p>
+            <p>Administración por medio de capas jerárquicas que trabajan de forma coordinada para gestionar la comunicación entre el hardware y los programas de usuario.</p>
+            
+            <p>Su función es el control directo de los dispositivos en donde ofrece recursos a las interfaces para las aplicaciones. Esta organización modular simplifica el diseño, mejora la eficiencia y facilita la independencia del hardware, lo que permite que los sistemas operativos sean más portables y confiables.</p>
 
-            <p>El software de entrada/salida (E/S) generalmente se organiza en cuatro capas principales, como se muestra en la Figura 5. Cada una de estas capas posee una función bien definida, así como una interfaz que permite la comunicación con los niveles adyacentes. Aunque la funcionalidad y las interfaces pueden variar entre sistemas operativos, el modelo de capas permite un análisis general aplicable a distintas arquitecturas. A continuación, se examinan dichas capas desde el nivel más bajo hasta el más alto, siguiendo un enfoque conceptual y no específico de una máquina en particular.</p>
-            <p class="citation">(Tanenbaum & Bos, 2015)</p>
+            <h3>Estructura general de las capas de E/S</h3>
+            <ol start="1">
+                <li>
+                    <p>Rutinas de servicio de interrupciones</p>
+                    <ul>
+                        <li>Son las funciones más cercanas al hardware.</li>
+                        <li>Se ejecutan cuando un dispositivo genera una interrupción, indicando que una operación ha finalizado o que requiere atención.</li>
+                        <li>Su tarea es reconocer el evento, registrar el estado del dispositivo y restablecer el control al sistema operativo.</li>
+                        <li>Ejemplo: el controlador del teclado activa una rutina cuando se presiona una tecla.</li>
+                    </ul>
+                </li>
+            </ol>
+            <ol start="2">
+                <li>Controladores de dispositivo (Drivers)
+                    <ul>
+                        <li>Traducen las órdenes genéricas del sistema operativo en comandos específicos del hardware.</li>
+                        <li>Gestionan interrupciones, sincronización y manejo de errores.</li>
+                        <li>Cada tipo de dispositivo (disco, red, impresora) posee su propio controlador.</li>
+                    </ul>
+                </li>
+            </ol>
 
-            <div class="figure-container">
-                        <div class="figura">
-                            <img src="FIGURA5.jpg" alt="Figura 5: Capas del sistema de software de E/S" class="imagen-figura5"/>
-                        </div>
-                        <div class="figure-caption">Figura 5. Capas del sistema de software de E/S</div>
-            </div>
+            <ol start="3">
+                <li>Software independiente del dispositivo
+                    <ul>
+                        <li>Proporciona una interfaz común que abstrae las diferencias entre los distintos dispositivos.</li>
+                        <li>Administra tareas como:
+                            <ul>
+                                <li>Almacenamiento en búfer y spooling.</li>
+                                <li>Asignación de nombres a los dispositivos.</li>
+                                <li>Manejo uniforme de errores.</li>
+                            </ul>
+                        </li>
+                        <li>Gracias a esta capa, un programa puede leer o escribir archivos sin saber en qué tipo de dispositivo se encuentran.</li>
+                    </ul>
+                </li>
+            </ol>
+
         </div>
         
         <!-- Sección 5.3.1 -->
@@ -820,56 +862,50 @@
                 <div class="section-title">Manejador de Interrupciones</div>
             </div>
             <div class="content">
-                <p>Un controlador de dispositivo es una pieza clave dentro de la arquitectura de cualquier computadora. Su función principal es gestionar el control y la comunicación entre el procesador o la memoria principal y los periféricos conectados al sistema.</p>
+                <p>El <strong>manejador de interrupciones</strong> (ISR) es un componente esencial del sistema operativo encargado de <strong>responder y atender las interrupciones generadas por los dispositivos de hardware o por el propio software.</strong> Su función es <strong>detener temporalmente la ejecución del proceso actual,</strong> identificar la causa de la interrupción, ejecutar la acción necesaria y <strong>restaurar el control al programa interrumpido.</strong> </p>
+                <p class="citation">(Silberschatz, Galvin & Gagne, 2022).</p>
+                <ol>
+                    <li> <strong>Identificación de la interrupción</strong>
+                        <ul>
+                            <li>Determina el origen del evento (teclado, disco, red, software, etc.).</li>
+                            <li>Consulta el vector de interrupciones, que contiene la dirección de cada manejador asociado a un dispositivo o evento.</li>
+                        </ul>
+                    </li>
 
-                <p>Este controlador puede manejar uno o varios dispositivos del mismo tipo, coordinar el flujo de datos y sincronizar la diferencia de velocidad entre la CPU (mucho más rápida) y los dispositivos externos. Además, está encargado de detectar y, en algunos casos, corregir errores durante las operaciones de entrada/salida.</p>
+                </ol>
+                <ol start="2">
+                    <li><strong>Salvado del contexto</strong>
+                    
+                        <ul>
+                            <li>Guarda el estado actual del procesador (registros, contador de programa, banderas) para poder reanudar la tarea interrumpida después de atender la interrupción.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <ol start="3">
+                    <li><strong>Ejecución de la rutina de atención</strong>
+                    <ul>
+                        <li>Realiza la acción necesaria para resolver la interrupción, como leer un dato, registrar un estado o enviar una señal de control al dispositivo.</li>
+                    </ul>
+                    </li>
+                </ol>
 
-                <p>Por ejemplo, en el caso de un disco duro, el controlador convierte un flujo continuo de bits en bloques organizados de bytes, detectando y corrigiendo errores si es posible, y transfiriendo finalmente los datos a la memoria principal para su uso.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <h3>Asignación de Interrupciones</h3>
-                <p>La asignación de interrupciones es una tarea normalmente gestionada por el sistema operativo durante la instalación de un nuevo dispositivo. No obstante, en ciertas situaciones, como configuraciones personalizadas o resolución de conflictos entre dispositivos, puede ser necesario que un administrador del sistema realice esta asignación de manera manual.</p>
+                <ol start="4">
+                    <li><strong>Actualización del sistema operativo</strong>
+                        <ul>
+                            <li>Informa al sistema del resultado de la operación (por ejemplo, “transferencia completada” o “error detectado”).</li>
+                            <li>Puede despertar procesos que estaban esperando una respuesta del dispositivo.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <ol start="5">
+                <li><strong>Restauración del contexto y retorno</strong>
+                    <ul>
+                        <li>Restaura los valores guardados y devuelve el control al proceso que estaba ejecutándose antes del evento.</li>
+                    </ul>
+                </li>
+                </ol>
+                <p>Este video tiene referencias que te mostrara para el modelo en capas</p>
 
-                <p>En arquitecturas como la de los sistemas PC, cada interrupción se identifica con un vector numérico (por ejemplo, del 0 al 255). Este número permite que el sistema operativo reconozca con precisión qué dispositivo necesita atención cuando se genera la interrupción.</p>
-                
-                <h3>Tipos y Prioridades de Interrupciones</h3>
-                <p>En los sistemas modernos, múltiples señales de interrupción pueden generarse al mismo tiempo. Para manejar esto, el sistema operativo asigna niveles de prioridad a cada interrupción.</p>
-
-                <p>Cuando varias interrupciones ocurren simultáneamente, se atiende primero la de mayor prioridad, mientras que las demás se mantienen en espera. Además, el sistema operativo puede inhibir selectivamente ciertas interrupciones, impidiendo su procesamiento hasta que se reactiven manualmente. Este control reside en registros protegidos del sistema, inaccesibles para los usuarios comunes, garantizando así la estabilidad del sistema operativo.</p>
-                <p class="citation">(Silberschatz, Galvin, & Gagne, 2018)</p>
-                
-                <h3>Estructura del Manejador de Interrupciones</h3>
-                <p>El tratamiento de una interrupción en sistemas operativos modernos se divide en dos componentes clave:</p>
-
-                <h4>1. Rutina Genérica del Sistema Operativo</h4>
-                <p>Esta parte es común para todas las interrupciones y está integrada en el núcleo del sistema operativo. Sus funciones incluyen:</p>
-                <ul>
-                    <li>Capturar y reconocer la interrupción.</li>
-                    <li>Guardar el estado actual del procesador.</li>
-                    <li>Identificar el dispositivo responsable de la interrupción.</li>
-                    <li>Llamar a la rutina específica del dispositivo.</li>
-                    <li>Informar al planificador para gestionar la ejecución del proceso relacionado.</li>
-                    <li>Desactivar la interrupción para evitar repeticiones innecesarias.</li>
-                    <li>Restaurar el estado del procesador al finalizar.</li>
-                    <li>Finalizar la atención con una instrucción especial como RETI (Return from Interrupt).</li>
-                </ul>
-
-                <h4>2. Rutina Particular del Dispositivo</h4>
-                <p>Esta rutina es específica del hardware que generó la interrupción. Se encarga de realizar las operaciones necesarias para completar o continuar la operación de E/S correspondiente. Por ejemplo, puede implicar la lectura de datos recién recibidos o la preparación de una nueva transferencia.</p>
-
-                <p>Estas rutinas suelen ser desarrolladas y proporcionadas por el fabricante del dispositivo y normalmente se entregan mediante discos de instalación (CDs, disquetes) o disponibles como descargas en línea. Al instalar un nuevo periférico, como una impresora o un ratón, el usuario o administrador debe instalar también estos controladores. En muchos casos, es necesario reiniciar el sistema para que el nuevo controlador sea reconocido y activado correctamente.</p>
-                <p class="citation">(Carretero Pérez, García Carballeira, Anasagasti, & Pérez Costoya, 2001)</p>
-                
-                <h3>Importancia de Separar las Rutinas</h3>
-                <p>Separar la rutina genérica de la rutina específica del dispositivo ofrece múltiples beneficios al sistema operativo:</p>
-                <ul>
-                    <li>Permite una estructura más organizada y modular.</li>
-                    <li>Facilita la actualización de controladores sin modificar el núcleo del sistema.</li>
-                    <li>Mejora la compatibilidad con diferentes versiones del sistema operativo.</li>
-                    <li>Aumenta la seguridad, evitando que controladores defectuosos o maliciosos afecten la estabilidad global del sistema.</li>
-                </ul>
-                <p>Este diseño modular es fundamental para mantener sistemas robustos, escalables y flexibles en entornos operativos modernos.</p>
-                <p class="citation">(Carretero Pérez et al., 2001)</p>
             </div>
         </div>
         
@@ -877,306 +913,131 @@
         <div class="section" id="seccion-5-3-2">
             <div class="section-header">
                 <div class="section-number">5.3.2</div>
-                <div class="section-title">Controladores de los Dispositivos</div>
+                <div class="section-title">Controladores de Dispositivo</div>
             </div>
             <div class="content">
-                <h3>Definición y Función</h3>
-                <p>Los controladores de dispositivos (device drivers) son componentes de software específicos que permiten al sistema operativo interactuar con el hardware de los dispositivos periféricos. Cada dispositivo de entrada/salida (E/S) conectado a una computadora requiere un código especializado para poder ser gestionado correctamente. Este código, conocido como driver, es responsable de traducir las instrucciones genéricas del sistema operativo en comandos específicos comprensibles por el hardware.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
+                <p>Los programas especializados que actúan <strong>como intermediarios entre el sistema operativo y los dispositivos de hardware,</strong> permitiendo una comunicación eficiente, estandarizada y segura.</p>
+                <p>Su función principal es <strong>traducir las órdenes genéricas del sistema operativo en comandos específicos</strong> que el hardware pueda ejecutar, ocultando los detalles físicos del dispositivo y proporcionando una interfaz uniforme para todas las operaciones de entrada y salida.</p>
+                <p class="citation">(Silberschatz, Galvin & Gagne, 2022).</p>
+                <h3>Funciones principales de los controladores</h3>
+                    <ol>
+                        <li> <strong>Comunicación con el hardware:</strong>
+                            <ul>
+                                <li>Envían órdenes al dispositivo (por ejemplo, iniciar lectura o escritura) y reciben su estado o respuesta.</li>
+                            </ul>
+                        </li>
 
-                <p>Por lo general, los drivers son proporcionados por el fabricante del dispositivo e incluyen versiones compatibles con los sistemas operativos más populares. Dado que cada sistema operativo necesita controladores adaptados a su arquitectura, los fabricantes suelen distribuir versiones específicas para Windows, Linux, macOS, entre otros.</p>
-                
-                <h3>Estructura y Categorías</h3>
-                <p>Cada controlador está diseñado para manejar un tipo de dispositivo, o en algunos casos, una clase de dispositivos estrechamente relacionados. Por ejemplo, un driver para disco SCSI puede controlar varios modelos de discos SCSI y, en ocasiones, incluso dispositivos ópticos como CD-ROMs. Sin embargo, dispositivos con funciones muy distintas, como un ratón y una palanca de mando (joystick), requieren controladores completamente separados debido a sus diferentes comportamientos y estructuras.</p>
+                    </ol>
+                    <ol start="2">
+                        <li><strong>Gestión de interrupciones:</strong>
+                            <ul>
+                                <li>Atienden las señales que los dispositivos generan cuando completan una tarea o detectan un error.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <ol start="3">
+                        <li><strong>Transferencia de datos:</strong>
+                            <ul>
+                                <li>Controlan el flujo de información entre el dispositivo y la memoria principal, ya sea de manera programada, por interrupciones o mediante acceso directo a memoria (DMA).</li>
+                            </ul>
+                        </li>
+                    </ol>
 
-                <p>Los sistemas operativos tienden a clasificar los controladores en categorías según el tipo de datos que manejan o la forma en que se comunican con el sistema. Estas clasificaciones ayudan a organizar su desarrollo y mantenimiento. Las principales categorías se muestran en la Tabla 8, que resume sus características y ejemplos comunes.</p>
+                    <ol start="4">
+                        <li><strong>Manejo de errores:</strong>
+                            <ul>
+                                <li>Detectan fallos en las operaciones del dispositivo, registran eventos y notifican al sistema operativo.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <ol start="5">
+                    <li><strong>Optimización del rendimiento:</strong>
+                        <ul>
+                            <li>Implementan estrategias de almacenamiento en búfer, spool o caché para acelerar las transferencias.</li>
+                        </ul>
+                    </li>
+                    </ol>
+                <h3>Tipos de controladores</h3>
+                    <ol>
+                        <li> <strong>De bloque:</strong>
+                            <ul>
+                                <li>Gestionan dispositivos que almacenan datos en bloques de tamaño fijo (discos duros, SSD, CD-ROMs).</li>
+                                <li>Permiten acceso directo o aleatorio a los datos.</li>
+                            </ul>
+                        </li>
 
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Tipo de Dispositivo</th>
-                            <th>Características</th>
-                            <th>Ejemplos</th>
-                        </tr>
-                        <tr>
-                            <td>Dispositivos de bloque</td>
-                            <td>Contienen bloques de datos direccionables independientemente</td>
-                            <td>Discos duros, SSD, unidades flash</td>
-                        </tr>
-                        <tr>
-                            <td>Dispositivos de carácter</td>
-                            <td>Generan o aceptan flujos de caracteres</td>
-                            <td>Teclados, impresoras, ratones</td>
-                        </tr>
-                        <tr>
-                            <td>Dispositivos de red</td>
-                            <td>Manejan paquetes de datos y protocolos de comunicación</td>
-                            <td>Tarjetas Ethernet, Wi-Fi, Bluetooth</td>
-                        </tr>
-                        <tr>
-                            <td>Dispositivos de tiempo real</td>
-                            <td>Requieren respuestas en tiempos determinados</td>
-                            <td>Sensores industriales, controladores de procesos</td>
-                        </tr>
-                    </table>
-                    <div class="table-caption">Tabla 8. Clasificación de los controladores de dispositivos</div>
+                    </ol>
+                    <ol start="2">
+                        <li><strong>De carácter:</strong>
+                            <ul>
+                                <li>Manejan dispositivos que transmiten datos como un flujo continuo (teclados, ratones, impresoras).</li>
+                                <li>Operan de forma secuencial y responden mediante interrupciones.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <ol start="3">
+                        <li><strong>De red:</strong>
+                            <ul>
+                                <li>Facilitan la comunicación entre computadoras mediante protocolos y adaptadores de red (Ethernet, Wi-Fi).</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <ol start="4">
+                        <li><strong>4.	Virtuales:</strong>
+                            <ul>
+                                <li>Simulan dispositivos físicos (como impresoras PDF o discos montados en software) dentro de entornos virtualizados o de emulación.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                <h3>Estructura del controlador de dispositivo</h3>
+                    <p>Un controlador típico incluye:</p>
+                    <ul>
+                        <li><strong>Módulo de inicialización: </strong> detecta y configura el dispositivo.</li>
+                        <li><strong>Módulo de control: </strong> gestiona las operaciones principales (lectura, escritura, sincronización).</li>
+                        <li><strong>Módulo de interrupciones: </strong>atiende eventos del hardware.</li>
+                        <li><strong>Módulo de diagnóstico: </strong>monitorea el estado del dispositivo y reporta errores.</li>
+                    </ul>
+                <h3>Interacción con el sistema operativo</h3>
+                    <p>El flujo general entre el sistema operativo, el controlador y el dispositivo sigue estos pasos:</p>
+                    <ol>
+                        <li>El <strong>sistema operativo</strong>
+                            envía una solicitud (por ejemplo, “leer bloque”).
+                        </li>
+
+                    </ol>
+                    <ol start="2">
+                        <li>El<strong>controlador</strong>
+                            traduce la orden en comandos específicos del dispositivo.
+                        </li>
+                    </ol>
+                    <ol start="3">
+                        <li>El<strong>dispositivo </strong>
+                            ejecuta la acción y, al finalizar, genera una <strong>interrupción.</strong>
+                        </li>
+                    </ol>
+
+                    <ol start="4">
+                        <li>El<strong>controlador</strong>
+                            procesa la respuesta y comunica el resultado al sistema operativo.
+                        </li>
+                    </ol>
+                    <p>Esta interacción permite que múltiples dispositivos trabajen en paralelo, manteniendo la coherencia y estabilidad del sistema.</p>
                 </div>
-                
-                <h3>Modelo Arquitectónico de los Drivers</h3>
-                <p>Los controladores de dispositivos se ubican generalmente en la parte inferior del sistema operativo, actuando como intermediarios esenciales entre el software de E/S independiente del dispositivo y el hardware físico. Esta arquitectura permite una separación clara entre la lógica genérica del sistema operativo y la lógica específica de cada dispositivo. El modelo se representa en la Figura 6, donde se observa cómo los programas de usuario interactúan con el hardware a través de múltiples capas del sistema.</p>
-
-                <div class="figure-container">
-                        <div class="figura">
-                            <img src="FIGURA6.jpg" alt="Figura 6: Modelo arquitectónico de controladores" class="imagen-figura6"/>
-                        </div>
-                        <div class="figure-caption">Figura 6. Modelo arquitectónico de controladores</div>
-                </div>
-                
-                <h3>Implementación y Carga de Controladores</h3>
-                <p>El método de implementación de los controladores de dispositivos ha evolucionado considerablemente a lo largo del tiempo, adoptando diferentes enfoques según la arquitectura del sistema operativo y las necesidades del usuario:</p>
-
-                <h4>Modelo Estático</h4>
-                <p>En sistemas tradicionales como UNIX, el sistema operativo se distribuía como un binario monolítico que incluía todos los controladores compilados. La adición de un nuevo dispositivo requería recompilar todo el núcleo del sistema.</p>
-
-                <h4>Modelo Dinámico</h4>
-                <p>Con el auge de las computadoras personales, se introdujo un modelo donde los controladores se cargan dinámicamente durante la ejecución. Este modelo, utilizado desde sistemas como MS-DOS, permite agregar nuevos dispositivos sin necesidad de recompilar el sistema operativo completo.</p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h4>Controladores en Espacio de Usuario</h4>
-                <p>En arquitecturas modernas como MINIX 3, los controladores se ejecutan como procesos en el espacio de usuario. Esta separación mejora la fiabilidad del sistema, ya que aísla posibles fallos de los controladores del núcleo del sistema operativo.</p>
-                
-                <h3>Funcionamiento Interno de los Controladores</h3>
-                <p>El funcionamiento típico de un controlador de dispositivo sigue una secuencia de pasos bien definida, que puede expresarse mediante pseudocódigo, como se muestra en el Código 9.</p>
-
-                <div class="code-block">
-                    <pre>/* Pseudocódigo simplificado de un controlador de dispositivo */
-int dispositivo_driver_funcion(struct peticion *req) {
-    // 1. Verificar parámetros de entrada
-    if (!parametros_validos(req))
-        return ERROR;
-    
-    // 2. Traducir términos abstractos a concretos
-    struct comando_hw cmd = traducir_peticion(req);
-    
-    // 3. Verificar si el dispositivo está ocupado
-    if (dispositivo_ocupado()) {
-        encolar_peticion(req);
-        return EN_ESPERA;
-    }
-    
-    // 4. Preparar el dispositivo
-    encender_dispositivo();
-    
-    // 5. Emitir comandos al controlador
-    for (int i = 0; i < cmd.num_comandos; i++) {
-        escribir_registro_dispositivo(cmd.registros[i], cmd.valores[i]);
-        if (!dispositivo_acepto_comando())
-            return ERROR;
-    }
-    
-    // 6. Esperar a que termine la operación o continuar
-    if (operacion_requiere_espera()) {
-        bloquear_controlador();
-        return EN_PROCESO; // Será despertado por interrupción
-    }
-    
-    // 7. Verificar errores y transferir datos
-    if (verificar_errores())
-        return ERROR;
-    transferir_datos(req->buffer);
-    
-    // 8. Procesar siguiente petición o esperar
-    if (hay_peticiones_pendientes())
-        procesar_siguiente_peticion();
-    else
-        esperar_nueva_peticion();
-    
-    return EXITO;
-}</pre>
-                    <div class="code-caption">Código 9. Pseudocódigo simplificado del funcionamiento de un controlador de dispositivo</div>
-                </div>
-
-                <p>Este código ilustra los pasos fundamentales que realiza un controlador:</p>
-                <ol>
-                    <li>Verificación de parámetros de entrada.</li>
-                    <li>Traducción de términos abstractos a comandos específicos del hardware.</li>
-                    <li>Comprobación del estado del dispositivo (ocupado o disponible).</li>
-                    <li>Preparación del hardware para la operación.</li>
-                    <li>Emisión de comandos hacia el dispositivo.</li>
-                    <li>Espera activa o pasiva por la finalización (según sea necesario).</li>
-                    <li>Verificación de errores y transferencia de datos.</li>
-                    <li>Gestión de la cola de peticiones pendientes.</li>
-                </ol>
-                
-                <h3>Desafíos en la Programación de Controladores</h3>
-                <p>La programación de controladores de dispositivos implica afrontar diversos desafíos técnicos y de diseño, debido a su estrecha interacción con el hardware y su rol dentro del núcleo del sistema operativo.</p>
-
-                <h4>Reentrada</h4>
-                <p>Un controlador debe ser reentrante, es decir, capaz de ser llamado nuevamente mientras aún está procesando una solicitud anterior. Por ejemplo, mientras un controlador de red gestiona un paquete entrante, puede llegar otro. En tal caso, el controlador debe manejar correctamente ambas solicitudes sin interferencia ni corrupción de datos.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-
-                <h4>Conexión en Caliente (Hot-Plugging)</h4>
-                <p>En sistemas modernos es común que los dispositivos puedan conectarse o desconectarse sin apagar el equipo. Este fenómeno, conocido como conexión en caliente, representa un desafío importante: si un usuario desconecta un dispositivo durante una operación activa, el controlador debe cancelar dicha operación de forma segura, liberar recursos del kernel y notificar a los procesos correspondientes.</p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h4>Limitaciones del Entorno</h4>
-                <p>Los controladores operan en un entorno restringido. Aunque no pueden invocar llamadas del sistema como lo hacen los programas de usuario, sí tienen acceso a funciones del núcleo como la asignación de memoria para búferes, administración de la MMU, temporizadores, controladores DMA e interrupciones. Estas herramientas son fundamentales para su funcionamiento eficiente.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <h3>Modelos de Interfaz para Controladores</h3>
-                <p>Los sistemas operativos modernos definen interfaces estándar que todos los controladores deben implementar para integrarse correctamente con el sistema. Estas interfaces actúan como un contrato entre el núcleo del sistema operativo y los módulos de controladores, permitiendo una interacción uniforme entre el software y el hardware, independientemente de las particularidades de cada dispositivo.</p>
-                <p class="citation">(Love, 2010)</p>
-
-                <p>Las funciones básicas que suelen componer esta interfaz incluyen:</p>
-                <ul>
-                    <li><strong>open():</strong> Inicializa el dispositivo y prepara el controlador para su uso.</li>
-                    <li><strong>close():</strong> Finaliza la operación del dispositivo y libera los recursos asignados.</li>
-                    <li><strong>read():</strong> Permite la lectura de datos desde el dispositivo.</li>
-                    <li><strong>write():</strong> Escribe datos en el dispositivo.</li>
-                    <li><strong>ioctl():</strong> (Input/Output Control) Realiza configuraciones específicas del hardware.</li>
-                    <li><strong>mmap():</strong> Asocia la memoria del dispositivo al espacio de direcciones del proceso.</li>
-                </ul>
-
-                <p>Estas funciones ofrecen una abstracción estandarizada, facilitando el desarrollo de controladores portables y simplificando la interacción del sistema con distintos tipos de hardware.</p>
-                
-                <h3>Modelos de Dispositivos en Sistemas Operativos Modernos</h3>
-                <p>Cada sistema operativo implementa un modelo de controlador propio, con su correspondiente interfaz de programación y ubicación típica en el sistema de archivos. La Tabla 9 resume estas características en los sistemas operativos más populares.</p>
-
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Sistema Operativo</th>
-                            <th>Modelo de Controlador</th>
-                            <th>Interfaz de Programación</th>
-                            <th>Ubicación Típica</th>
-                        </tr>
-                        <tr>
-                            <td>Linux</td>
-                            <td>Módulos cargables del kernel</td>
-                            <td>struct file_operations, module_init(), module_exit()</td>
-                            <td>/lib/modules/[versión-kernel]/</td>
-                        </tr>
-                        <tr>
-                            <td>Windows</td>
-                            <td>Windows Driver Model (WDM)</td>
-                            <td>Driver Development Kit (DDK)</td>
-                            <td>C:\Windows\System32\drivers\</td>
-                        </tr>
-                        <tr>
-                            <td>macOS</td>
-                            <td>IOKit</td>
-                            <td>IOService, IORegistryEntry</td>
-                            <td>/System/Library/Extensions/</td>
-                        </tr>
-                        <tr>
-                            <td>FreeBSD</td>
-                            <td>DEVFS</td>
-                            <td>struct cdevsw, struct driver</td>
-                            <td>/boot/kernel/</td>
-                        </tr>
-                        <tr>
-                            <td>Android</td>
-                            <td>Hardware Abstraction Layer (HAL)</td>
-                            <td>Biblioteca C específica de hardware</td>
-                            <td>/vendor/lib/hw/</td>
-                        </tr>
-                    </table>
-                    <div class="table-caption">Tabla 9. Modelos de controladores e interfaces en sistemas operativos modernos</div>
-                </div>
-            </div>
         </div>
         
         <!-- Sección 5.3.3 -->
         <div class="section" id="seccion-5-3-3">
             <div class="section-header">
                 <div class="section-number">5.3.3</div>
-                <div class="section-title">Software Modo Usuario para E/S</div>
+                <div class="section-title">Software en modo usuario para E/S.</div>
             </div>
             <div class="content">
-                <p>Los sistemas operativos modernos están estructurados en capas, donde cada nivel proporciona un conjunto específico de funcionalidades. El software de E/S en espacio de usuario representa uno de estos niveles, funcionando como intermediario entre las aplicaciones de usuario y las capas inferiores del sistema operativo. Aunque la mayor parte del software de E/S reside dentro del kernel del sistema operativo, existe una porción significativa que opera en el espacio de usuario, principalmente en forma de bibliotecas vinculadas con programas de usuario y programas completos que se ejecutan fuera del kernel.</p>
-                <p class="citation">(Silberschatz et al., 2018; Tanenbaum & Bos, 2015)</p>
+                <p>El <strong>software en modo usuario para entrada y salida (E/S)</strong> comprende el conjunto de programas, bibliotecas y llamadas al sistema que permiten a las <strong>aplicaciones comunicarse con los dispositivos de hardware</strong> a través del sistema operativo, <strong>sin acceder directamente al hardware.</strong></p>
+                <p>Su propósito es proporcionar una <strong>interfaz segura, uniforme y controlada,</strong> que facilite la ejecución de operaciones de E/S desde los programas de usuario, garantizando al mismo tiempo la estabilidad del sistema.</p>
+                <p class="citation">(Silberschatz, Galvin & Gagne, 2022).</p>
+
                 
-                <h3>Componentes Principales del Software de E/S en Espacio de Usuario</h3>
-
-                <h4>Bibliotecas de Procedimientos</h4>
-                <p>Las bibliotecas de procedimientos constituyen un componente fundamental del software de E/S en espacio de usuario. Estas bibliotecas proporcionan interfaces amigables para que los programas de usuario interactúen con el sistema de E/S sin necesidad de conocer los detalles técnicos de los dispositivos de hardware.</p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <p>Cuando un programa en C contiene una llamada al sistema relacionada con E/S, como:</p>
-
-                <div class="code-block">
-                    <pre>count = write(fd, buffer, nbytes);</pre>
-                    <div class="code-caption">El procedimiento de biblioteca write se vincula con el programa y se incluye en el programa binario presente en memoria en tiempo de ejecución</div>
-                </div>
-
-                <p>Estos procedimientos hacen más que simplemente colocar sus parámetros en el lugar apropiado para la llamada al sistema; algunos realizan un trabajo significativo, especialmente en el formateo de entrada y salida.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-
-                <h4>Funciones de Formateo: Printf y Scanf</h4>
-                <p>Una de las funcionalidades más importantes proporcionadas por las bibliotecas de E/S en espacio de usuario es el formateo de entrada y salida. Un ejemplo clásico en C es la función printf, que toma una cadena de formato y posiblemente variables como entrada, construye una cadena ASCII y luego llama al sistema write para imprimir la cadena.</p>
-                <p class="citation">(Deitel & Deitel, 2021)</p>
-
-                <p>Por ejemplo, cuando se ejecuta:</p>
-
-                <div class="code-block">
-                    <pre>printf("El cuadrado de %3d es %6d\n", i, i*i);</pre>
-                    <div class="code-caption">Esta instrucción formatea una cadena que consiste en la cadena "El cuadrado de" seguida por el valor i como una cadena de 3 caracteres, luego la cadena "es", después i² como seis caracteres, y finalmente un salto de línea.</div>
-                </div>
-
-                <p>De manera similar, la función scanf se utiliza para la entrada formateada, leyendo datos de entrada y almacenándolos en variables descritas en una cadena de formato que utiliza la misma sintaxis que printf.</p>
-                <p class="citation">(Kernighan & Ritchie, 2017)</p>
-                
-                <h3>Sistemas de Colas (Spooling)</h3>
-                <p>Otra categoría importante de software de E/S en espacio de usuario son los sistemas de colas o "spooling". Este mecanismo representa una forma eficiente de gestionar dispositivos de E/S dedicados en un sistema de multiprogramación, principalmente para gestionar recursos compartidos como impresoras.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <p>El término "spooling" es un acrónimo para "Simultaneous Peripheral Operations On-Line" (Operaciones Periféricas Simultáneas En Línea). Este sistema permite que múltiples usuarios o procesos envíen trabajos a un dispositivo sin tener que esperar a que el dispositivo complete cada tarea individualmente.</p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h4>Funcionamiento del Sistema de Colas</h4>
-                <p>En un sistema de colas típico para una impresora:</p>
-                <ol>
-                    <li>Se crea un proceso especial llamado "demonio" (daemon).</li>
-                    <li>Se establece un directorio especial llamado "directorio de cola" (spooling directory).</li>
-                    <li>Para imprimir un archivo, un proceso genera primero todo el archivo a imprimir y lo coloca en el directorio de cola.</li>
-                    <li>El demonio, que es el único proceso con permiso para usar el archivo especial de la impresora, imprime los archivos del directorio en orden, generalmente siguiendo un esquema FIFO (First In, First Out).</li>
-                </ol>
-
-                <p>Este mecanismo evita que un proceso mantenga abierto el dispositivo por un tiempo innecesariamente extenso, lo que bloquearía a otros procesos que necesitan acceder al mismo dispositivo.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-
-                <h4>Aplicaciones del Sistema de Colas</h4>
-                <p>El uso de colas no se limita a las impresoras. También se utiliza en otras situaciones de E/S, como:</p>
-
-                <p><span class="highlight">Transferencia de archivos a través de red:</span> Para enviar un archivo a través de una red, un usuario coloca el archivo en un directorio de cola de red. Posteriormente, un demonio de red lo toma y lo transmite.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <p><span class="highlight">Sistemas de noticias:</span> Un ejemplo específico es el sistema de noticias USENET (ahora parte de Google Groups), donde los usuarios pueden publicar mensajes en grupos de noticias depositándolos en un directorio de cola para su transmisión posterior a otras máquinas.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <h3>La Arquitectura del Sistema de E/S</h3>
-                <p>El sistema de E/S se puede visualizar como una serie de capas, cada una con funciones específicas. De abajo hacia arriba, estas capas son:</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-
-                <ul>
-                    <li><strong>Hardware:</strong> Realiza las operaciones de E/S físicas.</li>
-                    <li><strong>Manejadores de interrupciones:</strong> Despiertan al controlador cuando se completa la E/S.</li>
-                    <li><strong>Controladores de dispositivos:</strong> Establecen los registros de dispositivo y verifican el estado.</li>
-                    <li><strong>Software independiente del dispositivo:</strong> Maneja el nombramiento, protección, bloqueo, uso de búfer y asignación.</li>
-                    <li><strong>Procesos de usuario:</strong> Hacen la llamada de E/S, aplican formato a la E/S y colocan en cola.</li>
-                </ul>
-
-                <p>La interacción general entre los distintos niveles del sistema se ilustra en la Figura 7.</p>
-
-                <div class="figure-container">
-                        <div class="figura">
-                            <img src="FIGURA7.jpg" alt="Figura 7: Flujo de llamadas y respuestas en la arquitectura moderna de controladores" class="imagen-figura7"/>
-                        </div>
-                        <div class="figure-caption">Figura 7. Flujo de llamadas y respuestas en la arquitectura moderna de controladores</div>
-                </div>
-
-                <p>El flujo de control en este sistema es el siguiente: cuando un programa de usuario intenta leer un bloque de un archivo, se invoca el sistema operativo para llevar a cabo la llamada. El software independiente del dispositivo busca el bloque en la caché del búfer. Si el bloque necesario no está allí, llama al controlador del dispositivo para enviar la petición al hardware. Después, el proceso se bloquea hasta que se complete la operación. Cuando termina la operación, el hardware genera una interrupción, el manejador de interrupciones descubre qué ocurrió y despierta al proceso para finalizar la petición de E/S.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
             </div>
         </div>
         

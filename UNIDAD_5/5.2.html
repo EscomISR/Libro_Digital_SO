@@ -731,249 +731,9 @@
                 <div class="section-number">Introducción</div>
             </div>
             <div class="content">
-                <p>El software de E/S actúa como intermediario entre el hardware y los dispositivos periféricos. Su función principal es gestionar la interacción con los dispositivos mediante capas de abstracción, permitiendo a los programadores trabajar sin manipular detalles técnicos como registros, interrupciones o protocolos específicos.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
+                <p> Los<strong>principios del software de E/S</strong> establecen la forma en que el <strong>sistema operativo gestiona y coordina las operaciones de entrada y salida entre el hardware y los programas de usuario.</strong></p>
 
-                <h3>Principios del Software de E/S</h3>
 
-                <p>El sistema operativo no se comunica directamente con el hardware, sino a través del software de E/S, que funciona como una capa de traducción entre los programas de usuario y los dispositivos físicos.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-
-                <p>Para lograrlo, se utilizan controladores de dispositivos (drivers), que permiten al sistema operativo gestionar distintos tipos de hardware de manera uniforme, sin importar sus diferencias internas.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <p>Las funciones principales del software de E/S incluyen la lectura y escritura de datos, así como tareas adicionales como configurar, encender, apagar y verificar el estado de un dispositivo.</p>
-                <p class="citation">(Stallings, 2020)</p>
-                
-                <h3>Gestión del Tiempo en Operaciones de E/S</h3>
-                <p>Existen dos modos principales para manejar el tiempo durante operaciones de entrada y salida:</p>
-                
-                <p><span class="highlight">Síncrono:</span> El programa espera a que termine la operación antes de continuar. Es más simple de programar, pero puede causar demoras si el dispositivo es lento.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <p><span class="highlight">Asíncrono:</span> El programa inicia la operación y continúa ejecutándose. Al finalizar la E/S, el sistema le notifica. Este método mejora el rendimiento general, aunque su implementación es más compleja.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <p>El objetivo del software de E/S es lograr una interacción organizada y eficiente, ya sea con un disco duro o una tarjeta de red.</p>
-                
-                <h3>Clasificación de Dispositivos de E/S</h3>
-                <p>Los dispositivos de entrada/salida pueden clasificarse según diferentes criterios. La Tabla 6 resume esta clasificación, incluyendo ejemplos y características relacionadas con el software de E/S.</p>
-                <p class="citation">(Stallings, 2020)</p>
-                
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Criterio</th>
-                            <th>Tipos</th>
-                            <th>Ejemplos</th>
-                            <th>Características del Software de E/S</th>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">Unidad de transferencia</td>
-                            <td>Dispositivos de caracteres</td>
-                            <td>Teclados, ratones, impresoras</td>
-                            <td>Transferencia byte a byte, sin buffer estructurado.</td>
-                        </tr>
-                        <tr>
-                            <td>Dispositivos de bloques</td>
-                            <td>Discos duros, unidades SSD, DVD</td>
-                            <td>Transferencia en unidades de bloque, caché estructurado.</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">Patrón de acceso</td>
-                            <td>Secuencial</td>
-                            <td>Cintas magnéticas, puertos serie</td>
-                            <td>Algoritmos optimizados para acceso consecutivo.</td>
-                        </tr>
-                        <tr>
-                            <td>Aleatorio</td>
-                            <td>Discos, memoria flash</td>
-                            <td>Algoritmos de planificación de acceso.</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">Velocidad</td>
-                            <td>Alta velocidad</td>
-                            <td>GPUs, redes de alta velocidad</td>
-                            <td>DMA, interrupciones vectorizadas, buffers múltiples.</td>
-                        </tr>
-                        <tr>
-                            <td>Baja velocidad</td>
-                            <td>Dispositivos HID, impresoras</td>
-                            <td>Polling, interrupciones simples.</td>
-                        </tr>
-                    </table>
-                    <div class="table-caption">Tabla 6. Clasificación de dispositivos de entrada/salida</div>
-                </div>
-                
-                <h3>Interfaces de Programación de E/S (APIs)</h3>
-                <p>Las APIs de E/S son puntos de acceso entre las aplicaciones y el sistema operativo. Permiten que un programa decida si desea leer o escribir en un dispositivo.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <p>Con el tiempo, estas interfaces han evolucionado. En sus inicios estaban estrechamente vinculadas al hardware, pero actualmente se apoyan en abstracciones que simplifican el desarrollo de software y aumentan la portabilidad.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <h3>Modelos de Comunicación entre Programas y Dispositivos</h3>
-                <p>Los principales modelos de comunicación entre aplicaciones y dispositivos periféricos son:</p>
-                
-                <p><span class="highlight">1. Modelo de Bloqueo Síncrono:</span> El proceso se detiene hasta que finaliza la operación de E/S. Es sencillo de programar, pero desaprovecha recursos del sistema.</p>
-                <p class="citation">(Stallings, 2020)</p>
-                
-                <p><span class="highlight">2. Modelo No Bloqueante Asíncrono:</span> El proceso lanza la operación y continúa ejecutándose. El sistema notifica al proceso cuando la E/S termina. Mejora el rendimiento, pero exige un manejo más cuidadoso de estados y condiciones de carrera.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <p><span class="highlight">3. Modelo Basado en Eventos:</span> Se registran handlers (funciones manejadoras) que se ejecutan automáticamente ante ciertos eventos (como la llegada de datos). Es ideal para aplicaciones con múltiples dispositivos o conexiones simultáneas, como los servidores.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <h3>Mecanismos de Notificación Asíncrona</h3>
-                <p>El sistema operativo dispone de diversos mecanismos para notificar la finalización de operaciones de E/S asíncronas. En la Tabla 7 se presenta una comparativa entre estos mecanismos según su descripción, plataforma y ventajas.</p>
-                <p class="citation">(Stallings, 2020)</p>
-                
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Mecanismo</th>
-                            <th>Descripción</th>
-                            <th>Plataforma</th>
-                            <th>Ventajas</th>
-                            <th>Desventajas</th>
-                        </tr>
-                        <tr>
-                            <td>Select()/poll()</td>
-                            <td>Se encarga de revisar y monitorear en varios dispositivos.</td>
-                            <td>Multiplataforma</td>
-                            <td>Simple, estándar</td>
-                            <td>Escalamiento limitado, O(n)</td>
-                        </tr>
-                        <tr>
-                            <td>epoll</td>
-                            <td>API avanzado para monitorizar descriptores (muchos eventos)</td>
-                            <td>Linux</td>
-                            <td>Escalamiento O(1), eficiente</td>
-                            <td>Solo de Linux</td>
-                        </tr>
-                        <tr>
-                            <td>kqueue</td>
-                            <td>Es similar a epoll</td>
-                            <td>BSD, macOS</td>
-                            <td>Flexible, eficiente</td>
-                            <td>No disponible en Linux/Windows</td>
-                        </tr>
-                        <tr>
-                            <td>IOCP</td>
-                            <td>Manejo eficiente de entrada y salida</td>
-                            <td>Windows</td>
-                            <td>Alto rendimiento, rápido, escalable</td>
-                            <td>Específico de Windows</td>
-                        </tr>
-                        <tr>
-                            <td>AIO POSIX</td>
-                            <td>E/S asíncrona estándar</td>
-                            <td>UNIX</td>
-                            <td>Estandarizado</td>
-                            <td>Depende del sistema</td>
-                        </tr>
-                        <tr>
-                            <td>io_uring</td>
-                            <td>API moderno (nuevo) de E/S asíncrona, rápido y flexible</td>
-                            <td>Linux moderno</td>
-                            <td>Alto rendimiento, completa</td>
-                            <td>Nueva, específica de Linux</td>
-                        </tr>
-                    </table>
-                    <div class="table-caption">Tabla 7. Mecanismos de notificación asíncrona en operaciones de E/S</div>
-                </div>
-                
-                <h3>Ejemplo de Lectura y Escritura con E/S Bloqueante y No Bloqueante</h3>
-                <p>A continuación, se muestra el Código 4 en C que permite al usuario elegir entre dos modos de E/S: bloqueante y no bloqueante. Este ejemplo ilustra cómo puede manejarse la entrada de datos en diferentes escenarios usando funciones del sistema como select().</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <div class="code-block">
-                    <pre>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;fcntl.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;string.h&gt;
-#include &lt;sys/select.h&gt;
-
-#define BUFFER_SIZE 128
-
-int main() {
-    char buffer[BUFFER_SIZE];
-    int n;
-    int file = open("salida.txt", O_WRONLY | O_CREAT | O_APPEND, 0644);
-    
-    if (file &lt; 0) {
-        perror("No se pudo abrir el archivo");
-        return 1;
-    }
-    
-    printf("Modo de E/S:\n");
-    printf("1. Bloqueante (espera entrada del usuario)\n");
-    printf("2. No bloqueante (verifica si hay entrada sin esperar)\n");
-    printf("Selecciona una opción: ");
-    
-    int modo;
-    if (scanf("%d", &modo) != 1) {
-        printf("Entrada no válida.\n");
-        close(file);
-        return 1;
-    }
-    
-    while (getchar() != '\n'); // Limpiar el búfer de entrada
-    
-    if (modo == 1) {
-        // Modo bloqueante
-        printf("Escribe algo (bloqueante): ");
-        if (fgets(buffer, BUFFER_SIZE, stdin) == NULL) {
-            perror("Error al leer entrada");
-            close(file);
-            return 1;
-        }
-        
-        if (write(file, buffer, strlen(buffer)) == -1) {
-            perror("Error al escribir en el archivo");
-        } else {
-            printf("Se escribió en el archivo: %s", buffer);
-        }
-        
-    } else if (modo == 2) {
-        // Modo no bloqueante usando select()
-        printf("Esperando entrada por 5 segundos... (no bloqueante)\n");
-        
-        fd_set fds;
-        struct timeval timeout;
-        
-        FD_ZERO(&fds);
-        FD_SET(STDIN_FILENO, &fds);
-        timeout.tv_sec = 5;
-        timeout.tv_usec = 0;
-        
-        int ready = select(STDIN_FILENO + 1, &fds, NULL, NULL, &timeout);
-        
-        if (ready == -1) {
-            perror("Error en select()");
-        } else if (ready == 0) {
-            printf("Tiempo de espera agotado. No se ingresó nada.\n");
-        } else {
-            if (fgets(buffer, BUFFER_SIZE, stdin) == NULL) {
-                perror("Error al leer entrada");
-            } else {
-                if (write(file, buffer, strlen(buffer)) == -1) {
-                    perror("Error al escribir en el archivo");
-                } else {
-                    printf("Se escribió en el archivo: %s", buffer);
-                }
-            }
-        }
-    } else {
-        printf("Opción no válida.\n");
-    }
-    
-    close(file);
-    return 0;
-}</pre>
-                    <div class="code-caption">Código 4. Ejemplo de entrada de datos en modo bloqueante y no bloqueante</div>
-                </div>
             </div>
         </div>
         
@@ -984,30 +744,23 @@ int main() {
                 <div class="section-title">Objetivos del Software de E/S</div>
             </div>
             <div class="content">
-                <p>El principal objetivo en la parte del software de E/S (entrada y salida) es mantener la <span class="highlight">independencia de los dispositivos</span>, es decir, permitir que la información proveniente de cualquier dispositivo pueda ser utilizada por un programa sin importar el origen físico del archivo. Por ejemplo, un archivo almacenado en un DVD, memoria USB o CD-ROM debe poder ser accedido sin especificar el tipo de hardware de origen. "El sistema operativo se encarga de proporcionar los comandos necesarios para realizar operaciones de lectura y escritura en los dispositivos requeridos".</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <p>Asimismo, es posible ejecutar comandos que provienen tanto del teclado como de archivos en disco. Un ejemplo típico en sistemas Unix/Linux es:</p>
-                
-                <div class="code-block">
-                    <pre>gcc &lt;entrada&gt;.c -o salida.exe</pre>
-                    <div class="code-caption">Este comando compila un archivo .c y genera un ejecutable.</div>
-                </div>
-                
-                <p>Por otro lado, la <span class="highlight">denominación uniforme</span> es un objetivo importante. El nombre de un archivo debe depender únicamente de una cadena de caracteres o un identificador numérico, permitiendo ubicarlo sin importar el dispositivo. Por ejemplo, si se desea copiar un archivo al directorio /Gael/ast/respaldo/lunes, basta con conocer esa dirección, independientemente del dispositivo de origen.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <p>El <span class="highlight">manejo de errores de E/S</span> también se considera a nivel de hardware. Esto significa que, idealmente, el controlador debería corregir errores automáticamente. En muchos casos, un error puede solucionarse simplemente repitiendo la operación de lectura.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <p>Las <span class="highlight">operaciones asíncronas</span> son comúnmente utilizadas en E/S debido a su flexibilidad: permiten iniciar una transferencia y continuar con otras tareas mientras se espera una interrupción. En contraste, las operaciones de bloqueo suspenden la ejecución del programa hasta que los datos estén disponibles, lo cual puede simplificar el desarrollo de software.</p>
-                <p class="citation">(Stallings, 2020)</p>
-                
-                <p>El uso de <span class="highlight">buffers</span> permite almacenar temporalmente datos entre el origen y destino, evitando sub o sobrecargas y mejorando el rendimiento general de las operaciones de E/S. Este mecanismo es fundamental en la gestión eficiente de recursos.</p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <p>Finalmente, es importante distinguir entre <span class="highlight">dispositivos compartidos y dispositivos dedicados</span>. Los primeros pueden ser utilizados simultáneamente por varios usuarios sin conflicto (como discos duros), mientras que los segundos (como una impresora) requieren acceso exclusivo y secuencial.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
+                <p>Es aquel que se encarga de controlar, administrar y atender el buen funcionamiento de todos los programas con relación al sistema operativo para que con ello todos los dispositivos físicos y programas funcionen adecuadamente y no exista problemas o interrupciones de fallo.</p>
+                <h3>1. Independencia de los dispositivos</h3>
+                    <p>Es la forma en que los dispositivos trabajan con los programas en donde comparten operaciones de lectura y escritura sin tener en cuenta quien lo esté generando.</p>
+                <h3>2. Eficiencia en la transferencia de datos</h3>
+                    <p>Se busca en este proceso que el rendimiento sea y gestión de dispositivos de E/S obtengan su máximo rendimiento posible, para que con ello se reduzca el tiempo que utiliza la CPU, memoria y todos los periféricos, para ello se cuida que el Buffering  no tenga problemas de almacenamiento o que tenga problemas de interrupciones para realizar su función adecuadamente, de la misma manera spooling se procura que la lista de trabajos que pudiese tener no tenga contratiempos ya que esto afectaría la función de control y administración de dispositivos y a su vez entonces el caching, no podría reutilizar los datos que se usaron para que se aceleren los accesos correspondientes.</p>
+                <h3>3. Control y sincronización</h3>
+                    <p>Esta operación es fundamental para el buen flujo de las comunicaciones de los programas con los dispositivos de entrada y salida ya que se encarga de que no exista conflictos y accesos simultáneos ya que afectarían su operatividad, para ello se implementa acciones de restricción, interrupciones y controladores para que ellos ayuden a garantizar que todo en los procesos se lleve adecuadamente en forma segura y ordenada.</p>
+                <h3>4. Detección y manejo de errores</h3>
+                    <p>Esta función es de suma importancia ya que ayuda a detectar a tiempo los posible errores entre los elementos físicos y los programas, así como todos los procesos de comunicación lógica que se lleven a cabo, para ello implementa lista de espera, procesos de planificación de dispositivos de entrada y salida y prioriza dependiendo de su nivel de asignación la ejecución del proceso.</p>
+                <h3>5. Concurrencia y multitarea</h3>    
+                    <p>Permite múltiples <strong>procesos en operaciones de E/S simultáneamente,</strong> sin interferir entre sí.</p>
+                <h3>6. Seguridad y protección</h3>
+                    <p>Se encarga de llevar a cabo procesos de seguridad que proteja el acceso a los dispositivos, garantizando que <strong>solo los procesos autorizados</strong> puedan utilizarlos.</p>
+                <h3>7. Optimización del rendimiento global</h3>
+                    <p>Su tarea es gestionar que la comunicación sea optima y que exista una adecuada distribución de recursos del sistema para esta función.</p>
+
+
             </div>
         </div>
         
@@ -1018,120 +771,8 @@ int main() {
                 <div class="section-title">E/S Programadas</div>
             </div>
             <div class="content">
-                <p>"Aunque existen tres maneras en las que podemos llevar a cabo E/S (E/S quiere decir: entrada y salida), esta es la forma más simple en que podemos hacerlo".</p>
-                <p class="citation">(Tanenbaum & Bos, 2015, p. 193)</p>
-                
-                <p>La E/S programada implica que todo el proceso de entrada y salida es gestionado directamente por el procesador (CPU) y se ejecuta a nivel de kernel. A modo de ejemplo, consideremos un proceso que envía la cadena "HOLA" a una impresora.</p>
-                
-                <h3>Flujo del Proceso</h3>
-                <ol>
-                    <li><strong>Ensamblado en el espacio de usuario:</strong> El proceso primero ensambla la cadena en un búfer en el espacio de usuario. Este paso se ilustra en la Figura 2.</li>
-                    <div class="figure-container">
-                        <div class="figura">
-                            <img src="FIGURA2.jpg" alt="Figura 2: Etapas del proceso de E/S programada en el espacio de usuario." class="imagen-figura2"/>
-                        </div>
-                        <div class="figure-caption">Figura 2. Etapas del proceso de E/S programada en el espacio de usuario.</div>
-                    </div>
-                    <li><strong>Llamada al sistema:</strong> Luego, se realiza una llamada al sistema para abrir la impresora:
-                        <ul>
-                            <li>Si el dispositivo no está disponible, la llamada falla, devuelve un código de error y el proceso espera hasta que esté listo.</li>
-                            <li>Si está disponible, se realiza una nueva llamada al sistema para enviar la cadena a imprimir.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Copia al espacio de kernel:</strong> El sistema operativo copia el búfer desde el espacio de usuario al espacio de kernel, permitiendo el acceso directo desde el sistema. Esto se muestra en la Figura 3.</li>
-                        <ul>
-                            <li>Se verifica si la impresora está lista; si no lo está, se espera.</li>
-                            <li>Se imprime el primer carácter y se marca el siguiente.</li>
-                        </ul>
-                    <div class="figure-container">
-                        <div class="figura">
-                            <img src="FIGURA3.jpg" alt="Figura 3: Etapas del proceso de E/S programada traslado al Kernel." class="imagen-figura3"/>
-                        </div>
-                        <div class="figure-caption">Figura 3. Etapas del proceso de E/S programada traslado al Kernel.</div>
-                    </div>
-                    <li><strong>Impresión carácter por carácter:</strong> Finalmente, el sistema operativo comprueba repetidamente si la impresora está lista para recibir el siguiente carácter. Si lo está, continúa la impresión. Este ciclo se repite hasta que toda la cadena ha sido enviada, como se observa en la Figura 4.</li>
-                    <div class="figure-container">
-                        <div class="figura">
-                            <img src="FIGURA4.jpg" alt="Figura 4: Etapas del proceso de E/S programada procesamiento carácter por carácter." class="imagen-figura4"/>
-                        </div>
-                        <div class="figure-caption">Figura 4. Etapas del proceso de E/S programada procesamiento carácter por carácter.</div>
-                    </div>
-                </ol>
-                
-                <h4>Síntesis del Proceso</h4>
-                <ol>
-                    <li>Copia de los datos al espacio de kernel.</li>
-                    <li>Bucle que imprime un carácter a la vez.</li>
-                    <li>Repetición hasta completar la impresión de toda la cadena.</li>
-                </ol>
-                
-                <h3>Ejemplo de Código</h3>
-                <p>Con el Código 5 hecho en C ejemplificamos los pasos dichos anteriormente una simulación de E/S Programada.</p>
-                
-                <div class="code-block">
-                    <pre>#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;unistd.h&gt;
+                <p>Método básico mediante el cual la <strong>CPU controla directamente las operaciones de E/S,</strong> supervisando cada transferencia de datos entre el dispositivo y la memoria principal.</p>
 
-int READY = 1;
-
-// Simulación de registros de hardware
-// Prototipos
-int nivelde_usuario();
-int nivelKernel(char* p, int caracteres);
-
-int main() {
-    nivelde_usuario();
-    return 0;
-}
-
-int nivelde_usuario() {
-    char cadena_imprimir[100];
-    int numero_caracteres;
-    
-    printf("Introduzca la cadena a imprimir: ");
-    fgets(cadena_imprimir, sizeof(cadena_imprimir), stdin); //En este caso sera hola
-    
-    // Elimina el salto de línea final si existe
-    cadena_imprimir[strcspn(cadena_imprimir, "\n")] = '\0';
-    
-    printf("Impresora no disponible...\n");
-    sleep(2); // Simula espera
-    printf("Impresora disponible\n");
-    
-    numero_caracteres = strlen(cadena_imprimir);
-    
-    // Llamada simulada al sistema operativo (nivel de kernel)
-    nivelKernel(cadena_imprimir, numero_caracteres);
-    
-    return 0;
-}
-
-int nivelKernel(char* p, int caracteres) {
-    char registro_datos_impresora;
-    
-    for (int i = 0; i &lt; caracteres; i++) {
-        while (READY != 0 ) {
-            printf("Esperando a que la impresora este lista \n");
-            usleep(500000); // Simula tiempo de impresión
-            READY = 0;
-        }
-        
-        // Simula el envío del carácter a la impresora
-        registro_datos_impresora = p[i];
-        printf("Imprimiendo: %c\n", registro_datos_impresora);
-        usleep(500000); // Simula tiempo de impresión
-        READY = 1;
-    }
-    
-    return 0;
-}</pre>
-                    <div class="code-caption">Código 5. Simulación en código de una E/S programada</div>
-                </div>
-                
-                <h3>Ventajas y Desventajas</h3>
-                <p>La principal desventaja de este enfoque es que el procesador queda completamente ocupado durante la operación de E/S, lo que es ineficiente en sistemas donde el CPU debe atender múltiples procesos. No obstante, en sistemas embebidos, donde las tareas están claramente definidas y controladas, esta técnica sigue siendo viable por su simplicidad y bajo costo computacional.</p>
-                <p class="citation">(Silberschatz, Galvin, & Gagne, 2018)</p>
             </div>
         </div>
         
@@ -1142,56 +783,9 @@ int nivelKernel(char* p, int caracteres) {
                 <div class="section-title">E/S Manejadas por Interrupciones</div>
             </div>
             <div class="content">
-                <p>Supongamos que una impresora tiene una velocidad de impresión de 100 caracteres por segundo, es decir, necesita 10 milisegundos para imprimir cada carácter. Aunque este tiempo puede parecer breve, es suficiente para que el procesador (CPU) aproveche ese intervalo ejecutando otras tareas, logrando así un mejor aprovechamiento del tiempo de espera entre impresiones.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <p>A diferencia de la E/S programada, en la E/S manejada por interrupciones el procesador no permanece ocioso esperando a que el dispositivo esté disponible. En su lugar, ejecuta otros procesos y solo interrumpe su actividad cuando el dispositivo (como la impresora) indica que está listo para recibir el siguiente carácter.</p>
-                
-                <h3>Funcionamiento General</h3>
-                <p>El flujo general es similar al de la E/S programada en cuanto a los primeros pasos:</p>
-                <ol>
-                    <li>El proceso construye la cadena a imprimir en el espacio de usuario.</li>
-                    <li>Se copia el búfer al espacio de Kernel.</li>
-                    <li>Se verifica si la impresora está disponible.</li>
-                </ol>
-                
-                <p>Pero a partir del paso 3, el comportamiento cambia:</p>
-                <ul>
-                    <li>En lugar de esperar activamente, el sistema operativo llama al planificador de tareas para que ejecute otro proceso mientras la impresora termina de imprimir el carácter actual.</li>
-                    <li>Una vez que el carácter ha sido impreso, se genera una interrupción, provocando que el CPU detenga temporalmente el proceso actual, guarde su estado y atienda el servicio de interrupción de la impresora.</li>
-                    <li>Dentro de este procedimiento de servicio, el sistema verifica si aún quedan caracteres por imprimir. Si es así, continúa el ciclo. Si no, finaliza la operación de E/S.</li>
-                </ul>
-                
-                <p>Este mecanismo mejora significativamente la eficiencia del sistema, especialmente en entornos multitarea.</p>
-                
-                <h3>Fragmento de Código Adaptado</h3>
-                <p>A continuación, se muestra el Código 6, un fragmento de código que ejemplifica la lógica de interrupciones, simulando el comportamiento de la impresora mientras se ejecutan otras tareas:</p>
-                
-                <div class="code-block">
-                    <pre>char registro_datos_impresora;
-
-for (int i = 0; i &lt; caracteres; i++) {
-    while (READY != 0) {
-        printf("Habilitando interrupción\n");
-        printf("Ejecutando otro proceso\n");
-        usleep(500000); // Simula tiempo de espera mientras se ejecuta otro proceso
-        READY = 0; // Simula que la impresora ya no está lista
-    }
-    
-    // Envío del carácter cuando READY == 0
-    registro_datos_impresora = p[i];
-    printf("Imprimiendo: %c\n", registro_datos_impresora);
-    usleep(500000); // Simula impresión del carácter
-    READY = 1; // Simula que la impresora vuelve a estar lista
-}</pre>
-                    <div class="code-caption">Código 6. E/S controlada por interrupciones para mayor eficiencia</div>
-                </div>
-                
-                <p>Este fragmento ilustra cómo el sistema puede continuar con otras tareas y ser interrumpido únicamente cuando la impresora esté lista para procesar el siguiente carácter, simulando el comportamiento del servicio de interrupción.</p>
-                
-                <h3>Conclusión</h3>
-                <p>La E/S controlada por interrupciones representa una mejora notable sobre la E/S programada, ya que optimiza el uso del procesador permitiéndole ejecutar otros procesos mientras espera por la disponibilidad del dispositivo. Esta técnica es ampliamente utilizada en sistemas operativos modernos para manejar dispositivos como discos, tarjetas de red o impresoras.</p>
-                <p class="citation">(Silberschatz, Galvin, & Gagne, 2018)</p>
+                <p>Método que permite a la <strong>CPU continuar ejecutando otras tareas</strong> mientras los dispositivos de E/S realizan operaciones, interrumpiendo al procesador únicamente cuando  <strong>se requiere atención o cuando una transferencia ha finalizado.</strong></p>
+            
+            
             </div>
         </div>
         
@@ -1202,45 +796,10 @@ for (int i = 0; i &lt; caracteres; i++) {
                 <div class="section-title">E/S usando DMA</div>
             </div>
             <div class="content">
-                <p>Una desventaja clara de la E/S controlada por interrupciones es que se genera una interrupción por cada carácter enviado, lo cual implica un uso considerable del tiempo del procesador. Para mitigar este problema, se emplea el mecanismo de DMA (acceso directo a memoria), en el cual un controlador especializado gestiona la transferencia de datos entre la memoria principal y el dispositivo (como una impresora), sin requerir la intervención constante de la CPU.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <p>En este modelo, el controlador DMA asume las tareas que normalmente realizaría el procesador en los métodos de E/S programada. Si bien esta solución exige hardware adicional, su principal beneficio es que la CPU queda libre para realizar otras operaciones mientras se completa la transferencia de datos.</p>
-                
-                <h3>Funcionamiento General</h3>
-                <p>El proceso de impresión mediante DMA consta de dos fases principales:</p>
-                
-                <h4>Fase 1: Inicio de la Operación</h4>
-                <p>Código ejecutado cuando se realiza la llamada al sistema para iniciar la impresión, tal como lo muestra el Código 7.</p>
-                
-                <div class="code-block">
-                    <pre>copiar_del_usuario(bufer, p, cuenta);
-establecer_controlador_DMA();
-planificador();</pre>
-                    <div class="code-caption">Código 7. Código asociado al inicio de la operación</div>
-                </div>
-                
-                <h4>Fase 2: Finalización</h4>
-                <p>Código que se ejecuta en el procedimiento de servicio de interrupciones, una vez que el DMA ha completado su tarea, como lo muestra el Código 8.</p>
-                
-                <div class="code-block">
-                    <pre>reconocer_interrupcion();
-desbloquear_usuario();
-regresar_de_interrupcion();</pre>
-                    <div class="code-caption">Código 8. Procedimiento que se activa tras la interrupción del DMA</div>
-                </div>
-                
-                <h3>Ventajas y Consideraciones</h3>
-                <p>El uso de DMA ofrece una ventaja fundamental: reduce drásticamente el número de interrupciones, pasando de una por carácter (como en E/S por interrupciones) a una sola por cada búfer completo. Este cambio es especialmente beneficioso cuando se trabaja con grandes volúmenes de datos o cuando las interrupciones son costosas en tiempo de procesamiento.</p>
-                
-                <p>Sin embargo, el DMA no siempre es la mejor opción:</p>
-                <ul>
-                    <li>Si el controlador DMA no puede manejar el dispositivo a su velocidad máxima.</li>
-                    <li>Si la CPU está inactiva o tiene pocos procesos pendientes.</li>
-                </ul>
-                
-                <p>En tales casos, puede ser preferible utilizar E/S por interrupciones o incluso programada, dependiendo del contexto del sistema. Aun así, en la mayoría de los escenarios multitarea, el uso de DMA resulta más eficiente y deseable.</p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
+                <p>Técnica avanzada que permite a los <strong>dispositivos de entrada/salida transferir datos directamente hacia o desde la memoria principal,</strong> sin la intervención continua de la CPU.</p>
+
+
+
             </div>
         </div>
         

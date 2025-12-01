@@ -594,9 +594,11 @@
 <body>
     <div class="container"> <header>
           <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; margin-bottom: 20px;">
-            <img src="IPNb.png" alt="Logo IPN" style="height: 80px; max-width: 120px; object-fit: contain;"> <h1 style="margin: 0; text-align: center;">UNIDAD TEMÁTICA 5</h1> <img src="ESCOMB.png" alt="Logo ESCOM" style="height: 80px; max-width: 120px; object-fit: contain;"> </div>
+            <img src="IPNb.png" alt="Logo IPN" style="height: 80px; max-width: 120px; object-fit: contain;"> <h1 style="margin: 0; text-align: center;">CAPÍTULO V</h1> <img src="ESCOMB.png" alt="Logo ESCOM" style="height: 80px; max-width: 120px; object-fit: contain;"> </div>
           <div class="subtitle">DISPOSITIVOS DE ENTRADA Y SALIDA</div> <div class="description">
-            <p>Esta unidad explora los componentes fundamentales que permiten la interacción entre los sistemas informáticos y el mundo exterior. Aprenderás sobre los principios de hardware y software que gobiernan los dispositivos de E/S, su clasificación, funcionamiento y la gestión eficiente por parte del sistema operativo.</p> </div>
+            <p>Los dispositivos de entrada y salida (E/S) son muy importantes para todos los equipos de cómputo derivado a que es el medio por el cual el usuario se puede interconectar con sus dispositivos externos con dichos equipos.
+            Su misión principal es que al ser conectados dispositivos externos los datos que se encuentren almacenados en ellos puedan ser extraídos y a su vez almacenados dentro de ellos, cabe señalar que en este proceso se involucra la CPU y la memoria que son elementos fundamentales para llevar a cabo este proceso
+            </p> </div> <!-- Ya quedo -->
 
           <div class="hardware-icons">
             <div class="hardware-icon">⌨️</div>
@@ -609,7 +611,7 @@
             <div class="hardware-icon">💾</div>
             <div class="hardware-icon">📷</div>
             <div class="hardware-icon">🔊</div>
-          </div>
+            </div>
         </header>
 
         
@@ -624,14 +626,14 @@
                         <li class="subtopic-item">
                             <a href="5.1.html#seccion-5-1-1" class="subtopic-link">
                                 <div class="subtopic-number">5.1.1</div>
-                                <div class="subtopic-name">Dispositivos de E/S</div>
+                                <div class="subtopic-name">Dispositivos de bloque y de carácter</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
                         <li class="subtopic-item">
                             <a href="5.1.html#seccion-5-1-2" class="subtopic-link">
                                 <div class="subtopic-number">5.1.2</div>
-                                <div class="subtopic-name">Controladores de Dispositivos</div>
+                                <div class="subtopic-name">Controladores de dispositivo.</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
@@ -645,7 +647,7 @@
                         <li class="subtopic-item">
                             <a href="5.1.html#seccion-5-1-4" class="subtopic-link">
                                 <div class="subtopic-number">5.1.4</div>
-                                <div class="subtopic-name">Acceso de Memoria Directo (DMA)</div>
+                                <div class="subtopic-name">Acceso DMA.</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
@@ -724,14 +726,14 @@
                         <li class="subtopic-item">
                             <a href="5.3.html#seccion-5-3-2" class="subtopic-link">
                                 <div class="subtopic-number">5.3.2</div>
-                                <div class="subtopic-name">Controladores de Dispositivos</div>
+                                <div class="subtopic-name">Controladores de Dispositivo</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
                         <li class="subtopic-item">
                             <a href="5.3.html#seccion-5-3-3" class="subtopic-link">
                                 <div class="subtopic-number">5.3.3</div>
-                                <div class="subtopic-name">Software Modo Usuario</div>
+                                <div class="subtopic-name">Software en modo usuario para E/S.</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
@@ -802,72 +804,12 @@
 
         </div>
         
-        <div id="videoModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Video Introducción - Dispositivos de Entrada y Salida</h2>
-                    <button class="close-btn" onclick="closeVideoModal()">&times;</button>
-                </div>
-                <div class="video-container">
-                    <iframe id="videoFrame" 
-                            src="" 
-                            title="Video Educativo"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-        </div>
-
         <footer> <p>Sistemas Operativos - Unidad 5: Dispositivos de Entrada y Salida</p>
             <p>Desarrollado para fines educativos - © 2025</p>
         </footer>
     </div>
     
     <script>
-
-        function openVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const videoFrame = document.getElementById('videoFrame');
-            
-            if (!modal || !videoFrame) return;
-
-            // Video Unidad 5: Dispositivos de E/S
-            videoFrame.src = 'https://www.youtube.com/embed/CprZd_69QGM?autoplay=1';
-
-            modal.classList.add('show');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const videoFrame = document.getElementById('videoFrame');
-            
-            if (!modal || !videoFrame) return;
-            
-            videoFrame.src = '';
-            
-            modal.classList.remove('show');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Event listeners para cerrar el modal (si no están ya en el archivo)
-        document.getElementById('videoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeVideoModal();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeVideoModal();
-            }
-        });
-
         // Función para alternar el estado activo de las tarjetas (expandir/colapsar subtemas)
         function toggleCard(cardIdSuffix) {
             const card = document.getElementById(`card-${cardIdSuffix}`); // Obtiene el elemento de la tarjeta específica por su ID
@@ -947,7 +889,7 @@
             }
         });
     </script>
-    <a href="../Unidades.html" class="back-to-menu-btn" title="Volver al Inicio">
+    <a href="../MENU/MENU.html" class="back-to-menu-btn" title="Volver al Menú Principal">
         <i class="fas fa-home"></i>
     </a>
 </body>
