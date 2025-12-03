@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Referencias Bibliográficas - Unidad 1</title>
+    <title>Referencias Bibliográficas y Recursos - Unidad 6</title>
     <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -96,6 +96,20 @@
             text-align: justify;
         }
         
+        .section-title {
+            color: var(--light);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin: 50px 0 30px;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
         .references-container {
             display: grid;
             gap: 25px;
@@ -134,27 +148,16 @@
             font-weight: 500;
             margin-bottom: 12px;
         }
+
+        .type-figura { background: var(--accent); }
+        .type-tabla { background: var(--success); }
+        .type-video { background: var(--warning); }
         
         .reference-description {
             color: var(--light);
             font-size: 0.95rem;
             margin-bottom: 12px;
             opacity: 0.9;
-        }
-        
-        .reference-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .topic-tag {
-            background: rgba(231, 76, 60, 0.2);
-            color: var(--accent);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
         }
         
         .citation-note {
@@ -270,180 +273,213 @@
             <div class="breadcrumb">
                 <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
                 <span>/</span>
-                <span>Referencias Bibliográficas</span>
+                <span>Referencias y Recursos</span>
             </div>
-            <h1>Referencias Bibliográficas</h1>
-            <div class="subtitle">Fuentes académicas y técnicas consultadas</div>
+            <h1>Referencias Bibliográficas y Recursos</h1>
+            <div class="subtitle">Unidad 6: Seguridad y Virtualización</div>
         </header>
         
         <div class="intro">
-            <p>La presente unidad se fundamenta en una selección cuidadosa de fuentes bibliográficas especializadas en sistemas operativos, arquitectura de computadoras y programación de sistemas. Estas referencias representan textos fundamentales en el área de ciencias de la computación y proporcionan el marco teórico y práctico necesario para comprender la asignatura en profundidad.</p>
+            <p>Esta sección compila las fuentes bibliográficas, figuras, tablas y material audiovisual utilizados en la Unidad 6. Estos recursos han sido seleccionados y elaborados para fundamentar teórica y prácticamente los conceptos sobre la seguridad en sistemas operativos y las tecnologías de virtualización.</p>
         </div>
 
         <div class="stats-section">
-            <h2 style="color: var(--secondary); margin-bottom: 20px;">Estadísticas de las Referencias</h2>
+            <h2 style="color: var(--secondary); margin-bottom: 20px;">Resumen de Recursos</h2>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">9</span>
-                    <div class="stat-label">Referencias Totales</div>
+                    <span class="stat-number">4</span>
+                    <div class="stat-label">Fuentes Bibliográficas</div>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">2005-2022</span>
-                    <div class="stat-label">Rango Temporal</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">6</span>
-                    <div class="stat-label">Editoriales</div>
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">Figuras Didácticas</div>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">5</span>
-                    <div class="stat-label">Áreas Temáticas</div>
+                    <div class="stat-label">Tablas Comparativas</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <div class="stat-label">Videos Educativos</div>
                 </div>
             </div>
         </div>
         
+        <h2 class="section-title"><i class="fas fa-book"></i> Bibliografía Consultada</h2>
         <div class="references-container">
-            <div class="reference-item">
-                <div class="reference-type">Programación Concurrente</div>
-                <div class="reference-citation">
-                    Andrews, G. R. (2013). <em>Fundamentos de programación multihilo, paralela y distribuida</em>. Addison-Wesley.
-                </div>
-                <div class="reference-description">
-                    Texto esencial para comprender los modelos de programación que permiten la ejecución simultánea de tareas y sistemas distribuidos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Multihilo</span>
-                    <span class="topic-tag">Paralelismo</span>
-                    <span class="topic-tag">Sistemas Distribuidos</span>
-                </div>
-            </div>
-
-            <div class="reference-item">
-                <div class="reference-type">Arquitectura Linux</div>
-                <div class="reference-citation">
-                    Bovet, D. P., & Cesati, M. (2005). <em>Comprendiendo el núcleo de Linux</em> (3.ª ed.). O’Reilly Media.
-                </div>
-                <div class="reference-description">
-                    Guía técnica detallada sobre la estructura interna y el funcionamiento del kernel de Linux.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Linux</span>
-                    <span class="topic-tag">Kernel</span>
-                    <span class="topic-tag">Open Source</span>
-                </div>
-            </div>
-
-            <div class="reference-item">
-                <div class="reference-type">Desarrollo de Kernel</div>
-                <div class="reference-citation">
-                    Love, R. (2010). <em>Desarrollo del núcleo de Linux</em> (3.ª ed.). Addison-Wesley Professional.
-                </div>
-                <div class="reference-description">
-                    Enfoque práctico para desarrolladores interesados en comprender e implementar código dentro del núcleo de Linux.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Desarrollo</span>
-                    <span class="topic-tag">Linux</span>
-                    <span class="topic-tag">Implementación</span>
-                </div>
-            </div>
-
             <div class="reference-item">
                 <div class="reference-type">Texto Fundamental</div>
                 <div class="reference-citation">
                     Silberschatz, A., Galvin, P. B., & Gagne, G. (2022). <em>Conceptos de sistemas operativos</em> (10.ª ed.). Wiley.
                 </div>
-                <div class="reference-description">
-                    Referencia académica clásica que cubre los conceptos teóricos esenciales de los sistemas operativos modernos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Teoría SO</span>
-                    <span class="topic-tag">Gestión de Procesos</span>
-                    <span class="topic-tag">Memoria</span>
-                </div>
+                <div class="reference-description">Referencia académica clásica que cubre los conceptos teóricos esenciales de seguridad y virtualización.</div>
             </div>
-
             <div class="reference-item">
-                <div class="reference-type">Gestión de Datos</div>
+                <div class="reference-type">Referencia General</div>
                 <div class="reference-citation">
-                    Silberschatz, A., Korth, H. F., & Sudarshan, S. (2020). <em>Conceptos de sistemas de bases de datos</em> (7.ª ed.). McGraw-Hill Education.
+                    Carretero, J., et al. (2001). <em>Sistemas Operativos: Una visión aplicada</em>. McGraw-Hill.
                 </div>
-                <div class="reference-description">
-                    Complemento esencial para entender cómo los sistemas operativos interactúan y gestionan el almacenamiento de datos estructurados.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Bases de Datos</span>
-                    <span class="topic-tag">Almacenamiento</span>
-                    <span class="topic-tag">Gestión de Datos</span>
-                </div>
+                <div class="reference-description">Fuente utilizada para conceptos aplicados de seguridad en sistemas.</div>
             </div>
-
             <div class="reference-item">
-                <div class="reference-type">Principios de Diseño</div>
+                <div class="reference-type">Diseño y Arquitectura</div>
                 <div class="reference-citation">
                     Stallings, W. (2018). <em>Sistemas operativos: Aspectos internos y principios de diseño</em> (9.ª ed.). Pearson Educación.
                 </div>
-                <div class="reference-description">
-                    Análisis profundo de los principios de diseño arquitectónico y los mecanismos internos de los sistemas operativos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Arquitectura</span>
-                    <span class="topic-tag">Diseño</span>
-                    <span class="topic-tag">Estructura Interna</span>
-                </div>
+                <div class="reference-description">Proporciona detalles sobre la arquitectura interna de seguridad y mecanismos de protección.</div>
             </div>
-
             <div class="reference-item">
                 <div class="reference-type">Texto de Referencia Principal</div>
                 <div class="reference-citation">
                     Tanenbaum, A. S., & Bos, H. (2015). <em>Sistemas operativos modernos</em> (4.ª ed.). Pearson Educación.
                 </div>
-                <div class="reference-description">
-                    Obra fundamental que ofrece una visión completa y actualizada de las tecnologías y tendencias en sistemas operativos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Sistemas Modernos</span>
-                    <span class="topic-tag">Tanenbaum</span>
-                    <span class="topic-tag">Tecnología</span>
-                </div>
+                <div class="reference-description">Obra fundamental para comprender los modelos de virtualización y seguridad moderna.</div>
             </div>
+        </div>
 
+        <h2 class="section-title"><i class="fas fa-image"></i> Índice de Figuras</h2>
+        <div class="references-container">
             <div class="reference-item">
-                <div class="reference-type">Sistemas Distribuidos</div>
-                <div class="reference-citation">
-                    Tanenbaum, A. S., & Van Steen, M. (2017). <em>Sistemas distribuidos: Principios y paradigmas</em> (3.ª ed.). Pearson Educación.
-                </div>
+                <div class="reference-type type-figura">Figura 31</div>
+                <div class="reference-citation">Control de acceso a los recursos</div>
                 <div class="reference-description">
-                    Explora los principios que rigen los sistemas que operan a través de redes, crucial para la computación moderna.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Redes</span>
-                    <span class="topic-tag">Distribuidos</span>
-                    <span class="topic-tag">Comunicación</span>
+                    <strong>Ubicación:</strong> Tema 6.1<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
                 </div>
             </div>
-
             <div class="reference-item">
-                <div class="reference-type">Cloud Computing</div>
-                <div class="reference-citation">
-                    Wolf, M., Halter, J., & Dawson, J. (2015). <em>Tecnologías de computación en la nube y estrategias para centros de datos ubicuos</em> (2.ª ed.). CRC Press.
-                </div>
+                <div class="reference-type type-figura">Figura 32</div>
+                <div class="reference-citation">Implementación de matrices de acceso</div>
                 <div class="reference-description">
-                    Enfoque moderno sobre la infraestructura que soporta la nube y los grandes centros de datos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Cloud</span>
-                    <span class="topic-tag">Data Centers</span>
-                    <span class="topic-tag">Infraestructura</span>
+                    <strong>Ubicación:</strong> Tema 6.1<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
                 </div>
             </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Tabla 9 (Imagen)</div>
+                <div class="reference-citation">Comparación general de los modelos de seguridad</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.1<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+        </div>
 
+        <h2 class="section-title"><i class="fas fa-table"></i> Índice de Tablas</h2>
+        <div class="references-container">
+            <div class="reference-item">
+                <div class="reference-type type-tabla">Tabla 10</div>
+                <div class="reference-citation">Tipos de virtualización, componentes, ventajas y desventajas</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-tabla">Tabla 11</div>
+                <div class="reference-citation">Tipos de emulación</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-tabla">Tabla 12</div>
+                <div class="reference-citation">Diferencias entre emulación y virtualización</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-tabla">Tabla 13</div>
+                <div class="reference-citation">Extensiones de virtualización más comunes</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-tabla">Tabla 14</div>
+                <div class="reference-citation">Comparación con otros métodos de virtualización</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-play-circle"></i> Índice de Recursos Audiovisuales</h2>
+        <div class="references-container">
+            <div class="reference-item">
+                <div class="reference-type type-video">Introducción</div>
+                <div class="reference-citation">Video Introducción - Seguridad y Virtualización</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Índice de Unidad<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=By5rFRRQsf4" target="_blank" style="color: var(--secondary);">Ver en YouTube (By5rFRRQsf4)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Seguridad</div>
+                <div class="reference-citation">El ambiente de seguridad</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.1<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=-0iRtpRkf6k" target="_blank" style="color: var(--secondary);">Ver en YouTube (-0iRtpRkf6k)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Accesos</div>
+                <div class="reference-citation">Control de acceso a los recursos</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.1<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=2aGSHXlO9f4" target="_blank" style="color: var(--secondary);">Ver en YouTube (2aGSHXlO9f4)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Matrices</div>
+                <div class="reference-citation">Implementación de matrices de acceso</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.1<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=Gbs0k6R2kJY" target="_blank" style="color: var(--secondary);">Ver en YouTube (Gbs0k6R2kJY)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Modelos</div>
+                <div class="reference-citation">Modelos formales de seguridad</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.1<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=fNxP_789EzA" target="_blank" style="color: var(--secondary);">Ver en YouTube (fNxP_789EzA)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Virtualización</div>
+                <div class="reference-citation">Virtualización y emulación</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=h9OtB6xcDLo" target="_blank" style="color: var(--secondary);">Ver en YouTube (h9OtB6xcDLo)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Hardware</div>
+                <div class="reference-citation">Virtualización asistida por hardware</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=jt3sU0LHNHM" target="_blank" style="color: var(--secondary);">Ver en YouTube (jt3sU0LHNHM)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Contenedores</div>
+                <div class="reference-citation">Paravirtualización y contenedores</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 6.2<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=P8_u4rfOTEw" target="_blank" style="color: var(--secondary);">Ver en YouTube (P8_u4rfOTEw)</a>
+                </div>
+            </div>
         </div>
 
         <div class="citation-note">
             <h3><i class="fas fa-quote-left"></i> Nota sobre el Formato de Citas</h3>
-            <p>Las referencias bibliográficas han sido elaboradas siguiendo el formato APA (American Psychological Association, 7ª edición), estándar ampliamente utilizado en el ámbito académico de las ciencias de la computación.</p>
-            <p>Todas las obras citadas han sido consultadas para la elaboración del contenido teórico y los ejemplos prácticos presentados en esta unidad temática.</p>
+            <p>Las referencias bibliográficas han sido elaboradas siguiendo el formato APA (American Psychological Association, 7ª edición). Los videos externos están enlazados a sus fuentes originales para fines educativos.</p>
         </div>
         
         <div class="nav-buttons">
@@ -453,7 +489,7 @@
         </div>
         
         <footer>
-            <p>Sistemas Operativos - Referencias Bibliográficas</p>
+            <p>Sistemas Operativos - Referencias Bibliográficas y Recursos</p>
             <p>Referencias bibliográficas organizadas según estándares académicos - © 2025</p>
         </footer>
     </div>

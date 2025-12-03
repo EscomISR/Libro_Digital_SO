@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Referencias Bibliográficas - Unidad 1</title>
+    <title>Referencias Bibliográficas y Recursos - Unidad 4</title>
     <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -96,6 +96,20 @@
             text-align: justify;
         }
         
+        .section-title {
+            color: var(--light);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin: 50px 0 30px;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
         .references-container {
             display: grid;
             gap: 25px;
@@ -134,27 +148,16 @@
             font-weight: 500;
             margin-bottom: 12px;
         }
+
+        .type-figura { background: var(--accent); }
+        .type-tabla { background: var(--success); }
+        .type-video { background: var(--warning); }
         
         .reference-description {
             color: var(--light);
             font-size: 0.95rem;
             margin-bottom: 12px;
             opacity: 0.9;
-        }
-        
-        .reference-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .topic-tag {
-            background: rgba(231, 76, 60, 0.2);
-            color: var(--accent);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
         }
         
         .citation-note {
@@ -270,180 +273,242 @@
             <div class="breadcrumb">
                 <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
                 <span>/</span>
-                <span>Referencias Bibliográficas</span>
+                <span>Referencias y Recursos</span>
             </div>
-            <h1>Referencias Bibliográficas</h1>
-            <div class="subtitle">Fuentes académicas y técnicas consultadas</div>
+            <h1>Referencias Bibliográficas y Recursos</h1>
+            <div class="subtitle">Unidad 4: Sistema de Archivos</div>
         </header>
         
         <div class="intro">
-            <p>La presente unidad se fundamenta en una selección cuidadosa de fuentes bibliográficas especializadas en sistemas operativos, arquitectura de computadoras y programación de sistemas. Estas referencias representan textos fundamentales en el área de ciencias de la computación y proporcionan el marco teórico y práctico necesario para comprender la asignatura en profundidad.</p>
+            <p>Esta sección consolida las referencias bibliográficas, figuras y material audiovisual de la Unidad 4. Los recursos aquí listados fundamentan los conceptos sobre la estructura, implementación y optimización del sistema de archivos en los sistemas operativos.</p>
         </div>
 
         <div class="stats-section">
-            <h2 style="color: var(--secondary); margin-bottom: 20px;">Estadísticas de las Referencias</h2>
+            <h2 style="color: var(--secondary); margin-bottom: 20px;">Resumen de Recursos</h2>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">9</span>
-                    <div class="stat-label">Referencias Totales</div>
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">Fuentes Bibliográficas</div>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">2005-2022</span>
-                    <div class="stat-label">Rango Temporal</div>
+                    <span class="stat-number">15</span>
+                    <div class="stat-label">Figuras Didácticas</div>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">6</span>
-                    <div class="stat-label">Editoriales</div>
+                    <span class="stat-number">0</span>
+                    <div class="stat-label">Tablas Comparativas</div>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">5</span>
-                    <div class="stat-label">Áreas Temáticas</div>
+                    <div class="stat-label">Videos Educativos</div>
                 </div>
             </div>
         </div>
         
+        <h2 class="section-title"><i class="fas fa-book"></i> Bibliografía Consultada</h2>
         <div class="references-container">
-            <div class="reference-item">
-                <div class="reference-type">Programación Concurrente</div>
-                <div class="reference-citation">
-                    Andrews, G. R. (2013). <em>Fundamentos de programación multihilo, paralela y distribuida</em>. Addison-Wesley.
-                </div>
-                <div class="reference-description">
-                    Texto esencial para comprender los modelos de programación que permiten la ejecución simultánea de tareas y sistemas distribuidos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Multihilo</span>
-                    <span class="topic-tag">Paralelismo</span>
-                    <span class="topic-tag">Sistemas Distribuidos</span>
-                </div>
-            </div>
-
-            <div class="reference-item">
-                <div class="reference-type">Arquitectura Linux</div>
-                <div class="reference-citation">
-                    Bovet, D. P., & Cesati, M. (2005). <em>Comprendiendo el núcleo de Linux</em> (3.ª ed.). O’Reilly Media.
-                </div>
-                <div class="reference-description">
-                    Guía técnica detallada sobre la estructura interna y el funcionamiento del kernel de Linux.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Linux</span>
-                    <span class="topic-tag">Kernel</span>
-                    <span class="topic-tag">Open Source</span>
-                </div>
-            </div>
-
-            <div class="reference-item">
-                <div class="reference-type">Desarrollo de Kernel</div>
-                <div class="reference-citation">
-                    Love, R. (2010). <em>Desarrollo del núcleo de Linux</em> (3.ª ed.). Addison-Wesley Professional.
-                </div>
-                <div class="reference-description">
-                    Enfoque práctico para desarrolladores interesados en comprender e implementar código dentro del núcleo de Linux.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Desarrollo</span>
-                    <span class="topic-tag">Linux</span>
-                    <span class="topic-tag">Implementación</span>
-                </div>
-            </div>
-
             <div class="reference-item">
                 <div class="reference-type">Texto Fundamental</div>
                 <div class="reference-citation">
                     Silberschatz, A., Galvin, P. B., & Gagne, G. (2022). <em>Conceptos de sistemas operativos</em> (10.ª ed.). Wiley.
                 </div>
-                <div class="reference-description">
-                    Referencia académica clásica que cubre los conceptos teóricos esenciales de los sistemas operativos modernos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Teoría SO</span>
-                    <span class="topic-tag">Gestión de Procesos</span>
-                    <span class="topic-tag">Memoria</span>
-                </div>
+                <div class="reference-description">Referencia clave para la estructura lógica y la implementación de sistemas de archivos.</div>
             </div>
-
-            <div class="reference-item">
-                <div class="reference-type">Gestión de Datos</div>
-                <div class="reference-citation">
-                    Silberschatz, A., Korth, H. F., & Sudarshan, S. (2020). <em>Conceptos de sistemas de bases de datos</em> (7.ª ed.). McGraw-Hill Education.
-                </div>
-                <div class="reference-description">
-                    Complemento esencial para entender cómo los sistemas operativos interactúan y gestionan el almacenamiento de datos estructurados.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Bases de Datos</span>
-                    <span class="topic-tag">Almacenamiento</span>
-                    <span class="topic-tag">Gestión de Datos</span>
-                </div>
-            </div>
-
-            <div class="reference-item">
-                <div class="reference-type">Principios de Diseño</div>
-                <div class="reference-citation">
-                    Stallings, W. (2018). <em>Sistemas operativos: Aspectos internos y principios de diseño</em> (9.ª ed.). Pearson Educación.
-                </div>
-                <div class="reference-description">
-                    Análisis profundo de los principios de diseño arquitectónico y los mecanismos internos de los sistemas operativos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Arquitectura</span>
-                    <span class="topic-tag">Diseño</span>
-                    <span class="topic-tag">Estructura Interna</span>
-                </div>
-            </div>
-
             <div class="reference-item">
                 <div class="reference-type">Texto de Referencia Principal</div>
                 <div class="reference-citation">
                     Tanenbaum, A. S., & Bos, H. (2015). <em>Sistemas operativos modernos</em> (4.ª ed.). Pearson Educación.
                 </div>
-                <div class="reference-description">
-                    Obra fundamental que ofrece una visión completa y actualizada de las tecnologías y tendencias en sistemas operativos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Sistemas Modernos</span>
-                    <span class="topic-tag">Tanenbaum</span>
-                    <span class="topic-tag">Tecnología</span>
-                </div>
+                <div class="reference-description">Fuente principal para los temas de administración de espacio, sistemas estructurados y optimización.</div>
             </div>
-
             <div class="reference-item">
-                <div class="reference-type">Sistemas Distribuidos</div>
+                <div class="reference-type">Texto Complementario</div>
                 <div class="reference-citation">
-                    Tanenbaum, A. S., & Van Steen, M. (2017). <em>Sistemas distribuidos: Principios y paradigmas</em> (3.ª ed.). Pearson Educación.
+                    Tanenbaum, A. S. (2015). <em>Sistemas operativos modernos</em> (Versión general).
                 </div>
-                <div class="reference-description">
-                    Explora los principios que rigen los sistemas que operan a través de redes, crucial para la computación moderna.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Redes</span>
-                    <span class="topic-tag">Distribuidos</span>
-                    <span class="topic-tag">Comunicación</span>
-                </div>
+                <div class="reference-description">Utilizado para conceptos generales sobre directorios y recuperación.</div>
             </div>
+        </div>
 
+        <h2 class="section-title"><i class="fas fa-image"></i> Índice de Figuras</h2>
+        <div class="references-container">
             <div class="reference-item">
-                <div class="reference-type">Cloud Computing</div>
-                <div class="reference-citation">
-                    Wolf, M., Halter, J., & Dawson, J. (2015). <em>Tecnologías de computación en la nube y estrategias para centros de datos ubicuos</em> (2.ª ed.). CRC Press.
-                </div>
+                <div class="reference-type type-figura">Figura 27</div>
+                <div class="reference-citation">Estructura del sistema de archivos</div>
                 <div class="reference-description">
-                    Enfoque moderno sobre la infraestructura que soporta la nube y los grandes centros de datos.
-                </div>
-                <div class="reference-topics">
-                    <span class="topic-tag">Cloud</span>
-                    <span class="topic-tag">Data Centers</span>
-                    <span class="topic-tag">Infraestructura</span>
+                    <strong>Ubicación:</strong> Tema 4.1<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
                 </div>
             </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 28</div>
+                <div class="reference-citation">Capas jerárquicas del sistema de archivos</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.1<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 29</div>
+                <div class="reference-citation">Implementación del sistema de archivos</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.2<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 30</div>
+                <div class="reference-citation">Estructura lógica y física del sistema de archivos</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.2<br>
+                    <strong>Fuente:</strong> Adaptado de Silberschatz et al. (2022).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 31</div>
+                <div class="reference-citation">Estructura y funciones de los directorios</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.3<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 32</div>
+                <div class="reference-citation">Asignación contigua</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.3<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 33</div>
+                <div class="reference-citation">Asignación ligada</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.3<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 34</div>
+                <div class="reference-citation">Asignación indexada</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.3<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 35</div>
+                <div class="reference-citation">Administración de espacio en disco</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.3<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 36</div>
+                <div class="reference-citation">Sistemas de archivos estructurados</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.4<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 37</div>
+                <div class="reference-citation">Sistemas de archivos con bitácora</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.4<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 38</div>
+                <div class="reference-citation">Funcionamiento de los sistemas por diario</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.4<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 38-B</div>
+                <div class="reference-citation">Estrategias de optimización</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.5<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 39</div>
+                <div class="reference-citation">Mecanismos de recuperación</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.5<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 40</div>
+                <div class="reference-citation">Mecanismos para mantener la consistencia</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.5<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-figura">Figura 41</div>
+                <div class="reference-citation">Parámetros principales del rendimiento</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.5<br>
+                    <strong>Fuente:</strong> Adaptado de Tanenbaum y Bos (2015).
+                </div>
+            </div>
+        </div>
 
+        <h2 class="section-title"><i class="fas fa-play-circle"></i> Índice de Recursos Audiovisuales</h2>
+        <div class="references-container">
+            <div class="reference-item">
+                <div class="reference-type type-video">Introducción</div>
+                <div class="reference-citation">Video Introducción - Sistema de Archivos</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Índice de Unidad<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=By5rFRRQsf4" target="_blank" style="color: var(--secondary);">Ver en YouTube (By5rFRRQsf4)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Asignación</div>
+                <div class="reference-citation">Métodos de Asignación de Espacio</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.3<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=g-bhPcGNRog" target="_blank" style="color: var(--secondary);">Ver en YouTube (g-bhPcGNRog)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Estructurados</div>
+                <div class="reference-citation">Sistemas de archivos estructurados</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.4<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=Kn0aPg1xP_g" target="_blank" style="color: var(--secondary);">Ver en YouTube (Kn0aPg1xP_g)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Journaling</div>
+                <div class="reference-citation">Sistemas de archivos estructurados por diario</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.4<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=s9rtMXOk38s" target="_blank" style="color: var(--secondary);">Ver en YouTube (s9rtMXOk38s)</a>
+                </div>
+            </div>
+            <div class="reference-item">
+                <div class="reference-type type-video">Optimización</div>
+                <div class="reference-citation">Optimización del sistema de archivos</div>
+                <div class="reference-description">
+                    <strong>Ubicación:</strong> Tema 4.5<br>
+                    <strong>Enlace:</strong> <a href="https://www.youtube.com/watch?v=Aamcv3v43D8" target="_blank" style="color: var(--secondary);">Ver en YouTube (Aamcv3v43D8)</a>
+                </div>
+            </div>
         </div>
 
         <div class="citation-note">
             <h3><i class="fas fa-quote-left"></i> Nota sobre el Formato de Citas</h3>
-            <p>Las referencias bibliográficas han sido elaboradas siguiendo el formato APA (American Psychological Association, 7ª edición), estándar ampliamente utilizado en el ámbito académico de las ciencias de la computación.</p>
-            <p>Todas las obras citadas han sido consultadas para la elaboración del contenido teórico y los ejemplos prácticos presentados en esta unidad temática.</p>
+            <p>Las referencias bibliográficas han sido elaboradas siguiendo el formato APA (American Psychological Association, 7ª edición). Los videos externos están enlazados a sus fuentes originales para fines educativos.</p>
         </div>
         
         <div class="nav-buttons">
@@ -453,7 +518,7 @@
         </div>
         
         <footer>
-            <p>Sistemas Operativos - Referencias Bibliográficas</p>
+            <p>Sistemas Operativos - Referencias Bibliográficas y Recursos</p>
             <p>Referencias bibliográficas organizadas según estándares académicos - © 2025</p>
         </footer>
     </div>
