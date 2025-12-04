@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visor de Código - Desbordamiento de Buffer</title>
+    <title>Visor de Código - Desbordamiento</title>
     <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     
     <style>
+        /* Estilos consistentes con el resto de la unidad */
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -16,172 +17,43 @@
             --light: #ecf0f1;
             --dark: #1a2a3a;
             --gray: #95a5a6;
-            --card-bg: rgba(255, 255, 255, 0.05);
             --code-bg: #2d2d2d;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        body {
-            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
-            color: var(--light);
-            min-height: 100vh;
-            line-height: 1.7;
-        }
+        body { background: linear-gradient(135deg, #1a2a3a, #2c3e50); color: var(--light); min-height: 100vh; line-height: 1.7; }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         
-        /* --- HEADER --- */
-        header {
-            text-align: center;
-            padding: 30px 20px;
-            margin-bottom: 30px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        header { text-align: center; padding: 30px 20px; margin-bottom: 30px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
         
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-            color: var(--gray);
-            font-size: 1rem;
-        }
+        .breadcrumb { display: flex; justify-content: center; margin-bottom: 15px; color: var(--gray); font-size: 1rem; }
+        .breadcrumb a { color: var(--secondary); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: white; text-decoration: underline; }
+        .breadcrumb span { margin: 0 10px; }
         
-        .breadcrumb a {
-            color: var(--secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+        h1 { font-size: 2.2rem; margin-bottom: 5px; color: white; }
+        .subtitle { font-size: 1.2rem; color: var(--secondary); font-weight: 300; }
+
+        .code-viewer-container { background: #1e1e1e; border-radius: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); overflow: hidden; border: 1px solid #333; }
+        .code-header { background: #252526; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .file-info { display: flex; align-items: center; gap: 10px; color: #ccc; font-family: monospace; font-size: 0.9rem; }
+        .file-icon { color: var(--secondary); }
         
-        .breadcrumb a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        .breadcrumb span {
-            margin: 0 10px;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-            color: white;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            font-weight: 300;
-        }
+        .btn-copy { background: rgba(255,255,255,0.1); border: none; color: #ddd; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .btn-copy:hover { background: var(--secondary); color: white; }
 
-        /* --- CONTENEDOR DE CÓDIGO --- */
-        .code-viewer-container {
-            background: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            overflow: hidden;
-            border: 1px solid #333;
-        }
+        pre[class*="language-"] { margin: 0 !important; border-radius: 0 !important; padding: 20px !important; background: transparent !important; font-size: 0.95rem; text-shadow: none !important; }
+        code[class*="language-"], pre[class*="language-"] { font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace; }
 
-        .code-header {
-            background: #252526;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-        }
-
-        .file-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ccc;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-
-        .file-icon {
-            color: var(--secondary);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-copy {
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: #ddd;
-            padding: 5px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-copy:hover {
-            background: var(--secondary);
-            color: white;
-        }
-
-        /* Ajustes de PrismJS para que encaje mejor */
-        pre[class*="language-"] {
-            margin: 0 !important;
-            border-radius: 0 !important;
-            padding: 20px !important;
-            background: transparent !important;
-            font-size: 0.95rem;
-            text-shadow: none !important;
-        }
-
-        code[class*="language-"], pre[class*="language-"] {
-            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
-        }
-
-        /* --- PIE DE PÁGINA --- */
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: var(--gray);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .back-button {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-        
-        .back-button:hover {
-            color: white;
-        }
-
+        footer { text-align: center; margin-top: 40px; padding: 20px; color: var(--gray); font-size: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .back-button { display: inline-block; margin-top: 20px; color: var(--gray); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .back-button:hover { color: white; }
     </style>
 </head>
 <body>
     <div class="container">
-        
         <header>
             <div class="breadcrumb">
                 <a href="../index.html"><i class="fas fa-home"></i> Inicio</a>
@@ -216,8 +88,8 @@
     Practica numero #4
     Tema: Desbordamiento
 */
-#include <stdio.h>
-#include <string.h>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
 
 // Función para imprimir un mensaje cuando se detecta un Buffer Overflow
 void verificadorBufferOverflow(){
@@ -257,26 +129,20 @@ int main(int argc, char *argv[]){
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
-    
     <script>
         function copyToClipboard() {
             const codeText = document.getElementById('source-code').innerText;
             navigator.clipboard.writeText(codeText).then(() => {
-                // Feedback visual simple
                 const btn = document.querySelector('.btn-copy');
                 const originalHtml = btn.innerHTML;
-                
                 btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
                 btn.style.background = 'var(--secondary)';
                 btn.style.color = 'white';
-                
                 setTimeout(() => {
                     btn.innerHTML = originalHtml;
                     btn.style.background = '';
                     btn.style.color = '';
                 }, 2000);
-            }).catch(err => {
-                console.error('Error al copiar: ', err);
             });
         }
     </script>
