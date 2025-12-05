@@ -319,7 +319,7 @@
             border-left: 3px solid var(--accent);
         }
 
-        .content h4 {
+        .content h4, .intro h4 {
             font-size: 1.3rem;
             color: var(--warning);
             margin: 25px 0 12px;
@@ -331,12 +331,12 @@
             text-align: justify;
         }
         
-        .content ul, .content ol {
+        .content ul, .content ol, .intro ul, .intro ul {
             padding-left: 30px;
             margin: 20px 0;
         }
         
-        .content li {
+        .content li, .intro li{
             margin-bottom: 12px;
         }
         
@@ -353,6 +353,63 @@
             margin: 5px 0 15px 20px;
             border-left: 2px solid var(--secondary);
             padding-left: 10px;
+        }
+
+         .quote-box {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--light);
+        }
+
+        .quote-box .citation {
+            border-left: none;
+            margin: 10px 0 0 0;
+            padding-left: 0;
+        }
+        
+        .table-container {
+            max-width: 800px;
+            margin: 30px auto;
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .table-caption {
+            text-align: center;
+            padding: 10px;
+            font-style: italic;
+            color: var(--gray);
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
         
         .figure-container {
@@ -628,8 +685,7 @@
             <div class="subtitle">Gestión eficiente del espacio en memoria</div>
         </header>
         
-        <div class="intro">
-            <h3>INTRODUCCIÓN</h3>
+        <div class="intro">            
             <p>Es la tarea que presenta el sistema operativo para administrar y gestionar el espacio en la memoria principal recordemos que es la RAM, además de utilizar la memoria virtual, estableciendo una asignación y soltando la memoria de procesos ya que recordemos que esta se requiere ejecutar.</p>
             <p>El objetivo es que se utilice la memoria en una manera eficiente, asegurando que todos los procesos que se ejecuten no se interfieran entre sí y se visualice como si tuviéramos una memoria muy grande para llevar a cabo todos estos, aplicando técnicas que nos ayuden como es la memoria virtual.</p>
             <p>Por lo que el sistema operativo tiene un control especifico de cómo están utilizadas los elementos de la memoria y quien las está utilizando para saber cuánto se tiene disponible y se puede utilizar.</p>
@@ -642,11 +698,13 @@
             
             <div class="figure-container">
                 <img src="FIGURA6.png" alt="Gestión de memoria en sistemas" class="imagen-figura1">
-                <p class="figure-caption">Figura 06. Gestión de memoria en sistemas, Imagen elaborada con IA</p>
+                <p class="figure-caption">Figura 01. Gestión de memoria en sistemas, Imagen elaborada con IA</p>
             </div>
 
             <h4>Objetivo general:</h4>
-            <p>El estudiante comprenderá y explicará los principios teóricos y prácticos de la administración de memoria como elemento prioritario para el sistema operativo, así como qué papel juegan los dos tipos de memoria principal y secundaria en los procesos, gestiones de recursos, así como las técnicas de paginación, segmentación y swapping, de la misma manera tendrá todos los elementos para intercambiar conocimientos con sus compañeros para determinar el impacto en el rendimiento, estabilidad y seguridad del sistema.</p>
+            <div class="quote-box">
+                El estudiante comprenderá y explicará los principios teóricos y prácticos de la administración de memoria como elemento prioritario para el sistema operativo, así como qué papel juegan los dos tipos de memoria principal y secundaria en los procesos, gestiones de recursos, así como las técnicas de paginación, segmentación y swapping, de la misma manera tendrá todos los elementos para intercambiar conocimientos con sus compañeros para determinar el impacto en el rendimiento, estabilidad y seguridad del sistema.
+            </div>
         </div>
         
         <div class="section" id="seccion-3-1">
@@ -667,7 +725,7 @@
                 
                 <div class="figure-container">
                     <img src="FIGURA11.png" alt="Abstracción de la memoria en un sistema operativo" class="imagen-figura1">
-                    <p class="figure-caption">Figura 11 . Abstracción de la memoria en un sistema operativo. Representa cómo el sistema operativo gestiona los recursos de memoria proporcionando al programador una visión abstracta del espacio de direcciones, ocultando los detalles físicos y facilitando un entorno lógico continuo y seguro. Adaptado de Tanenbaum y Bos (2015).</p>
+                    <p class="figure-caption">Figura 02. Abstracción de la memoria en un sistema operativo. Representa cómo el sistema operativo gestiona los recursos de memoria proporcionando al programador una visión abstracta del espacio de direcciones, ocultando los detalles físicos y facilitando un entorno lógico continuo y seguro. Adaptado de Tanenbaum y Bos (2015).</p>
                 </div>
             </div>
         </div>
@@ -689,7 +747,7 @@
 
                 <div class="figure-container">
                     <img src="FIGURA12.png" alt="Organización de la memoria" class="imagen-figura1">
-                    <p class="figure-caption">Figura 12 Organización de la memoria. Adaptado de Conceptos de sistemas operativos (9.ª ed.) por A. S. Tanenbaum, 2017.</p>
+                    <p class="figure-caption">Figura 03. Organización de la memoria. Adaptado de Conceptos de sistemas operativos (9.ª ed.) por A. S. Tanenbaum, 2017.</p>
                 </div>
             </div>
 
@@ -726,7 +784,7 @@
 
                 <div class="figure-container">
                     <img src="FIGURA13.png" alt="Administración del almacenamiento" class="imagen-figura1">
-                    <p class="figure-caption">Figura 13. Administración del almacenamiento. Adaptado de Sistemas operativos modernos (4.ª ed.), por A. S. Tanenbaum y H. Bos, 2015, Pearson Educación.</p>
+                    <p class="figure-caption">Figura 04. Administración del almacenamiento. Adaptado de Sistemas operativos modernos (4.ª ed.), por A. S. Tanenbaum y H. Bos, 2015, Pearson Educación.</p>
                 </div>
             </div>
         </div>
@@ -742,7 +800,7 @@
 
                 <div class="figure-container">
                     <img src="FIGURA14.png" alt="Memoria de intercambio (swapping)" class="imagen-figura1">
-                    <p class="figure-caption">Figura 14. Memoria de intercambio (swapping). Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                    <p class="figure-caption">Figura 05. Memoria de intercambio (swapping). Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
                 </div>
             </div>
 
@@ -771,7 +829,7 @@
                 
                 <div class="figure-container">
                     <img src="FIGURA15.png" alt="Manejo con mapa de bits" class="imagen-figura1">
-                    <p class="figure-caption">Figura 15. Manejo con mapa de bits. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                    <p class="figure-caption">Figura 06. Manejo con mapa de bits. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
                 </div>
             </div>
         </div>
@@ -790,7 +848,7 @@
                 
                 <div class="figure-container">
                     <img src="FIGURA16.png" alt="Manejo con listas ligadas en la asignación de bloques en memoria del sistema operativo" class="imagen-figura1">
-                    <p class="figure-caption">Figura 16. Manejo con listas ligadas en la asignación de bloques en memoria del sistema operativo. Adaptado de Sistemas operativos modernos (4.ª ed.) de A. S. Tanenbaum y H. Bos, 2015, Pearson Educación.</p>
+                    <p class="figure-caption">Figura 07. Manejo con listas ligadas en la asignación de bloques en memoria del sistema operativo. Adaptado de Sistemas operativos modernos (4.ª ed.) de A. S. Tanenbaum y H. Bos, 2015, Pearson Educación.</p>
                 </div>
             </div>
 
