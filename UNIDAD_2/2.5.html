@@ -661,15 +661,17 @@
         <div class="intro">
             <p><strong>La planificación </strong>es uno de los componentes esenciales del sistema operativo encargado de <strong>asignar el procesador (CPU)</strong> a los procesos o hilos que compiten por su uso. Su objetivo principal es <strong>optimizar el rendimiento del sistema</strong>, garantizando eficiencia, equidad y respuesta adecuada según el tipo de carga de trabajo.</p>
             <p>El <strong>planificador </strong>decide <strong>qué proceso se ejecuta, durante cuánto tiempo y en qué orden</strong>, basándose en políticas y algoritmos que buscan equilibrar el uso de los recursos y las necesidades de los usuarios. De esta manera, la planificación influye directamente en <strong>el tiempo de respuesta, el rendimiento global y la estabilidad</strong> del sistema operativo.</p>
-            <p>Existen tres niveles de planificación principales:</p>
-            <ol>
-                <li><strong>Planificación a largo plazo</strong>: selecciona los procesos que ingresan al sistema desde el almacenamiento secundario, controlando el grado de multiprogramación.</li>
-                <li><strong>Planificación a medio plazo</strong>: gestiona la suspensión o reanudación de procesos, optimizando el uso de memoria mediante técnicas como la paginación o el intercambio (<i>swapping</i>).</li>
-                <li><strong>Planificación a corto plazo</strong>: también llamada <strong>planificación de CPU</strong> decide qué proceso listo se ejecutará a continuación, determinando el orden de uso de la CPU.</li>
-            </ol>
+            <p>Existen tres niveles de planificación principales, éstos pueden observarsde en la Figura 8.</p>
+             <div class="figure-container">
+                    <img src="FiguraNivelesPlanificación.png" alt="Niveles de planificación" class="imagen-figura1">
+                    <div class="figure-caption">Figura 8. Niveles de planificaicón (<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                </div> 
             <p>Los <strong>criterios de desempeño</strong> más comunes incluyen la utilización del procesador, rendimiento, tiempo de espera promedio, tiempo de retorno y tiempo de respuesta.</p>
-            <p>La planificación constituye el núcleo de la administración de procesos, ya que asegura una ejecución ordenada, justa y eficiente, adaptándose tanto a sistemas por lotes como a entornos interactivos y de tiempo real <strong>(Silberschatz, Galvin y Gagne, 2022)</strong>.</p>
             
+            <div class="quote-box">
+                "La planificación constituye el núcleo de la administración de procesos, ya que asegura una ejecución ordenada, justa y eficiente, adaptándose tanto a sistemas por lotes como a entornos interactivos y de tiempo real"
+                <div class="citation">(Silberschatz, Galvin & Gagne, 2022).</div>
+            </div>
         </div>        
         <div class="section" id="seccion-2-5-1">
             <div class="section-header">
@@ -681,6 +683,7 @@
                 <p><strong>El rendimiento </strong>se relaciona con la capacidad del sistema para completar el mayor número posible de procesos en un periodo determinado. Un rendimiento alto refleja una gestión adecuada del procesador, con una mínima cantidad de tiempo ocioso y un aprovechamiento óptimo de los recursos disponibles. Este criterio es fundamental en entornos donde se requiere máxima productividad y continuidad operativa </p>
                 <p>El <strong>tiempo de espera</strong> representa el periodo que un proceso permanece en la cola de listos antes de ser asignado al CPU. Su reducción contribuye a una mejor equidad entre los procesos y evita la saturación del sistema. Una planificación eficiente busca minimizar el tiempo promedio de espera, garantizando que los procesos no queden relegados y que todos tengan oportunidad de ser ejecutados en un plazo razonable <strong>(Silberschatz et al., 2022)</strong>.</p>
                 <p>Por su parte, el <strong>tiempo de respuesta</strong> se refiere al intervalo que transcurre desde que el usuario realiza una solicitud hasta que obtiene la primera respuesta del sistema. Este criterio resulta esencial en los sistemas interactivos, donde la rapidez con la que el sistema reacciona influye directamente en la percepción de desempeño y en la calidad del servicio ofrecido <strong>(Silberschatz et al., 2022)</strong>.</p>
+                
                 <p>En conjunto, estos tres criterios conforman la base para diseñar <strong>estrategias de planificación equilibradas</strong>, que buscan optimizar la eficiencia del CPU, mantener un flujo constante de procesos y ofrecer respuestas oportunas a las demandas del usuario, logrando así un sistema operativo más justo, estable y eficaz <strong>(Silberschatz et al., 2022)</strong>.</p>
                 
             </div>
@@ -696,7 +699,7 @@
                 <p>El algoritmo <strong>FCFS (First Come, First Served)</strong> asigna el CPU a los procesos según su orden de llegada a la cola de listos. Aunque su diseño es simple y equitativo, puede provocar largos tiempos de espera cuando procesos extensos retrasan la ejecución de otros más cortos.</p>
                 <div class="figure-container">
                     <img src="Figura8.png" alt="Algoritmo de planificación" class="imagen-figura1">
-                    <div class="figure-caption">Figura 8. Algoritmo de planificaicón FCFS(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                    <div class="figure-caption">Figura 9. Algoritmo de planificaicón FCFS(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
                 </div>                                
                 <p>El algoritmo <strong>SJF (El trabajo más corto primero)</strong> selecciona el proceso con el menor tiempo de ejecución estimado. Su objetivo es minimizar el tiempo promedio de espera y maximizar el rendimiento. No obstante, requiere conocer la duración de los procesos, lo que en la práctica puede resultar difícil de estimar con precisión.</p>
                 <p>El algoritmo <strong>RR (Round Robin)</strong> se emplea principalmente en sistemas de tiempo compartido. Asigna a cada proceso un quantum o intervalo fijo de tiempo para ejecutar, tras el cual pasa al final de la cola si no ha terminado. Este método ofrece una respuesta más rápida y equitativa, especialmente en entornos interactivos.</p>
@@ -704,13 +707,13 @@
                 
                 <div class="figure-container">
                     <img src="Figura9.png" alt="Algoritmo de planificación" class="imagen-figura1">
-                    <div class="figure-caption">Figura 9. Algoritmo de planificaicón RR(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                    <div class="figure-caption">Figura 10. Algoritmo de planificaicón RR(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
                 </div>                                
                 <p><strong>Planificación por Prioridades</strong> asigna un nivel de preferencia a los proceso, de modo que los de más alta necesidad se ejecutan primero. Así <strong>estáticos</strong> o <strong>dinámicos</strong>, aunque si no se controla adecuadamente, puede causar <strong>espera infinita </strong>a los mismos.</p>
                 <p>La figura 10 ilustra el algoritmo de planificación por prioridades, donde cada proceso tiene un nivel que define su orden de ejecución. Los de mayor prioridad se atienden primero, optimizando la asignación de recursos hacia tareas críticas. No obstante, una mala gestión puede causar inanición, dejando a los procesos de baja prioridad en espera indefinida.</p>
                 <div class="figure-container">
                     <img src="Figura10.png" alt="Planificación por pirioridades" class="imagen-figura1">
-                    <div class="figure-caption">Figura 10. Planificaicón por prioridades(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>                    
+                    <div class="figure-caption">Figura 11. Planificaicón por prioridades(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>                    
                 </div>
                 <p>Estos algoritmos son fundamentales en las estrategias actuales de planificación. Su selección varía según las características del sistema y los objetivos buscados, como minimizar el tiempo de espera o mejorar la rapidez de respuesta <strong>(Silberschatz et al., 2022)</strong>.</p>                
             </div>
@@ -743,7 +746,7 @@
                 <p>La figura 11 representa el proceso de <strong>planificación de hilos</strong>, mostrando cómo el CPU administra múltiples hilos de ejecución pertenecientes a uno o varios procesos. Cada hilo puede ejecutarse de manera independiente, permitiendo una mejor distribución de las tareas y un aprovechamiento más eficiente del procesador. El esquema ilustra la relación entre el CPU y los hilos, destacando la forma en que el sistema operativo asigna el tiempo de procesamiento a cada uno, ya sea mediante planificación a nivel de usuario, de kernel o mediante un modelo híbrido.</p>
                 <div class="figure-container">
                     <img src="Figura11.png" alt="Algoritmo de planificación" class="imagen-figura1">
-                    <div class="figure-caption">Figura 11. Planificaicón de hilos(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                    <div class="figure-caption">Figura 12. Planificaicón de hilos(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
                 </div>                                
             </div>
 
