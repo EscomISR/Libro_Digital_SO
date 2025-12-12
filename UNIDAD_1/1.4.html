@@ -491,6 +491,35 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
         }
+        
+        /* Estilos para el bloque de Material Audiovisual - CORRECCIÓN */
+        .audiovisual-container {
+            background: rgba(52, 152, 219, 0.1); /* Fondo azul claro translúcido (secondary) */
+            border-left: 4px solid var(--secondary); /* Borde izquierdo azul */
+            padding: 20px;
+            margin: 30px 0; /* Asegura un buen margen */
+            border-radius: 8px;
+        }
+
+        .audiovisual-container p {
+            margin-bottom: 15px;
+        }
+        
+        .audiovisual-title {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin: 0 0 15px 0; /* Elimina el margen del h3 para que el contenedor lo controle */
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .audiovisual-title i {
+            color: var(--accent); /* Color distintivo para el ícono */
+            margin-right: 10px;
+            font-size: 1.6rem;
+        }
+
 
         @media (max-width: 768px) {
             .sidebar-nav {
@@ -618,8 +647,8 @@
                 <div class="citation">(Silberschatz, Galvin y Gagne, 2022, p. 140).</div>
             </div>
 
-            <div style="margin-top: 30px;">
-                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+            <div class="audiovisual-container">
+                <h3 class="audiovisual-title"><i class="fas fa-play-circle"></i> Material Audiovisual</h3>
                 <p>Para comprender mejor cómo los programas solicitan servicios al núcleo, revisa el siguiente video sobre llamadas al sistema:</p>
                 
                 <div class="figure-container">
@@ -658,8 +687,8 @@
                 <p>Las llamadas al sistema encargadas de manejar señales incluyen <strong>signal(), kill(), sigaction() y sigprocmask()</strong>, que permiten enviar, recibir y bloquear señales según el contexto.</p>
             </div>
 
-            <div style="margin-top: 30px;">
-                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+            <div class="audiovisual-container">
+                <h3 class="audiovisual-title"><i class="fas fa-play-circle"></i> Material Audiovisual</h3>
                 <p>Profundiza en la gestión y comunicación de procesos a través de señales con este recurso:</p>
                 
                 <div class="figure-container">
@@ -681,8 +710,8 @@
                 <p>Los directorios son de un tipo organización los archivos en donde actúa como contenedor donde los agrupa lógicamente relacionando su administración y su ubicación con ello permite que no se consuma recursos de hardware y memoria para su localización. Existe director que son organizados en forma jerárquica creando una estructura llamada árbol o raíz para mantener el orden en el sistema de archivos donde sea más eficiente su ubicación de los archivos.</p>
             </div>
 
-            <div style="margin-top: 30px;">
-                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+            <div class="audiovisual-container">
+                <h3 class="audiovisual-title"><i class="fas fa-play-circle"></i> Material Audiovisual</h3>
                 <p>A continuación, se explica cómo el sistema operativo maneja la jerarquía de directorios y la manipulación de archivos:</p>
                 
                 <div class="figure-container">
@@ -703,8 +732,8 @@
                 <p>El <strong>control de acceso</strong> también se extiende al ámbito de la memoria y los dispositivos. El kernel utiliza <strong>tablas de páginas con permisos</strong>, asegurando que cada proceso acceda solo a las direcciones de memoria asignadas, y bloqueando operaciones de lectura o escritura no autorizadas. De manera similar, las llamadas relacionadas con la administración de archivos verifican los <strong>identificadores de usuario (UID)</strong> y <strong>grupos (GID)</strong> antes de ejecutar cualquier operación. Este modelo refuerza la seguridad en entornos multiusuario y protege los datos del sistema ante accesos indebidos.</p>
             </div>
 
-            <div style="margin-top: 30px;">
-                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+            <div class="audiovisual-container">
+                <h3 class="audiovisual-title"><i class="fas fa-play-circle"></i> Material Audiovisual</h3>
                 <p>Este video detalla los mecanismos que utiliza el sistema operativo para garantizar la seguridad y protección de los recursos:</p>
                 
                 <div class="figure-container">
