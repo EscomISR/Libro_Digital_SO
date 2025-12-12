@@ -606,8 +606,10 @@
             <p>Es por lo que la memoria virtual es una innovación que utilizan los sistemas operativos al tener un acceso eficiente, inmune y flexible para el buen funcionamiento entre los equipos de cómputo y los programas.</p>
             
             <div class="figure-container">
+                <p class="figure-caption">Figura 17</p>
+                <p class="figure-caption">Memoria virtual</p>
                 <img src="FIGURA17.png" alt="Memoria virtual" class="imagen-figura1">
-                <p class="figure-caption">Figura 17. Memoria virtual. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                <p class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
             </div>
         </div>
         
@@ -622,8 +624,10 @@
                 <p>Entre las ventajas que se pueden establecer destaca el uso eficiente de la memoria y la eliminación de la fragmentación externa, así como la facilidad de implementar la memoria virtual, derivado a que los fragmentos de los procesos se pueden organizar y distribuir libremente en la RAM, lo único que si hay que considerar que tendremos una disminución en el rendimiento derivo a que los accesos frecuentes a la tabla de paginación, pero podremos utilizar una alternativa que se llama Buffer de búsqueda de traducción conocida como TLB, que se encargara de guardar las traducciones más utilizadas y con ello se lograra acelerar el acceso de los datos.</p>
 
                 <div class="figure-container">
+                    <p class="figure-caption">Figura 18</p>
+                    <p class="figure-caption">Paginación</p>
                     <img src="FIGURA18.png" alt="Paginación" class="imagen-figura1">
-                    <p class="figure-caption">Figura 18. Paginación. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                    <p class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
                 </div>
             </div>
 
@@ -658,8 +662,10 @@
                 <p>En síntesis, las tablas de páginas son un componente clave del sistema de traducción de direcciones en los sistemas operativos modernos, ya que admiten la protección de procesos, la flexibilidad de asignación y el establecimiento eficiente de la memoria virtual.</p>
 
                 <div class="figure-container">
+                    <p class="figure-caption">Figura 19</p>
+                    <p class="figure-caption">Tablas de páginas</p>
                     <img src="FIGURA19.png" alt="Tablas de páginas" class="imagen-figura1">
-                    <p class="figure-caption">Figura 19. Tablas de páginas. Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
+                    <p class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por A. S. Tanenbaum y H. Bos, 2015; Pearson Educación.</p>
                 </div>
             </div>
         </div>
@@ -682,8 +688,10 @@
                 <p>La siguiente figura 20 muestra el funcionamiento básico del algoritmo FIFO: el sistema operativo gestiona las páginas siguiendo el orden de llegada, de modo que la página más antigua se reemplaza al presentarse un fallo, lo que simplifica el control de la memoria, aunque no siempre garantiza la máxima eficiencia.</p>
 
                 <div class="figure-container">
+                    <p class="figure-caption">Figura 20</p>
+                    <p class="figure-caption">Algoritmo de reemplazo FIFO (Primero en entrar, primero en salir)</p>    
                     <img src="FIGURA20.png" alt="Algoritmo de reemplazo FIFO (Primero en entrar, primero en salir)" class="imagen-figura1">
-                    <p class="figure-caption">Figura 20. Algoritmo de reemplazo FIFO (Primero en entrar, primero en salir). Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015, Pearson.</p>
+                    <p class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015, Pearson.</p>
                 </div>
 
                 <h4>Algoritmo de reemplazo LRU (Least Recently Used)</h4>
@@ -696,8 +704,10 @@
                 <p>En la siguiente figura se representa el funcionamiento del algoritmo LRU, el cual selecciona para reemplazo la página menos utilizada recientemente. El sistema operativo conserva un registro del orden de acceso mediante una estructura dinámica, actualizando su posición cada vez que una página es referenciada, lo que permite mantener en memoria las páginas con mayor probabilidad de reutilización.</p>
                 
                 <div class="figure-container">
+                    <p class="figure-caption">Figura 22</p>
+                    <p class="figure-caption">Algoritmo de reemplazo LRU (Usado menos recientemente)</p>
                     <img src="FIGURA22.png" alt="Algoritmo de reemplazo LRU (Usado menos recientemente)" class="imagen-figura1">
-                    <p class="figure-caption">Figura 22. Algoritmo de reemplazo LRU (Usado menos recientemente). Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015, Pearson.</p>
+                    <p class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015, Pearson.</p>
                 </div>
 
                 <h4>Óptimo (Reemplazo de página óptimo)</h4>
@@ -711,8 +721,10 @@
                 <p>Este enfoque proporciona el mejor rendimiento posible, ya que asegura el menor número de sustituciones, sirviendo como un modelo ideal de comparación frente a otros algoritmos prácticos como FIFO o LRU. Sin embargo, no puede establecerse en sistemas reales, ya que requiere conocer de antemano el patrón de acceso a memoria, por lo que se utiliza principalmente con fines analíticos o educativos.</p>
 
                 <div class="figure-container">
+                    <p class="figure-caption">Figura 23</p>
+                    <p class="figure-caption">Algoritmo de reemplazo óptimo (reemplazo de página óptimo)</p>
                     <img src="FIGURA23.png" alt="Algoritmo de reemplazo óptimo (reemplazo de página óptimo)" class="imagen-figura1">
-                    <p class="figure-caption">Figura 23 Algoritmo de reemplazo óptimo (reemplazo de página óptimo). Adaptado de Conceptos de sistemas operativos (10.ª ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022; Wiley, 2022.</p>
+                    <p class="figure-caption">Nota: Adaptado de Conceptos de sistemas operativos (10.ª ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022; Wiley, 2022.</p>
                 </div>
             </div>
 

@@ -662,8 +662,10 @@
             <p>El <strong>planificador </strong>decide <strong>qué proceso se ejecuta, durante cuánto tiempo y en qué orden</strong>, basándose en políticas y algoritmos que buscan equilibrar el uso de los recursos y las necesidades de los usuarios. De esta manera, la planificación influye directamente en <strong>el tiempo de respuesta, el rendimiento global y la estabilidad</strong> del sistema operativo.</p>
             <p>Existen tres niveles de planificación principales, éstos pueden observarsde en la Figura 8.</p>
              <div class="figure-container">
+                <div class="figure-caption">Figura 8</div>
+                <div class="figure-caption">Niveles de planificación</div>
                     <img src="FiguraNivelesPlanificación.png" alt="Niveles de planificación" class="imagen-figura1">
-                    <div class="figure-caption">Figura 8. Niveles de planificación (<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                    <div class="figure-caption">Nota: Elaboración propia basada en Silberschatz et al., 2022.</div>
                 </div> 
             <p>Los <strong>criterios de desempeño</strong> más comunes incluyen la utilización del procesador, rendimiento, tiempo de espera promedio, tiempo de retorno y tiempo de respuesta.</p>
             
@@ -697,22 +699,28 @@
                 <p>Los algoritmos de planificación determinan el orden en que los procesos acceden al CPU, con el propósito de optimizar el rendimiento y garantizar la equidad en el uso de los recursos del sistema. Entre los más utilizados se encuentran <strong>FCFS, SJF, RR y Prioridades</strong>, cada uno con características y objetivos específicos <strong>(Silberschatz, Galvin & Gagne, 2022)</strong>.</p>
                 <p>El algoritmo <strong>FCFS (First Come, First Served)</strong> asigna el CPU a los procesos según su orden de llegada a la cola de listos. Aunque su diseño es simple y equitativo, puede provocar largos tiempos de espera cuando procesos extensos retrasan la ejecución de otros más cortos.</p>
                 <div class="figure-container">
+                    <div class="figure-caption">Figura 9</div>
+                    <div class="figure-caption">Algoritmo de planificaicón FCFS</div>
                     <img src="Figura8.png" alt="Algoritmo de planificación" class="imagen-figura1">
-                    <div class="figure-caption">Figura 9. Algoritmo de planificaicón FCFS(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                    <div class="figure-caption">Nota: Elaboración propia basada en Silberschatz et al., 2022</div>
                 </div>                                
                 <p>El algoritmo <strong>SJF (El trabajo más corto primero)</strong> selecciona el proceso con el menor tiempo de ejecución estimado. Su objetivo es minimizar el tiempo promedio de espera y maximizar el rendimiento. No obstante, requiere conocer la duración de los procesos, lo que en la práctica puede resultar difícil de estimar con precisión.</p>
                 <p>El algoritmo <strong>RR (Round Robin)</strong> se emplea principalmente en sistemas de tiempo compartido. Asigna a cada proceso un quantum o intervalo fijo de tiempo para ejecutar, tras el cual pasa al final de la cola si no ha terminado. Este método ofrece una respuesta más rápida y equitativa, especialmente en entornos interactivos.</p>
                 <p>En la figura 9 se ilustra el funcionamiento del algoritmo <strong>Round Robin (RR)</strong>, en el cual los procesos se ejecutan de manera cíclica durante intervalos de tiempo fijos denominados <i>quantum</i>. Cada proceso recibe una fracción igual del tiempo del CPU antes de ceder el turno al siguiente, lo que garantiza equidad y una respuesta más rápida en sistemas interactivos. Este método es ampliamente utilizado en sistemas de tiempo compartido por su capacidad para mantener una ejecución balanceada y continua entre múltiples procesos.</p> 
                 
                 <div class="figure-container">
+                    <div class="figure-caption">Figura 10</div>
+                    <div class="figure-caption">Algoritmo de planificaicón RR</div>
                     <img src="Figura9.png" alt="Algoritmo de planificación" class="imagen-figura1">
-                    <div class="figure-caption">Figura 10. Algoritmo de planificaicón RR(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                    <div class="figure-caption">Nota: Elaboración propia basada en Silberschatz et al., 2022</div>
                 </div>                                
                 <p><strong>Planificación por Prioridades</strong> asigna un nivel de preferencia a los proceso, de modo que los de más alta necesidad se ejecutan primero. Así <strong>estáticos</strong> o <strong>dinámicos</strong>, aunque si no se controla adecuadamente, puede causar <strong>espera infinita </strong>a los mismos.</p>
                 <p>La figura 10 ilustra el algoritmo de planificación por prioridades, donde cada proceso tiene un nivel que define su orden de ejecución. Los de mayor prioridad se atienden primero, optimizando la asignación de recursos hacia tareas críticas. No obstante, una mala gestión puede causar inanición, dejando a los procesos de baja prioridad en espera indefinida.</p>
                 <div class="figure-container">
+                    <div class="figure-caption">Figura 11</div> 
+                    <div class="figure-caption">Planificaicón por prioridades</div> 
                     <img src="Figura10.png" alt="Planificación por pirioridades" class="imagen-figura1">
-                    <div class="figure-caption">Figura 11. Planificaicón por prioridades(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>                    
+                    <div class="figure-caption">Nota: Elaboración propia basada en Silberschatz et al., 2022</div>                    
                 </div>
                 <p>Estos algoritmos son fundamentales en las estrategias actuales de planificación. Su selección varía según las características del sistema y los objetivos buscados, como minimizar el tiempo de espera o mejorar la rapidez de respuesta <strong>(Silberschatz et al., 2022)</strong>.</p>                
             </div>
@@ -744,8 +752,10 @@
                 <p>Además, algunos sistemas implementan <strong>modelos híbridos</strong>, combinando ambos enfoques para equilibrar rendimiento y flexibilidad. La correcta planificación de hilos permite aprovechar el paralelismo, mejorar la concurrencia y reducir el tiempo de respuesta en aplicaciones que realizan múltiples tareas simultáneamente.</p>
                 <p>La figura 11 representa el proceso de <strong>planificación de hilos</strong>, mostrando cómo el CPU administra múltiples hilos de ejecución pertenecientes a uno o varios procesos. Cada hilo puede ejecutarse de manera independiente, permitiendo una mejor distribución de las tareas y un aprovechamiento más eficiente del procesador. El esquema ilustra la relación entre el CPU y los hilos, destacando la forma en que el sistema operativo asigna el tiempo de procesamiento a cada uno, ya sea mediante planificación a nivel de usuario, de kernel o mediante un modelo híbrido.</p>
                 <div class="figure-container">
+                    <div class="figure-caption">Figura 12</div>
+                    <div class="figure-caption">Planificaicón de hilos</div>
                     <img src="Figura11.png" alt="Algoritmo de planificación" class="imagen-figura1">
-                    <div class="figure-caption">Figura 12. Planificaicón de hilos(<i>Elaboración propia basada en Silberschatz et al., 2022</i>).</div>
+                    <div class="figure-caption">Nota: Elaboración propia basada en Silberschatz et al., 2022</div>
                 </div>                                
             </div>
 
