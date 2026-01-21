@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2.3 Comunicación entre procesos</title>
-    <link rel="icon" type="image/png" href="logoescom.png">
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -396,7 +396,6 @@
         .table-caption {
             text-align: center;
             padding: 10px;
-            font-style: italic;
             color: var(--gray);
             background: rgba(0, 0, 0, 0.3);
             border-bottom-left-radius: 10px;
@@ -562,7 +561,7 @@
 
     <nav class="sidebar-nav" id="sidebarNav">
         <div class="sidebar-header">
-            <div class="sidebar-title">2.3 Comunicación entre procesos</div>
+            <div class="sidebar-title">2.3 Comunicación entre procesos (IPC)
             <div class="sidebar-subtitle">Administración de procesos</div>
         </div>
         
@@ -586,7 +585,7 @@
                     <i class="fas fa-envelope"></i> 2.3.2 Paso de mensajes
                 </a>
                 <a href="#seccion-2-3-3" class="nav-item" data-section="2-3-3">
-                    <i class="fas fa-pipe"></i> 2.3.3 Tuberías
+                    <i class="fas fa-pipe"></i> 2.3.3 Tuberías y colas
                 </a>
             </div>
 
@@ -609,50 +608,33 @@
     <div class="container">
         <header id="inicio">
             <div class="breadcrumb">
-                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="https://escomisr.github.io/Libro_Digital_SO/index.html"><i class="fas fa-home"></i> Inicio</a>
                 <span>/</span>
                 <a href="index.html">Unidad 2</a>
                 <span>/</span>
-                <span>2.3 Comunicación entre procesos</span>
+                <span>2.3 Comunicación entre procesos(IPC)n>
             </div>
-            <h1>2.3 Comunicación entre procesos</h1>
+            <h1>2.3 Comunicación entre procesos(IPC)
             <div class="subtitle">Administración de procesos</div>
         </header>
         
         <div class="intro">
-            <p>La comunicación entre procesos (IPC, por sus siglas en inglés) consiste en mecanismos que permiten a los procesos independientes compartir datos y sincronizar sus actividades. Esta función es fundamental en los sistemas operativos modernos, ya que permite la ejecución coordinada de aplicaciones y servicios complejos.</p>
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
+            <p>La comunicación entre procesos (IPC) es un conjunto de métodos que facilitan la sincronización y el intercambio de datos entre procesos que se llevan a cabo al mismo tiempo en un sistema operativo. La IPC es fundamental para evitar conflictos en el acceso a recursos, compartir datos y coordinar actividades, ya que los procesos están ubicados en espacios de memoria separados.</p>
+            <p>Los mecanismos de IPC incluyen tuberías (<i>pipes</i>), colas de mensajes, memoria compartida, señales y sockets. Cada uno proporciona diversos beneficios dependiendo de la clase de aplicación y del grado de aislamiento o rendimiento que se necesite.</p>
+            <ol> 
+                <ul><strong>Tuberías (Pipes)</strong>. Las tuberías facilitan la comunicación en una sola dirección entre procesos interconectados, enviando datos como un flujo constante. En sistemas Unix/Linux, se generan a través del comando <i>pipe ()</i> y son muy empleadas para enlazar procesos en una secuencia de ejecución.</dd>
+                <ul><strong>Colas de mensajes</strong>. Almacenan mensajes en una cola administrada por el kernel, lo que posibilita una comunicación estructurada y asincrónica. Los procesos tienen la posibilidad de enviar o recibir mensajes con control de prioridad, lo cual ayuda a que la sincronización se realice sin bloqueo directo.</ul>
+                <ul><strong>Memoria compartida</strong>. Es el mecanismo más rápido de IPC, ya que varios procesos pueden acceder directamente a una región común de memoria. Requiere, sin embargo, mecanismos adicionales de sincronización (como semáforos) para evitar accesos simultáneos que causen inconsistencias.</ul>
+                <ul><strong>Señales</strong>. Son notificaciones asíncronas enviadas por el sistema o por otros procesos para indicar eventos, como interrupciones o errores. Por ejemplo, la señal <i>SIGINT</i> detiene un proceso, mientras que <i>SIGKILL</i> lo finaliza inmediatamente.</ul>
+                <ul><strong>Sockets</strong>. Los sockets permiten la comunicación entre procesos en la misma máquina o en distintas redes, funcionando como un canal bidireccional basado en protocolos (<i>TCP/IP</i> o <i>UDP</i>). Son la base de la comunicación cliente-servidor en entornos distribuidos.</ul>               
+            </dl>
 
-            <br>
-            <h4>¿Por qué es Necesaria la IPC?</h4>
-            <p>La necesidad de la IPC surge de varias situaciones en un sistema operativo:</p>
-
-            <ul>
-                <li><strong>Cooperación entre Procesos:</strong> Muchos programas se diseñan como un conjunto de procesos cooperativos, donde cada uno realiza una parte específica de una tarea mayor. Por ejemplo, en un entorno de desarrollo, un proceso puede compilar código mientras otro lo enlaza y un tercero lo ejecuta.</li>
-                <li><strong>Compartición de Información:</strong> Los procesos a menudo necesitan acceder y compartir los mismos datos o recursos. Sin mecanismos de IPC, cada proceso tendría su propia copia de los datos, lo que sería ineficiente y podría llevar a inconsistencias.</li>
-                <li><strong>Modularidad:</strong> La IPC permite que los programas se dividan en módulos independientes (procesos), lo que facilita el desarrollo, depuración y mantenimiento. Cada módulo puede ejecutarse en su propio espacio de memoria, aumentando la robustez del sistema.</li>
-                <li><strong>Distribución de Tareas:</strong> En sistemas con múltiples procesadores o núcleos, la IPC es vital para distribuir la carga de trabajo entre ellos, permitiendo que diferentes procesos se ejecuten en paralelo y aprovechen el hardware al máximo.</li>
-                <li><strong>Sincronización:</strong> Además de intercambiar datos, los procesos a menudo necesitan sincronizarse para asegurar que ciertos eventos ocurran en un orden específico o para proteger recursos compartidos de accesos concurrentes no deseados (condiciones de carrera).</li>
-            </ul>
-
-            <br>
-            <h4>Componentes Clave de la IPC</h4>
-            <p>Para que la comunicación entre procesos sea efectiva, los sistemas operativos ofrecen diversas herramientas y conceptos:</p>
-
-            <ul>
-                <li><strong>Paso de mensajes:</strong> La comunicación entre procesos se realiza mediante el envío y recepción de mensajes. Este método es especialmente útil cuando los procesos no comparten el mismo espacio de memoria.</li>
-                <li><strong>Memoria Compartida:</strong> Los procesos establecen una región de memoria a la que ambos tienen acceso. Esta es una forma muy eficiente de comunicación, pero requiere que los procesos coordinen su acceso a la memoria para evitar conflictos.</li>
-                <li><strong>Sincronización:</strong> Se emplean mecanismos como semáforos, mutex y variables de condición para coordinar la ejecución de los procesos, garantizando un acceso seguro a los recursos compartidos y asegurando que los procesos solo avancen cuando se cumplan ciertas condiciones.</li>
-                <li><strong>Pipes (Tuberías):</strong> Un mecanismo para la comunicación unidireccional o bidireccional entre procesos relacionados (típicamente padre-hijo).</li>
-                <li><strong>Colas de Mensajes:</strong> Permiten que los mensajes se almacenen temporalmente hasta que el proceso receptor esté listo para procesarlos, desacoplando al emisor y al receptor.</li>
-                <li><strong>Sockets:</strong> Son una herramienta que permite la comunicación entre procesos, ya sea que se ejecuten en el mismo equipo o en distintos dispositivos conectados a través de una red.</li>
-            </ul>
-
-            <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
 
             <div class="quote-box">
-                "La implementación eficiente de estos mecanismos es una parte crucial del diseño de un sistema operativo, ya que impacta directamente en el rendimiento y la fiabilidad de las aplicaciones concurrentes y distribuidas."
+                "La comunicación entre procesos proporciona los mecanismos necesarios para el intercambio de información y la sincronización de actividades, garantizando la coherencia y el orden en los sistemas concurrentes"
+                <div class="citation">(Silberschatz, Galvin y Gagne, 2022 p.279).</div>
             </div>
+            <p>En conjunto, los mecanismos de IPC son fundamentales para los sistemas multitarea y distribuidos, permitiendo la cooperación entre procesos, la distribución de la carga de trabajo y la eficiencia en el procesamiento paralelo.</p>
         </div>
         
         <div class="section" id="seccion-2-3-1">
@@ -661,41 +643,11 @@
                 <div class="section-title">Memoria compartida</div>
             </div>
             <div class="content">
-                <p>La memoria compartida es un mecanismo de comunicación entre procesos (IPC) que permite a varios procesos acceder simultáneamente a una misma área de memoria. Esta técnica se caracteriza por su alta eficiencia y velocidad en el intercambio de datos, lo que la convierte en una opción eficaz para la coordinación entre procesos en los sistemas operativos.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <h3>Importancia de la Memoria Compartida</h3>
-                <p>Su importancia radica en los siguientes puntos:</p>
-
-                <h4>1. Velocidad de Comunicación Superior:</h4>
-                <p>La memoria compartida permite que los procesos accedan directamente a una región común de memoria, evitando copias de datos y llamadas al sistema costosas, lo que la convierte en el método más rápido de comunicación entre procesos.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <h4>2. Eficiencia en el Uso de Recursos:</h4>
-                <p>Al compartir la misma región de memoria, se evita la duplicación de datos y se optimiza el uso de recursos, especialmente útil en aplicaciones que manejan grandes volúmenes de datos.</p>
-                
-                <div class="citation">(Silberschatz et al., 2018).</div>
-
-                <h4>3. Facilita la Coordinación Compleja:</h4>
-                <p>La memoria compartida es ideal para escenarios donde procesos colaboran estrechamente, accediendo a estructuras de datos complejas, como en procesamiento de imágenes o video.</p>
-                
-                <div class="citation">(Silberschatz et al., 2018).</div>
-
-                <h4>4. Base para Otros Mecanismos de IPC:</h4>
-                <p>Dado que la memoria compartida requiere sincronización para evitar condiciones de carrera, suele combinarse con semáforos o mutex para asegurar la integridad de los datos.</p>
-                
-                <div class="citation">(Silberschatz et al., 2018).</div>
-
-                <h4>5. Aplicaciones de Alto Rendimiento:</h4>
-                <p>Es el mecanismo preferido en aplicaciones que demandan alta eficiencia y baja latencia, como bases de datos, simulaciones, juegos y servidores web.</p>
-                
-                <div class="citation">(Silberschatz et al., 2018).</div>
-
+                <p>La memoria compartida (<i>shared memory</i>) es uno de los mecanismos más eficientes de <strong>IPC</strong>, ya que permite que <strong>dos o más procesos accedan directamente a una misma región de memoria física</strong>. A diferencia de otros métodos de comunicación, como las tuberías o las colas de mensajes, la memoria compartida <strong>no requiere transferencia de datos a través del kernel</strong>, lo que reduce la sobrecarga y acelera el intercambio de información.</p>
+                <p>En <strong>Windows</strong>, se utilizan las funciones <i>CreateFileMapping()</i> y <i>MapViewOfFile()</i> para lograr el mismo propósito.</p>                     
                 <div class="quote-box">
-                    "La memoria compartida es esencial en la comunicación entre procesos por su rapidez y eficiencia, aunque necesita mecanismos de sincronización para mantener la coherencia de los datos"
-                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
+                    "La memoria compartida ofrece el método más rápido de comunicación entre procesos, ya que evita la intervención del kernel durante el intercambio de datos, aunque requiere sincronización explícita por parte del programador".
+                    <div class="citation">(Silberschatz, Galvin, & Gagne, 2022).</div>
                 </div>
             </div>
         </div>
@@ -706,174 +658,57 @@
                 <div class="section-title">Paso de mensajes</div>
             </div>
             <div class="content">
-                <p>El paso de mensajes es un mecanismo de comunicación entre procesos que consiste en el envío y recepción de mensajes para intercambiar información. Este método es esencial tanto en sistemas distribuidos como en sistemas monoprocesador, ya que permite la coordinación entre procesos que no comparten memoria.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <h3>Funcionamiento:</h3>
-                <p>Este proceso se basa en dos operaciones primitivas fundamentales: <strong>send()</strong> (enviar) y <strong>receive()</strong> (recibir).</p>
-
-                <h4>1. Proceso de Envío (send()):</h4>
-                <ul>
-                    <li>Un proceso (el <strong>emisor</strong>) quiere enviar datos a otro proceso (el <strong>receptor</strong>).</li>
-                    <li>El emisor invoca la primitiva send(), especificando el <strong>destino</strong> (el ID del proceso receptor) y el <strong>mensaje</strong> a enviar.</li>
-                    <li>El sistema operativo recibe el mensaje del espacio de direcciones del proceso emisor y lo almacena.</li>
-                    <li>El mensaje es copiado a un <strong>búfer temporal</strong> gestionado por el sistema operativo (generalmente en el espacio de memoria del kernel).</li>
-                    <li>Ya teniendo el mensaje, entonces el sistema operativo se encarga de entregar el mensaje al proceso receptor.</li>
-                </ul>
-
-                <h4>2. Proceso de Recepción (receive()):</h4>
-                <ul>
-                    <li>Un proceso (el <strong>receptor</strong>) invoca la primitiva receive(), especificando, opcionalmente, el <strong>origen</strong> esperado del mensaje (de qué proceso espera recibir).</li>
-                    <li>El sistema operativo verifica si hay un mensaje disponible para el receptor en sus búferes internos.</li>
-                    <li>Si hay un mensaje, el sistema operativo lo copia del búfer del kernel al espacio de direcciones del proceso receptor.</li>
-                    <li>Si no hay un mensaje disponible, el comportamiento puede variar:
-                        <ul>
-                            <li><strong>Bloqueo</strong>: Este proceso se encarga de detener y bloquea el proceso hasta que llega un nuevo mensaje.</li>
-                            <li><strong>No Bloqueo (Polling)</strong>: El proceso receptor recibe un valor de retorno indicando que no hay mensaje, y puede continuar con otras tareas.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <h3>Características Clave</h3>
-                <ul>
-                    <li><strong>Comunicación indirecta:</strong> A diferencia del modelo de memoria compartida, en este tipo de comunicación los procesos no acceden directamente a una misma región de memoria; en su lugar, el sistema operativo actúa como intermediario para el intercambio de información.</li>
-                    <li><strong>Copia de Datos</strong>: Implica la copia de datos del espacio del emisor al espacio del kernel, y luego del espacio del kernel al espacio del receptor. Esto introduce una sobrecarga en comparación con la memoria compartida, pero proporciona <strong>aislamiento</strong> entre procesos.</li>
-                    <li><strong>Sincronización Implícita</strong>: El paso de mensajes a menudo proporciona alguna forma de sincronización:
-                        <ul>
-                            <li>Si send() es <strong>bloqueante</strong>, el emisor espera hasta que el mensaje sea recibido (o al menos copiado al búfer del kernel).</li>
-                            <li>Si receive() es <strong>bloqueante</strong>, el receptor espera hasta que un mensaje esté disponible.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Capacidad de Búfer</strong>: Los mensajes pueden ser almacenados temporalmente en búferes del sistema operativo. Esto puede ser:
-                        <ul>
-                            <li><strong>Capacidad Cero (Rendezvous)</strong>: El emisor se bloquea hasta que el receptor esté listo para recibir (y viceversa). No hay búferes intermedios.</li>
-                            <li><strong>Capacidad Finita</strong>: Hay un número limitado de mensajes que se pueden almacenar en el búfer. Si el búfer está lleno, el emisor se bloquea.</li>
-                            <li><strong>Capacidad Infinita</strong>: Teóricamente, el emisor nunca se bloquea al enviar. En la práctica, esto está limitado por la memoria del sistema.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <h3>Tipos de Implementación de Paso de Mensajes</h3>
-                <p>La implementación puede variar en la forma de especificar la comunicación:</p>
-
-                <h4>Comunicación Directa:</h4>
-                <ul>
-                    <li>send(P, mensaje): Envía un mensaje al proceso P.</li>
-                    <li>receive(Q, mensaje): Recibe un mensaje del proceso Q.</li>
-                    <li>Implica un acoplamiento fuerte entre emisor y receptor.</li>
-                </ul>
-
-                <h4>Comunicación Indirecta:</h4>
-                <ul>
-                    <li>Los mensajes se envían a y se reciben de un <strong>buzón (mailbox)</strong> o <strong>puerto</strong>.</li>
-                    <li>send(A, mensaje): Envía un mensaje al buzón A.</li>
-                    <li>receive(A, mensaje): Recibe un mensaje del buzón A.</li>
-                    <li>Permite un acoplamiento más flexible; el emisor no necesita conocer el receptor directo, solo el buzón. Un buzón puede ser compartido por múltiples procesos.</li>
-                </ul>
-
-                <h3>Importancia</h3>
-                <p>El paso de mensajes es crucial por:</p>
-
-                <ul>
-                    <li><strong>Aislamiento y Seguridad</strong>: Al copiar los mensajes, los procesos no acceden directamente a la memoria de otros, lo que mejora la seguridad y el aislamiento. Un error en un proceso no suele corromper los datos de otro a través de la comunicación.</li>
-                    <li><strong>Facilidad de Uso</strong>: Es conceptualmente más simple de implementar que la memoria compartida con respecto a la sincronización, ya que el sistema operativo maneja gran parte de la coordinación.</li>
-                    <li><strong>Fundamento para sistemas distribuidos:</strong> El paso de mensajes es el mecanismo principal de comunicación en sistemas distribuidos, ya que los procesos se ejecutan en máquinas diferentes y no pueden acceder a una memoria física compartida.</li>
-                </ul>
-
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <div class="quote-box">
-                    "Aunque puede ser menos eficiente que la memoria compartida para grandes volúmenes de datos debido a la sobrecarga de copiado, su simplicidad, seguridad y aplicabilidad en entornos distribuidos lo convierten en un mecanismo de IPC indispensable."
-                </div>
+                <p>A diferencia de la <strong>memoria compartida</strong>, donde varios procesos acceden a la misma región de memoria, el paso de mensajes realiza transferencias controladas y seguras que mantienen el aislamiento entre procesos y evitan accesos directos a los datos compartidos <strong>(Silberschatz, Galvin y Gagne, 2022)</strong>.</p>
+                <p>En este modelo, los procesos emplean operaciones primarias como envió y recepción para enviar mensajes que pueden incluir señales de sincronización, comandos o datos. El sistema operativo tiene como función ser intermediario, administrando las colas de mensajes, regulando el orden en que se entregan y gestionando los procesos que están bloqueados o en espera.</p>
+                <p>Las modalidades son:</p>                
+                <ol>
+                    <li><strong>Síncrono</strong>: el proceso emisor se detiene hasta que el receptor valide la llegada del mensaje, lo que asegura la sincronización, aunque con latencia más elevada.</li>
+                    <li><strong>Asíncrono</strong>: el emisor sigue ejecutando sin esperar una respuesta inmediata, lo cual mejora el rendimiento, pero necesita mecanismos de control extra.</li>                    
+                </ol>                
             </div>
         </div>
 
         <div class="section" id="seccion-2-3-3">
             <div class="section-header">
                 <div class="section-number">2.3.3</div>
-                <div class="section-title">Tuberías</div>
-            </div>
+                <div class="section-title">Tuberías y colas</div>
+            </div>            
             <div class="content">
-                <p>Las tuberías (pipes) son un mecanismo básico de comunicación entre procesos que permite el flujo unidireccional de datos, destacándose por su simplicidad y eficiencia especialmente entre procesos relacionados.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
+                <p>Las colas de mensajes y las tuberías (<i>pipes</i>) son métodos tradicionales de <strong>IPC</strong> que posibilitan que los programas en ejecución intercambien información, asegurando la sincronización y el aislamiento de los flujos de datos. A pesar de que ambos procedimientos son muy empleados en sistemas operativos como Windows y Unix/Linux, se distinguen por su estructura, grado de control y flexibilidad.</p>
+                <h4>Tuberías (<i>Pipes</i>)</h4>
 
-                <h3>Funcionalidad e Importancia</h3>
-                <p>Las tuberías establecen un canal de comunicación simple entre procesos, destacándose por su simplicidad, comunicación unidireccional, sincronización implícita, manejo de flujo de bytes y su uso en procesos relacionados.</p>
-                
-                <div class="citation">(Silberschatz, Galvin, & Gagne, 2018).</div>
-
-                <p>Su importancia radica en:</p>
-
+                <p>Las tuberías son canales de comunicación unidireccionales que posibilitan la transmisión constante de datos entre procesos asociados, generalmente entre el proceso padre y el hijo. Actúan como un buffer de memoria gestionado por el kernel, en el cual un proceso realiza una escritura y otro la lectura siguiendo el orden <strong>FIFO</strong>.</p>
+                <p>Su clasificación es:</p>
                 <ul>
-                    <li><strong>Simplicidad</strong>: Son fáciles de usar e implementar en la programación, especialmente para tareas de procesamiento de datos secuencial.</li>
-                    <li><strong>Comunicación Unidireccional</strong>: Los datos fluyen en una sola dirección: un extremo es para escribir y el otro para leer. Para una comunicación bidireccional, se necesitan dos tuberías separadas.</li>
-                    <li><strong>Sincronización Implícita</strong>: Las tuberías proporcionan una forma de sincronización. Si un proceso intenta leer de una tubería vacía, se bloqueará hasta que haya datos disponibles. Si un proceso intenta escribir en una tubería llena, se bloqueará hasta que el receptor lea algunos datos.</li>
-                    <li><strong>Flujo de Bytes</strong>: Las tuberías manejan un flujo de bytes, sin estructura de mensajes definida, es por ello que los procesos son responsables de interpretar el formato de los datos.</li>
-                    <li><strong>Comunicación entre Procesos Relacionados</strong>: Son ideales para la comunicación entre procesos que tienen una relación de parentesco (padre-hijo), ya que el proceso hijo hereda los descriptores de archivo de la tubería del proceso padre.</li>
-                </ul>
-
-                <h3>Tipos de Tuberías</h3>
-                <p>Existen dos tipos principales de tuberías:</p>
-
-                <h4>1. Tuberías Anónimas (Unnamed Pipes)</h4>
-                <ul>
-                    <li><strong>Funcionalidad</strong>: Son temporales y solo existen mientras los procesos que las usan están activos. No tienen un nombre en el sistema de archivos.</li>
-                    <li><strong>Importancia</strong>: Se utilizan exclusivamente para la comunicación entre procesos que comparten una relación de parentesco (ej., un proceso padre crea una tubería y luego bifurca un proceso hijo que hereda los extremos de la tubería).</li>
-                    <li><strong>Operatividad</strong>:
-                        <ul>
-                            <li>Un proceso (generalmente el padre) crea la tubería usando una llamada al sistema (ej., pipe() en sistemas Unix/Linux). Esta llamada devuelve dos descriptores de archivo: uno para lectura y otro para escritura.</li>
-                            <li>El proceso padre luego crea un proceso hijo (usando fork()). El hijo hereda una copia de los descriptores de archivo de la tubería.</li>
-                            <li>Para establecer la unidireccionalidad, el padre cierra el extremo de lectura y el hijo cierra el extremo de escritura (o viceversa), dependiendo de la dirección deseada del flujo de datos.</li>
-                            <li>Un proceso escribe datos en el extremo de escritura, y el otro proceso lee datos del extremo de lectura.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <h4>2. Tuberías Nombradas (Named Pipes o FIFOs - First-In, First-Out)</h4>
-                <ul>
-                    <li><strong>Funcionalidad</strong>: Son persistentes y tienen un nombre en el sistema de archivos (aparecen como un archivo especial). Esto les permite existir incluso después de que los procesos que las crearon hayan terminado.</li>
-                    <li><strong>Importancia</strong>: Permiten la comunicación entre <strong>procesos no relacionados</strong> que pueden no tener un ancestro común. Cualquier proceso que conozca el nombre de la tubería puede abrirla y comunicarse a través de ella.</li>
-                    <li><strong>Operatividad</strong>:
-                        <ul>
-                            <li>Un proceso crea la tubería nombrada usando una llamada al sistema (ej., mkfifo() en Unix/Linux). Esto crea una entrada especial en el sistema de archivos.</li>
-                            <li>Cualquier proceso puede abrir esta tubería nombrada, especificando su nombre, para lectura o escritura (similar a abrir un archivo regular).</li>
-                            <li>Una vez abierta, la comunicación funciona de manera similar a las tuberías anónimas: un proceso escribe y otro lee.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <h3>Operatividad General de las Tuberías</h3>
-                <p>Independientemente del tipo, la operatividad básica de las tuberías implica:</p>
-
-                <ol>
-                    <li><strong>Creación</strong>: Se crea un canal de comunicación.</li>
-                    <li><strong>Apertura</strong>: Los procesos abren los extremos de la tubería (uno para lectura, otro para escritura).</li>
-                    <li><strong>Escritura</strong>: Un proceso escribe datos en el extremo de escritura de la tubería. Estos datos se almacenan temporalmente en un búfer del kernel.</li>
-                    <li><strong>Lectura</strong>: Otro proceso lee datos del extremo de lectura de la tubería.</li>
-                    <li><strong>Cierre</strong>: Una vez que la comunicación ha terminado, los procesos cierran los descriptores de archivo asociados a la tubería.</li>
-                </ol>
-
+                    <li><strong>Tuberías anónimas</strong>, creadas temporalmente mediante la llamada al sistema <i>pipe()</i>, ideales para comunicación entre procesos con una relación jerárquica directa.</li>                    
+                    <li><strong>Tuberías con nombre (named pipes o FIFOs)</strong>, creadas mediante <i>mkfifo</i>, que permiten la comunicación entre procesos no relacionados, incluso de distintos usuarios.</li>                    
+                </ul>                
                 <div class="quote-box">
-                    "El proceso básico incluye creación, apertura, escritura, lectura y cierre de la tubería, facilitando la interconexión eficiente de procesos en entornos de línea de comandos y sistemas modulares"
-                    <div class="citation">(Silberschatz et al., 2018).</div>
+                    "Las tuberías proporcionan un método simple de comunicación entre procesos conectados en una cadena, permitiendo el paso de información sin necesidad de almacenamiento intermedio en disco".
+                    <div class="citation">(Silberschatz Galvin y Gagne, 2022).</div>
                 </div>
+                <h3>Colas de Mensajes </h3>
+                <p>Las <strong>colas de mensajes</strong> permiten una comunicación <strong>estructurada y asíncrona</strong> entre procesos, gestionando los mensajes a través de una <strong>cola en el kernel</strong>. Cada mensaje contiene un identificador, una prioridad y los datos transmitidos, lo que permite que varios procesos se comuniquen sin bloquearse entre sí.</p>
+                <p>Su principal ventaja es la capacidad de <strong>enviar y recibir mensajes de manera ordenada</strong>, sin requerir una relación jerárquica entre los procesos. Además, permiten un control más preciso sobre el flujo de datos, ya que los mensajes pueden clasificarse o priorizarse.</p>  
+                <p>En sistemas Unix, las funciones <i>msgget()</i>, <i>msgsnd()</i> y <i>msgrcv()</i> implementan este mecanismo, mientras que en Windows se utilizan APIs específicas del sistema.</p>
+                <div class="quote-box">
+                    "Las colas de mensajes ofrecen una forma segura y flexible de intercambio de información, especialmente útil en aplicaciones concurrentes y sistemas distribuidos donde los procesos deben comunicarse sin compartir memoria".
+                    <div class="citation">(Tanenbaum y Bos, 2015).</div>                    
+                </div>
+                <p>En conjunto, <strong>las tuberías y colas</strong> constituyen herramientas esenciales para la cooperación entre procesos, facilitando la <strong>sincronización</strong>, <strong>modularidad</strong> y <strong>eficiencia</strong> en la ejecución concurrente de programas.</p>
             </div>
         </div>
 
         <div class="activity-card">
-            <div class="activity-title">Actividad de Aprendizaje: Modelo de Procesos</div>
-            <p>Evalúa tu comprensión sobre los fundamentos, operaciones, estados e implementación de procesos en sistemas operativos.</p>
-            <a href="actividad_2_1.html" class="activity-btn">
+            <div class="activity-title">Actividad de Aprendizaje 2.3: Tuberías y colas</div>
+            <p>Evalúa tu comprensión sobre las tuberías y colas en sistemas operativos.</p>
+            <a href="actividad_2_3.html" class="activity-btn">
                 <i class="fas fa-pencil-alt"></i> Realizar Actividad
             </a>
         </div>
         
         <div class="nav-buttons">
-            <a href="2.2.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Anterior: 2.2 Modelo multi-hilo</a>
+            <a href="2.2.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Anterior: 2.2 Modelo multihilo</a>
             <a href="2.4.html" class="nav-btn">Continuar a 2.4: Sincronización entre procesos/hilos<i class="fas fa-arrow-right"></i></a>
         </div>
         

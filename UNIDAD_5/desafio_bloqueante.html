@@ -3,255 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafío de E/S No Bloqueante</title>
-    <link rel="icon" type="image/png" href="logoescom.png">
+    <title>Desafío - E/S Bloqueante</title>
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    
     <style>
+        /* Estilos consistentes con Unidad 5 (Azul/Oscuro) */
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #2ecc71;
             --light: #ecf0f1;
             --dark: #1a2a3a;
-            --success: #2ecc71;
-            --accent: #e74c3c;
+            --gray: #95a5a6;
+            --warning: #f39c12;
+            --code-bg: #2d2d2d;
         }
         
-        body {
-            background: linear-gradient(135deg, var(--dark), var(--primary));
-            color: var(--light);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        .challenge-header {
-            text-align: center;
-            padding: 20px;
-            margin-bottom: 30px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-        }
-
-        .challenge-header h1 {
-            color: var(--secondary);
-            font-size: 2.5rem;
-        }
-
-        .challenge-area {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-        }
-
-        .objective {
-            background: rgba(52, 152, 219, 0.1);
-            border-left: 4px solid var(--secondary);
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .code-editor {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            color: #dcdcdc;
-        }
+        body { background: linear-gradient(135deg, #1a2a3a, #2c3e50); color: var(--light); min-height: 100vh; line-height: 1.7; }
         
-        .code-editor pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         
-        .code-blank {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px dashed var(--secondary);
-            color: var(--light);
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            width: 180px;
-            transition: all 0.3s ease;
-        }
-
-        .code-blank:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-style: solid;
-        }
-
-        .code-blank.correct {
-            border: 1px solid var(--success);
-            background-color: rgba(46, 204, 113, 0.2);
-        }
-
-        .code-blank.incorrect {
-            border: 1px solid var(--accent);
-            background-color: rgba(231, 76, 60, 0.2);
-        }
-
-        .controls {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            text-decoration: none;
-        }
-
-        .btn-verify {
-            background: var(--success);
-        }
-        .btn-verify:hover {
-            background: #27ae60;
-        }
-
-        .btn-back {
-            background: var(--primary);
-        }
-        .btn-back:hover {
-            background: #34495e;
-        }
-
-        #feedback {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            display: none;
-        }
+        header { text-align: center; padding: 30px 20px; margin-bottom: 30px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
         
-        #feedback.correct {
-            background-color: rgba(46, 204, 113, 0.2);
-            border: 1px solid var(--success);
-            color: var(--success);
-        }
+        .breadcrumb { display: flex; justify-content: center; margin-bottom: 15px; color: var(--gray); font-size: 1rem; }
+        .breadcrumb a { color: var(--secondary); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: white; text-decoration: underline; }
+        .breadcrumb span { margin: 0 10px; }
         
-        #feedback.incorrect {
-            background-color: rgba(231, 76, 60, 0.2);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-        }
+        h1 { font-size: 2.2rem; margin-bottom: 10px; color: white; }
+        
+        .instruction-box { background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--secondary); padding: 15px 20px; border-radius: 0 8px 8px 0; margin-bottom: 30px; text-align: left; }
+        .instruction-box h3 { color: var(--secondary); margin-bottom: 5px; }
 
-        #feedback a {
-            color: var(--secondary);
-            text-decoration: underline;
-            font-weight: bold;
-        }
+        /* Contenedor de código dividido */
+        .challenge-container { background: #2d2d2d; border-radius: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); overflow: hidden; border: 1px solid #333; position: relative; }
+        .code-header { background: #252526; padding: 8px 20px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; font-family: monospace; color: #aaa; font-size: 0.9rem; }
+
+        pre[class*="language-"] { margin: 0 !important; padding: 5px 25px !important; background: transparent !important; font-size: 1rem; overflow: hidden !important; }
+        
+        .interactive-line { background: #383838; padding: 5px 25px; display: flex; align-items: center; font-family: 'Consolas', 'Monaco', monospace; border-left: 4px solid var(--warning); margin: 5px 0; }
+        .comment-text { color: #999; margin-right: 15px; white-space: nowrap; font-size: 0.9rem; }
+        
+        .code-input { background: rgba(0, 0, 0, 0.3); border: 1px solid #555; border-radius: 4px; color: #fff; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.95rem; padding: 5px 10px; width: 100%; flex-grow: 1; outline: none; transition: all 0.3s; }
+        .code-input:focus { background: rgba(0, 0, 0, 0.5); border-color: var(--secondary); box-shadow: 0 0 8px rgba(52, 152, 219, 0.3); }
+        .code-input.correct { border-color: var(--success); background: rgba(46, 204, 113, 0.1); color: var(--success); }
+        .code-input.incorrect { border-color: var(--accent); background: rgba(231, 76, 60, 0.1); }
+
+        .feedback-area { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; animation: fadeIn 0.4s ease; }
+        .feedback-area.success { background: rgba(46, 204, 113, 0.15); border: 1px solid var(--success); color: #d4efdf; }
+        .feedback-area.error { background: rgba(231, 76, 60, 0.15); border: 1px solid var(--accent); color: #fadbd8; }
+        .feedback-icon { font-size: 1.5rem; margin-right: 10px; vertical-align: middle; }
+
+        .btn-check { display: block; width: 100%; padding: 12px; margin-top: 20px; background: var(--secondary); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+        .btn-check:hover { background: #2980b9; transform: translateY(-2px); }
+        
+        .back-button { display: inline-block; margin-top: 30px; color: var(--gray); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .back-button:hover { color: white; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="challenge-header">
-            <h1><i class="fas fa-sync-alt"></i> Desafío de E/S No Bloqueante</h1>
-            <p>Implementa correctamente la llamada al sistema <code>select()</code>.</p>
+        
+        <header>
+            <div class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Inicio</a>
+                <span>/</span>
+                <a href="index.html">Unidad 5</a>
+                <span>/</span>
+                <a href="laboratorio_codigo.html">Laboratorio</a>
+                <span>/</span>
+                <span>Desafío</span>
+            </div>
+            <h1><i class="fas fa-hourglass-half"></i> Desafío de Código</h1>
+            <p style="color: var(--gray); margin-top: 5px;">Implementación de E/S Bloqueante (Wait/Signal)</p>
+        </header>
+
+        <div class="instruction-box">
+            <h3><i class="fas fa-info-circle"></i> Instrucciones:</h3>
+            <p>Cuando un proceso hace una llamada al sistema bloqueante (como <code>scanf</code>), el SO debe suspenderlo. Completa la lógica del kernel para poner al proceso a <strong>DORMIR</strong> mientras espera el hardware, y para <strong>DESPERTARLO</strong> dentro de la interrupción.</p>
         </div>
         
-        <div class="challenge-area">
-            <div class="objective">
-                <strong>Objetivo:</strong> Rellena los parámetros que faltan en la llamada a `select()` para monitorear la entrada estándar (`STDIN`) sin bloquear el programa.
+        <div class="challenge-container">
+            <div class="code-header">
+                <span><i class="fas fa-cogs"></i> Kernel_IO_Driver.c</span>
+            </div>
+            
+            <pre><code class="language-c">
+// Función del Kernel llamada por 'scanf' o 'read'
+void sistema_leer_datos() {
+    // 1. Iniciar la operación en el controlador de dispositivo
+    iniciar_hardware_io();
+
+    // 2. El dato no está listo. Debemos bloquear este proceso.
+    printf("[KERNEL] Poniendo el proceso en espera...\n");</code></pre>
+
+            <div class="interactive-line">
+                <span class="comment-text" style="min-width: 20px;">>></span>
+                <input type="text" id="input-1" class="code-input" placeholder="función_dormir();" autocomplete="off" spellcheck="false">
             </div>
 
-            <div class="code-editor">
-                <pre><code>// Modo no bloqueante usando select()
-printf("Esperando entrada por 5 segundos...\n");
+            <pre><code class="language-c">    // El proceso se detiene aquí hasta ser despertado.
+    
+    // 3. Al despertar, copiamos el dato del buffer del kernel al usuario
+    copiar_a_usuario();
+}
 
-fd_set fds;
-struct timeval timeout;
+// Rutina de Servicio de Interrupción (se ejecuta cuando el hardware termina)
+void isr_fin_de_io() {
+    // 4. El hardware notifica que el dato está en el buffer.
+    printf("[ISR] Interrupción: Dato listo.\n");
 
-FD_ZERO(&fds);
-FD_SET(STDIN_FILENO, &fds);
-timeout.tv_sec = 5;
-timeout.tv_usec = 0;
+    // 5. Debemos desbloquear al proceso que estaba esperando.</code></pre>
 
-// La llamada al sistema clave para E/S no bloqueante
-int ready = select(
-    <input type="text" class="code-blank" id="blank1" placeholder="núm. descriptores">,
-    <input type="text" class="code-blank" id="blank2" placeholder="conjunto de lectura">,
-    NULL,
-    NULL,
-    <input type="text" class="code-blank" id="blank3" placeholder="tiempo de espera">
-);
-
-if (ready == -1) {
-    perror("Error en select()");
-} else if (ready == 0) {
-    printf("Tiempo de espera agotado.\n");
-} else {
-    // ... leer del STDIN ...
-}</code></pre>
+            <div class="interactive-line">
+                <span class="comment-text" style="min-width: 20px;">>></span>
+                <input type="text" id="input-2" class="code-input" placeholder="función_despertar();" autocomplete="off" spellcheck="false">
             </div>
 
-            <div id="feedback"></div>
-
-            <div class="controls">
-                <a href="laboratorio_codigo.html" class="btn btn-back"><i class="fas fa-arrow-left"></i> Volver al Laboratorio</a>
-                <button id="verifyBtn" class="btn btn-verify">Verificar Código <i class="fas fa-check"></i></button>
-            </div>
+            <pre><code class="language-c">}</code></pre>
         </div>
+
+        <button class="btn-check" onclick="checkAnswer()">Verificar Solución</button>
+
+        <div id="feedback-success" class="feedback-area success" style="display: none;">
+            <i class="fas fa-check-circle feedback-icon"></i>
+            <strong>¡Correcto!</strong> Esta es la esencia de la E/S bloqueante: el proceso llama a <code>sleep()</code> (o <code>wait()</code>) liberando la CPU, y la interrupción llama a <code>wakeup()</code> (o <code>signal()</code>) para devolverlo a la cola de listos.
+        </div>
+
+        <div id="feedback-wrong" class="feedback-area error" style="display: none;">
+            <i class="fas fa-times-circle feedback-icon"></i>
+            <strong>Incorrecto.</strong> Piensa en los estados del proceso.
+            <ul style="margin-left: 40px; margin-top: 5px;">
+                <li>Para detener el proceso actual: <code>sleep()</code>, <code>wait()</code> o <code>bloquear()</code>.</li>
+                <li>Para reanudarlo desde la interrupción: <code>wakeup()</code>, <code>signal()</code> o <code>desbloquear()</code>.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="laboratorio_codigo.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Volver al Laboratorio
+            </a>
+        </div>
+
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    
     <script>
-        document.getElementById('verifyBtn').addEventListener('click', function() {
-            const feedbackEl = document.getElementById('feedback');
-            const reviewLink = '<a href="5.2.html#introduccion" target="_blank">material de la sección 5.2</a>';
+        function checkAnswer() {
+            // Respuestas esperadas
+            const answers1 = ["sleep()", "wait()", "bloquear()", "block()", "dormir()"];
+            const answers2 = ["wakeup()", "signal()", "desbloquear()", "unblock()", "despertar()"];
 
-            const correctAnswers = {
-                blank1: 'STDIN_FILENO+1',
-                blank2: '&fds',
-                blank3: '&timeout'
-            };
-
-            const blank1El = document.getElementById('blank1');
-            const blank2El = document.getElementById('blank2');
-            const blank3El = document.getElementById('blank3');
+            const input1 = document.getElementById('input-1');
+            const input2 = document.getElementById('input-2');
             
-            // Normalizar: quitar espacios y comas opcionales
-            const normalize = (str) => str.replace(/[\s,]/g, '');
+            // Normalizar (quitar espacios, ; y convertir a minúsculas)
+            const val1 = input1.value.trim().replace(/;/g, '').replace(/\(\)/g, '').toLowerCase() + "()";
+            const val2 = input2.value.trim().replace(/;/g, '').replace(/\(\)/g, '').toLowerCase() + "()";
 
-            const isBlank1Correct = normalize(blank1El.value) === normalize(correctAnswers.blank1);
-            const isBlank2Correct = normalize(blank2El.value) === normalize(correctAnswers.blank2);
-            const isBlank3Correct = normalize(blank3El.value) === normalize(correctAnswers.blank3);
+            let correct1 = false;
+            let correct2 = false;
 
-            blank1El.classList.toggle('correct', isBlank1Correct);
-            blank1El.classList.toggle('incorrect', !isBlank1Correct);
-            
-            blank2El.classList.toggle('correct', isBlank2Correct);
-            blank2El.classList.toggle('incorrect', !isBlank2Correct);
+            // Verificación flexible
+            if (answers1.some(a => val1.includes(a.replace("()","")))) correct1 = true;
+            if (answers2.some(a => val2.includes(a.replace("()","")))) correct2 = true;
 
-            blank3El.classList.toggle('correct', isBlank3Correct);
-            blank3El.classList.toggle('incorrect', !isBlank3Correct);
+            input1.classList.remove('correct', 'incorrect');
+            input2.classList.remove('correct', 'incorrect');
 
-            if (isBlank1Correct && isBlank2Correct && isBlank3Correct) {
-                feedbackEl.innerHTML = '¡Correcto! Has usado los parámetros de <code>select()</code> adecuadamente para una operación no bloqueante.';
-                feedbackEl.className = 'correct';
+            if (correct1) input1.classList.add('correct');
+            else input1.classList.add('incorrect');
+
+            if (correct2) input2.classList.add('correct');
+            else input2.classList.add('incorrect');
+
+            if (correct1 && correct2) {
+                document.getElementById('feedback-success').style.display = 'block';
+                document.getElementById('feedback-wrong').style.display = 'none';
             } else {
-                feedbackEl.innerHTML = `No es del todo correcto. Asegúrate de pasar los punteros y valores adecuados a <code>select()</code>. Revisa el ejemplo del ${reviewLink}.`;
-                feedbackEl.className = 'incorrect';
+                document.getElementById('feedback-success').style.display = 'none';
+                document.getElementById('feedback-wrong').style.display = 'block';
             }
-            
-            feedbackEl.style.display = 'block';
-        });
+        }
     </script>
 </body>
 </html>

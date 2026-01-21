@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unidad 6: Seguridad y Virtualización</title>
-    <link rel="icon" type="image/png" href="logoescom.png">
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Variables CSS raíz para temas y consistencia */
@@ -606,7 +606,7 @@
                 <h1 style="margin: 0; text-align: center;">UNIDAD TEMÁTICA 6</h1>
                 <img src="ESCOMB.png" alt="Logo ESCOM" style="height: 80px; max-width: 120px; object-fit: contain;">
             </div>
-            <div class="subtitle">SEGURIDAD Y VIRTUALIZACIÓN</div>
+            <div class="subtitle">Seguridad y Virtualización</div>
             <div class="description">
                 <p>Esta unidad explora los conceptos fundamentales de seguridad y virtualización en los sistemas operativos modernos. Aprenderás sobre las amenazas comunes, los mecanismos de protección para salvaguardar los datos y recursos, y cómo la virtualización permite la creación de entornos de cómputo aislados y eficientes.</p>
             </div>
@@ -631,7 +631,7 @@
                 <div class="card-header" onclick="toggleCard('6-1')">
                     <div class="card-header-content">
                         <div class="card-number">6.1</div>
-                        <div class="card-title">EL AMBIENTE DE SEGURIDAD</div>
+                        <div class="card-title">El ambiente de seguridad</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -678,7 +678,7 @@
                 <div class="card-header" onclick="toggleCard('6-2')">
                     <div class="card-header-content">
                         <div class="card-number">6.2</div>
-                        <div class="card-title">VIRTUALIZACIÓN</div>
+                        <div class="card-title">Virtualización</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -725,7 +725,7 @@
                 <div class="card-header" onclick="toggleCard('activities')">
                     <div class="card-header-content">
                         <div class="card-number"><i class="fas fa-tasks"></i></div>
-                        <div class="card-title">ACTIVIDADES DE APRENDIZAJE</div>
+                        <div class="card-title">Actividades de aprendizaje</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -760,7 +760,7 @@
                 <div class="card-header">
                     <div class="card-header-content">
                         <div class="card-number"><i class="fas fa-book"></i></div>
-                        <div class="card-title">REFERENCIAS BIBLIOGRÁFICAS</div>
+                        <div class="card-title">Lista de referencias</div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -772,7 +772,7 @@
                 <div class="card-header">
                     <div class="card-header-content">
                         <div class="card-number"><i class="fas fa-keyboard"></i></div>
-                        <div class="card-title">LABORATORIO DE CÓDIGO</div>
+                        <div class="card-title">Laboratorio de código</div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -782,6 +782,29 @@
 
         </div>
         
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Video Introducción - Seguridad y Virtualización</h2>
+                    <button class="close-btn" onclick="closeVideoModal()">&times;</button>
+                </div>
+                <div class="description">
+                    <p>Salas, I. (2025, 29 de noviembre). <em>General: Ambiente de seguridad y virtualización</em> [Video]. YouTube. https://www.youtube.com/watch?v=By5rFRRQsf4</p>
+                </div>
+                <div class="video-container">
+                    <iframe id="videoFrame" 
+                            src="" 
+                            title="Video Educativo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+
         <footer>
             <p>Sistemas Operativos - Unidad 6: Seguridad y Virtualización</p>
             <p>Desarrollado para fines educativos - © 2025</p>
@@ -789,6 +812,54 @@
     </div>
     
     <script>
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) {
+                console.error('No se encontraron los elementos del modal');
+                return;
+            }
+            
+            // Video Unidad 6: Seguridad y Virtualización
+            videoFrame.src = 'https://www.youtube.com/embed/By5rFRRQsf4?autoplay=1&rel=0&modestbranding=1';
+            
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Evita que se haga scroll en la página de fondo
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // Limpiar la fuente para detener el video
+            videoFrame.src = '';
+            
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura el scroll
+        }
+
+        // Cerrar al hacer clic fuera del contenido del modal
+        const videoModal = document.getElementById('videoModal');
+        if (videoModal) {
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeVideoModal();
+                }
+            });
+        }
+
+        // Cerrar con la tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
         // Función para alternar el estado activo de las tarjetas (expandir/colapsar subtemas)
         function toggleCard(cardIdSuffix) {
             const card = document.getElementById(`card-${cardIdSuffix}`); // Obtiene el elemento de la tarjeta específica por su ID
@@ -869,7 +940,7 @@
         });
     </script>
 </body>
-<a href="../MENU/MENU.html" class="back-to-menu-btn" title="Volver al Menú Principal">
-    <i class="fas fa-home"></i>
+<a href="../Unidades.html" class="back-to-menu-btn" title="Volver al Inicio">
+        <i class="fas fa-home"></i>
 </a>
 </html>

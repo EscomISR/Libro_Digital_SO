@@ -1,5 +1,7 @@
 <!DOCTYPE html> <html lang="es"> <head>
-    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Unidad 5: Dispositivos de Entrada y Salida</title> <link rel="icon" type="image/png" href="logoescom.png"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <style>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Unidad 5: Dispositivos de Entrada y Salida</title>
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <style>
         /* Variables CSS raíz para temas y consistencia */
         :root {
             --primary: #2c3e50; /* Color primario */
@@ -594,9 +596,11 @@
 <body>
     <div class="container"> <header>
           <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; margin-bottom: 20px;">
-            <img src="IPNb.png" alt="Logo IPN" style="height: 80px; max-width: 120px; object-fit: contain;"> <h1 style="margin: 0; text-align: center;">UNIDAD TEMÁTICA 5</h1> <img src="ESCOMB.png" alt="Logo ESCOM" style="height: 80px; max-width: 120px; object-fit: contain;"> </div>
-          <div class="subtitle">DISPOSITIVOS DE ENTRADA Y SALIDA</div> <div class="description">
-            <p>Esta unidad explora los componentes fundamentales que permiten la interacción entre los sistemas informáticos y el mundo exterior. Aprenderás sobre los principios de hardware y software que gobiernan los dispositivos de E/S, su clasificación, funcionamiento y la gestión eficiente por parte del sistema operativo.</p> </div>
+            <img src="IPNb.png" alt="Logo IPN" style="height: 80px; max-width: 120px; object-fit: contain;"> <h1 style="margin: 0; text-align: center;">CAPÍTULO V</h1> <img src="ESCOMB.png" alt="Logo ESCOM" style="height: 80px; max-width: 120px; object-fit: contain;"> </div>
+          <div class="subtitle">Dispositivos de Entrada y Salida</div> <div class="description">
+            <p>Los dispositivos de entrada y salida (E/S) son muy importantes para todos los equipos de cómputo derivado a que es el medio por el cual el usuario se puede interconectar con sus dispositivos externos con dichos equipos.
+            Su misión principal es que al ser conectados dispositivos externos los datos que se encuentren almacenados en ellos puedan ser extraídos y a su vez almacenados dentro de ellos, cabe señalar que en este proceso se involucra la CPU y la memoria que son elementos fundamentales para llevar a cabo este proceso
+            </p> </div> <!-- Ya quedo -->
 
           <div class="hardware-icons">
             <div class="hardware-icon">⌨️</div>
@@ -609,14 +613,13 @@
             <div class="hardware-icon">💾</div>
             <div class="hardware-icon">📷</div>
             <div class="hardware-icon">🔊</div>
-          </div>
+            </div>
         </header>
 
-        
         <div class="card-container"> <div class="card" id="card-5-1">
                 <div class="card-header" onclick="toggleCard('5-1')"> <div class="card-header-content">
                         <div class="card-number">5.1</div>
-                        <div class="card-title">PRINCIPIOS DEL HARDWARE DE E/S</div>
+                        <div class="card-title">Principios del hardware de E/S</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div> </div>
                 
@@ -624,14 +627,14 @@
                         <li class="subtopic-item">
                             <a href="5.1.html#seccion-5-1-1" class="subtopic-link">
                                 <div class="subtopic-number">5.1.1</div>
-                                <div class="subtopic-name">Dispositivos de E/S</div>
+                                <div class="subtopic-name">Dispositivos de bloque y de carácter</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
                         <li class="subtopic-item">
                             <a href="5.1.html#seccion-5-1-2" class="subtopic-link">
                                 <div class="subtopic-number">5.1.2</div>
-                                <div class="subtopic-name">Controladores de Dispositivos</div>
+                                <div class="subtopic-name">Controladores de dispositivo.</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
@@ -645,7 +648,7 @@
                         <li class="subtopic-item">
                             <a href="5.1.html#seccion-5-1-4" class="subtopic-link">
                                 <div class="subtopic-number">5.1.4</div>
-                                <div class="subtopic-name">Acceso de Memoria Directo (DMA)</div>
+                                <div class="subtopic-name">Acceso DMA.</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
@@ -660,7 +663,7 @@
                 <div class="card-header" onclick="toggleCard('5-2')">
                     <div class="card-header-content">
                         <div class="card-number">5.2</div>
-                        <div class="card-title">PRINCIPIOS DEL SOFTWARE DE E/S</div>
+                        <div class="card-title">Principios del Software de E/S</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -707,7 +710,7 @@
                 <div class="card-header" onclick="toggleCard('5-3')">
                     <div class="card-header-content">
                         <div class="card-number">5.3</div>
-                        <div class="card-title">CAPAS DE SOFTWARE</div>
+                        <div class="card-title">Capas de software</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -724,14 +727,14 @@
                         <li class="subtopic-item">
                             <a href="5.3.html#seccion-5-3-2" class="subtopic-link">
                                 <div class="subtopic-number">5.3.2</div>
-                                <div class="subtopic-name">Controladores de Dispositivos</div>
+                                <div class="subtopic-name">Controladores de Dispositivo</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
                         <li class="subtopic-item">
                             <a href="5.3.html#seccion-5-3-3" class="subtopic-link">
                                 <div class="subtopic-number">5.3.3</div>
-                                <div class="subtopic-name">Software Modo Usuario</div>
+                                <div class="subtopic-name">Software en modo usuario para E/S.</div>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </li>
@@ -745,7 +748,7 @@
             
             <div class="card activities-card" id="card-activities"> <div class="card-header" onclick="toggleCard('activities')">
                     <div class="card-header-content">
-                        <div class="card-number"><i class="fas fa-tasks"></i></div> <div class="card-title">ACTIVIDADES DE APRENDIZAJE</div>
+                        <div class="card-number"><i class="fas fa-tasks"></i></div> <div class="card-title">Actividades de aprendizaje</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -781,7 +784,7 @@
             
             <div class="card">
                 <div class="card-header"> <div class="card-header-content">
-                        <div class="card-number"><i class="fas fa-book"></i></div> <div class="card-title">REFERENCIAS BIBLIOGRÁFICAS</div>
+                        <div class="card-number"><i class="fas fa-book"></i></div> <div class="card-title">Lista de referencias</div>
                     </div>
                 </div>
                 <div class="card-footer"> <a href="referencias.html" class="btn">Ver referencias</a>
@@ -792,7 +795,7 @@
                 <div class="card-header">
                     <div class="card-header-content">
                         <div class="card-number"><i class="fas fa-keyboard"></i></div>
-                        <div class="card-title">LABORATORIO DE CÓDIGO</div>
+                        <div class="card-title">Laboratorio de código</div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -800,8 +803,28 @@
                 </div>
             </div>
 
+        
+        
         </div>
         
+        
+        <div id="videoModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Video Introducción - Dispositivos de Entrada y Salida</h2>
+                            <button class="close-btn" onclick="closeVideoModal()">×</button>
+                        </div>
+                        <div class="description">
+                            <p>Salas, I. (2025, 29 de noviembre). <em>General: Principios de hardware y software</em> [Video]. YouTube. https://www.youtube.com/watch?v=CprZd_69QGM</p>
+                        </div>
+                        <div class="video-container">
+                            <iframe id="videoFrame" src="" title="Video Educativo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+                            </iframe>
+                        </div>
+            </div>
+        </div>
+
+
         <footer> <p>Sistemas Operativos - Unidad 5: Dispositivos de Entrada y Salida</p>
             <p>Desarrollado para fines educativos - © 2025</p>
         </footer>
@@ -886,9 +909,56 @@
                 });
             }
         });
+
+
+        // Funciones para el modal del video
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // Video Unidad 4: Sistema de Archivos
+            videoFrame.src = 'https://www.youtube.com/embed/CprZd_69QGM?autoplay=1'; 
+            
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            
+            if (!modal || !videoFrame) return;
+            
+            // Detener el video removiendo la fuente
+            videoFrame.src = '';
+            
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Cerrar modal con la tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
     </script>
-    <a href="../MENU/MENU.html" class="back-to-menu-btn" title="Volver al Menú Principal">
+    <a href="../Unidades.html" class="back-to-menu-btn" title="Volver al Inicio">
         <i class="fas fa-home"></i>
     </a>
 </body>
 </html>
+
+
+

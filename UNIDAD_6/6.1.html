@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6.1 El Ambiente de Seguridad</title>
-    <link rel="icon" type="image/png" href="logoescom.png">
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /*
@@ -396,7 +396,6 @@
         .table-caption {
             text-align: center;
             padding: 10px;
-            font-style: italic;
             color: var(--gray);
             background: rgba(0, 0, 0, 0.3);
             border-bottom-left-radius: 10px;
@@ -431,7 +430,6 @@
         }
         
         .figure-container {
-            text-align: center;
             margin: 30px 0;
             padding: 20px;
             background: rgba(0, 0, 0, 0.2);
@@ -460,7 +458,6 @@
         }
         
         .figure-caption {
-            font-style: italic;
             color: var(--gray);
             margin-top: 10px;
         }
@@ -689,7 +686,7 @@
     <div class="container">
         <header id="inicio">
             <div class="breadcrumb">
-                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+               <a href="https://escomisr.github.io/Libro_Digital_SO/index.html"><i class="fas fa-home"></i> Inicio</a>
                 <span>/</span>
                 <a href="index.html">Unidad 6</a>
                 <span>/</span>
@@ -700,52 +697,22 @@
         </header>
         
         <div class="intro">
-            <h3>INTRODUCCIÓN</h3>
-            <p>En los últimos años, el acceso a la red y diferentes tipos de computadoras para acceder a internet ha permitido que los ataques del exterior, comúnmente conocidos como virus, gusanos, troyanos entre otros, pudieran entrar y causar estragos en los dispositivos comunes. </p>
-            <p class="citation">(Silberschatz et al., 2018)</p>
-            
-            <p>Esto aunado con el crecimiento del bugware inflado (partes de código que son difíciles de reemplazar y su funcionalidad no está especificada), había sustituido el software eficiente de años anteriores. </p>
-            <p class="citation">(Tanenbaum & Bos, 2015)</p>
-            
-            <p>Con el crecimiento en funciones del sistema operativo también lo hace el código en el kernel, con más de 5 millones de líneas de código actualmente se vuelve difícil dar mantenimiento y revisar errores más a detalle. </p>
-            <p class="citation">(Stallings, 2018)</p>
-            
-            <p>Para empezar este capítulo daremos una definición sobre los términos de "seguridad" y "protección" que, aunque parezcan sinónimos, no lo son, ambos tienen diferencias en cómo actúa cada uno. </p>
-            
-            <p>Un ejemplo claro es distinguir sobre los problemas generales involucrados en el proceso que personas no autorizadas lean o modifiquen archivos, lo que nos lleva a cuestiones técnicas administrativas, legales, y de políticas que se manejen (seguridad), por otro lado, están los mecanismos específicos del sistema operativo que llevará a cabo la tarea de brindar tal seguridad (protección). </p>
-            <p class="citation">(Carretero et al., 2001)</p>
-            
-            <p>Desde la perspectiva de la seguridad en sistemas computacionales se tienen cuatro objetivos generales con las correspondientes amenazas, como se presenta en la Tabla 1. </p>
+             <p>Es la forma en que el sistema operativo implementa políticas y mecanismos para proteger los recursos del sistema ya 
+                 que para el mismo, son indispensables para ofertar el buen funcionamiento de los dispositivos de entrada y salida en 
+                 forma física pero también virtualmente, con ello se garantizara la confidencialidad, integridad y disponibilidad de la
+                 información que es parte medular de la operatividad del sistema en beneficio del uso de los usuarios , todo ello 
+                 siempre estará en forma organizada y bien administrada por el sistema operativo.</p>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>OBJETIVO</th>
-                            <th>AMENAZA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Confidencialidad de datos.</td>
-                            <td>Exposición de datos.</td>
-                        </tr>
-                        <tr>
-                            <td>Integridad de los datos.</td>
-                            <td>Alteración de los datos.</td>
-                        </tr>
-                        <tr>
-                            <td>Disponibilidad del sistema.</td>
-                            <td>Negación del servicio.</td>
-                        </tr>
-                        <tr>
-                            <td>Exclusión de los usuarios externos.</td>
-                            <td>Los virus se apropian del sistema.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="table-caption">Tabla 1. Tipos de amenazas de seguridad en sistemas computacionales (adaptado de Silberschatz et al., 2018). </div>
-            </div>
+                <div style="margin-top: 30px;">
+                    <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+                    <p>Para introducirte en los conceptos fundamentales de la seguridad en sistemas operativos, visualiza el siguiente recurso:</p>
+                    
+                    <div class="figure-container">
+                        <iframe width="100%" height="450" src="https://www.youtube.com/embed/-0iRtpRkf6k" title="El ambiente de seguridad" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 5px; max-width: 100%;"></iframe>
+                        <div class="figure-caption">Salas, I. (2025, 24 de noviembre). <em>El ambiente de seguridad</em> [Video]. YouTube. https://www.youtube.com/watch?v=-0iRtpRkf6k</div>
+                    </div>
+                </div>
+
         </div>
         
         <div class="section" id="seccion-6-1-1">
@@ -754,83 +721,117 @@
                 <div class="section-title">Seguridad en los Sistemas Operativos</div>
             </div>
             <div class="content">
-                <h3>INTRODUCCIÓN</h3>
-                <p>La seguridad en un sistema dentro de una de sus facetas incluye la protección de los datos, desde los posibles daños físicos (fuegos, terremotos, o cualquier situación externa) hasta el acceso indebido a los mismos (corrupción de los datos, intrusos, fallos en la confidencialidad, etc.). </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <p>Frente a un ataque contra la integridad o la disponibilidad de los datos en un sistema operativo debe haber un plan de contingencia para la prevención o la evasión del ataque. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <p>En el caso de un sistema informático hay varios elementos susceptibles de sufrir dichos ataques, siendo suficiente proteger sólo algunos de ellos o proteger en su totalidad a todos los elementos parcialmente. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <p>La protección por su parte consiste en evitar que se haga un uso indebido de los recursos que se encuentran dentro del ámbito del sistema operativo. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                
-                <p>Por esto mismo deben existir mecanismos y políticas que aseguren que cada usuario accede únicamente a sus propios recursos (archivos, zonas de memoria, etc.). </p>
-                
-                <p>Además de asegurar que los recursos sólo se usan por aquellos usuarios que tienen derechos de acceso a los mismos. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <p>Las políticas de protección y seguridad de hardware, software y datos deben incluirse dentro del sistema operativo. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                
-                <h3>PROBLEMAS DE SEGURIDAD</h3>
-                <p>Todos los sistemas operativos comerciales desarrollados hasta el momento han tenido algún problema de seguridad. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
+                <p>Toda las formas de funcionamiento que puede presentar los dispositivos de entrada y salida en función a los procesos que
+                se lleven a cabo es responsabilidad del sistema es por ello que implementa controles y administración estructurada para
+                garantizar el uso adecuado de los recursos y cuando este no opera correctamente genera barreras de protección para evitar
+                que los procesos de los usuarios afecten dicho funcionamiento y pongan en riesgo su funcionalidad.</p>
 
-                <p>Muchos fallos no se deben al sistema de protección sino a la simpleza del usuario al poner como palabra de acceso al sistema el nombre de algún conocido cercano o algún número como fechas o matrículas. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <p>A continuación, se describen los problemas más frecuentes en un sistema informático:</p>
-
-                <h4>USO INDEBIDO O MALICIOSO DE PROGRAMAS</h4>
-                <p>Algunos problemas de seguridad están relacionados con el uso indebido, o malicioso de programas de usuario. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                <p>Dos formas frecuentes de generar fallos de seguridad usando estas técnicas son el <span class="highlight">caballo de Troya</span> y la <span class="highlight">puerta de atrás</span>. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>El caballo de Troya se basa en la idea de crear un programa para que haga cosas no autorizadas en el sistema cuando actúa en el entorno adecuado. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>La puerta de atrás consiste en crear un agujero de seguridad al sistema a través de un programa privilegiado que lo permite. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Básicamente se basan en la creación de programas que faciliten el acceso de algún intruso mediante la persuasión al usuario de filtrar credenciales o que den permisos de acceso a programas "no dañinos". </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <h4>USUARIOS NO AUTORIZADOS</h4>
-                <p>En algunos sistemas operativos, como UNIX o Windows, se mantienen cuentas para los usuarios no autorizados. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>El acceso a dichas cuentas se protege mediante contraseñas, o palabras clave, que sólo debe conocer el dueño de estas. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Uno de estos usuarios es comúnmente denominado como administrador o súper-usuario, ya que puede acceder a todo el sistema saltándose las protecciones del resto de los usuarios. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Para que se pueda llevar a cabo la modificación o la ejecución de un programa en la computadora es necesario acceder a una cuenta de usuario y en caso de ser necesario, aprobar la prueba de autenticación de un administrador. </p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h4>VIRUS</h4>
-                <p>Se denomina con este nombre a todos los programas que se autorreplican con fines destructivos o de violación de seguridad. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>Se llaman así por analogía con los virus que actúan sobre los seres vivos, ya que de igual forma necesitan un programa que transporte el virus y de un agente que los transmita para infectar a otros programas. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>En todos los casos se trata de un programa o trozo de un código que se añade a otro y que se activa cuando se ejecuta el programa portador. </p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h4>GUSANOS</h4>
-                <p>Se trata de un programa que explota los fallos de seguridad para acceder a sistemas remotos y, además, que se replique a sí mismo para acceder a más sistemas. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>A diferencia de los virus, los gusanos no necesitan un programa anfitrión para propagarse, sino que pueden autorreplicarse a través de la red. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <h4>ROMPEDORES DE SISTEMAS DE PROTECCIÓN</h4>
-                <p>Estos programas llevan a cabo distintas pruebas sobre sistemas, generalmente remotos, para tratar de romper la seguridad de estos y poder ejecutar accesos ilegales. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Una de las pruebas que ejecutan típicamente consiste en la de tratar de adivinar las palabras clave que tienen los usuarios para acceder al sistema. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                
-                <h4>BOMBARDEO</h4>
-                <p>Un ataque de seguridad con mucho éxito en Internet es el que consiste en llevar a cabo bombardeos masivos con peticiones de servicio o de establecimiento de conexión a un servidor determinado. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>Estos ataques masivos provocan que el servidor deniegue sus servicios a los clientes legales y pueden llegar a bloquear al servidor. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
+                <p>La seguridad del SO abarca desde la <strong>autenticación del usuario </strong> hasta el <strong>aislamiento de procesos</strong>
+                    , el <strong>control de accesos </strong>y la <strong>protección de la memoria y los archivos.</strong></p>
+                <ol>
+                    <li><strong>Objetivos de la seguridad en sistemas operativos</strong></li>
+                <ol>
+                    <li><strong>Confidencialidad:</strong> los datos solo deben ser accesibles para usuarios o procesos autorizados.</li>
+                    <li><strong>Integridad:</strong> los recursos deben mantenerse libres de modificaciones o daños no autorizados.</li>
+                    <li><strong>Disponibilidad:</strong> los servicios y datos deben estar accesibles cuando se requieran.</li>
+                    <li><strong>Autenticación:</strong> verificación de la identidad de los usuarios antes de permitir el acceso.</li>
+                    <li><strong>Autorización:</strong> determinación de los permisos y privilegios otorgados a cada entidad.</li>
+                    <li><strong>Auditoría:</strong> registro de las acciones realizadas para detectar irregularidades o ataques.</li>
+                </ol>
+                    <li><strong>Áreas de seguridad en un sistema operativo</strong></li>
+                <ol>
+                    <li> <strong>Seguridad del acceso al sistema:</strong>
+                        <ul>
+                            <li>Se implementan mecanismos de autenticación (contraseñas, tokens, biometría).</li>
+                            <li>Se controla el inicio de sesión, sesiones remotas y permisos de usuario.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Seguridad del sistema de archivos:</strong>
+                        <ul>
+                            <li>Se utilizan <strong>permisos de lectura, escritura y ejecución</strong>.</li>
+                            <li>Se aplican técnicas de <strong>cifrado de archivos y carpetas</strong>.</li>
+                            <li>El SO verifica la integridad de los datos almacenados.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Seguridad de la memoria:</strong>
+                        <ul>
+                            <li>Cada proceso tiene un <strong>espacio de memoria protegido</strong> para evitar accesos indebidos.</li>
+                            <li>Se utilizan mecanismos como la <strong>memoria virtual y la paginación</strong> con privilegios de acceso.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Seguridad en la ejecución de procesos:</strong>
+                        <ul>
+                            <li>Los procesos se ejecutan de manera <strong>aislada</strong> para prevenir interferencias.</li>
+                            <li>Se emplean <strong>niveles de privilegio</strong> (modo usuario y modo kernel).</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Seguridad en redes y comunicación:</strong>
+                        <ul>
+                            <li>El SO implementa <strong>firewalls, filtros de paquetes, protocolos seguros (SSL/TLS)</strong> y monitoreo de tráfico.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Seguridad en el software y actualizaciones:</strong>
+                        <ul>
+                            <li>Se verifica la autenticidad de los paquetes instalados.</li>
+                            <li>Se utilizan firmas digitales y parches de seguridad periódicos.</li>
+                        </ul>
+                    </li>
+                </ol>
+                    <li><strong>Mecanismos de seguridad</strong></li>
+                    <ul>
+                        <li><strong>Listas de control de acceso (ACL):</strong> definen quién puede acceder a qué recursos y con qué permisos.</li>
+                        <li>
+                            <strong>Modelos de seguridad:</strong>
+                            <ul>
+                                <li><em>Discrecional (DAC):</em> el propietario del recurso define los permisos.</li>
+                                <li><em>Basado en roles (RBAC):</em> los permisos se asignan según el rol del usuario.</li>
+                                <li><em>Obligatorio (MAC):</em> el sistema imparte reglas de acceso basadas en políticas de seguridad.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Auditoría y monitoreo:</strong> registros de eventos para detectar anomalías o accesos indebidos.</li>
+                        <li><strong>Cifrado:</strong> protección de datos en tránsito y en reposo.</li>
+                    </ul>
+                    <li><strong>Ejemplo práctico</strong></li>
+                    <p><strong>En un sistema Linux:</strong></p>
+                    <ul>
+                        <li>La autenticación se realiza mediante usuario y contraseña cifrada.</li>
+                        <li>Los permisos se gestionan con el modelo <em>rwx</em> (lectura, escritura, ejecución).</li>
+                        <li>Los usuarios normales no pueden acceder a archivos del kernel.</li>
+                        <li>Se aplican herramientas de seguridad como <strong>SELinux</strong>, que impone controles de acceso obligatorios.</li>
+                    </ul>
+                    <p><strong>En Windows:</strong></p>
+                    <ul>
+                        <li>El control de acceso se gestiona mediante <strong>Active Directory y UAC (User Account Control)</strong>.</li>
+                        <li>Los archivos del sistema se protegen mediante permisos NTFS y auditorías automáticas.</li>
+                    </ul>
+                    <li><strong>Amenazas comunes</strong></li>
+                    <ul>
+                        <li><strong>Malware y virus:</strong> alteran la integridad de los archivos o consumen recursos del sistema.</li>
+                        <li><strong>Ataques de escalada de privilegios:</strong> buscan obtener acceso de administrador.</li>
+                        <li><strong>Robo de credenciales:</strong> compromete la autenticación del sistema.</li>
+                        <li><strong>Ataques de denegación de servicio (DoS):</strong> saturan el sistema, afectando la disponibilidad.</li>
+                        <li><strong>Errores de configuración:</strong> generan vulnerabilidades explotables.</li>
+                    </ul>
+                    <li><strong>Estrategias de protección</strong></li>
+                    <ul>
+                        <li>Mantener <strong>actualizaciones de seguridad</strong> constantes.</li>
+                        <li>Implementar <strong>autenticación multifactor (MFA)</strong>.</li>
+                        <li>Usar <strong>cifrado de disco completo</strong> y comunicaciones seguras.</li>
+                        <li>Aplicar <strong>principios de mínimo privilegio</strong> y aislamiento de procesos.</li>
+                        <li>Configurar auditorías y registros para el análisis forense.</li>
+                    </ul>
+                </ol>
+                <p>
+                    La <strong>seguridad en los sistemas operativos</strong> es un componente esencial que garantiza la confiabilidad, estabilidad y privacidad del entorno informático.
+                </p>
+                <p>
+                    A través de mecanismos como la <strong>autenticación, control de acceso, cifrado, aislamiento y auditoría</strong>, los sistemas modernos logran <strong>proteger sus recursos 
+                    contra amenazas internas y externas</strong>, permitiendo un funcionamiento seguro y continuo en entornos locales o distribuidos.</p>
             </div>
         </div>
         
@@ -840,20 +841,34 @@
                 <div class="section-title">Control de Acceso a los Recursos</div>
             </div>
             <div class="content">
-                <h3>INTRODUCCIÓN</h3>
-                <p>En el ámbito interno de un sistema operativo hay operaciones que pueden violar la confidencialidad de los datos. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Para evitar que algún usuario tenga acceso a datos que no son suyos, el sistema operativo debe encargarse de limpiar los recursos de los datos anteriormente existentes. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                <p>El control del acceso a datos y recursos suele ser una competencia directa en el sistema operativo. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Debido a que es necesario asegurar que los usuarios no acceden a archivos para los que no tienen permisos de acceso, a cuentas de otros usuarios o a páginas de memoria o bloques de disco que contienen información de otros usuarios. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>Para lograr esto hay que aplicar criterios de diseño rigurosos y ejecutar pruebas de seguridad exhaustivas para todos los elementos del sistema, aunque se consideren seguros. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>El control de acceso incluye dos problemas principales: la autenticación de usuarios, y la protección frente accesos indebidos. </p>
-                <p class="citation">(Stallings, 2018)</p>
+                <p>
+                    Esta parte es fundamental para el buen funcionamiento del sistema ya que se encarga del control, seguridad y 
+                    administración de los recursos del sistema, es por ello que todo proceso generado por el usuario es administrado, 
+                    controlado y supervisado por el mismo, para evitar el uso desmedido de recursos afectando a los demás procesos o 
+                    dispositivos de entrada y salida.
+                </p>
+                <div class="figure-container">
+                    <div class="figure-caption">Figura 31</div>
+                        <div class="figure-caption">Control de acceso a los recursos</div>
+                    <div class="figura">
+                        <img src="FIGURA31.png" alt="" class="imagen-figura31"/>
+                    </div>
+                    <div class="figure-caption">Nota: Adaptando de Conceptos de sistemas 
+                        operativos (10.° ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022, Wiley.</div>
+                </div>
+
             </div>
+
+            <div style="margin-top: 30px;">
+                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+                <p>A continuación, se detallan los mecanismos para controlar el acceso a los recursos del sistema:</p>
+                
+                <div class="figure-container">
+                    <iframe width="100%" height="450" src="https://www.youtube.com/embed/2aGSHXlO9f4" title="Control de acceso a los recursos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 5px; max-width: 100%;"></iframe>
+                    <div class="figure-caption">Salas, I. (2025, 25 de noviembre). <em>Control de acceso a los recursos</em> [Video]. YouTube. https://www.youtube.com/watch?v=2aGSHXlO9f4</div>
+                </div>
+            </div>
+
         </div>
         
         <div class="section" id="seccion-6-1-3">
@@ -862,207 +877,32 @@
                 <div class="section-title">Implementación de Matrices de Acceso</div>
             </div>
             <div class="content">
-                <h3>INTRODUCCIÓN</h3>
-                <p>Las matrices de acceso representan una herramienta indispensable en la administración de recursos dentro de los sistemas operativos. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Permiten modelar de manera clara la relación entre procesos y recursos, facilitando la detección y prevención de interbloqueos (deadlocks), así como la asignación segura y eficiente de los recursos del sistema. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Estas estructuras son fundamentales para garantizar el correcto funcionamiento del sistema, especialmente en entornos multitarea o de tiempo compartido. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>En el libro Sistemas Operativos: Una visión aplicada de Jesús Carretero Pérez y colaboradores, se detalla su utilidad para evitar estados inseguros en la asignación de recursos. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-
-                <h3>CONCEPTO Y ESTRUCTURA DE LA MATRIZ DE ACCESO</h3>
-                <p>Una matriz de acceso es una estructura de datos bidimensional que representa las asignaciones y solicitudes de recursos por parte de los procesos. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                <p>Se consideran matrices auxiliares para completar la gestión de recursos, como se describe en la Tabla 2: </p>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>TIPO DE MATRIZ</th>
-                                <th>DESCRIPCIÓN</th>
-                                <th>PROPÓSITO</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Matriz de asignación (C)</td>
-                                <td>Contiene cuántas unidades de cada tipo de recurso están asignadas a cada proceso</td>
-                                <td>Control de recursos actualmente en uso</td>
-                            </tr>
-                            <tr>
-                                <td>Matriz de solicitudes pendientes (D)</td>
-                                <td>Lleva el control de cuántos recursos ha pedido cada proceso y que aún no se le han asignado</td>
-                                <td>Gestión de peticiones en espera</td>
-                            </tr>
-                            <tr>
-                                <td>Vector de recursos disponibles (E)</td>
-                                <td>Indica cuántas unidades libres hay de cada recurso en ese momento</td>
-                                <td>Monitoreo de recursos libres</td>
-                            </tr>
-                             <tr>
-                                <td>Vector de recursos totales (A)</td>
-                                <td>Cantidad total que el sistema tiene disponible de cada tipo de recurso</td>
-                                <td>Capacidad máxima del sistema</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 2. Tipos de matrices y vectores para la gestión de recursos (basado en Carretero et al., 2001). </div>
+                <p>Técnica  utilizada por los sistemas operativos para administrar los accesos a los recursos del sistema es por 
+                    ello que utiliza para llevar a cabo esta tarea una organización bien estructurada de datos en forma bidireccional
+                    en donde los usuarios juegan un papel fundamental con todo los objetos o procesos que se lleven a cabo para garantizar
+                    que cuenten con los elementos necesarios de seguridad, integridad y específicamente el control y administración de los 
+                    recursos para llevar a cabo sus tareas o procesos.</p>
+                <div class="figure-container">
+                    <div class="figure-caption">Figura 32</div>
+                    <div class="figure-caption">Implementación de matrices de acceso</div>
+                    <div class="figura">
+                        <img src="FIGURA32.png" alt="" class="imagen-figura32"/>
+                    </div>
+                    <div class="figure-caption">Nota: Adaptado de Conceptos de sistemas
+                    operativos (10. ° ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022, Wiley.</div>
                 </div>
-
-                <p>Un ejemplo práctico que se encuentra en el libro Sistemas Operativos: Una visión aplicada, de Jesús Carretero Pérez y colaboradores, considera el siguiente escenario: </p>
-                <ul>
-                    <li><b>Procesos:</b> P1, P2, P3</li>
-                    <li><b>Recursos:</b> R1 (3 unidades), R2 (5 unidades), R3 (2 unidades)</li>
-                </ul>
-
-                <h4>MATRIZ C (ASIGNACIÓN)</h4>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>PROCESO</th>
-                                <th>R1</th>
-                                <th>R2</th>
-                                <th>R3</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>P1</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>P2</td>
-                                <td>0</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>P3</td>
-                                <td>2</td>
-                                <td>0</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 3. Matriz C de asignación (ejemplo del libro Sistemas Operativos: Una visión aplicada de Jesús Carretero). </div>
-                </div>
-                
-                <h4>MATRIZ D (SOLICITUDES)</h4>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>PROCESO</th>
-                                <th>R1</th>
-                                <th>R2</th>
-                                <th>R3</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>P1</td>
-                                <td>1</td>
-                                <td>0</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>P2</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>P3</td>
-                                <td>0</td>
-                                <td>1</td>
-                                <td>0</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 4. Matriz D de solicitudes (ejemplo del libro Sistemas Operativos: Una visión aplicada de Jesús Carretero). </div>
-                </div>
-
-                <p><b>Vector E (Disponibles):</b> [0, 1, 0] <br> <b>Vector A (Totales):</b> [3, 5, 2]</p>
-                <p>En este caso, podemos ver que no hay unidades disponibles de R1 ni de R3, lo que puede llegar a complicar el proceso si intenta pedir de más. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-
-                <p>Es posible programar una simulación sencilla de cómo funcionan esas matrices. </p>
-                <p>Si lo implementamos a código obtenemos el siguiente Código 1 en C: </p>
-                <div class="code-block">
-<pre>#include &lt;stdio.h&gt;
-#define PROCESOS 3
-#define RECURSOS 3
-
-int main() {
-    int asignacion[PROCESOS][RECURSOS] = {
-        {1, 2, 0},
-        {0, 1, 1},
-        {2, 0, 1}
-    };
-    int solicitudes[PROCESOS][RECURSOS] = {
-        {1, 0, 1},
-        {2, 1, 0},
-        {0, 1, 0}
-    };
-    int disponibles[RECURSOS] = {0, 1, 0};
-    int terminados[PROCESOS] = {0};
-    int trabajo[RECURSOS];
-
-    for (int i = 0; i < RECURSOS; i++) {
-        trabajo[i] = disponibles[i];
-    }
-
-    int progreso = 1;
-    while (progreso) {
-        progreso = 0;
-        for (int i = 0; i < PROCESOS; i++) {
-            if (!terminados[i]) {
-                int puede_terminar = 1;
-                for (int j = 0; j < RECURSOS; j++) {
-                    if (solicitudes[i][j] > trabajo[j]) {
-                        puede_terminar = 0;
-                        break;
-                    }
-                }
-                if (puede_terminar) {
-                    printf("Proceso P%d puede terminar.\n", i+1);
-                    for (int j = 0; j < RECURSOS; j++) {
-                        trabajo[j] += asignacion[i][j];
-                    }
-                    terminados[i] = 1;
-                    progreso = 1;
-                }
-            }
-        }
-    }
-    return 0;
-}</pre>
-                    <div class="code-caption">Código 1. Simulación de matrices de acceso para prevención de deadlocks. </div>
-                </div>
-
-                <p>Este código analiza si los procesos pueden completarse con los recursos disponibles, liberando lo que usan una vez que terminan. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Así se evita que el sistema entre en un estado "inseguro". </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                
-                <h3>APLICACIÓN EN LA PREVENCIÓN DE LOS DEADLOCKS</h3>
-                <p>Según Carretero et al. (2001), el sistema operativo puede usar estas matrices para hacer simulaciones antes de asignar un recurso. </p>
-                <p>Por lo tanto, si al hacer la simulación se detecta que el estado resultante sería inseguro (es decir, que podría haber procesos que nunca terminen), entonces este rechaza la solicitud. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                <p>De esta manera se previenen posibles interbloqueos antes de que ocurran. </p>
-                <p>Por ejemplo, si el proceso P2 pide más unidades y el sistema se da cuenta de que eso dejaría sin posibilidad de ejecución a los demás procesos, lo mejor es no darle los recursos por ese momento. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Por lo tanto, concluimos que las matrices de acceso son una forma práctica de gestionar recursos en los sistemas operativos. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Ayudan a prevenir errores críticos como los interbloqueos. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-
             </div>
+
+            <div style="margin-top: 30px;">
+                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+                <p>Este video explica cómo se implementan las matrices de acceso para gestionar los permisos de usuarios y procesos:</p>
+                
+                <div class="figure-container">
+                    <iframe width="100%" height="450" src="https://www.youtube.com/embed/Gbs0k6R2kJY" title="Implementación de matrices de acceso" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 5px; max-width: 100%;"></iframe>
+                    <div class="figure-caption">Salas, I. (2025, 27 de noviembre). <em>Implementación de matrices de acceso</em> [Video]. YouTube. https://www.youtube.com/watch?v=Gbs0k6R2kJY</div>
+                </div>
+            </div>
+
         </div>
         
         <div class="section" id="seccion-6-1-4">
@@ -1071,137 +911,110 @@ int main() {
                 <div class="section-title">Modelos Formales de Seguridad</div>
             </div>
             <div class="content">
-                <h3>INTRODUCCIÓN</h3>
-                <p>Los modelos formales de seguridad son como el marco teórico que necesitamos para asegurar que nuestros datos e información estén protegidos dentro de los sistemas operativos. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                <p>Estos modelos definen reglas matemáticas estrictas sobre quién puede acceder a qué, asegurando la confidencialidad y la integridad de la información. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Gracias a ellos, se pueden implementar controles efectivos en sistemas con múltiples usuarios. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>A continuación, vamos a explorar los modelos más relevantes que se describen en el libro Sistemas Operativos: Una Visión Aplicada (Carretero et al., 2001), entendiendo sus principios, estructuras y cómo se aplican en situaciones prácticas. </p>
-
-                <h3>MODELO DE SEGURIDAD BELL-LAPADULA</h3>
-                <h4>PROTEGIENDO LA CONFIDENCIALIDAD</h4>
-                <p>El modelo Bell-LaPadula fue pensado inicialmente para entornos militares y se enfoca en prevenir la fuga de información. </p>
-                <p class="citation">(Stallings, 2018)</p>
-                <p>Tiene dos reglas clave: </p>
-                <ul>
-                    <li><span class="highlight">Propiedad de seguridad simple:</span> Un proceso no puede leer datos de un nivel de seguridad más alto que el suyo (esto se llama no read up). 
-                        <p class="citation">(Silberschatz et al., 2018)</p>
-                    </li>
-                    <li><span class="highlight">Propiedad -estrella:</span> Un proceso no puede escribir datos en un nivel de seguridad más bajo que el suyo (esto se conoce como no write down). 
-                        <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                    </li>
-                </ul>
-                <p>Este modelo utiliza etiquetas de seguridad como "Confidencial", "Secreto" o "Ultra Secreto" para clasificar tanto a los usuarios como a los archivos. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Por ejemplo, un agente con acceso "Secreto" no puede ver documentos "Ultra Secreto" ni modificar archivos "Confidenciales" desde su nivel. </p>
-                <p class="citation">(Stallings, 2018)</p>
-
-                <h3>MODELO BIBA</h3>
-                <h4>PROTEGIENDO LA INTEGRIDAD</h4>
-                <p>A diferencia de Bell-LaPadula, el modelo Biba se centra en mantener la integridad de los datos. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                <p>Aquí, las reglas son las siguientes: </p>
-                <ul>
-                    <li><span class="highlight">Propiedad de integridad simple:</span> Un proceso no puede escribir datos en un nivel superior de lo que tiene permitido (no write up). 
-                        <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                    </li>
-                    <li><span class="highlight">Propiedad de invocación:</span> Un proceso no puede recibir información de un nivel inferior al suyo. 
-                         <p class="citation">(Stallings, 2018)</p>
-                    </li>
-                </ul>
-                <p>Este modelo es clave en sistemas donde la exactitud de los datos es crucial, como en sistemas bancarios. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Por ejemplo, un cajero automático no puede modificar registros financieros de nivel superior, como los de auditoría. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-
-                <h3>MODELO DE CLARK-WILSON</h3>
-                <h4>MANTENIENDO LA INTEGRIDAD EN EL COMERCIO</h4>
-                <p>Clark-Wilson introduce conceptos nuevos que se presentan en la Tabla 5: </p>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>CONCEPTO</th>
-                                <th>DESCRIPCIÓN</th>
-                                <th>EJEMPLO DE APLICACIÓN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Procedimientos certificados (TPs)</td>
-                                <td>Operaciones validadas que garantizan la integridad</td>
-                                <td>Transferencias bancarias</td>
-                            </tr>
-                            <tr>
-                                <td>Entidades restringidas (CDIs)</td>
-                                <td>Datos que solo se pueden modificar mediante TPs</td>
-                                <td>Registros de ensayos clínicos</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 5. Componentes principales del modelo Clark-Wilson (basado en Stallings, 2018). </div>
-                </div>
-                <p>Este modelo es común en sistemas comerciales donde los procesos deben seguir reglas predefinidas. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-                <p>Por ejemplo, en una farmacéutica, solo se permiten ciertos procedimientos validados para actualizar registros de ensayos clínicos. </p>
-                <p class="citation">(Silberschatz et al., 2018)</p>
-                
-                <h3>MODELO DAC</h3>
-                <h4>CONTROL DISCRECIONAL DE ACCESO</h4>
-                <p>El modelo de Control de Acceso Discrecional (DAC) permite que el propietario de un recurso decida quién puede acceder a él. </p>
-                <p class="citation">(Carretero et al., 2001)</p>
-                <p>Se utiliza a través de: </p>
-                <ul>
-                    <li><span class="highlight">Listas de Control de Acceso (ACLs):</span> Especifican permisos como lectura, escritura o ejecución. 
-                        <p class="citation">(Stallings, 2018)</p>
-                    </li>
-                    <li><span class="highlight">Capacidades:</span> Tokens que otorgan derechos específicos. 
-                        <p class="citation">(Silberschatz et al., 2018)</p>
-                    </li>
-                </ul>
-                <p>Por ejemplo, en sistemas UNIX, el modelo DAC es utilizado con comandos como chmod 755 archivo.txt, donde el dueño tiene control total y otros usuarios solo pueden leer o ejecutar el archivo. </p>
-                <p class="citation">(Tanenbaum & Bos, 2015)</p>
-
-                <h3>CONSIDERACIONES EN SISTEMAS OPERATIVOS MODERNOS</h3>
-                <p>En los sistemas actuales, se combinan estos modelos con características de hardware, como se muestra en la Tabla 6: </p>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>TECNOLOGÍA</th>
-                                <th>PROPÓSITO</th>
-                                <th>EJEMPLO DE IMPLEMENTACIÓN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Anillos de protección</td>
-                                <td>Diferentes niveles de privilegio</td>
-                                <td>"Anillo 0 para el núcleo, anillo 3 para aplicaciones"</td>
-                            </tr>
-                            <tr>
-                                <td>Unidades de Gestión de Memoria (MMU)</td>
-                                <td>Aislamiento de procesos</td>
-                                <td>Tablas de páginas separadas</td>
-                            </tr>
-                            <tr>
-                                <td>Virtualización Basada en Seguridad (VBS)</td>
-                                <td>Entornos aislados</td>
-                                <td>Servicios críticos de Windows</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 6. Integración de modelos de seguridad con hardware moderno (adaptado de Silberschatz et al., 2018). </div>
-                </div>
-                <p>En sistemas como Windows, el modelo Biba se integra con la Virtualización Basada en Seguridad (VBS) para crear entornos aislados para servicios críticos. </p>
-                <p class="citation">(Stallings, 2018)</p>
+                <p>
+                    Son aquellos que dan una base sólida para describir, analizar y verificar las políticas de protección implementadas 
+                    por un sistema operativo, en donde existen reglas y políticas de uso para garantizar el buen uso de los recursos del
+                    sistema en forma segura y controlada.
+                </p>
+                <ol>
+                    <li><strong>Objetivos de los modelos formales</strong></li>
+                    <ul>
+                        <li>Establecer criterios verificables de seguridad.</li>
+                        <li>Prevenir la filtración o corrupción de información entre niveles de seguridad.</li>
+                        <li>Facilitar la auditoría y certificación de sistemas informáticos.</li>
+                        <li>Proveer fundamentos para el diseño de políticas de control de acceso.</li>
+                        <li>Permitir la comparación objetiva entre diferentes arquitecturas de seguridad.</li>
+                    </ul>
+                    <li><strong>Principales modelos formales de seguridad</strong></li>
+                    <ol type="a">
+                        <li><strong>Modelo Bell-LaPadula (Confidencialidad de la información)</strong></li>
+                        <ul>
+                            <li>Fue desarrollado en los años 70 para proteger sistemas militares y gubernamentales.</li>
+                            <li>Se centra en preservar la confidencialidad de los datos.</li>
+                            <li>Define dos reglas principales:</li>
+                            <ol>
+                                <li>No leer hacia arriba: un usuario no puede leer información de un nivel de seguridad superior al suyo.</li>
+                                <li>No escribir hacia abajo: un usuario no puede escribir información en un nivel inferior, para evitar fugas.</li>
+                            </ol>
+                            <li>Ejemplo: un usuario clasificado como “Confidencial” no puede leer documentos “Secretos”, ni escribir en documentos “Públicos”.</li>
+                            <li><strong>Propósito:</strong> evitar la divulgación no autorizada de información.</li>
+                        </ul>
+                        <li><strong>Modelo Biba (Integridad de la información)</strong></li>
+                        <ul>
+                            <li>Complementa al modelo Bell-LaPadula, pero enfocado en la integridad.</li>
+                            <li>Define las reglas opuestas:</li>
+                            <ol>
+                                <li>No escribir hacia arriba: un usuario de bajo nivel no puede modificar datos de un nivel superior.</li>
+                                <li>No leer hacia abajo: un usuario no puede leer información de niveles inferiores que podrían estar comprometidos.</li>
+                            </ol>
+                            <li>Se utiliza en sistemas donde la precisión y consistencia de los datos son esenciales (por ejemplo, bancos o sistemas médicos).</li>
+                            <li><strong>Propósito:</strong> evitar la modificación no autorizada de información.</li>
+                        </ul>
+                        <li><strong>Modelo Clark-Wilson (Integridad comercial)</strong></li>
+                        <ul>
+                            <li>Basado en la consistencia de transacciones y separación de deberes.</li>
+                            <li>Propone el uso de transacciones bien formadas y verificación de integridad por parte de procedimientos controlados.</li>
+                            <li>Establece que los usuarios no acceden directamente a los datos, sino a través de programas certificados.</li>
+                            <li>Ideal para entornos empresariales y financieros.</li>
+                            <li><strong>Propósito:</strong> asegurar la corrección y validez de las operaciones.</li>
+                        </ul>
+                        <li><strong>Modelo de flujo de información (Denning)</strong></li>
+                        <ul>
+                            <li>Introducido por Dorothy Denning en 1976.</li>
+                            <li>Se centra en el flujo seguro de información entre diferentes niveles de seguridad.</li>
+                            <li>Garantiza que la información no se transfiera de un nivel más alto a uno más bajo de forma no controlada.</li>
+                            <li>Aplica principios de no interferencia entre procesos.</li>
+                            <li><strong>Propósito:</strong> evitar la filtración indirecta de información confidencial.</li>
+                        </ul>
+                        <li><strong>Modelo de Graham-Denning</strong></li>
+                        <ul>
+                            <li>Define cómo se crean, modifican y eliminan derechos de acceso dentro de un sistema.</li>
+                            <li>Introduce operaciones como “crear objeto”, “borrar sujeto”, “conceder acceso” y “revocar permisos”.</li>
+                            <li>Permite representar dinámicamente la evolución de los privilegios en el tiempo.</li>
+                            <li><strong>Propósito:</strong> modelar la administración segura de derechos en sistemas multiusuario.</li>
+                        </ul>
+                    </ol>
+                    <li><strong>Comparación general de los modelos</strong></li>
+                    <div class="figure-container">
+                        <div class="figure-caption">Tabla 9</div>
+                        <div class="figure-caption">Comparación general de los modelos</div>
+                        <div class="figura">
+                            <img src="TABLA9.png" alt="" class="imagen-tabla9"/>
+                        </div>
+                        <div class="figure-caption">Nota: Adaptado de Conceptos de sistemas
+                            operativos (10. ° ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022, Wiley.</div>
+                    </div>
+                    <li><strong>Importancia de los modelos formales</strong></li>
+                    <ul>
+                        <li>Permiten analizar matemáticamente la seguridad del sistema operativo.</li>
+                        <li>Son la base para el diseño de mecanismos modernos de control de acceso y auditoría.</li>
+                        <li>Favorecen la certificación de sistemas críticos bajo estándares internacionales (por ejemplo, ISO/IEC 15408).</li>
+                        <li>Contribuyen al desarrollo de políticas de seguridad consistentes y verificables.</li>
+                    </ul>
+                </ol>
+                <p>
+                    Los modelos formales de seguridad constituyen la base teórica de la protección en los sistemas operativos. 
+                </p>
+                <p>
+                    A través de representaciones matemáticas y reglas lógicas, estos modelos permiten garantizar la confidencialidad, integridad y 
+                    control del acceso a la información, sirviendo como fundamento para las políticas de seguridad implementadas en sistemas modernos.
+                </p>
             </div>
+
+            <div style="margin-top: 30px;">
+                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+                <p>Finalmente, revisa los modelos formales que sustentan las políticas de seguridad en los sistemas computacionales:</p>
+                
+                <div class="figure-container">
+                    <iframe width="100%" height="450" src="https://www.youtube.com/embed/fNxP_789EzA" title="Modelos formales de seguridad" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 5px; max-width: 100%;"></iframe>
+                    <div class="figure-caption">Salas, I. (2025, 27 de noviembre). <em>Modelos formales de seguridad</em> [Video]. YouTube. https://www.youtube.com/watch?v=fNxP_789EzA</div>
+                </div>
+            </div>
+
         </div>
         
         <div class="activity-card">
-            <div class="activity-title">Actividad de Aprendizaje 1: Fundamentos de Seguridad</div>
+            <div class="activity-title">Actividad de Aprendizaje 6.1: Fundamentos de Seguridad</div>
             <p>Pon a prueba tus conocimientos sobre los conceptos fundamentales del ambiente de seguridad en sistemas operativos.</p>
             <a href="actividad_6_1.html" class="activity-btn">
                 <i class="fas fa-pencil-alt"></i> Realizar Actividad

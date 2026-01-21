@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.2 Fundamentos del Núcleo del Sistema Operativo</title>
-    <link rel="icon" type="image/png" href="logoescom.png">
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -401,7 +401,7 @@
         }
         
         .table-container {
-            max-width: 900px;
+            max-width: 100%;
             margin: 30px auto;
             overflow-x: auto;
             border-radius: 10px;
@@ -435,13 +435,30 @@
         .table-caption {
             text-align: center;
             padding: 15px;
-            font-style: italic;
             color: var(--gray);
             background: rgba(0, 0, 0, 0.3);
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
             font-size: 1.1rem;
             font-weight: 600;
+        }
+
+        .figure-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .imagen-figura1 {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .figure-caption {
+            color: var(--gray);
+            margin-top: 10px;
         }
         
         .nav-buttons {
@@ -511,6 +528,41 @@
             transform: translateY(-3px);
         }
         
+        /* Estilos para la tarjeta de actividad */
+        .activity-card {
+            background: rgba(46, 204, 113, 0.1); /* Fondo verde translúcido */
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 4px solid var(--success); /* Borde izquierdo verde */
+            text-align: center;
+        }
+        
+        .activity-title {
+            font-size: 1.8rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        .activity-btn {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .activity-btn:hover {
+            background: #27ae60; /* Verde más oscuro al pasar el mouse */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav {
                 width: 100%;
@@ -589,6 +641,9 @@
                 <a href="#seccion-1-2-1" class="nav-item" data-section="1-2-1">
                     <i class="fas fa-layer-group"></i> 1.2.1 Tipos de Núcleo
                 </a>
+                <a href="#seccion-arquitectura" class="nav-item" data-section="arquitectura">
+                    <i class="fas fa-sitemap"></i> Arquitectura
+                </a>
             </div>
 
             <div class="nav-section">
@@ -610,27 +665,39 @@
     <div class="container">
         <header id="inicio">
             <div class="breadcrumb">
-                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="https://escomisr.github.io/Libro_Digital_SO/index.html"><i class="fas fa-home"></i> Inicio</a>
                 <span>/</span>
-                <a href="1.0.html">Unidad 1</a>
+                <a href="index.html">Unidad 1</a>
                 <span>/</span>
-                <span>1.2 Fundamentos del núcleo del SO</span>
+                <span>1.2 Fundamentos del núcleo del sistema operativo</span>
             </div>
-            <h1>1.2 Fundamentos del Núcleo del Sistema Operativo</h1>
-            <div class="subtitle">Tipos de Arquitecturas de Sistemas Operativos</div>
+            <h1>1.2 Fundamentos del núcleo del sistema operativo</h1>
+            <div class="subtitle">Control, coordinación y comunicación</div>
         </header>
         
+        <div class="intro">
+            <p>Los <strong>fundamentos del núcleo del sistema operativo</strong> forman la base que permite el <strong>control, la coordinación y la comunicación</strong> entre los componentes del hardware y los programas del sistema.</p>
+            <p>El <strong>núcleo</strong> —también llamado <strong>kernel</strong>— es la <strong>parte central del sistema operativo</strong> que siempre está activa. Se encarga de <strong>organizar el uso de la memoria, manejar los procesos, controlar los dispositivos de entrada y salida, y administrar los archivos</strong>, para que cada programa utilice los recursos de manera <strong>ordenada, segura y eficiente</strong>.</p>
+            <p>Su objetivo principal es <strong>mantener la estabilidad y el buen funcionamiento del sistema</strong>, evitando conflictos cuando varios procesos trabajan al mismo tiempo.</p>
+            <p>Para lograrlo, utiliza mecanismos como la <strong>planificación de tareas, la sincronización y la gestión de interrupciones</strong>, que permiten que todas las operaciones se ejecuten de forma equilibrada y sin errores.</p>
+            <div class="citation">(Silberschatz, Galvin & Gagne, 2022).</div>
+        </div>
+
         <div class="section" id="seccion-1-2-1">
             <div class="section-header">
                 <div class="section-number">1.2.1</div>
-                <div class="section-title">Tipos: monolítico, por capas, micro núcleo, máquina virtual</div>
+                <div class="section-title">Tipos</div>
             </div>
             <div class="content">
+                <p>Existen diversos tipos de núcleos, cada uno con características específicas según su diseño y propósito como son:</p>
                 
                 <div class="type-card">
                     <div class="type-title">1. Sistema Operativo Monolítico</div>
+                    <div class="quote-box">
+                        "Los sistemas monolíticos son como un gran programa donde cada función puede llamar a cualquier otra sin restricciones"
+                        <div class="citation">(Tanenbaum & Bos, 2015, p. 73).</div>
+                    </div>
                     <div class="type-definition">
-                        <h4>Definición:</h4>
                         <p>Estructura donde el SO se implementa como un único programa ejecutable en modo kernel, con todas las funcionalidades (gestión de memoria, procesos, E/S, etc.) integradas en un solo módulo.</p>
                     </div>
                     <div class="type-characteristics">
@@ -641,16 +708,15 @@
                             <li>Ejemplos: UNIX tradicional, MS-DOS, Linux (parcialmente).</li>
                         </ul>
                     </div>
-                    <div class="quote-box">
-                        "Los sistemas monolíticos son como un gran programa donde cada función puede llamar a cualquier otra sin restricciones"
-                        <div class="citation">(Tanenbaum & Bos, 2015, p. 73).</div>
-                    </div>
                 </div>
 
                 <div class="type-card">
                     <div class="type-title">2. Sistema Operativo por Capas (Layered)</div>
+                    <div class="quote-box">
+                        "Las capas proporcionan abstracción progresiva, desde el hardware hasta las aplicaciones de usuario"
+                        <div class="citation">(Silberschatz, Galvin y Gagne, 2018, p. 95).</div>
+                    </div>
                     <div class="type-definition">
-                        <h4>Definición:</h4>
                         <p>Organización jerárquica donde cada capa solo interactúa con la capa inmediatamente inferior, ocultando complejidad.</p>
                     </div>
                     <div class="type-characteristics">
@@ -661,16 +727,15 @@
                             <li>Ejemplo clásico: THE OS (Dijkstra, 1968).</li>
                         </ul>
                     </div>
-                    <div class="quote-box">
-                        "Las capas proporcionan abstracción progresiva, desde el hardware hasta las aplicaciones de usuario"
-                        <div class="citation">(Silberschatz, Galvin y Gagne, 2018, p. 95).</div>
-                    </div>
                 </div>
 
                 <div class="type-card">
                     <div class="type-title">3. Micronúcleo (Microkernel)</div>
+                    <div class="quote-box">
+                        "Un micronúcleo típico solo maneja IPC, memoria básica y planificación, mientras otros servicios son procesos privilegiados"
+                        <div class="citation">(Stallings, 2018, p. 141).</div>
+                    </div>
                     <div class="type-definition">
-                        <h4>Definición:</h4>
                         <p>Minimiza las funciones ejecutadas en modo kernel, delegando servicios (gestión de archivos, red) a procesos en modo usuario ("servidores").</p>
                     </div>
                     <div class="type-characteristics">
@@ -681,16 +746,15 @@
                             <li>Ejemplos: QNX, MINIX 3, Mach (base de macOS/iOS).</li>
                         </ul>
                     </div>
-                    <div class="quote-box">
-                        "Un micronúcleo típico solo maneja IPC, memoria básica y planificación, mientras otros servicios son procesos privilegiados"
-                        <div class="citation">(Stallings, 2018, p. 141).</div>
-                    </div>
                 </div>
 
                 <div class="type-card">
                     <div class="type-title">4. Máquina Virtual (Virtual Machine Monitor)</div>
+                    <div class="quote-box">
+                        "Los hypervisors Tipo 1 (bare-metal) como VMware ESXi actúan como una capa entre el hardware y los SO invitados"
+                        <div class="citation">(Smith & Nair, 2019, p. 208).</div>
+                    </div>
                     <div class="type-definition">
-                        <h4>Definición:</h4>
                         <p>SO que abstrae el hardware para crear múltiples máquinas virtuales (VMs) independientes, cada una ejecutando su propio SO invitado.</p>
                     </div>
                     <div class="type-characteristics">
@@ -701,20 +765,18 @@
                             <li>Ejemplo clásico: IBM CP/CMS (años 1960).</li>
                         </ul>
                     </div>
-                    <div class="quote-box">
-                        "Los hypervisors Tipo 1 (bare-metal) como VMware ESXi actúan como una capa entre el hardware y los SO invitados"
-                        <div class="citation">(Smith & Nair, 2019, p. 208).</div>
-                    </div>
                 </div>
 
                 <div class="table-container">
+                    <div class="table-caption"><strong>Tabla 2</strong></div>
+                    <div class="table-caption">Comparativa de tipos de núcleos del sistema operativo</div>
                     <table>
                         <thead>
                             <tr>
-                                <th><strong>Tipo</strong></th>
-                                <th><strong>Ventajas</strong></th>
-                                <th><strong>Desventajas</strong></th>
-                                <th><strong>Ejemplo</strong></th>
+                                <th>Tipo</th>
+                                <th>Ventajas</th>
+                                <th>Desventajas</th>
+                                <th>Ejemplo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -744,9 +806,57 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="table-caption"><strong>Tabla 3.</strong><br><em><strong>Comparativa de Arquitecturas</strong>.</em></div>
+                    <div class="table-caption">Nota: Tanenbaum y Bos, 2015; Silberschatz, Galvin y Gagne, 2022</div>
                 </div>
             </div>
+        </div>
+
+        <div class="section" id="seccion-arquitectura">
+            <div class="section-header">
+                <div class="section-title">Arquitectura del sistema operativo</div>
+            </div>
+            <div class="content">
+                <p>Su estructura y organización de los distintos componentes que se comunican entre los equipos de cómputo y los programas de aplicación garantiza el uso eficiente, seguro y coordinado de los recursos del sistema.</p>
+                <p>El propósito es establecer una distribución lógica de funciones, donde cada capa o módulo cumple una tarea específica y se comunica con las demás mediante interfaces bien definidas.</p>
+                <p>En un sistema operativo moderno, la arquitectura suele dividirse en capas de abstracción:</p>
+                <ul>
+                    <li><strong>Capa de hardware</strong>, que incluye los dispositivos físicos como CPU, memoria, disco y periféricos.</li>
+                    <li><strong>Núcleo o kernel</strong>, encargado de gestionar los recursos principales (procesos, memoria, archivos y dispositivos) y de mantener el control total del sistema.</li>
+                    <li><strong>Llamadas al sistema y bibliotecas</strong>, que actúan como una interfaz entre el kernel y las aplicaciones de usuario, permitiendo el acceso controlado a las funciones del sistema.</li>
+                </ul>
+
+                <div class="figure-container">
+                    <div class="figure-caption">Figura 3</div>
+                    <div class="figure-caption"> Arquitectura general de un sistema operativo</div>
+                    <div class="figura">
+                        <img src="FIGURA3.png" alt="Arquitectura general de un sistema operativo" class="imagen-figura1"/>
+                    </div>
+                    <div class="figure-caption">Nota: Silberschatz et al., 2022</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="video-material">
+            <div class="section-header">
+                <div class="section-number"><i class="fas fa-play-circle"></i></div>
+                <div class="section-title">Material Audiovisual</div>
+            </div>
+            <div class="content">
+                <p>A continuación, se presenta un recurso audiovisual que detalla la implementación y funcionamiento del kernel (núcleo):</p>
+                
+                <div class="figure-container">
+                    <iframe width="100%" height="450" src="https://www.youtube.com/embed/fYo1R_h2dbA" title="Implementación del kernel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 5px; max-width: 100%;"></iframe>
+                    <div class="figure-caption">Salas, I. (s.f.). <em>Implementación del kernel</em> [Video]. YouTube. https://www.youtube.com/watch?v=fYo1R_h2dbA</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <div class="activity-title">Actividad de Aprendizaje 1.2: Fundamentos del Núcleo</div>
+            <p>Evalúa tu comprensión sobre la arquitectura del sistema operativo y los tipos de núcleo (Monolítico, Microkernel, etc.).</p>
+            <a href="actividad_1_2.html" class="activity-btn">
+                <i class="fas fa-pencil-alt"></i> Realizar Actividad
+            </a>
         </div>
         
         <div class="nav-buttons">
@@ -830,7 +940,10 @@
 
             navItems.forEach(item => {
                 const sectionId = 'seccion-' + item.dataset.section;
-                if (sectionId === currentSectionId) {
+                // Check if nav item refers to architecture section manually created in nav
+                if (item.dataset.section === 'arquitectura' && currentSectionId === 'seccion-arquitectura') {
+                    item.classList.add('active');
+                } else if (sectionId === currentSectionId) {
                     item.classList.add('active');
                 } else {
                     item.classList.remove('active');

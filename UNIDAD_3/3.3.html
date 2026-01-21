@@ -4,18 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.3 Segmentación de Memoria</title>
-    <link rel="icon" type="image/png" href="logoescom.png">
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /*
-        Aquí comienza un bloque de estilos CSS para definir la apariencia de la página.
-        Incluye:
-        - Variables de color (--primary, --secondary, etc.) para un diseño consistente.
-        - Estilos base para todos los elementos (*).
-        - Estilos para el cuerpo de la página (body), incluyendo un fondo degradado.
-        - Diseño de componentes específicos como botones flotantes, menú lateral, contenedor principal,
-          encabezados, secciones, tablas, bloques de código, tarjetas de actividad, pie de página, etc.
-        - Media Queries (@media) para adaptar el diseño a pantallas más pequeñas (diseño responsivo).
+        Estilos CSS definidos para mantener la consistencia visual.
         */
         :root {
             --primary: #2c3e50;
@@ -218,7 +211,7 @@
             visibility: visible;
         }
         
-        /* Contenedor principal con espaciado para botones flotantes */
+        /* Contenedor principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -354,53 +347,31 @@
             font-weight: 500;
         }
         
-        .citation {
-            font-style: italic;
-            color: var(--gray);
-            margin: 5px 0 15px 20px;
-            border-left: 2px solid var(--secondary);
-            padding-left: 10px;
-        }
-        
-        .table-container {
-            max-width: 800px;
-            margin: 30px auto;
-            overflow-x: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .figure-container {
+            margin: 30px 0;
+            padding: 20px;
             background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
         }
         
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .table-caption {
-            text-align: center;
-            padding: 10px;
-            font-style: italic;
+        .figure-placeholder {
+            width: 100%;
+            min-height: 300px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 15px 0;
             color: var(--gray);
-            background: rgba(0, 0, 0, 0.3);
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+            font-style: italic;
+            flex-direction: column;
+        }
+        
+        .figure-caption {
+            color: var(--gray);
+            margin-top: 10px;
+            font-size: 0.9rem;
         }
         
         .activity-card {
@@ -617,157 +588,123 @@
     <div class="container">
         <header id="inicio">
             <div class="breadcrumb">
-                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="https://escomisr.github.io/Libro_Digital_SO/index.html"><i class="fas fa-home"></i> Inicio</a>
                 <span>/</span>
                 <a href="index.html">Unidad 3</a>
                 <span>/</span>
                 <span>3.3 Segmentación de Memoria</span>
             </div>
-            <h1>3.3 Segmentación de Memoria</h1>
+            <h1>3.3 Segmentación</h1>
             <div class="subtitle">Organización lógica del espacio de direcciones</div>
         </header>
         
         <div class="intro">
-            <h3>INTRODUCCIÓN</h3>
-            <p>La segmentación de memoria es otro método clásico para gestionar la memoria. A diferencia de la paginación, que usa bloques de tamaño fijo, la segmentación divide la memoria de un proceso en <span class="highlight">segmentos</span>, que son bloques lógicos de tamaño variable.</p>
-            <p class="citation">(Tanenbaum, 2009)</p>
-            <p>Cada segmento corresponde a una parte lógica del programa, como el código, la pila o los datos. Esto hace que la segmentación se alinee mejor con la forma en que los programadores estructuran sus aplicaciones. Una dirección virtual se divide en un número de segmento y un desplazamiento.</p>
-
-            <h4>VENTAJAS Y DESVENTAJAS</h4>
-            <ul>
-                <li><b>Ventajas:</b> Ofrece flexibilidad para que los segmentos crezcan, una protección más sencilla por partes lógicas y la capacidad de compartir segmentos (como librerías) entre procesos.</li>
-                <li><b>Desventajas:</b> Su principal problema es la <span class="highlight">fragmentación externa</span>, que ocurre cuando se liberan segmentos de tamaño variable, dejando huecos difíciles de reutilizar en la memoria.</li>
-            </ul>
-             <p>Por estas desventajas, la segmentación casi nunca se usa sola en los sistemas operativos modernos, sino que se combina con la paginación.</p>
-             <p class="citation">(Wolf et al., 2015)</p>
+            <p>La segmentación es una forma de administrar la memoria que consiste en dividir el programa en partes llamadas segmentos, las cuales pueden tener distintos tamaños.</p>
+            <p>Cada segmento representa una parte lógica del programa, como el código, los datos o la pila.</p>
+            <p>A diferencia de la paginación, donde las divisiones son iguales, la segmentación organiza la memoria según la estructura real del programa, haciendo su uso más natural y flexible (Silberschatz, Galvin y Gagne, 2022).</p>
+            <p>En este modelo, cada proceso se divide en varias partes llamadas segmentos, y cada dirección dentro del programa se forma por dos elementos: el número de segmento, que indica a qué parte del programa pertenece, y el desplazamiento, que señala la posición dentro de ese segmento.</p>
+            <p>El sistema operativo guarda una tabla de segmentos para cada proceso, donde anota la dirección inicial y el tamaño de cada segmento.</p>
+            <p>Con esta información puede convertir las direcciones lógicas en físicas y asegurarse de que el programa no acceda a zonas de memoria no permitidas.</p>
+            <p>La segmentación tiene ventajas importantes porque representa de forma más clara la estructura lógica de los programas, permite proteger y compartir partes del código, y facilita el crecimiento de cada segmento según sea necesario.</p>
+            <p>Sin embargo, también tiene desventajas, como la fragmentación externa —cuando quedan espacios vacíos en la memoria— y una administración más complicada por manejar segmentos de diferentes tamaños.</p>
+            
+            <div class="figure-container">
+                <p class="figure-caption">Figura 24</p>
+                <p class="figure-caption">Segmentación</p>
+                <img src="FIGURA24.png" alt="Segmentación" class="imagen-figura1">
+                <p class="figure-caption">Nota: Adaptado de Conceptos de sistemas operativos (10.ª ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022, Wiley.</p>
+            </div>
         </div>
         
         <div class="section" id="seccion-3-3-1">
             <div class="section-header">
                 <div class="section-number">3.3.1</div>
-                <div class="section-title">Implementación de Segmentación Pura</div>
+                <div class="section-title">Segmentación pura</div>
             </div>
             <div class="content">
-                <h3>ESTRUCTURA Y FUNCIONAMIENTO</h3>
-                <p>La segmentación pura es una técnica que organiza la memoria exclusivamente en segmentos de tamaño variable, sin combinarlos con paginación. En este modelo, cada segmento representa una unidad lógica del programa, como el código, los datos o un arreglo.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-                <p>Cada proceso tiene una <span class="highlight">tabla de segmentos</span>. Cada entrada de esta tabla contiene tres datos clave:</p>
-                 <ul>
-                    <li><b>Dirección base:</b> Indica dónde empieza el segmento en la memoria física.</li>
-                    <li><b>Límite o longitud:</b> Especifica el tamaño del segmento.</li>
-                    <li><b>Bits de protección:</b> Controlan los permisos de lectura, escritura o ejecución.</li>
-                </ul>
-                <p>La MMU utiliza esta información para traducir cada acceso, verificando primero que el desplazamiento no supere el límite del segmento para prevenir accesos ilegales.</p>
-                <p class="citation">(Tanenbaum & Woodhull, 2001)</p>
+                <p>Es una forma de administrar la memoria en la que cada programa se divide en partes llamadas segmentos, que pueden tener distintos tamaños y representan elementos como el código, los datos, la pila o las tablas.</p>
+                <p>Estos segmentos se cargan en la memoria principal solo cuando se necesitan y pueden aumentar o disminuir de tamaño de manera independiente.</p>
+                <p>A diferencia de la paginación, aquí no se usan divisiones fijas, sino que la memoria se organiza según la estructura lógica del programa (Silberschatz, Galvin y Gagne, 2022).</p>
+                <p>En este modelo, el espacio de direcciones de un proceso está formado por varios segmentos, y cada dirección se compone de un número de segmento y un desplazamiento, que indica la posición dentro de él.</p>
+                <p>El sistema operativo mantiene una tabla donde se guarda la dirección inicial y el tamaño de cada segmento, lo que permite controlar el acceso y evitar errores.</p>
+                <p>Esta técnica ofrece una gestión flexible y modular de la memoria, útil para sistemas que requieren protección y compartición de datos, aunque su manejo es más complejo que el de la paginación.</p>
                 
-                <h3>COMPARACIÓN CON LA PAGINACIÓN</h3>
-                <p>La paginación y la segmentación pura tienen fortalezas y debilidades opuestas, como se resume en la siguiente tabla.</p>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ASPECTO</th>
-                                <th>SEGMENTACIÓN PURA</th>
-                                <th>PAGINACIÓN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Visión del programador</td>
-                                <td>Lógica y natural (código, datos, pila)</td>
-                                <td>No natural (bloques fijos)</td>
-                            </tr>
-                            <tr>
-                                <td>Tamaño de bloque</td>
-                                <td>Variable</td>
-                                <td>Fijo</td>
-                            </tr>
-                            <tr>
-                                <td>Fragmentación Principal</td>
-                                <td>Externa (huecos entre segmentos)</td>
-                                <td>Interna (espacio desperdiciado en la última página)</td>
-                            </tr>
-                            <tr>
-                                <td>Compartición</td>
-                                <td>Fácil (compartir segmentos lógicos)</td>
-                                <td>Más compleja (compartir páginas individuales)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 1. Comparación entre Segmentación Pura y Paginación.</div>
+                <div class="figure-container">
+                    <p class="figure-caption">Figura 25</p>
+                    <p class="figure-caption">Segmentación pura</p>
+                    <img src="FIGURA25.png" alt="Segmentación pura" class="imagen-figura1">
+                    <p class="figure-caption">Nota: Adaptado de Conceptos de sistemas operativos (10.ª ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022; Wiley, 2022.</p>
                 </div>
-                <p>Debido al serio problema de fragmentación externa, la segmentación pura casi nunca se usa en sistemas modernos. La solución práctica es un modelo híbrido.</p>
-                <p class="citation">(Carretero et al., 2001)</p>
             </div>
+
+            <div style="margin-top: 30px;">
+                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+                <p>Para comprender cómo se estructura y se implementa la segmentación de memoria, revisa el siguiente video:</p>
+                
+                <div class="figure-container">
+                    <iframe width="100%" height="450" src="https://www.youtube.com/embed/syi6ROCfW7I" title="Segmentación e implementación de la segmentación" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 5px; max-width: 100%;"></iframe>
+                    <div class="figure-caption">Salas, I. (2025, 26 de noviembre). <em>Segmentación e implementación</em> [Video]. YouTube. https://www.youtube.com/watch?v=syi6ROCfW7I</div>
+                </div>
+            </div>
+
         </div>
         
         <div class="section" id="seccion-3-3-2">
             <div class="section-header">
                 <div class="section-number">3.3.2</div>
-                <div class="section-title">Segmentación con Paginación</div>
+                <div class="section-title">Segmentación con paginación</div>
             </div>
             <div class="content">
-                <h3>UN MODELO HÍBRIDO</h3>
-                <p>La segmentación con paginación es un modelo que combina lo mejor de ambos enfoques. Su objetivo es ofrecer al programador una visión lógica de la memoria (segmentos) mientras mantiene la eficiencia en la gestión de la memoria física que proporciona la paginación.</p>
-                <p class="citation">(Tanenbaum, 2009)</p>
-                <p>En este esquema, el espacio de direcciones de un proceso se divide primero en segmentos de tamaño variable, y luego, cada segmento se subdivide en páginas de tamaño fijo.</p>
-
-                <h3>FUNCIONAMIENTO GENERAL</h3>
-                <p>Una dirección virtual en este esquema se divide en tres partes:</p>
+                <p>Estas páginas se almacenan en marcos de memoria física eliminando así la fragmentación externa que se presenta en la segmentación pura.</p>
+                <p>Cada proceso cuenta con una tabla de segmentos y cada segmento tiene su propia tabla de páginas.</p>
+                <p>De esta forma, para acceder a una dirección de memoria, se utilizan tres componentes:</p>
                 <ul>
-                    <li><b>Número de segmento (s):</b> Identifica el segmento lógico (ej. código, datos).</li>
-                    <li><b>Número de página (p):</b> Indica la página dentro de ese segmento.</li>
-                    <li><b>Desplazamiento (d):</b> La posición dentro de esa página.</li>
+                    <li><strong>Número de segmento:</strong> identifica el bloque lógico del proceso</li>
+                    <li><strong>Número de página:</strong> localiza la página específica dentro del segmento</li>
+                    <li><strong>Desplazamiento (offset):</strong> indica la posición dentro de la página</li>
                 </ul>
-                <p>El proceso de traducción de la MMU se realiza en dos pasos: primero, consulta la tabla de segmentos para encontrar la tabla de páginas del segmento; luego, usa esa tabla para encontrar el marco de página físico.</p>
-                <p class="citation">(Carretero et al., 2001)</p>
+                <p>Este mecanismo admite que los segmentos crezcan y se gestionen de manera independiente, mientras que las páginas aseguran una asignación física eficiente.</p>
+                <h4>Ventajas principales:</h4>
+                <ul>
+                    <li>Elimina la fragmentación externa</li>
+                    <li>Mantiene la organización lógica del programa por segmentos</li>
+                    <li>Facilita la protección y el compartimiento de memoria</li>
+                </ul>
+                <h4>Desventajas:</h4>
+                <ul>
+                    <li>Mayor complejidad en la traducción de direcciones</li>
+                    <li>Necesidad de múltiples tablas (de segmentos y de páginas) aumentando el consumo de memoria</li>
+                </ul>
+                <p>La siguiente figura 26, muestra el modelo de segmentación con paginación, en el que la memoria de un proceso se organiza de manera jerárquica.</p>
+                <p>Primero, el espacio lógico se divide en segmentos lógicos (por ejemplo, código, datos y pila), y luego cada segmento se subdivide en páginas de tamaño fijo.</p>
 
-                <h4>EJEMPLO PRÁCTICO</h4>
-                <p>Imaginemos un proceso con un segmento de código de 20 KB y un tamaño de página de 4 KB. El sistema dividirá este segmento en 5 páginas (20 ÷ 4). Si una dirección virtual es (segmento 0, página 2, desplazamiento 300):</p>
-                <ol>
-                    <li>La MMU busca la entrada para el <b>Segmento 0</b> en la tabla de segmentos del proceso.</li>
-                    <li>Esta entrada apunta a la <b>tabla de páginas</b> del segmento de código.</li>
-                    <li>La MMU busca la entrada de la <b>Página 2</b> en esa tabla para encontrar el número de marco físico (ej. marco 45).</li>
-                    <li>La dirección física final se calcula como: (dirección de inicio del marco 45) + 300.</li>
-                </ol>
-
-                <h4>VENTAJAS Y DESVENTAJAS DEL MODELO HÍBRIDO</h4>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>VENTAJAS</th>
-                                <th>DESVENTAJAS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Combina la organización lógica con la eficiencia física.</td>
-                                <td>Implementación mucho más compleja.</td>
-                            </tr>
-                            <tr>
-                                <td>Elimina la fragmentación externa.</td>
-                                <td>Mayor sobrecarga de memoria por las tablas.</td>
-                            </tr>
-                            <tr>
-                                <td>Permite protección a nivel de segmento y de página.</td>
-                                <td>Cada acceso puede ser más lento (requiere un TLB).</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-caption">Tabla 2. Ventajas y desventajas de la segmentación con paginación.</div>
+                <div class="figure-container">
+                    <p class="figure-caption">Figura 26</p>
+                    <p class="figure-caption">Segmentación con paginación</p>
+                    <img src="FIGURA26.png" alt="Segmentación con paginación" class="imagen-figura1">
+                    <p class="figure-caption">Nota: Adaptado de Conceptos de sistemas operativos (10.ª ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022; Wiley, 2022.</p>
                 </div>
-                 <p>Aunque los sistemas operativos modernos como Linux y Windows se basan más en la paginación multinivel, la segmentación paginada fue un paso crucial en la evolución de la gestión de memoria.</p>
             </div>
+
+            <div style="margin-top: 30px;">
+                <h3><i class="fas fa-play-circle" style="margin-right: 10px;"></i> Material Audiovisual</h3>
+                <p>A continuación, se detalla el funcionamiento de la segmentación paginada, combinando las ventajas de ambos esquemas:</p>
+                
+                <div class="figure-container">
+                    <iframe width="100%" height="450" src="https://www.youtube.com/embed/Yrs-0tILQrE" title="Segmentación con paginación" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 5px; max-width: 100%;"></iframe>
+                    <div class="figure-caption">Salas, I. (2025, 26 de noviembre). <em>Segmentación con paginación</em> [Video]. YouTube. https://www.youtube.com/watch?v=Yrs-0tILQrE</div>
+                </div>
+            </div>
+
         </div>
         
         <div class="activity-card" id="actividad-aprendizaje">
             <div class="activity-title">
                 <i class="fas fa-tasks"></i>
-                Actividad de Aprendizaje 3: Segmentación
+                Actividad de Aprendizaje 3.3: Segmentación
             </div>
             <p class="activity-description">Evalúa tu comprensión sobre los diferentes enfoques de segmentación de memoria y su combinación con la paginación.</p>
-            <a href="actividad_3_3.html" class="activity-btn">
+            <a href="Actividad_3_3.html" class="activity-btn">
                 <i class="fas fa-pencil-alt"></i> Realizar Actividad
             </a>
         </div>
@@ -779,7 +716,7 @@
         
         <footer>
             <p>Sistemas Operativos - Unidad 3: Administración de Memoria</p>
-            <p>Desarrollado para fines educativos - © 2025 | Referencias: Carretero et al. (2001), Tanenbaum (2009), Tanenbaum & Woodhull (2001), Wolf et al. (2015).</p>
+            <p>Desarrollado para fines educativos - © 2025 | Referencias: Silberschatz, Galvin y Gagne (2022).</p>
         </footer>
     </div>
 

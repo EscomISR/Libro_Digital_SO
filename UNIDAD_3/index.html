@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unidad 3: Administración de Memoria</title>
-    <link rel="icon" type="image/png" href="logoescom.png">
+    <link rel="icon" type="image/png" href="../IMAGENES/logoescom.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -549,7 +549,7 @@
                 <h1 style="margin: 0; text-align: center;">UNIDAD TEMÁTICA 3</h1>
                 <img src="ESCOMB.png" alt="Logo ESCOM" style="height: 80px; max-width: 120px; object-fit: contain;">
             </div>
-            <div class="subtitle">ADMINISTRACIÓN DE MEMORIA</div>
+            <div class="subtitle">Administración de Memoria</div>
             <div class="description">
                 <p>Esta unidad explora cómo los sistemas operativos gestionan uno de los recursos más críticos: la memoria. Aprenderás sobre la abstracción de memoria, la memoria virtual, la paginación, y las técnicas de segmentación que permiten ejecutar múltiples programas de manera eficiente y segura.</p>
             </div>
@@ -574,7 +574,7 @@
                 <div class="card-header" onclick="toggleCard('3-1')">
                     <div class="card-header-content">
                         <div class="card-number">3.1</div>
-                        <div class="card-title">ABSTRACCIÓN DE MEMORIA</div>
+                        <div class="card-title">Abstracción de memoria</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -628,7 +628,7 @@
                 <div class="card-header" onclick="toggleCard('3-2')">
                     <div class="card-header-content">
                         <div class="card-number">3.2</div>
-                        <div class="card-title">MEMORIA VIRTUAL</div>
+                        <div class="card-title">Memoria virtual</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -668,7 +668,7 @@
                 <div class="card-header" onclick="toggleCard('3-3')">
                     <div class="card-header-content">
                         <div class="card-number">3.3</div>
-                        <div class="card-title">SEGMENTACIÓN DE MEMORIA</div>
+                        <div class="card-title">Segmentación de memoria</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -701,7 +701,7 @@
                 <div class="card-header" onclick="toggleCard('activities')">
                     <div class="card-header-content">
                         <div class="card-number"><i class="fas fa-tasks"></i></div>
-                        <div class="card-title">ACTIVIDADES DE APRENDIZAJE</div>
+                        <div class="card-title">Actividades de aprendizaje</div>
                     </div>
                     <div class="card-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -709,21 +709,21 @@
                 <div class="subtopics">
                     <ul class="subtopic-list">
                         <li class="activity-item">
-                            <a href="actividad_3_1.html" class="activity-link">
+                            <a href="Actividad_3_1.html" class="activity-link">
                                 <div class="activity-number">ACT 1</div>
                                 <div class="activity-name">Fundamentos de Abstracción de Memoria</div>
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                         </li>
                         <li class="activity-item">
-                            <a href="actividad_3_2.html" class="activity-link">
+                            <a href="Actividad_3_2.html" class="activity-link">
                                 <div class="activity-number">ACT 2</div>
                                 <div class="activity-name">Memoria Virtual y Paginación</div>
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                         </li>
                         <li class="activity-item">
-                            <a href="actividad_3_3.html" class="activity-link">
+                            <a href="Actividad_3_3.html" class="activity-link">
                                 <div class="activity-number">ACT 3</div>
                                 <div class="activity-name">Segmentación y Modelos Híbridos</div>
                                 <i class="fas fa-pencil-alt"></i>
@@ -743,7 +743,7 @@
                 <div class="card-header">
                     <div class="card-header-content">
                         <div class="card-number"><i class="fas fa-book"></i></div>
-                        <div class="card-title">REFERENCIAS BIBLIOGRÁFICAS</div>
+                        <div class="card-title">Lista de referencias</div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -755,7 +755,7 @@
                 <div class="card-header">
                     <div class="card-header-content">
                         <div class="card-number"><i class="fas fa-keyboard"></i></div>
-                        <div class="card-title">LABORATORIO DE CÓDIGO</div>
+                        <div class="card-title">Laboratorio de código</div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -775,8 +775,11 @@
     <div class="modal" id="videoModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">Administración de Memoria - Video Explicativo</h2>
+                <h2 class="modal-title">Video Introducción - Administración de Memoria</h2>
                 <button class="close-btn" onclick="closeVideoModal()">×</button>
+            </div>
+            <div class="description">
+                <p>Salas, I. (2025, 28 de noviembre). <em>General: Abstracción, virtualización y segmentación</em> [Video]. YouTube. https://www.youtube.com/watch?v=JAjisuW9THU</p>
             </div>
             <div class="video-container">
                 <iframe id="videoFrame" src="" allowfullscreen></iframe>
@@ -853,8 +856,10 @@
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
             const videoFrame = document.getElementById('videoFrame');
-            // Reemplaza esta URL con el video que desees mostrar sobre administración de memoria
-            videoFrame.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+            
+            // Video Unidad 3: Abstracción de memoria
+            videoFrame.src = 'https://www.youtube.com/embed/JAjisuW9THU?autoplay=1';
+            
             modal.classList.add('show');
         }
 
@@ -879,7 +884,7 @@
             }
         });
     </script>
-    <a href="../MENU/MENU.html" class="back-to-menu-btn" title="Volver al Menú Principal">
+    <a href="../Unidades.html" class="back-to-menu-btn" title="Volver al Inicio">
         <i class="fas fa-home"></i>
     </a>
 </body>
