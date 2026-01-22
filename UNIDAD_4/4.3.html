@@ -124,6 +124,26 @@
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
         }
 
+        .imagen-figura1 {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: zoom-in;
+            position: relative;
+            z-index: 10;
+            transform-origin: center center;
+        }
+        
+        /* Efecto al pasar el mouse */
+        .imagen-figura1:hover {
+            transform: scale(1.7);
+            z-index: 1000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            background-color: var(--card-bg);
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav { width: 100%; }
             h1 { font-size: 2rem; }
@@ -201,7 +221,7 @@
             <div class="figure-container">
                     <div class="figure-caption">Figura 31</div>
                     <div class="figure-caption">Estructura y funciones de los directorios en el sistema operativo</div>
-                    <img src="FIGURA31.png" alt="Estructura y funciones de los directorios en el sistema operativo">
+                    <img src="FIGURA31.png" alt="Estructura y funciones de los directorios en el sistema operativo" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas Operativos Modernos  (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
         </div>
@@ -228,7 +248,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 32</div>
                     <div class="figure-caption">Asignación contigua de archivos en el sistema operativo</div>
-                    <img src="FIGURA32.png" alt="Asignación contigua">
+                    <img src="FIGURA32.png" alt="Asignación contigua" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>
@@ -247,7 +267,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 33</div>
                     <div class="figure-caption">Asignación ligada de archivos en el sistema operativo</div>
-                    <img src="FIGURA33.png" alt="Asignación ligada">
+                    <img src="FIGURA33.png" alt="Asignación ligada" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>
@@ -270,7 +290,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 34</div>
                     <div class="figure-caption">Asignación indexada de archivos en el sistema operativo</div>
-                    <img src="FIGURA34.png" alt="Asignación indexada">
+                    <img src="FIGURA34.png" alt="Asignación indexada" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>
@@ -288,7 +308,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 35</div>
                     <div class="figure-caption">Administración de espacio en disco en el sistema operativo</div>
-                    <img src="FIGURA35.png" alt="Administración de espacio en disco">
+                    <img src="FIGURA35.png" alt="Administración de espacio en disco" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>

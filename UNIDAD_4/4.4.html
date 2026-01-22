@@ -124,6 +124,26 @@
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
         }
 
+        .imagen-figura1 {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: zoom-in;
+            position: relative;
+            z-index: 10;
+            transform-origin: center center;
+        }
+        
+        /* Efecto al pasar el mouse */
+        .imagen-figura1:hover {
+            transform: scale(1.7);
+            z-index: 1000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            background-color: var(--card-bg);
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav { width: 100%; }
             h1 { font-size: 2rem; }
@@ -200,7 +220,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 36</div>
                     <div class="figure-caption">Sistemas de archivos estructurados en el sistema operativo</div>
-                    <img src="FIGURA36.png" alt="Sistemas de archivos estructurados">
+                    <img src="FIGURA36.png" alt="Sistemas de archivos estructurados" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>
@@ -231,7 +251,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 37</div>
                     <div class="figure-caption">Sistemas de archivos con bitácora en el sistema operativo</div>
-                    <img src="FIGURA37.png" alt="Sistemas de archivos con bitácora">
+                    <img src="FIGURA37.png" alt="Sistemas de archivos con bitácora" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>
@@ -250,7 +270,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 38</div>
                     <div class="figure-caption">Funcionamiento de los sistemas de archivos por diario</div>
-                    <img src="FIGURA38.png" alt="Funcionamiento de los sistemas de archivos por diario">
+                    <img src="FIGURA38.png" alt="Funcionamiento de los sistemas de archivos por diario" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Sistemas operativos modernos (4.ª ed.) por Andrew S. Tanenbaum y Herbert Bos, 2015; Pearson Educación.</div>
                 </div>
             </div>

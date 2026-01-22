@@ -124,6 +124,26 @@
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
         }
 
+        .imagen-figura1 {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: zoom-in;
+            position: relative;
+            z-index: 10;
+            transform-origin: center center;
+        }
+        
+        /* Efecto al pasar el mouse */
+        .imagen-figura1:hover {
+            transform: scale(1.7);
+            z-index: 1000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            background-color: var(--card-bg);
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav { width: 100%; }
             h1 { font-size: 2rem; }
@@ -218,7 +238,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 29</div>
                     <div class="figure-caption">Implementación del sistema de archivos</div>
-                    <img src="FIGURA29.png" alt="Implementación del sistema de archivos">
+                    <img src="FIGURA29.png" alt="Implementación del sistema de archivos" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Conceptos de sistemas operativos (10.ª ed.) por Abraham Silberschatz, Peter B. Galvin y Greg Gagne, 2022, Wiley.</div>
                 </div>
             </div>
@@ -242,7 +262,7 @@
                 <div class="figure-container">
                     <div class="figure-caption">Figura 30</div>
                     <div class="figure-caption">Estructura lógica y física del sistema de archivos</div>
-                    <img src="FIGURA30.png" alt="Estructura lógica y física del sistema de archivos">
+                    <img src="FIGURA30.png" alt="Estructura lógica y física del sistema de archivos" class="imagen-figura1">
                     <div class="figure-caption">Nota: Adaptado de Conceptos de sistemas operativos (10.ª ed.) por A. Silberschatz, P. B. Galvin y G. Gagne, 2022; Wiley.</div>
                 </div>
             </div>
