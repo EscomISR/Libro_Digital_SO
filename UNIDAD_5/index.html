@@ -356,10 +356,11 @@
         }
 
         /* Efecto hover para iconos de hardware */
-        .hardware-icon:hover {
-            transform: translateY(-5px); /* Mueve el icono ligeramente hacia arriba */
-            background: var(--secondary); /* Cambia el fondo al color secundario */
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4); /* Aumenta la sombra */
+        .hardware-icon.interactive:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+            cursor: pointer;
         }
 
         /* Estilos para el óvalo del video */

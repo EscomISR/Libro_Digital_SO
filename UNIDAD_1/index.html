@@ -314,10 +314,11 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .hardware-icon:hover {
+        .hardware-icon.interactive:hover {
             transform: translateY(-5px);
             background: var(--secondary);
             box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+            cursor: pointer;
         }
 
         /* Estilos para el óvalo del video */
@@ -558,12 +559,12 @@
             </div>
 
             <div class="hardware-icons">
-                <div class="hardware-icon"><a href="https://escomisr.github.io/Libro_Digital_SO/index.html"><i class="fa fa-home"></i></a></div>
+                <div class="hardware-icon interactive"><a href="https://escomisr.github.io/Libro_Digital_SO/index.html"><i class="fa fa-home"></i></a></div>
                 <div class="hardware-icon">💻</div>
                 <div class="hardware-icon">🧠</div>
                 <div class="video-oval" onclick="openVideoModal()">
                     <i class="fas fa-play"></i>
-                    Introducción
+                    Video
                 </div>
                 <div class="hardware-icon">💾</div>
                 <div class="hardware-icon">🌐</div>

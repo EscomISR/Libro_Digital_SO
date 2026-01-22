@@ -338,12 +338,11 @@
         }
         
         /* Contenedor para los iconos de hardware en la cabecera */
-        .hardware-icons {
-            display: flex; /* Usa flexbox para organizar los iconos en una fila */
-            justify-content: center; /* Centra los iconos horizontalmente */
-            gap: 20px; /* Espacio entre iconos */
-            margin-top: 40px; /* Espacio encima del contenedor de iconos */
-            flex-wrap: wrap; /* Permite que los iconos pasen a la siguiente línea si no hay suficiente espacio */
+        .hardware-icon.interactive:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+            cursor: pointer;
         }
         
         /* Estilo para iconos de hardware individuales */
