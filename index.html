@@ -59,32 +59,28 @@
         /* Estilos base para las imágenes del hero */
         .hero-content img {
             margin: 1rem;
-            transition: all 0.3s ease; /* Añade una transición suave si cambian de tamaño */
+            transition: all 0.3s ease;
         }
 
-        /* Logo IPN (Primera imagen) - MÁS GRANDE */
+        /* Logo IPN (Primera imagen) */
         .hero-content img:first-of-type {
-            height: 8rem; /* Aumentado de 6rem a 8rem en móvil */
+            height: 8rem;
         }
 
-        /* Logo ESCOM (Última imagen) - MÁS PEQUEÑO */
+        /* Logo ESCOM (Última imagen) */
         .hero-content img:last-of-type {
-            height: 5rem; /* Reducido de 6rem a 5rem en móvil para notar la diferencia */
+            height: 5rem;
         }
         
         @media (min-width: 768px) {
             .hero-content img {
                 margin: 0 2rem;
             }
-
-            /* Logo IPN en escritorio */
             .hero-content img:first-of-type {
-                height: 12rem; /* Aumentado considerablemente (antes 8rem) */
+                height: 12rem;
             }
-
-            /* Logo ESCOM en escritorio */
             .hero-content img:last-of-type {
-                height: 7rem; /* Ligeramente menor (antes 8rem) */
+                height: 7rem;
             }
         }
 
@@ -476,7 +472,7 @@
                 <img src="IMAGENES/IPNb.png" alt="IPN Logo">
                 <div class="hero-title">
                     <h1><span class="highlight">Instituto Politécnico Nacional</span><br><span class="subtitle">Escuela Superior de Cómputo</span></h1>
-                    <p class="hero-description">El pulso silencioso de los sistemas Operativos<strong><br>(Polilibro)</strong><br><br>Unidad de Aprendizaje: Sistemas Operativos</p>
+                    <p class="hero-description">El pulso silencioso de los sistemas Operativos<strong><br>(Libro interactivo)</strong><br><br>Unidad de Aprendizaje: Sistemas Operativos</p>
                 </div>
                 <img src="IMAGENES/ESCOMB.png" alt="ESCOM Logo">
             </div>
@@ -513,26 +509,16 @@
                 <div class="card-header"><div class="card-icon gradient-8"><i class="fas fa-sitemap"></i></div><h3 class="card-title">Metodología</h3></div>
                 <div class="card-content"><p class="card-description">Estrategia y métodos de aprendizaje.</p></div>
             </div>
-            
-        <!--
+
             <div class="card" data-modal="actividades">
-                <div class="card-header"><div class="card-icon gradient-1"><i class="fas fa-gamepad"></i></div><h3 class="card-title">Actividades</h3></div>
+                <div class="card-header"><div class="card-icon gradient-6"><i class="fas fa-gamepad"></i></div><h3 class="card-title">Actividades</h3></div>
                 <div class="card-content"><p class="card-description">Ejercicios y dinámicas de aprendizaje.</p></div>
             </div>
-            <div class="card" data-modal="referencias">
-                <div class="card-header"><div class="card-icon gradient-2"><i class="fas fa-book-open"></i></div><h3 class="card-title">Referencias</h3></div>
-                <div class="card-content"><p class="card-description">Bibliografía y fuentes consultadas.</p></div>
-            </div>
-            <div class="card" data-modal="Introducción">
-                <div class="card-header"><div class="card-icon gradient-3"><i class="fas fa-video"></i></div><h3 class="card-title">Videos</h3></div>
-                <div class="card-content"><p class="card-description">Material audiovisual complementario.</p></div>
-            </div>
-            <div class="card" data-modal="cuestionario">
-                <div class="card-header"><div class="card-icon gradient-4"><i class="fas fa-comment-dots"></i></div><h3 class="card-title">Comentarios</h3></div>
-                <div class="card-content"><p class="card-description">Encuesta de satisfacción y sugerencias.</p></div>
-            </div>
-        -->
 
+            <div class="card" data-modal="laboratorios">
+                <div class="card-header"><div class="card-icon gradient-1"><i class="fas fa-laptop-code"></i></div><h3 class="card-title">Laboratorios</h3></div>
+                <div class="card-content"><p class="card-description">Prácticas de código y programación.</p></div>
+            </div>
             <div class="card" data-modal="licencia">
                 <div class="card-header"><div class="card-icon gradient-1"><i class="fab fa-creative-commons"></i></div><h3 class="card-title">Licencia Creative Commons</h3></div>
                 <div class="card-content"><p class="card-description">Términos de uso y licenciamiento del recurso.</p></div>
@@ -869,7 +855,41 @@ sistema operativo.</p>
                         <li><a href="UNIDAD_6/actividad_6_2.html" style="text-decoration: none; color: inherit; width: 100%; display: flex; align-items: center; gap: 10px;"><i class="fas fa-gamepad"></i> Actividad 6.2</a></li>
                     </ul>
                 </div>
+                
+                <div id="modal-laboratorios" class="modal-section">
+                    <h3>Laboratorios de Código</h3>
+                    <p>Espacio dedicado a la práctica y experimentación con código para reforzar los conceptos de sistemas operativos.</p>
 
+                    <h4 class="unit-title">Unidad 1: Estructura de un Sistema Operativo</h4>
+                    <ul class="video-list">
+                        <li><a href="UNIDAD_1/laboratorio_codigo.html" style="text-decoration: none; color: inherit; width: 100%; display: flex; align-items: center; gap: 10px;"><i class="fas fa-code"></i> Laboratorio Unidad 1</a></li>
+                    </ul>
+
+                    <h4 class="unit-title">Unidad 2: Administración de procesos</h4>
+                    <ul class="video-list">
+                        <li><a href="UNIDAD_2/laboratorio_codigo.html" style="text-decoration: none; color: inherit; width: 100%; display: flex; align-items: center; gap: 10px;"><i class="fas fa-code"></i> Laboratorio Unidad 2</a></li>
+                    </ul>
+
+                    <h4 class="unit-title">Unidad 3: Administración de memoria</h4>
+                    <ul class="video-list">
+                        <li><a href="UNIDAD_3/laboratorio_codigo.html" style="text-decoration: none; color: inherit; width: 100%; display: flex; align-items: center; gap: 10px;"><i class="fas fa-code"></i> Laboratorio Unidad 3</a></li>
+                    </ul>
+
+                    <h4 class="unit-title">Unidad 4: Sistema de archivos</h4>
+                    <ul class="video-list">
+                        <li><a href="UNIDAD_4/laboratorio_codigo.html" style="text-decoration: none; color: inherit; width: 100%; display: flex; align-items: center; gap: 10px;"><i class="fas fa-code"></i> Laboratorio Unidad 4</a></li>
+                    </ul>
+
+                    <h4 class="unit-title">Unidad 5: Dispositivos de E/S</h4>
+                    <ul class="video-list">
+                        <li><a href="UNIDAD_5/laboratorio_codigo.html" style="text-decoration: none; color: inherit; width: 100%; display: flex; align-items: center; gap: 10px;"><i class="fas fa-code"></i> Laboratorio Unidad 5</a></li>
+                    </ul>
+
+                    <h4 class="unit-title">Unidad 6: Seguridad y Virtualización</h4>
+                    <ul class="video-list">
+                        <li><a href="UNIDAD_6/laboratorio_codigo.html" style="text-decoration: none; color: inherit; width: 100%; display: flex; align-items: center; gap: 10px;"><i class="fas fa-code"></i> Laboratorio Unidad 6</a></li>
+                    </ul>
+                </div>
                 <div id="modal-referencias" class="modal-section">
                     <h3>Referencias Bibliográficas</h3>
                     <p>Bibliografía base para el desarrollo de este material didáctico:</p>
