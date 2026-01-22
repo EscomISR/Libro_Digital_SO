@@ -454,6 +454,20 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: zoom-in;
+            position: relative;
+            z-index: 10;
+            transform-origin: center center;
+        }
+        
+        /* Efecto al pasar el mouse */
+        .imagen-figura1:hover {
+            transform: scale(1.7);
+            z-index: 1000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            background-color: var(--card-bg);
         }
         
         .figure-caption {
