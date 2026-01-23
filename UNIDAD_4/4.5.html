@@ -75,7 +75,35 @@
         .quote-box { background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--secondary); padding: 20px; margin: 25px 0; border-radius: 8px; font-style: italic; color: var(--light); }
         .quote-box .citation { border-left: none; margin: 10px 0 0 0; padding-left: 0; }
         
-        .figure-container { margin: 30px 0; padding: 20px; background: rgba(0, 0, 0, 0.2); border-radius: 10px; }
+        .figure-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .imagen-figura1 {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain; 
+            border-radius: 8px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: zoom-in;
+            transform-origin: center center;
+        }
+        
+        /* Efecto al pasar el mouse */
+        .imagen-figura1:hover {
+            transform: scale(1.4); 
+            border-radius: 8px;
+        }
+
         .figure-caption { color: var(--gray); margin-top: 10px; }
         .figure-container img { max-width: 100%; border-radius: 5px; }
 
@@ -122,26 +150,6 @@
             background: #27ae60; /* Verde más oscuro al pasar el mouse */
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
-        }
-
-        .imagen-figura1 {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-            cursor: zoom-in;
-            position: relative;
-            z-index: 10;
-            transform-origin: center center;
-        }
-        
-        /* Efecto al pasar el mouse */
-        .imagen-figura1:hover {
-            transform: scale(1.7);
-            z-index: 1000;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            border-radius: 12px;
-            background-color: var(--card-bg);
         }
 
         @media (max-width: 768px) {
